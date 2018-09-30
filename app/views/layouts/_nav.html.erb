@@ -1,30 +1,29 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">Wedding</a>
-  <a class="navbar-brand" href="/tables">Столи</a>
-  <a class="navbar-brand" href="/my_coupons">Сертифікати</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#"><img src="https://elopay-me-prod.s3.amazonaws.com/covers/files/000/038/697/s_1200/Freeliance-Main-Logo.jpg?1538053320" style="width: 207px; display: block; vertical-align: top; margin: 5px auto; text-align: center;" data-success="true" data-id="38697" data-original_link="https://elopay-me-prod.s3.amazonaws.com/covers/files/000/038/697/original/Freeliance-Main-Logo.png?1538053320"></a>
+    <button class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="nav navbar-nav float-right">
-      <% if user_signed_in? %>
-        <% if !current_user.name.blank? %>
-          <li><%= link_to current_user.name, edit_user_registration_path %></li>
-        <% else %>
-          <li><%= link_to "Редагувати профіль", edit_user_registration_path %></li>
-        <% end %>
-        <% if current_user.remote_avatar_url %>
-          <li class="round-image-30"><%= image_tag(current_user.remote_avatar_url) %></li>
-        <% end %>
-        <% if current_user.chair %>
-          <li><%= link_to 'Я хочу пересісти!', change_sit_path, data: {:confirm => "Ти точно хочеш пересісти?"}%></li>
-        <% end %>
-        <li><%= link_to 'Вийти', destroy_user_session_path, data: {:confirm => "Вийти?"} %></li>
-      <% else %>
-        <li><%= link_to 'Зареєструватися', new_user_registration_path, class: "active" %></li>
-        <li><%= link_to 'Увійти', new_user_session_path, class: "active" %></li>
-      <% end %>
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/s/Virginietest1">START</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/s/Virginietest1/mission">MISSION</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/s/Virginietest1/experts">EXPERTS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/s/Virginietest1/academy">ACADEMY</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/s/Virginietest1/events">EVENTS</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

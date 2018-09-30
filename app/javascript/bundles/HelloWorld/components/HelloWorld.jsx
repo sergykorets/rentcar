@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react';
-import axios from 'axios';
 import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
 export default class HelloWorld extends React.Component {
@@ -7,147 +6,609 @@ export default class HelloWorld extends React.Component {
     super(props);
 
     this.state = {
-      places: {},
-      loading: true,
-      popoverOpen: false,
-      hoverId: '1'
     };
-    this.toggle = this.toggle.bind(this);
-  }
-
-  componentDidMount() {
-    axios.get('/places')
-      .then(res => {
-        this.setState({ places: res.data.places, loading: false });
-      });
-  }
-
-  handleReservation(place) {
-    if (this.state.places[place].userId) {
-      alert(`${this.state.places[place].userName} вже тут їде`)
-    } else {
-      if (confirm('Хочеш їхати тут?')) {
-        axios.put('/reserve', {
-          place: place
-        })
-          .then(res => {
-            if (res.success) {
-              window.location.reload()
-            } else {
-              window.location = '/users/sign_in'
-            }
-          });
-      }
-    }
-  }
-
-  toggle(e) {
-    this.setState({
-      hoverId: e.target.dataset.place,
-      popoverOpen: !this.state.popoverOpen
-    });
   }
 
   render() {
     return (
       <Fragment>
-        <h1>Займаємо місця на поїзд 13 вересня (Київ - Івано-франківськ)</h1>
-        <h4>Для замовлення поїзда потрібно точно знати кількість людей, тому вибирайте собі місце і бронюйте за собою</h4>
-        <h6>Для резервації місця потрібно пройти швидку авторизацію через Facebook або зареєструватися за допомогою пошти</h6>
-        <div className="wagon-scheme">
-          <div className="inner">
-            <div className="scheme">
-              <div className="wagon-floors">
-                { !this.state.loading &&
-                  <div className="floor floor-1" style={{width: 868 + 'px', height: 125 + 'px'}}>
-                    <Popover placement="bottom" isOpen={this.state.popoverOpen} target={`Popover${this.state.hoverId}`} toggle={this.toggle}>
-                      <PopoverBody>{this.state.places[this.state.hoverId] && this.state.places[this.state.hoverId].userName}</PopoverBody>
-                    </Popover>
-                    <div id="Popover2" onMouseOver={this.toggle}  data-place="2" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[2].userId ? 'oc place' : 'fr place'} style={{left: 78+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>2</div>
-                    <div id="Popover4" onMouseOver={this.toggle} data-place="4" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[4].userId ? 'oc place' : 'fr place'} style={{left: 118+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>4</div>
-                    <div id="Popover6" onMouseOver={this.toggle} data-place="6" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[6].userId ? 'oc place' : 'fr place'} style={{left: 158+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>6</div>
-                    <div id="Popover8" onMouseOver={this.toggle} data-place="8" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[8].userId ? 'oc place' : 'fr place'} style={{left: 198+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>8</div>
-                    <div id="Popover10" onMouseOver={this.toggle} data-place="10" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[10].userId ? 'oc place' : 'fr place'} style={{left: 238+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>10</div>
-                    <div id="Popover12" onMouseOver={this.toggle} data-place="12" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[12].userId ? 'oc place' : 'fr place'} style={{left: 278+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>12</div>
-                    <div id="Popover14" onMouseOver={this.toggle} data-place="14" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[14].userId ? 'oc place' : 'fr place'} style={{left: 318+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>14</div>
-                    <div id="Popover16" onMouseOver={this.toggle} data-place="16" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[16].userId ? 'oc place' : 'fr place'} style={{left: 358+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>16</div>
-                    <div id="Popover18" onMouseOver={this.toggle} data-place="18" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[18].userId ? 'oc place' : 'fr place'} style={{left: 398+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>18</div>
-                    <div id="Popover20" onMouseOver={this.toggle} data-place="20" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[20].userId ? 'oc place' : 'fr place'} style={{left: 438+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>20</div>
-                    <div id="Popover22" onMouseOver={this.toggle} data-place="22" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[22].userId ? 'oc place' : 'fr place'} style={{left: 478+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>22</div>
-                    <div id="Popover24" onMouseOver={this.toggle} data-place="24" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[24].userId ? 'oc place' : 'fr place'} style={{left: 518+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>24</div>
-                    <div id="Popover26" onMouseOver={this.toggle} data-place="26" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[26].userId ? 'oc place' : 'fr place'} style={{left: 558+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>26</div>
-                    <div id="Popover28" onMouseOver={this.toggle} data-place="28" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[28].userId ? 'oc place' : 'fr place'} style={{left: 598+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>28</div>
-                    <div id="Popover30" onMouseOver={this.toggle} data-place="30" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[30].userId ? 'oc place' : 'fr place'} style={{left: 638+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>30</div>
-                    <div id="Popover32" onMouseOver={this.toggle} data-place="32" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[32].userId ? 'oc place' : 'fr place'} style={{left: 678+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>32</div>
-                    <div id="Popover34" onMouseOver={this.toggle} data-place="34" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[34].userId ? 'oc place' : 'fr place'} style={{left: 718+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>34</div>
-                    <div id="Popover36" onMouseOver={this.toggle} data-place="36" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[36].userId ? 'oc place' : 'fr place'} style={{left: 758+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>36</div>
-                    <div id="Popover1" onMouseOver={this.toggle} data-place="1" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[1].userId ? 'oc place' : 'fr place'} style={{left: 78+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>1</div>
-                    <div id="Popover3" onMouseOver={this.toggle} data-place="3" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[3].userId ? 'oc place' : 'fr place'} style={{left: 118+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>3</div>
-                    <div id="Popover5" onMouseOver={this.toggle} data-place="5" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[5].userId ? 'oc place' : 'fr place'} style={{left: 158+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>5</div>
-                    <div id="Popover7" onMouseOver={this.toggle} data-place="7" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[7].userId ? 'oc place' : 'fr place'} style={{left: 198+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>7</div>
-                    <div id="Popover9" onMouseOver={this.toggle} data-place="9" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[9].userId ? 'oc place' : 'fr place'} style={{left: 238+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>9</div>
-                    <div id="Popover11" onMouseOver={this.toggle} data-place="11" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[11].userId ? 'oc place' : 'fr place'} style={{left: 278+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>11</div>
-                    <div id="Popover13" onMouseOver={this.toggle} data-place="13" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[13].userId ? 'oc place' : 'fr place'} style={{left: 318+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>13</div>
-                    <div id="Popover15" onMouseOver={this.toggle} data-place="15" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[15].userId ? 'oc place' : 'fr place'} style={{left: 358+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>15</div>
-                    <div id="Popover17" onMouseOver={this.toggle} data-place="17" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[17].userId ? 'oc place' : 'fr place'} style={{left: 398+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>17</div>
-                    <div id="Popover19" onMouseOver={this.toggle} data-place="19" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[19].userId ? 'oc place' : 'fr place'} style={{left: 438+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>19</div>
-                    <div id="Popover21" onMouseOver={this.toggle} data-place="21" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[21].userId ? 'oc place' : 'fr place'} style={{left: 478+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>21</div>
-                    <div id="Popover23" onMouseOver={this.toggle} data-place="23" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[23].userId ? 'oc place' : 'fr place'} style={{left: 518+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>23</div>
-                    <div id="Popover25" onMouseOver={this.toggle} data-place="25" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[25].userId ? 'oc place' : 'fr place'} style={{left: 558+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>25</div>
-                    <div id="Popover27" onMouseOver={this.toggle} data-place="27" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[27].userId ? 'oc place' : 'fr place'} style={{left: 598+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>27</div>
-                    <div id="Popover29" onMouseOver={this.toggle} data-place="29" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[29].userId ? 'oc place' : 'fr place'} style={{left: 638+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>29</div>
-                    <div id="Popover31" onMouseOver={this.toggle} data-place="31" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[31].userId ? 'oc place' : 'fr place'} style={{left: 678+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>31</div>
-                    <div id="Popover33" onMouseOver={this.toggle} data-place="33" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[33].userId ? 'oc place' : 'fr place'} style={{left: 718+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>33</div>
-                    <div id="Popover35" onMouseOver={this.toggle} data-place="35" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[35].userId ? 'oc place' : 'fr place'} style={{left: 758+'px', top: 35+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>35</div>
-                    <div id="Popover54" onMouseOver={this.toggle} data-place="54" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[54].userId ? 'oc place' : 'fr place'} style={{left: 78+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>54</div>
-                    <div id="Popover53" onMouseOver={this.toggle} data-place="53" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[53].userId ? 'oc place' : 'fr place'} style={{left: 118+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>53</div>
-                    <div id="Popover52" onMouseOver={this.toggle} data-place="52" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[52].userId ? 'oc place' : 'fr place'} style={{left: 158+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>52</div>
-                    <div id="Popover51" onMouseOver={this.toggle} data-place="51" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[51].userId ? 'oc place' : 'fr place'} style={{left: 198+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>51</div>
-                    <div id="Popover50" onMouseOver={this.toggle} data-place="50" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[50].userId ? 'oc place' : 'fr place'} style={{left: 238+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>50</div>
-                    <div id="Popover49" onMouseOver={this.toggle} data-place="49" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[49].userId ? 'oc place' : 'fr place'} style={{left: 278+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>49</div>
-                    <div id="Popover48" onMouseOver={this.toggle} data-place="48" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[48].userId ? 'oc place' : 'fr place'} style={{left: 318+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>48</div>
-                    <div id="Popover47" onMouseOver={this.toggle} data-place="47" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[47].userId ? 'oc place' : 'fr place'} style={{left: 358+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>47</div>
-                    <div id="Popover46" onMouseOver={this.toggle} data-place="46" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[46].userId ? 'oc place' : 'fr place'} style={{left: 398+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>46</div>
-                    <div id="Popover45" onMouseOver={this.toggle} data-place="45" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[45].userId ? 'oc place' : 'fr place'} style={{left: 438+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>45</div>
-                    <div id="Popover44" onMouseOver={this.toggle} data-place="44" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[44].userId ? 'oc place' : 'fr place'} style={{left: 478+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>44</div>
-                    <div id="Popover43" onMouseOver={this.toggle} data-place="43" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[43].userId ? 'oc place' : 'fr place'} style={{left: 518+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>43</div>
-                    <div id="Popover42" onMouseOver={this.toggle} data-place="42" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[42].userId ? 'oc place' : 'fr place'} style={{left: 558+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>42</div>
-                    <div id="Popover41" onMouseOver={this.toggle} data-place="41" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[41].userId ? 'oc place' : 'fr place'} style={{left: 598+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>41</div>
-                    <div id="Popover40" onMouseOver={this.toggle} data-place="40" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[40].userId ? 'oc place' : 'fr place'} style={{left: 638+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>40</div>
-                    <div id="Popover39" onMouseOver={this.toggle} data-place="39" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[39].userId ? 'oc place' : 'fr place'} style={{left: 678+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>39</div>
-                    <div id="Popover38" onMouseOver={this.toggle} data-place="38" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[38].userId ? 'oc place' : 'fr place'} style={{left: 718+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>38</div>
-                    <div id="Popover37" onMouseOver={this.toggle} data-place="37" onClick={(e) => this.handleReservation(e.target.dataset.place)} className={this.state.places[37].userId ? 'oc place' : 'fr place'} style={{left: 758+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}>37</div>
-                    <div className="wall" style={{left: 33+'px', top: 0+'px', height: 35+'px', lineHeight: 35+'px'}}></div>
-                    <div className="wall" style={{left: 73+'px', top: 0+'px', height: 65+'px', lineHeight: 65+'px'}}></div>
-                    <div className="wall" style={{left: 153+'px', top: 0+'px', height: 65+'px', lineHeight: 65+'px'}}></div>
-                    <div className="wall" style={{left: 233+'px', top: 0+'px', height: 65+'px', lineHeight: 65+'px'}}></div>
-                    <div className="wall" style={{left: 313+'px', top: 0+'px', height: 65+'px', lineHeight: 65+'px'}}></div>
-                    <div className="wall" style={{left: 393+'px', top: 0+'px', height: 65+'px', lineHeight: 65+'px'}}></div>
-                    <div className="wall" style={{left: 473+'px', top: 0+'px', height: 65+'px', lineHeight: 65+'px'}}></div>
-                    <div className="wall" style={{left: 553+'px', top: 0+'px', height: 65+'px', lineHeight: 65+'px'}}></div>
-                    <div className="wall" style={{left: 633+'px', top: 0+'px', height: 65+'px', lineHeight: 65+'px'}}></div>
-                    <div className="wall" style={{left: 713+'px', top: 0+'px', height: 65+'px', lineHeight: 65+'px'}}></div>
-                    <div className="wall" style={{left: 793+'px', top: 0+'px', height: 65+'px', lineHeight: 65+'px'}}></div>
-                    <div className="wall" style={{left: 833+'px', top: 0+'px', height: 65+'px', lineHeight: 65+'px'}}></div>
-                    <div className="wall" style={{left: 73+'px', top: 90+'px', height: 35+'px', lineHeight: 35+'px'}}></div>
-                    <div className="wall" style={{left: 33+'px', top: 90+'px', height: 35+'px', lineHeight: 35+'px'}}></div>
-                    <div className="wall" style={{left: 153+'px', top: 90+'px', height: 35+'px', lineHeight: 35+'px'}}></div>
-                    <div className="wall" style={{left: 233+'px', top: 90+'px', height: 35+'px', lineHeight: 35+'px'}}></div>
-                    <div className="wall" style={{left: 313+'px', top: 90+'px', height: 35+'px', lineHeight: 35+'px'}}></div>
-                    <div className="wall" style={{left: 393+'px', top: 90+'px', height: 35+'px', lineHeight: 35+'px'}}></div>
-                    <div className="wall" style={{left: 473+'px', top: 90+'px', height: 35+'px', lineHeight: 35+'px'}}></div>
-                    <div className="wall" style={{left: 553+'px', top: 90+'px', height: 35+'px', lineHeight: 35+'px'}}></div>
-                    <div className="wall" style={{left: 633+'px', top: 90+'px', height: 35+'px', lineHeight: 35+'px'}}></div>
-                    <div className="wall" style={{left: 713+'px', top: 90+'px', height: 35+'px', lineHeight: 35+'px'}}></div>
-                    <div className="wall" style={{left: 793+'px', top: 90+'px', height: 35+'px', lineHeight: 35+'px'}}></div>
-                    <div className="wall" style={{left: 833+'px', top: 90+'px', height: 35+'px', lineHeight: 35+'px'}}></div>
-                    <div className="toilet" style={{left: 38+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}></div>
-                    <div className="toilet" style={{left: 798+'px', top: 5+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}></div>
-                  </div>}
+      <header id="home" className="sections">
+        <div className="container">
+
+            <div className="homepage-style">
+
+              <div className="top-arrow hidden-xs text-center"><img src="assets/images/top-arrow.png" alt="" /></div>
+              <div className="row">
+              <div className="col-md-6 col-sm-6 col-xs-12">
+                <div className="unique-apps">
+                  <h2>UNIQUE-TECH<br/>APP DEVELOPMENT </h2>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.
+                  </p>
+
+                  <div className="home-btn"><button className="btn btn-primary">View More <span><i className="fa fa-paper-plane"></i></span></button></div>
+                </div>
+              </div>
+
+              <div className="col-md-6 col-sm-6 col-xs-12">
+                <img src="assets/images/monitor.png" alt="" />
               </div>
             </div>
           </div>
         </div>
+
+      </header>
+
+        <section id="our-portfolio" class="sections">
+          <div class="container">
+
+
+              <div class="heading">
+                <div class="title text-center arrow-right">
+                  <h4 class="">WHAT WE DO </h4>
+                  <img class="hidden-xs" src="assets/images/right-arrow.png" alt="" />
+
+                </div>
+              </div>
+
+              <div class="portfolio-wrap">
+
+                <div class="portfolio">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <img src="assets/images/monitor.png" alt="" />
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="portfolio-item">
+                        <h4>WEB DESIGN</h4>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. laboru
+                        </p>
+                        <button class="btn pt-btn btn-primary">View More</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="portfolio">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="portfolio-item">
+                        <h4>SEARCH ENGINE OPTIMIZATION</h4>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. laboru
+                        </p>
+                        <button class="btn pt-btn btn-primary">View More</button>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <img class="portfolio-img img-responsive" src="assets/images/monitor.png" alt="" />
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="portfolio">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <img class="portfolio-img img-responsive" src="assets/images/monitor.png" alt="" />
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="portfolio-item">
+                        <h4>AFFILIATE MARKETING</h4>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. laboru
+                        </p>
+                        <button class="btn pt-btn btn-primary">View More</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        </section>
+
+      <section id="our-feature" className="sections">
+        <div className="container">
+          <div className="heading">
+            <div className="title text-center arrow-left">
+              <img className="hidden-xs" src="assets/images/left-arrow.png" alt="" />
+
+              <h4 className="">Our Features</h4>
+            </div>
+          </div>
+
+          <div className="feature-wrapper">
+            <div className="row">
+
+              <div className="col-md-4 col-sm-6 col-xs-12">
+                <div className="features-content active">
+                  <h4><i className="fa fa-database"></i><span>Visual Composer</span></h4>
+                  <p>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla</p>
+                </div>
+              </div>
+
+              <div className="col-md-4 col-sm-6 col-xs-12">
+                <div className="features-content">
+                  <h4><i className="fa fa-database"></i><span>Responsive</span></h4>
+                  <p>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla</p>
+                </div>
+              </div>
+
+              <div className="col-md-4 col-sm-6 col-xs-12">
+                <div className="features-content">
+                  <h4><i className="fa fa-database"></i><span>Retina Ready</span></h4>
+                  <p>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla</p>
+                </div>
+              </div>
+
+              <div className="col-md-4 col-sm-6 col-xs-12">
+                <div className="features-content">
+                  <h4><i className="fa fa-database"></i><span>Retina Ready</span></h4>
+                  <p>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla</p>
+                </div>
+              </div>
+
+              <div className="col-md-4 col-sm-6 col-xs-12">
+                <div className="features-content">
+                  <h4><i className="fa fa-database"></i><span>Retina Ready</span></h4>
+                  <p>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla</p>
+                </div>
+              </div>
+
+              <div className="col-md-4 col-sm-6 col-xs-12">
+                <div className="features-content">
+                  <h4><i className="fa fa-database"></i><span>Retina Ready</span></h4>
+                  <p>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla</p>
+                </div>
+              </div>
+
+              <div className="col-md-4 col-sm-6 col-xs-12">
+                <div className="features-content">
+                  <h4><i className="fa fa-database"></i><span>Retina Ready</span></h4>
+                  <p>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla</p>
+                </div>
+              </div>
+
+              <div className="col-md-4 col-sm-6 col-xs-12">
+                <div className="features-content">
+                  <h4><i className="fa fa-database"></i><span>Retina Ready</span></h4>
+                  <p>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla</p>
+                </div>
+              </div>
+
+              <div className="col-md-4 col-sm-6 col-xs-12">
+                <div className="features-content">
+                  <h4><i className="fa fa-database"></i><span>Retina Ready</span></h4>
+                  <p>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla</p>
+                </div>
+              </div>
+
+              <div className="col-md-4 col-sm-6 col-xs-12">
+                <div className="features-content">
+                  <h4><i className="fa fa-database"></i><span>Retina Ready</span></h4>
+                  <p>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla</p>
+                </div>
+              </div>
+
+              <div className="col-md-4 col-sm-6 col-xs-12">
+                <div className="features-content">
+                  <h4><i className="fa fa-database"></i><span>Retina Ready</span></h4>
+                  <p>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla</p>
+                </div>
+              </div>
+
+              <div className="col-md-4 col-sm-6 col-xs-12">
+                <div className="features-content">
+                  <h4><i className="fa fa-database"></i><span>Retina Ready</span></h4>
+                  <p>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+
+      </section>
+
+        <section id="our-package" class="sections lightbg">
+          <div class="container">
+
+            <div class="heading">
+              <div class="title text-center arrow-left">
+                <img class="hidden-xs" src="assets/images/left-arrow.png" alt="" />
+
+                <h4 class="">Our Packages</h4>
+              </div>
+            </div>
+
+
+
+
+              <div class="main-package text-center">
+                <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="package-item basic">
+
+                    <h5>Basic</h5>
+
+                    <ul>
+                      <li>5 web sites</li>
+                      <li>5 e-mails</li>
+                      <li>5 MySQL databases</li>
+                      <li>5 MySQL databases</li>
+                      <li>10 GB storage</li>
+                    </ul>
+
+                    <div class="package-bottom-area">
+                      <h3>$5/<span>mo.</span></h3>
+                    </div>
+
+                    <div class="pkg-btn"><a href="" class="btn btn-primary">ORDER NOW</a></div>
+
+                  </div>
+
+
+                </div>
+
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="package-item standard">
+
+                    <h5>Standard</h5>
+
+                    <ul>
+                      <li>5 web sites</li>
+                      <li>5 e-mails</li>
+                      <li>5 MySQL databases</li>
+                      <li>5 MySQL databases</li>
+                      <li>10 GB storage</li>
+                    </ul>
+
+                    <div class="package-bottom-area">
+                      <h3>$12<span>/mo.</span></h3>
+                    </div>
+
+                    <div class="pkg-btn"><a href="" class="btn btn-primary">ORDER NOW</a></div>
+
+                  </div>
+
+
+                </div>
+
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="package-item premium">
+
+                    <h5>Premium</h5>
+
+                    <ul>
+                      <li>5 web sites</li>
+                      <li>5 e-mails</li>
+                      <li>5 MySQL databases</li>
+                      <li>5 MySQL databases</li>
+                      <li>10 GB storage</li>
+                    </ul>
+
+                    <div class="package-bottom-area">
+                      <h3>$19<span>/mo.</span></h3>
+                    </div>
+
+                    <div class="pkg-btn"><a href="" class="btn btn-primary">ORDER NOW</a></div>
+
+                  </div>
+
+
+                </div>
+
+              </div>
+
+
+            </div>
+          </div>
+        </section>
+
+      <section id="our-history" className="sections">
+        <div className="container">
+
+
+
+            <div className="main-history">
+              <div className="row">
+              <div className="col-md-6 col-sm-12 col-xs-12">
+                <div className="history-img">
+                  <img src="assets/images/history-img.png" alt="" />
+                </div>
+              </div>
+
+
+
+              <div className="col-md-6 col-sm-12 col-xs-12">
+                <div className="history-wrapper">
+                  <div className="history-heading">
+                    <h5 className="our-history">Our History</h5>
+                  </div>
+
+                  <div className="history-content">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. laboru
+                    </p>
+
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat.
+                    </p>
+
+                    <div className="hst-btn"><button className="btn btn-primary">BROWSE OUR HISTORY</button></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="our-project" className="sections">
+        <div className="container">
+
+          <div className="heading">
+            <div className="title text-center arrow-left">
+
+              <h4 className="">Our Business Project</h4>
+              <img className="hidden-xs" src="assets/images/right-arrow.png" alt="" />
+            </div>
+          </div>
+
+
+
+
+            <div className="main-project text-center">
+              <div className="row">
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="project-item">
+                  <div className="project-photo"><img src="assets/images/projects/1.png" alt="" /></div>
+                  <h5>TECHNICAL AID</h5>
+                </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="project-item">
+                  <div className="project-photo"><img src="assets/images/projects/2.png" alt="" /></div>
+                  <h5>SECURE ACCESS</h5>
+                </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="project-item">
+                  <div className="project-photo"><img src="assets/images/projects/3.png" alt="" /></div>
+                  <h5>MARKET RESERCH</h5>
+                </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="project-item">
+                  <div className="project-photo"><img src="assets/images/projects/4.png" alt="" /></div>
+                  <h5>CREDIT RESERCH</h5>
+                </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="project-item">
+                  <div className="project-photo"><img src="assets/images/projects/5.png" alt="" /></div>
+                  <h5>TECHNICAL AID</h5>
+                </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="project-item">
+                  <div className="project-photo"><img src="assets/images/projects/6.png" alt="" /></div>
+                  <h5>TECHNICAL AID</h5>
+                </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="project-item">
+                  <div className="project-photo"><img src="assets/images/projects/7.png" alt="" /></div>
+                  <h5>TECHNICAL AID</h5>
+                </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="project-item">
+                  <div className="project-photo"><img src="assets/images/projects/8.png" alt="" /></div>
+                  <h5>TECHNICAL AID</h5>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section id="our-team" className="sections">
+        <div className="container">
+
+          <div className="heading">
+            <div className="title text-center arrow-left">
+              <img className="hidden-xs" src="assets/images/left-arrow.png" alt="" />
+
+              <h4 className="">Our Team Members</h4>
+            </div>
+          </div>
+        </div>
+
+        <div className="container-fluid project-bg">
+
+
+            <div className="main-team text-center">
+              <div className="row">
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="team-member">
+
+                  <img className="img-circle" src="assets/images/team/1.png" alt="" />
+                  <h5>SAYED MIRAJ</h5>
+                  <p>UI & UX DESIGNER</p>
+                </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="team-member">
+                  <img className="img-circle" src="assets/images/team/2.png" alt="" />
+                  <h5>PENNY HUSTON</h5>
+                  <p>DEVELOPER</p>
+                </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="team-member">
+                  <img className="img-circle" src="assets/images/team/3.png" alt="" />
+                  <h5>LENNERD SHELLY</h5>
+                  <p>REVIEWER</p>
+                </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="team-member">
+                  <img className="img-circle" src="assets/images/team/4.png" alt="" />
+                  <h5>SHELDON CUPPER</h5>
+                  <p>MARKETTER</p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section id="our-supports" className="sections">
+        <div className="container">
+
+          <div className="heading">
+            <div className="title text-center arrow-left">
+
+              <h4 className="">Updates & Support</h4>
+              <img className="hidden-xs" src="assets/images/right-arrow.png" alt="" />
+            </div>
+          </div>
+
+          <div className="row">
+
+
+            <div className="col-sm-6 col-xs-12">
+              <div className="supports-content">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. laboru
+                </p>
+                <div className="spt-btn"><button className="btn btn-primary">SUPPORT CENTER</button></div>
+              </div>
+            </div>
+
+            <div className="col-sm-6 col-xs-12">
+              <div className="supports-img"><img className="img-responsive" src="assets/images/monitor.png" alt="" /></div>
+            </div>
+
+
+          </div>
+
+        </div>
+      </section>
+
+      <div className="scroll-top">
+
+        <div className="scrollup">
+          <i className="fa fa-angle-double-up"></i>
+        </div>
+
+      </div>
+
+      <footer id="footer" className="footer">
+        <div className="container">
+
+
+            <div className="main-footer">
+              <div className="row">
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="footer-item">
+                  <h2>PORTFOLIO</h2>
+                  <ul>
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">Brand & Identity</a></li>
+                    <li><a href="#">Mobile Design</a></li>
+                    <li><a href="#">Print</a></li>
+                    <li><a href="#">User Interface</a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="footer-item">
+                  <h2>ABOUT</h2>
+                  <ul>
+                    <li><a href="#">The Company</a></li>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">Vision</a></li>
+
+                  </ul>
+                </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="footer-item">
+                  <h2>GALLERY</h2>
+                  <ul>
+                    <li><a href="#">lickr</a></li>
+                    <li><a href="#">Picasa</a></li>
+                    <li><a href="#">iStockPhoto</a></li>
+                    <li><a href="#">PhotoDune</a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="footer-item">
+                  <h2>CONTACT</h2>
+                  <ul>
+                    <li><a href="#">Basic Info</a></li>
+                    <li><a href="#">Map</a></li>
+                    <li><a href="#">Conctact Form</a></li>
+
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+
+            <div className="socio-copyright">
+
+              <div className="social">
+                <a target="_blank" href="#"><i className="fa fa-facebook"></i></a>
+                <a target="_blank" href="#"><i className="fa fa-twitter"></i></a>
+                <a target="_blank" href="#"><i className="fa fa-google-plus"></i></a>
+                <a target="_blank" href="#"><i className="fa fa-linkedin"></i></a>
+              </div>
+
+              <p>Made with <i className="fa fa-heart"></i> by <a target="_blank" href="http://bootstrapthemes.co"> Bootstrap Themes </a>2016. All rights reserved.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </footer>
       </Fragment>
     );
   }
