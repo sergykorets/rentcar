@@ -17,7 +17,7 @@ export default class HelloWorld extends React.Component {
 
             <div className="homepage-style">
 
-              <div className="top-arrow hidden-xs text-center"><img src="assets/images/top-arrow.png" alt="" /></div>
+              <div className="top-arrow hidden-xs text-center"><img src="/images/top-arrow.png" alt="" /></div>
               <div className="row">
               <div className="col-md-6 col-sm-6 col-xs-12">
                 <div className="unique-apps">
@@ -32,7 +32,7 @@ export default class HelloWorld extends React.Component {
               </div>
 
               <div className="col-md-6 col-sm-6 col-xs-12">
-                <img src="assets/images/monitor.png" alt="" />
+                <img src="/images/monitor.png" alt="" />
               </div>
             </div>
           </div>
@@ -47,7 +47,7 @@ export default class HelloWorld extends React.Component {
               <div class="heading">
                 <div class="title text-center arrow-right">
                   <h4 class="">WHAT WE DO </h4>
-                  <img class="hidden-xs" src="assets/images/right-arrow.png" alt="" />
+                  <img class="hidden-xs" src="/images/right-arrow.png" alt="" />
 
                 </div>
               </div>
@@ -57,7 +57,7 @@ export default class HelloWorld extends React.Component {
                 <div class="portfolio">
                   <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <img src="assets/images/monitor.png" alt="" />
+                      <img src="/images/monitor.png" alt="" />
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <div class="portfolio-item">
@@ -88,7 +88,7 @@ export default class HelloWorld extends React.Component {
                     </div>
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <img class="portfolio-img img-responsive" src="assets/images/monitor.png" alt="" />
+                      <img class="portfolio-img img-responsive" src="/images/monitor.png" alt="" />
                     </div>
                   </div>
                 </div>
@@ -98,7 +98,7 @@ export default class HelloWorld extends React.Component {
                 <div class="portfolio">
                   <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <img class="portfolio-img img-responsive" src="assets/images/monitor.png" alt="" />
+                      <img class="portfolio-img img-responsive" src="/images/monitor.png" alt="" />
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <div class="portfolio-item">
@@ -121,7 +121,7 @@ export default class HelloWorld extends React.Component {
         <div className="container">
           <div className="heading">
             <div className="title text-center arrow-left">
-              <img className="hidden-xs" src="assets/images/left-arrow.png" alt="" />
+              <img className="hidden-xs" src="/images/left-arrow.png" alt="" />
 
               <h4 className="">Our Features</h4>
             </div>
@@ -227,7 +227,7 @@ export default class HelloWorld extends React.Component {
 
             <div class="heading">
               <div class="title text-center arrow-left">
-                <img class="hidden-xs" src="assets/images/left-arrow.png" alt="" />
+                <img class="hidden-xs" src="/images/left-arrow.png" alt="" />
 
                 <h4 class="">Our Packages</h4>
               </div>
@@ -326,7 +326,7 @@ export default class HelloWorld extends React.Component {
               <div className="row">
               <div className="col-md-6 col-sm-12 col-xs-12">
                 <div className="history-img">
-                  <img src="assets/images/history-img.png" alt="" />
+                  <img src="/images/history-img.png" alt="" />
                 </div>
               </div>
 
@@ -366,7 +366,7 @@ export default class HelloWorld extends React.Component {
             <div className="title text-center arrow-left">
 
               <h4 className="">Our Business Project</h4>
-              <img className="hidden-xs" src="assets/images/right-arrow.png" alt="" />
+              <img className="hidden-xs" src="/images/right-arrow.png" alt="" />
             </div>
           </div>
 
@@ -377,21 +377,21 @@ export default class HelloWorld extends React.Component {
               <div className="row">
               <div className="col-md-3 col-sm-6 col-xs-12">
                 <div className="project-item">
-                  <div className="project-photo"><img src="assets/images/projects/1.png" alt="" /></div>
+                  <div className="project-photo"><img src="/images/projects/1.png" alt="" /></div>
                   <h5>TECHNICAL AID</h5>
                 </div>
               </div>
 
               <div className="col-md-3 col-sm-6 col-xs-12">
                 <div className="project-item">
-                  <div className="project-photo"><img src="assets/images/projects/2.png" alt="" /></div>
+                  <div className="project-photo"><img src="/images/projects/2.png" alt="" /></div>
                   <h5>SECURE ACCESS</h5>
                 </div>
               </div>
 
               <div className="col-md-3 col-sm-6 col-xs-12">
                 <div className="project-item">
-                  <div className="project-photo"><img src="assets/images/projects/3.png" alt="" /></div>
+                  <div className="project-photo"><img src="/images/projects/3.png" alt="" /></div>
                   <h5>MARKET RESERCH</h5>
                 </div>
               </div>
@@ -405,28 +405,28 @@ export default class HelloWorld extends React.Component {
 
               <div className="col-md-3 col-sm-6 col-xs-12">
                 <div className="project-item">
-                  <div className="project-photo"><img src="assets/images/projects/5.png" alt="" /></div>
+                  <div className="project-photo"><img src="/images/projects/5.png" alt="" /></div>
                   <h5>TECHNICAL AID</h5>
                 </div>
               </div>
 
               <div className="col-md-3 col-sm-6 col-xs-12">
                 <div className="project-item">
-                  <div className="project-photo"><img src="assets/images/projects/6.png" alt="" /></div>
+                  <div className="project-photo"><img src="/images/projects/6.png" alt="" /></div>
                   <h5>TECHNICAL AID</h5>
                 </div>
               </div>
 
               <div className="col-md-3 col-sm-6 col-xs-12">
                 <div className="project-item">
-                  <div className="project-photo"><img src="assets/images/projects/7.png" alt="" /></div>
+                  <div className="project-photo"><img src="/images/projects/7.png" alt="" /></div>
                   <h5>TECHNICAL AID</h5>
                 </div>
               </div>
 
               <div className="col-md-3 col-sm-6 col-xs-12">
                 <div className="project-item">
-                  <div className="project-photo"><img src="assets/images/projects/8.png" alt="" /></div>
+                  <div className="project-photo"><img src="/images/projects/8.png" alt="" /></div>
                   <h5>TECHNICAL AID</h5>
                 </div>
               </div>
@@ -443,7 +443,7 @@ export default class HelloWorld extends React.Component {
 
           <div className="heading">
             <div className="title text-center arrow-left">
-              <img className="hidden-xs" src="assets/images/left-arrow.png" alt="" />
+              <img className="hidden-xs" src="/images/left-arrow.png" alt="" />
 
               <h4 className="">Our Team Members</h4>
             </div>
@@ -458,7 +458,7 @@ export default class HelloWorld extends React.Component {
               <div className="col-md-3 col-sm-6 col-xs-12">
                 <div className="team-member">
 
-                  <img className="img-circle" src="assets/images/team/1.png" alt="" />
+                  <img className="img-circle" src="/images/team/1.png" alt="" />
                   <h5>SAYED MIRAJ</h5>
                   <p>UI & UX DESIGNER</p>
                 </div>
@@ -466,7 +466,7 @@ export default class HelloWorld extends React.Component {
 
               <div className="col-md-3 col-sm-6 col-xs-12">
                 <div className="team-member">
-                  <img className="img-circle" src="assets/images/team/2.png" alt="" />
+                  <img className="img-circle" src="/images/team/2.png" alt="" />
                   <h5>PENNY HUSTON</h5>
                   <p>DEVELOPER</p>
                 </div>
@@ -474,7 +474,7 @@ export default class HelloWorld extends React.Component {
 
               <div className="col-md-3 col-sm-6 col-xs-12">
                 <div className="team-member">
-                  <img className="img-circle" src="assets/images/team/3.png" alt="" />
+                  <img className="img-circle" src="/images/team/3.png" alt="" />
                   <h5>LENNERD SHELLY</h5>
                   <p>REVIEWER</p>
                 </div>
@@ -482,7 +482,7 @@ export default class HelloWorld extends React.Component {
 
               <div className="col-md-3 col-sm-6 col-xs-12">
                 <div className="team-member">
-                  <img className="img-circle" src="assets/images/team/4.png" alt="" />
+                  <img className="img-circle" src="/images/team/4.png" alt="" />
                   <h5>SHELDON CUPPER</h5>
                   <p>MARKETTER</p>
                 </div>
@@ -501,7 +501,7 @@ export default class HelloWorld extends React.Component {
             <div className="title text-center arrow-left">
 
               <h4 className="">Updates & Support</h4>
-              <img className="hidden-xs" src="assets/images/right-arrow.png" alt="" />
+              <img className="hidden-xs" src="/images/right-arrow.png" alt="" />
             </div>
           </div>
 
@@ -519,7 +519,7 @@ export default class HelloWorld extends React.Component {
             </div>
 
             <div className="col-sm-6 col-xs-12">
-              <div className="supports-img"><img className="img-responsive" src="assets/images/monitor.png" alt="" /></div>
+              <div className="supports-img"><img className="img-responsive" src="/images/monitor.png" alt="" /></div>
             </div>
 
 
