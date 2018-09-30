@@ -2,150 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9642618a-8b0f-4545-8f31-fe9bb2b917a3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/.keep" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/2018-08-03 21.24.30.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/Loader_to_form_white.gif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/animate.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/blog_1_350x234.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/blog_2_350x234.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/blog_3_350x234.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/bride_338x338.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/cb_scout5_hdpi.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/common.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/controls.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/countUp.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/css(1)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/css(2)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/css(3)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/font-awesome.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/google4_hdpi.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/groom_338x338.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/headline_hearth.svg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/imagesloaded.pkgd.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/imgs8.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/infowindow.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/isotope.pkgd.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/jquery-3.2.1.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/jquery.magnific-popup.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/jquery.scrollTo.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/jquery.validate.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/jquery.waypoints.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/loader.svg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/magnific-popup.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/main.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/map.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/map_marker.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/mapcnt6.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/marker.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/metrika.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/onion.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/owl.carousel.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/owl.carousel.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/owl.theme.default.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/people_1.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/people_2.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/people_3.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/people_4.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/people_5.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/people_6.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/portfolio_1.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/portfolio_2.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/portfolio_3.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/portfolio_4.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/portfolio_5.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/portfolio_6.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/portfolio_7.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/portfolio_8.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/saved_resource.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/stats.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/style.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/sv9.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/tmapctrl4_hdpi.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/tmapctrl_hdpi.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/util.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vegas.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vegas.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(1)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(10)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(11)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(12)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(13)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(14)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(15)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(16)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(17)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(18)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(19)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(2)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(20)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(3)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(4)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(5)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(6)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(7)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(8)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/One_Page_Arlin_Wedding_Html5_files/vt(9)" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/bg-01.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/eUuai1kaCeY.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/headline_hearth.svg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/icons/favicon.ico" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/icons/icon-google.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/icons/map-marker.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/icons/symbol-01.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/missing.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/animate.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/booking.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/css.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/css_1.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/css_2.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/css_3.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/magnific-popup.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/main.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/style.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/tables.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/util.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/wedding.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/coupons_controller.rb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tables_controller.rb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/wedding_controller.rb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/Coupon.jsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/HelloWorld.jsx" afterPath="$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/HelloWorld.jsx" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/MyCoupons.jsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/Tables.jsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/Wedding.jsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/headline_hearth.svg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/headline_simple.svg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/loader.svg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/packs/application.js" afterPath="$PROJECT_DIR$/app/javascript/packs/application.js" />
-      <change beforePath="$PROJECT_DIR$/app/models/chair.rb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/models/coupon.rb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/models/gift.rb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/models/place.rb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/models/table.rb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/views/coupons/index.html.erb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/views/coupons/my_coupons.html.erb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/_nav.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/_nav.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/tables/index.html.erb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/views/tables/tables.jbuilder" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/views/wedding/index.html.erb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/config/database.yml" afterPath="$PROJECT_DIR$/config/database.yml" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20180729093229_create_places.rb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20180811145757_add_attend_to_users.rb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20180817163801_create_tables.rb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20180817163959_create_chairs.rb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20180818231105_create_coupons.rb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20180825133116_create_gifts.rb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
-      <change beforePath="$PROJECT_DIR$/lib/tasks/coupons.rake" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/lib/tasks/tables.rake" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/config/application.rb" afterPath="$PROJECT_DIR$/config/application.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -182,7 +39,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HelloWorld.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HelloWorld.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/HelloWorld.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="485">
@@ -190,6 +47,16 @@
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/application.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -513,7 +380,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/models/place.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20180729172107_add_admin_to_users.rb" />
         <option value="$PROJECT_DIR$/config/initializers/rails_admin.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/hello_world.html.erb" />
@@ -564,6 +430,7 @@
         <option value="$PROJECT_DIR$/app/assets/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
         <option value="$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/HelloWorld.jsx" />
+        <option value="$PROJECT_DIR$/config/application.rb" />
       </list>
     </option>
   </component>
@@ -889,12 +756,12 @@
       <workItem from="1536656043470" duration="605000" />
       <workItem from="1536847931319" duration="300000" />
       <workItem from="1537169889572" duration="1000" />
-      <workItem from="1538300710373" duration="4245000" />
+      <workItem from="1538300710373" duration="4402000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138687000" />
+    <option name="totallyTimeSpent" value="138844000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -935,7 +802,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/javascript/containers/cabinet/common/ContentPage/Preview/Blocks/Testimonials.jsx" />
     <entry file="file://$PROJECT_DIR$/app/javascript/containers/shop/custom/ShopPage.jsx" />
     <entry file="file://$PROJECT_DIR$/app/controllers/react/shop/authors_controller.rb" />
     <entry file="file://$PROJECT_DIR$/app/controllers/react/shop/base_controller.rb" />
@@ -1363,6 +1229,14 @@
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/application.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
