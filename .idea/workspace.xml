@@ -2,185 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9642618a-8b0f-4545-8f31-fe9bb2b917a3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/hire-us.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/history-img.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/left-arrow.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/loading.gif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/logo.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/main-bg.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/map.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/monitor.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/projects/1.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/projects/2.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/projects/3.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/projects/4.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/projects/5.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/projects/6.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/projects/7.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/projects/8.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/right-arrow.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/slider-img.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/support.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/team/1.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/team/2.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/team/3.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/team/4.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/images/top-arrow.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/style.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/style.scss" />
       <change beforePath="$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/HelloWorld.jsx" afterPath="$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/HelloWorld.jsx" />
-      <change beforePath="$PROJECT_DIR$/public/images/12552981_927774783959446_8226873663936347331_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/21686319_356545608113737_2262959078158865177_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/21766489_356545508113747_3702495786938004637_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/22853113_367986120303019_8357080663215630_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/27377400-wedding-wallpapers.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/8L_KvCOJ7wE.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/IMG_0356.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/1.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/10.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/11.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/12.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/13.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/14.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/15.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/16.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/17.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/18.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/19.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/2.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/20.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/21.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/22.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/23.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/24.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/25.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/26.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/27.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/28.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/29.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/3.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/30.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/31.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/32.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/33.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/4.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/5.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/6.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/7.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/8.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/coupons/9.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/eUuai1kaCeY.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery1.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery10.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery100.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery101.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery102.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery103.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery104.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery105.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery106.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery107.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery108.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery109.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery11.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery110.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery12.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery13.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery14.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery15.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery16.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery17.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery18.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery19.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery2.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery20.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery21.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery22.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery23.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery24.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery25.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery26.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery27.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery28.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery29.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery3.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery30.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery31.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery32.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery33.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery34.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery35.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery36.JPG" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery37.JPG" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery38.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery39.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery4.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery40.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery41.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery42.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery43.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery44.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery45.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery46.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery47.JPG" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery48.JPG" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery49.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery5.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery50.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery51.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery52.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery53.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery54.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery55.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery56.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery57.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery58.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery59.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery6.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery60.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery61.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery62.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery63.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery64.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery65.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery66.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery67.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery68.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery69.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery7.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery70.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery71.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery72.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery73.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery74.JPG" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery75.JPG" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery76.JPG" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery77.JPG" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery78.JPG" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery79.JPG" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery8.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery80.JPG" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery81.JPG" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery82.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery83.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery84.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery85.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery86.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery87.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery88.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery89.JPG" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery9.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery90.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery91.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery92.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery93.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery94.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery95.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery96.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery97.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery98.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallery/gallery99.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/images/missing.jpg" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -207,124 +29,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HelloWorld.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HelloWorld.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/HelloWorld.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="59" column="39" lean-forward="false" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="39" />
+            <state relative-caret-position="384">
+              <caret line="273" column="25" lean-forward="false" selection-start-line="273" selection-start-column="25" selection-end-line="273" selection-end-column="25" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/application.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="secrets.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/secrets.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="webpacker.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/webpacker.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="puma.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/puma.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-478">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_nav.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/_nav.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="responsive.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/responsive.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2019">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1454171608000" expanded="true" signature="2:89" ph="/*...*/" />
-                <marker date="1454171608000" expanded="true" signature="184:237" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="195:227" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="308:358" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="319:350" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="429:1196" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="440:471" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="489:568" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="601:664" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="703:726" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="771:804" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="839:864" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="897:945" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="979:1004" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="1033:1061" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="1102:1129" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="1160:1186" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="1261:1645" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="1272:1303" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="1339:1364" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="1396:1421" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="1488:1526" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="1557:1583" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="1613:1638" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="1675:1886" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="1688:1721" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="1755:1780" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="1801:1825" ph="{...}" />
-                <marker date="1454171608000" expanded="true" signature="1857:1882" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.scss" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/style.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="1028" column="23" lean-forward="true" selection-start-line="1028" selection-start-column="23" selection-end-line="1028" selection-end-column="23" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -357,12 +69,12 @@
       <find>main-package</find>
       <find>main-team</find>
       <find>booking</find>
-      <find>initialize_on_precompile</find>
       <find>style</find>
       <find>img</find>
       <find>review-aggregate</find>
-      <find>background-image</find>
       <find>images</find>
+      <find>background-image</find>
+      <find>initialize_on_precompile</find>
     </findStrings>
     <replaceStrings>
       <replace>{{left: 438+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}</replace>
@@ -429,8 +141,8 @@
         <option value="$PROJECT_DIR$/app/assets/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
         <option value="$PROJECT_DIR$/config/application.rb" />
-        <option value="$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/HelloWorld.jsx" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/style.scss" />
+        <option value="$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/HelloWorld.jsx" />
       </list>
     </option>
   </component>
@@ -751,12 +463,12 @@
       <workItem from="1536656043470" duration="605000" />
       <workItem from="1536847931319" duration="300000" />
       <workItem from="1537169889572" duration="1000" />
-      <workItem from="1538300710373" duration="6425000" />
+      <workItem from="1538300710373" duration="6881000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140867000" />
+    <option name="totallyTimeSpent" value="141323000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -913,14 +625,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/_nav.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/util.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-67638">
@@ -953,52 +657,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/responsive.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2019">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1454171608000" expanded="true" signature="2:89" ph="/*...*/" />
-            <marker date="1454171608000" expanded="true" signature="184:237" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="195:227" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="308:358" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="319:350" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="429:1196" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="440:471" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="489:568" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="601:664" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="703:726" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="771:804" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="839:864" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="897:945" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="979:1004" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="1033:1061" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="1102:1129" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="1160:1186" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="1261:1645" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="1272:1303" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="1339:1364" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="1396:1421" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="1488:1526" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="1557:1583" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="1613:1638" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="1675:1886" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="1688:1721" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="1755:1780" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="1801:1825" ph="{...}" />
-            <marker date="1454171608000" expanded="true" signature="1857:1882" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
@@ -1015,17 +673,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/application.rb">
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/style.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="323">
+          <caret line="1028" column="23" lean-forward="false" selection-start-line="1028" selection-start-column="23" selection-end-line="1028" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/secrets.yml">
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/responsive.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-2019">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/_nav.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/puma.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-478">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -1039,29 +721,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/puma.rb">
+    <entry file="file://$PROJECT_DIR$/config/secrets.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-478">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/application.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/bundles/HelloWorld/components/HelloWorld.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="59" column="39" lean-forward="false" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="39" />
+        <state relative-caret-position="384">
+          <caret line="273" column="25" lean-forward="false" selection-start-line="273" selection-start-column="25" selection-end-line="273" selection-end-column="25" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="1028" column="23" lean-forward="true" selection-start-line="1028" selection-start-column="23" selection-end-line="1028" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>

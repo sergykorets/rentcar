@@ -229,7 +229,7 @@ export default class HelloWorld extends React.Component {
               <div class="title text-center arrow-left">
                 <img class="hidden-xs" src="/images/left-arrow.png" alt="" />
 
-                <h4 class="">Our Packages</h4>
+                <h4 class="">Цены</h4>
               </div>
             </div>
 
@@ -241,42 +241,17 @@ export default class HelloWorld extends React.Component {
                 <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="package-item basic">
 
-                    <h5>Basic</h5>
+                    <h5>Эконом</h5>
 
                     <ul>
-                      <li>5 web sites</li>
-                      <li>5 e-mails</li>
-                      <li>5 MySQL databases</li>
-                      <li>5 MySQL databases</li>
-                      <li>10 GB storage</li>
+                      <li>Штробление до 20 м/п</li>
+                      <li>Укладка кабеля до 150 м/п</li>
+                      <li>Щиток до 12 автоматов</li>
+                      <li>Количество Точек до 20шт</li>
                     </ul>
 
                     <div class="package-bottom-area">
-                      <h3>$5/<span>mo.</span></h3>
-                    </div>
-
-                    <div class="pkg-btn"><a href="" class="btn btn-primary">ORDER NOW</a></div>
-
-                  </div>
-
-
-                </div>
-
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                  <div class="package-item standard">
-
-                    <h5>Standard</h5>
-
-                    <ul>
-                      <li>5 web sites</li>
-                      <li>5 e-mails</li>
-                      <li>5 MySQL databases</li>
-                      <li>5 MySQL databases</li>
-                      <li>10 GB storage</li>
-                    </ul>
-
-                    <div class="package-bottom-area">
-                      <h3>$12<span>/mo.</span></h3>
+                      <h3>от 6000 грн</h3>
                     </div>
 
                     <div class="pkg-btn"><a href="" class="btn btn-primary">ORDER NOW</a></div>
@@ -289,18 +264,40 @@ export default class HelloWorld extends React.Component {
                 <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="package-item premium">
 
-                    <h5>Premium</h5>
+                    <h5>Стандарт</h5>
 
                     <ul>
-                      <li>5 web sites</li>
-                      <li>5 e-mails</li>
-                      <li>5 MySQL databases</li>
-                      <li>5 MySQL databases</li>
-                      <li>10 GB storage</li>
+                      <li>Штробление до 40 м/п</li>
+                      <li>Укладка кабеля до 250 м/п</li>
+                      <li>Щиток до 24 автоматов</li>
+                      <li>Количество Точек до 40шт</li>
                     </ul>
 
                     <div class="package-bottom-area">
-                      <h3>$19<span>/mo.</span></h3>
+                      <h3>от 10000 грн</h3>
+                    </div>
+
+                    <div class="pkg-btn"><a href="" class="btn btn-primary">ORDER NOW</a></div>
+
+                  </div>
+
+
+                </div>
+
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="package-item standard">
+
+                    <h5>SMART HOUSE</h5>
+
+                    <ul>
+                      <li>Включение света со смартфона</li>
+                      <li>Включение света по сценариям</li>
+                      <li>Видеонаблюдение</li>
+                      <li>Охрана, защита от протечек</li>
+                    </ul>
+
+                    <div class="package-bottom-area">
+                      <h3>от 25000 грн</h3>
                     </div>
 
                     <div class="pkg-btn"><a href="" class="btn btn-primary">ORDER NOW</a></div>
