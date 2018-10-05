@@ -8,7 +8,9 @@ RailsAdmin.config do |config|
   # end
   #config.current_user_method(&:current_user)
   config.authorize_with do
-    redirect_to '/' if !current_user || !current_user.admin
+    if current_user.nil? || warden.user.admin != true
+      redirect_to main_app.root_path, alert: 'You are not allowed to do admin actions'
+    end
   end
   ## == Cancan ==
   # config.authorize_with :cancan

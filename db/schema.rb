@@ -10,15 +10,82 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180729172107) do
+ActiveRecord::Schema.define(version: 20180727225813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "users", force: :cascade do |t|
+  create_table "google_photos", id: :serial, force: :cascade do |t|
+    t.integer "hotel_id"
+    t.string "photo_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hotel_id"], name: "index_google_photos_on_hotel_id"
+  end
+
+  create_table "google_reviews", id: :serial, force: :cascade do |t|
+    t.integer "hotel_id"
+    t.string "author_name"
+    t.string "profile_photo_url"
+    t.integer "rating"
+    t.string "relative_time_description"
+    t.text "text"
+    t.integer "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hotels", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "google_id"
+    t.string "site"
+    t.string "reference"
+    t.string "google_rating"
+    t.string "location"
+    t.string "site_rating"
+    t.string "average_rating"
+  end
+
+  create_table "phones", id: :serial, force: :cascade do |t|
+    t.integer "hotel_id"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hotel_id"], name: "index_phones_on_hotel_id"
+  end
+
+  create_table "photos", id: :serial, force: :cascade do |t|
+    t.integer "hotel_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "picture_file_name"
+    t.string "picture_content_type"
+    t.integer "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.string "photo_url"
+  end
+
+  create_table "places", id: :serial, force: :cascade do |t|
+    t.integer "number"
+    t.integer "user_id"
+  end
+
+  create_table "reviews", id: :serial, force: :cascade do |t|
+    t.integer "rating"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "hotel_id"
+  end
+
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "name"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -27,16 +94,21 @@ ActiveRecord::Schema.define(version: 20180729172107) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.string "provider"
     t.string "uid"
     t.string "remote_avatar_url"
     t.boolean "admin", default: false
+    t.datetime "deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["uid"], name: "index_users_on_uid"
   end
 
 end

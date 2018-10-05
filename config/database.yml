@@ -6,6 +6,6 @@ default: &default
 
 development:
   <<: *default
-  database: smart_oselia_development
+  database: dragobrat_development
   username: user
   password: 3441

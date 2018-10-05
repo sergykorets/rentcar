@@ -37,18 +37,24 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 #
 # gem 'pry'
-gem 'pry-rails', :group => :development
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'thor'
 gem 'rails_admin', '~> 1.3'
 gem "font-awesome-rails"
-gem 'rqrcode'
+gem "paperclip", "~> 5.0.0"
+gem 'devise'
+gem 'rails_admin_rollincode', '~> 1.0'
+gem 'httparty'
+gem 'google_places'
+gem 'whenever', require: false
+gem 'tinymce-rails'
+gem 'cocoon'
 
 group :development, :test do
+  gem 'pry-rails'
   gem 'pry'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

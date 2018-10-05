@@ -15,4 +15,6 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require tinymce-jquery
+//= require cocoon
 //= require_tree .
