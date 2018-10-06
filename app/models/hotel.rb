@@ -1,4 +1,5 @@
 class Hotel < ApplicationRecord
+  GOOGLE_KEY = Rails.application.secrets.google_key || ENV['google_key']
   enum hotel_type: [:lodging, :restaurant]
   after_update :update_rating, unless: :period_calculated
 
@@ -18,10 +19,10 @@ class Hotel < ApplicationRecord
 
   def self.update_hotels
   	google_hotels = []
-    client = GooglePlaces::Client.new('AIzaSyAsHdVg_1tkiBfxTYwfxUDZ90B-0tZ2RL8')
+    client = GooglePlaces::Client.new(GOOGLE_KEY)
   	self.all.each_with_index do |hotel, i|
       puts "#{hotel.name}"
-  		google_hotels[i] = HTTParty.get "https://maps.googleapis.com/maps/api/place/details/json?placeid=#{hotel.google_id}&key=AIzaSyAsHdVg_1tkiBfxTYwfxUDZ90B-0tZ2RL8"
+  		google_hotels[i] = HTTParty.get "https://maps.googleapis.com/maps/api/place/details/json?placeid=#{hotel.google_id}&key=#{GOOGLE_KEY}"
       if hotel.google_rating != google_hotels[i]['result']['rating']
         hotel.update_attributes(google_rating: google_hotels[i]['result']['rating'])
       end
@@ -55,13 +56,13 @@ class Hotel < ApplicationRecord
 
   def self.get_hotels
     hotels = []
-    area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=uk&type=lodging&key=AIzaSyAx23zzF0E_aK4U-JC8TjbMllrG_ZfdXfc&radius=1000&location=48.248731, 24.244108"
+    area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=uk&type=lodging&key=#{GOOGLE_KEY}&radius=1000&location=48.248731, 24.244108"
     #area = HTTParty.get "https://maps.googleapis.com/maps/api/place/textsearch/json?language=uk&query=hotel&key=AIzaSyAx23zzF0E_aK4U-JC8TjbMllrG_ZfdXfc&radius=1000&location=48.248731,%2024.244108"
     hotels << area.parsed_response['results']
     new_area = area
     loop do
       sleep 1
-      new_area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAx23zzF0E_aK4U-JC8TjbMllrG_ZfdXfc&pagetoken=#{new_area.parsed_response['next_page_token']}"
+      new_area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=#{GOOGLE_KEY}&pagetoken=#{new_area.parsed_response['next_page_token']}"
       hotels << new_area.parsed_response['results']
       break unless new_area.parsed_response['next_page_token']
     end
@@ -75,12 +76,12 @@ class Hotel < ApplicationRecord
   def self.get_restaurants
     ['bar', 'restaurant', 'cafe'].each do |item|
       hotels = []
-      area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=uk&type=#{item}&key=AIzaSyAx23zzF0E_aK4U-JC8TjbMllrG_ZfdXfc&radius=1000&location=48.248731, 24.244108"
+      area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=uk&type=#{item}&key=#{GOOGLE_KEY}&radius=1000&location=48.248731, 24.244108"
       hotels << area.parsed_response['results']
       new_area = area
       loop do
         sleep 1
-        new_area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAx23zzF0E_aK4U-JC8TjbMllrG_ZfdXfc&pagetoken=#{new_area.parsed_response['next_page_token']}"
+        new_area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=#{GOOGLE_KEY}&pagetoken=#{new_area.parsed_response['next_page_token']}"
         hotels << new_area.parsed_response['results']
         break unless new_area.parsed_response['next_page_token']
       end
