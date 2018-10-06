@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180727225813) do
+ActiveRecord::Schema.define(version: 20181006133803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,10 @@ ActiveRecord::Schema.define(version: 20180727225813) do
     t.string "location"
     t.string "site_rating"
     t.string "average_rating"
+    t.integer "user_id"
+    t.integer "main_photo_id"
+    t.integer "hotel_type", default: 0
+    t.index ["user_id"], name: "index_hotels_on_user_id"
   end
 
   create_table "phones", id: :serial, force: :cascade do |t|

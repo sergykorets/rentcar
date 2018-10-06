@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react';
-import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 import Rater from 'react-rating'
 import ImageGallery from 'react-image-gallery';
 
@@ -54,13 +53,16 @@ export default class Hotel extends React.Component {
           thumbnail: photo})})
     return (
       <div className="container">
-        <ImageGallery items={images} additionalClass='custom-gallery' />
-        <hr/>
+        { images.length > 0 &&
+          <Fragment>
+            <ImageGallery items={images} additionalClass='custom-gallery' />
+            <hr/>
+          </Fragment>}
         <div className='row'>
           <div className='col-lg-9'>
             <div className='hotel-header'>
               <h2>{this.state.hotel.name}</h2>
-              <span>{this.state.hotel.price} UAH</span>
+              <span>{this.state.hotel.price} {this.state.hotel.price && 'UAH'}</span>
             </div>
             <div className='hotel-description'>
               <span dangerouslySetInnerHTML={{__html: this.state.hotel.description}}></span>
@@ -84,6 +86,8 @@ export default class Hotel extends React.Component {
               { this.state.hotel.site &&
                 <a className='btn btn-default' href={this.state.hotel.site} target="_blank">Офіційний сайт</a>}
               <a className='btn btn-dark' href={this.state.hotel.location} target="_blank">3D карта</a>
+              { this.state.hotel.editable &&
+                <a className='btn btn-info' href={`${this.state.hotel.id}/edit`}>Редагувати</a>}
             </div>
           </div>
         </div>
@@ -101,9 +105,9 @@ export default class Hotel extends React.Component {
               <div className='reviews'>
                 { this.state.hotel.googleReviews.map((review, i) => {
                   return (
-                    <Fragment>
+                    <Fragment key={i}>
                       <hr/>
-                      <div className='review' key={i}>
+                      <div className='review'>
                         <div className={ review.id ? 'round-image-200' : '' }><img className='review-avatar' src={review.avatar} alt={review.author} /></div>
                         <div className='review-content'>
                           <div className='content-top'>

@@ -1,5 +1,1 @@
-<div class='container'>
-  <h1>Редагувати інформацію</h1>
-  <%= tinymce_assets %>
-  <%= render 'form', hotel: @hotel %>
-</div>
+<%= react_component("HotelEdit", props: {hotel: @hotel}) %>

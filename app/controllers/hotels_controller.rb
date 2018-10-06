@@ -2,7 +2,7 @@ class HotelsController < ApplicationController
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
 
   def index
-    @hotels = Hotel.all.map do |hotel|
+    @hotels = Hotel.lodging.map do |hotel|
       { id: hotel.id,
         name: hotel.name,
         description: hotel.description,
@@ -11,18 +11,20 @@ class HotelsController < ApplicationController
         site: hotel.site,
         googleRating: hotel.average_rating,
         location: hotel.location,
-        avatar: hotel.google_photos.try(:first).try(:photo_url)}
+        avatar: GooglePhoto.find_by_id(hotel.main_photo_id).try(:photo_url) || hotel.google_photos.try(:first).try(:photo_url)}
     end
   end
 
   def show
     @hotel = {
       id: @hotel.id,
+      editable: (current_user && current_user.admin) || (current_user && current_user.id == @hotel.user_id),
       name: @hotel.name,
       description: @hotel.description,
       created: @hotel.created_at,
       price: @hotel.price,
       site: @hotel.site,
+      hotelType: @hotel.hotel_type,
       googleRating: @hotel.average_rating,
       location: @hotel.location,
       photos: @hotel.google_photos.map {|photo| photo.photo_url},
@@ -30,35 +32,39 @@ class HotelsController < ApplicationController
       googleReviews: combine_reviews}
   end
 
-  def new
-    @hotel = Hotel.new
-  end
+  def new; end
 
   def edit
+    if (current_user && current_user.admin) || (current_user && current_user.id == @hotel.user_id)
+      @hotel = {
+        id: @hotel.id,
+        name: @hotel.name,
+        description: @hotel.description || '',
+        hotelType: @hotel.hotel_type,
+        price: @hotel.price || '',
+        site: @hotel.site || '',
+        mainPhotoId: @hotel.main_photo_id,
+        photos: @hotel.google_photos.any? ? @hotel.google_photos.map {|photo| {id: photo.id, photo: photo.photo_url}} : [{photo: ''}],
+        phones: @hotel.phones.any? ? @hotel.phones.map {|phone| {id: phone.id, phone: phone.phone}} : [{phone: ''}]}
+    else
+      redirect_to hotel_path(@hotel)
+    end
   end
 
   def create
     @hotel = Hotel.new(hotel_params)
-    respond_to do |format|
-      if @hotel.save
-        format.html { redirect_to @hotel, notice: 'Hotel was successfully created.' }
-        format.json { render :show, status: :created, location: @hotel }
-      else
-        format.html { render :new }
-        format.json { render json: @hotel.errors, status: :unprocessable_entity }
-      end
+    if @hotel.save
+      render json: { success: true, hotel: @hotel }
+    else
+      render json: { success: false, errors: @hotel.errors.full_messages }
     end
   end
 
   def update
-    respond_to do |format|
-      if @hotel.update(hotel_params)
-        format.html { redirect_to @hotel, notice: 'Hotel was successfully updated.' }
-        format.json { render :show, status: :ok, location: @hotel }
-      else
-        format.html { render :edit }
-        format.json { render json: @hotel.errors, status: :unprocessable_entity }
-      end
+    if @hotel.update(hotel_params)
+      render json: { success: true, hotel: @hotel }
+    else
+      render json: { success: false, errors: @hotel.errors.full_messages }
     end
   end
 
@@ -80,7 +86,8 @@ class HotelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hotel_params
-      params.require(:hotel).permit(:name, :description, :price, phones_attributes: [:id, :phone])
+      params.require(:hotel).permit(:name, :description, :hotel_type, :site, :main_photo_id, :price, phones_attributes: [:id, :phone, :_destroy],
+                                    google_photos_attributes: [:id, :_destroy])
     end
 
     def combine_reviews

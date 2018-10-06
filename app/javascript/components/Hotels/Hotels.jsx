@@ -1,7 +1,7 @@
-import React, {Fragment} from 'react';
-import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
+import React from 'react';
+import Rater from 'react-rating'
 
-export default class HotelEdit extends React.Component {
+export default class Hotels extends React.Component {
   constructor(props) {
     super(props);
 
@@ -20,17 +20,18 @@ export default class HotelEdit extends React.Component {
               <div className='hotel' key={index}>
                 <div className="card">
                   <div className="card-img">
-                    <a href={`/hotels/${hotel.id}`} className="image-popup fh5co-board-img"
-                       title={hotel.name}><img src={hotel.avatar} alt={hotel.name}/></a>
+                    { hotel.avatar &&
+                      <a href={`/hotels/${hotel.id}`} className="image-popup fh5co-board-img"
+                         title={hotel.name}><img src={hotel.avatar} alt={hotel.name}/></a>}
                   </div>
                   <div className="card-body">
                     <div className='body-top'>
-                      <span>{hotel.name}</span>
-                      <span>{hotel.price}</span>
+                      <a href={`/hotels/${hotel.id}`}><span>{hotel.name}</span></a>
+                      <span>{hotel.price} {hotel.price && 'UAH'}</span>
                     </div>
                     <div className='body-top'>
                       <Rater initialRating={parseFloat(hotel.googleRating)} emptySymbol="fa fa-star-o"
-                             fullSymbol="fa fa-star" readonly className='hotel-stars'/>
+                           fullSymbol="fa fa-star" readonly className='hotel-stars'/>
                       <a className='3d-link' href={hotel.location} target="_blank">Показати на 3D карті</a>
                     </div>
                   </div>

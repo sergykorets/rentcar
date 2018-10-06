@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   resources :hotels do
     resources :reviews
     resources :photos
-  end
+    end
+  resources :restaurants, only: :index
   get 'reactivate/edit', 'reactivate#edit'
   put 'reactivate/update', 'reactivate#update'
 end

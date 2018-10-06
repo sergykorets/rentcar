@@ -1,5 +1,5 @@
 class Hotel < ApplicationRecord
-
+  enum hotel_type: [:lodging, :restaurant]
   after_update :update_rating, unless: :period_calculated
 
   attr_accessor :period_calculated
@@ -10,9 +10,11 @@ class Hotel < ApplicationRecord
   has_many :google_photos
   has_many :google_reviews
 
+  validates_presence_of :name
   validates_uniqueness_of :google_id
 
-  accepts_nested_attributes_for :phones
+  accepts_nested_attributes_for :phones, allow_destroy: true
+  accepts_nested_attributes_for :google_photos, allow_destroy: true
 
   def self.update_hotels
   	google_hotels = []
@@ -67,6 +69,26 @@ class Hotel < ApplicationRecord
     hotels.flatten.each do |hotel|
       puts hotel['name']
       Hotel.create(name: hotel['name'], google_id: hotel['place_id'], google_rating: hotel['rating'])
+    end
+  end
+
+  def self.get_restaurants
+    ['bar', 'restaurant', 'cafe'].each do |item|
+      hotels = []
+      area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=uk&type=#{item}&key=AIzaSyAx23zzF0E_aK4U-JC8TjbMllrG_ZfdXfc&radius=1000&location=48.248731, 24.244108"
+      hotels << area.parsed_response['results']
+      new_area = area
+      loop do
+        sleep 1
+        new_area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAx23zzF0E_aK4U-JC8TjbMllrG_ZfdXfc&pagetoken=#{new_area.parsed_response['next_page_token']}"
+        hotels << new_area.parsed_response['results']
+        break unless new_area.parsed_response['next_page_token']
+      end
+      puts hotels.flatten.count
+      hotels.flatten.each do |hotel|
+        puts hotel['name']
+        Hotel.create(name: hotel['name'], hotel_type: :restaurant, google_id: hotel['place_id'], google_rating: hotel['rating'])
+      end
     end
   end
 

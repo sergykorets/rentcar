@@ -344,4 +344,32 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 }
+.hotel-form {
+  .phone-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    input {
+      width: 95%;
+    }
+    i {
+      cursor: pointer;
+    }
+  }
+  .card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .custom-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-right: 10px;
+    input {
+      margin-right: 10px;
+    }
+  }
+}
 
