@@ -6,7 +6,6 @@
 
 # Ignore bundler config.
 /.bundle
-/config/secrets.yml
 /.idea/workspace.xml
 
 # Ignore the default SQLite database.
