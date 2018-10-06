@@ -2,7 +2,7 @@ class HotelsController < ApplicationController
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
 
   def index
-    @hotels = Hotel.lodging.map do |hotel|
+    @hotels = Hotel.lodging.order(created_at: :desc).map do |hotel|
       { id: hotel.id,
         name: hotel.name,
         description: hotel.description,
@@ -11,7 +11,7 @@ class HotelsController < ApplicationController
         site: hotel.site,
         googleRating: hotel.average_rating,
         location: hotel.location,
-        avatar: GooglePhoto.find_by_id(hotel.main_photo_id).try(:photo_url) || hotel.google_photos.try(:first).try(:photo_url)}
+        avatar: get_hotel_avatar(hotel)}
     end
   end
 
@@ -27,7 +27,7 @@ class HotelsController < ApplicationController
       hotelType: @hotel.hotel_type,
       googleRating: @hotel.average_rating,
       location: @hotel.location,
-      photos: @hotel.google_photos.map {|photo| photo.photo_url},
+      photos: get_hotel_photos,
       phones: @hotel.phones.map {|phone| phone.phone},
       googleReviews: combine_reviews}
   end
@@ -44,7 +44,10 @@ class HotelsController < ApplicationController
         price: @hotel.price || '',
         site: @hotel.site || '',
         mainPhotoId: @hotel.main_photo_id,
-        photos: @hotel.google_photos.any? ? @hotel.google_photos.map {|photo| {id: photo.id, photo: photo.photo_url}} : [{photo: ''}],
+        mainPhotoType: @hotel.main_photo_type,
+        photosForUpload: [],
+        googlePhotos: @hotel.google_photos.any? ? @hotel.google_photos.map {|photo| {id: photo.id, photo: photo.photo_url}} : [],
+        photos: @hotel.photos.any? ? @hotel.photos.map {|photo| {id: photo.id, photo: photo.picture(:large)}} : [],
         phones: @hotel.phones.any? ? @hotel.phones.map {|phone| {id: phone.id, phone: phone.phone}} : [{phone: ''}]}
     else
       redirect_to hotel_path(@hotel)
@@ -86,8 +89,8 @@ class HotelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hotel_params
-      params.require(:hotel).permit(:name, :description, :hotel_type, :site, :main_photo_id, :price, phones_attributes: [:id, :phone, :_destroy],
-                                    google_photos_attributes: [:id, :_destroy])
+      params.require(:hotel).permit(:name, :description, :hotel_type, :site, :main_photo_id, :main_photo_type, :price, phones_attributes: [:id, :phone, :_destroy],
+                                    google_photos_attributes: [:id, :_destroy], photos_attributes: [:id, :_destroy, photo: [:picture]])
     end
 
     def combine_reviews
@@ -110,5 +113,24 @@ class HotelsController < ApplicationController
       (a + b).sort_by do |item|
         item[:created].to_date
       end.reverse
+    end
+
+    def get_hotel_avatar(hotel)
+      if hotel.main_photo_type.present?
+        if hotel.main_photo_type == 'Photos'
+          Photo.find_by_id(hotel.main_photo_id).try(:picture)
+        else
+          GooglePhoto.find_by_id(hotel.main_photo_id).try(:photo_url)
+        end
+      else
+        GooglePhoto.find_by_id(hotel.main_photo_id).try(:photo_url) || Photo.find_by_id(hotel.main_photo_id).try(:photo_url) ||
+          hotel.google_photos.try(:first).try(:photo_url) || hotel.photos.try(:first).try(:picture)
+      end
+    end
+
+    def get_hotel_photos
+      google_photos = @hotel.google_photos.map {|photo| photo.photo_url}
+      photos = @hotel.photos.map {|photo| photo.picture}
+      google_photos + photos
     end
 end

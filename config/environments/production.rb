@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
-config.webpacker.check_yarn_integrity = false
+  config.webpacker.check_yarn_integrity = false
 
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -78,6 +78,17 @@ config.webpacker.check_yarn_integrity = false
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_host_name: Rails.application.secrets.S3_HOST_NAME || ENV['S3_HOST_NAME'],
+    s3_credentials: {
+      bucket: Rails.application.secrets.S3_BUCKET_NAME || ENV['S3_BUCKET_NAME'],
+      access_key_id: Rails.application.secrets.AWS_ACCESS_KEY_ID || ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: Rails.application.secrets.AWS_SECRET_ACCESS_KEY || ENV['AWS_SECRET_ACCESS_KEY'],
+      s3_region: Rails.application.secrets.AWS_REGION || ENV['AWS_REGION'],
+    }
+  }
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'

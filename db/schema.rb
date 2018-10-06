@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181006133803) do
+ActiveRecord::Schema.define(version: 20181006194741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20181006133803) do
     t.integer "user_id"
     t.integer "main_photo_id"
     t.integer "hotel_type", default: 0
+    t.string "main_photo_type"
     t.index ["user_id"], name: "index_hotels_on_user_id"
   end
 

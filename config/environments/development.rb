@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
-  config.webpacker.check_yarn_integrity = true
+config.webpacker.check_yarn_integrity = true
 
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -47,8 +47,16 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
+  # config.paperclip_defaults = {
+  #   storage: :s3,
+  #   s3_host_name: Rails.application.secrets.S3_HOST_NAME || ENV['S3_HOST_NAME'],
+  #   s3_credentials: {
+  #     bucket: Rails.application.secrets.S3_BUCKET_NAME || ENV['S3_BUCKET_NAME'],
+  #     access_key_id: Rails.application.secrets.AWS_ACCESS_KEY_ID || ENV['AWS_ACCESS_KEY_ID'],
+  #     secret_access_key: Rails.application.secrets.AWS_SECRET_ACCESS_KEY || ENV['AWS_SECRET_ACCESS_KEY'],
+  #     s3_region: Rails.application.secrets.AWS_REGION || ENV['AWS_REGION'],
+  #   }
+  # }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 

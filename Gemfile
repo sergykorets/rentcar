@@ -50,8 +50,7 @@ gem 'rails_admin_rollincode', '~> 1.0'
 gem 'httparty'
 gem 'google_places'
 gem 'whenever', require: false
-gem 'tinymce-rails'
-gem 'cocoon'
+gem 'aws-sdk', '~> 2.3'
 
 group :development, :test do
   gem 'pry-rails'
