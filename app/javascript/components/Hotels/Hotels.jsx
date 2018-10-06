@@ -6,16 +6,57 @@ export default class Hotels extends React.Component {
     super(props);
 
     this.state = {
-      hotels: this.props.hotels
+      hotels: this.props.hotels,
+      nameSearch: '',
+      ratingSearch: '',
+      maxPrice: ''
     };
   }
 
+  handleSearch = (field, value) => {
+    this.setState({[field]: value})
+  }
+
   render() {
-    console.log(this.state.hotels)
+    console.log(this.state)
     return (
       <div className="container">
+        <hr/>
+        <div className='form-group'>
+          <div className='row'>
+            <div className='col-lg-4'>
+              <input type='text' placeholder='Пошук по назві закладу' className='form-control' onChange={(e) => this.handleSearch('nameSearch', e.target.value)} value={this.state.nameSearch} />
+            </div>
+            <div className='col-lg-4'>
+              <select className='form-control' onChange={(e) => this.handleSearch('ratingSearch', e.target.value)} value={this.state.ratingSearch} >
+                <option value={0}>Пошук по рейтингу</option>
+                <option value={1}>Рейтинг вище 1</option>
+                <option value={2}>Рейтинг вище 2</option>
+                <option value={3}>Рейтинг вище 3</option>
+                <option value={3.5}>Рейтинг вище 3.5</option>
+                <option value={4}>Рейтинг вище 4</option>
+                <option value={4.5}>Рейтинг вище 4.5</option>
+              </select>
+            </div>
+            { !this.props.cafe &&
+              <div className='col-lg-4'>
+                <select className='form-control' onChange={(e) => this.handleSearch('maxPrice', e.target.value)} value={this.state.maxPrice}>
+                  <option value={999999}>Пошук по ціні за 1 ніч з людини</option>
+                  <option value={100}>Менше 100 грн</option>
+                  <option value={200}>Менше 200 грн</option>
+                  <option value={300}>Менше 300 грн</option>
+                  <option value={400}>Менше 400 грн</option>
+                  <option value={500}>Менше 500 грн</option>
+                  <option value={600}>Менше 600 грн</option>
+                </select>
+              </div>}
+          </div>
+        </div>
+        <hr/>
         <div id='hotels_ul'>
-          { this.state.hotels.map((hotel, index) => {
+          { this.state.hotels.filter(h => h.name.toLowerCase().includes(this.state.nameSearch))
+              .filter(h => parseFloat(h.googleRating) >= parseFloat(this.state.ratingSearch ? this.state.ratingSearch : 0))
+                .filter(h => parseFloat(h.price ? h.price : 0) <= parseFloat(this.state.maxPrice ? this.state.maxPrice : 999999)).map((hotel, index) => {
             return (
               <div className='hotel' key={index}>
                 <div className="card">
