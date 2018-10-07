@@ -106,13 +106,13 @@ class Hotel < ApplicationRecord
 
   def update_rating
     self.period_calculated = true
-    if self.google_rating.nil? && self.site_rating.nil?
-    elsif self.site_rating.nil? && !self.google_rating.nil?
-      self.update_attributes(average_rating: self.google_rating)
-    elsif !self.site_rating.nil? && self.google_rating.nil?
-      self.update_attributes(average_rating: self.site_rating)   
+    if self.google_rating.empty? && self.site_rating.empty?
+    elsif self.site_rating.empty? && !self.google_rating.empty?
+      self.update_column(average_rating: self.google_rating)
+    elsif !self.site_rating.empty? && self.google_rating.empty?
+      self.update_column(average_rating: self.site_rating)
     else
-      self.update_attributes(average_rating: (self.google_rating.to_d + self.site_rating.to_d)/2)
+      self.update_column(average_rating: (self.google_rating.to_d + self.site_rating.to_d)/2)
     end
   end
 end

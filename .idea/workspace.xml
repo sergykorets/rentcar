@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9642618a-8b0f-4545-8f31-fe9bb2b917a3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/style.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/style.scss" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx" afterPath="$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx" afterPath="$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx" />
+      <change beforePath="$PROJECT_DIR$/app/models/hotel.rb" afterPath="$PROJECT_DIR$/app/models/hotel.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -145,8 +146,8 @@
       <file leaf-file-name="Hotel.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="104" column="87" lean-forward="false" selection-start-line="104" selection-start-column="87" selection-end-line="104" selection-end-column="87" />
+            <state relative-caret-position="266">
+              <caret line="74" column="47" lean-forward="false" selection-start-line="74" selection-start-column="47" selection-end-line="74" selection-end-column="47" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -238,7 +239,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Hotels.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Hotels.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
@@ -332,11 +333,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hotel.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="hotel.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/hotel.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+            <state relative-caret-position="634">
+              <caret line="114" column="24" lean-forward="false" selection-start-line="114" selection-start-column="24" selection-end-line="114" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="secrets.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/secrets.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="164">
+              <caret line="10" column="79" lean-forward="false" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -393,6 +404,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app/javascript/packs/application.js" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app/controllers/application_controller.rb" root0="FORCE_HIGHLIGHTING" />
@@ -428,7 +440,6 @@
         <option value="$PROJECT_DIR$/app/javascript/components/Hotels/common/Uploader.jsx" />
         <option value="$PROJECT_DIR$/app/views/hotels/edit.html.erb" />
         <option value="$PROJECT_DIR$/app/javascript/packs/application.js" />
-        <option value="$PROJECT_DIR$/app/models/hotel.rb" />
         <option value="$PROJECT_DIR$/app/javascript/components/Hotels/common/FileDrop.jsx" />
         <option value="$PROJECT_DIR$/app/models/photo.rb" />
         <option value="$PROJECT_DIR$/config/environments/production.rb" />
@@ -447,11 +458,12 @@
         <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/app/controllers/hotels_controller.rb" />
         <option value="$PROJECT_DIR$/app/javascript/components/Hotels/common/Form.jsx" />
-        <option value="$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/hotels.scss" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/style.scss" />
         <option value="$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx" />
+        <option value="$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx" />
+        <option value="$PROJECT_DIR$/app/models/hotel.rb" />
       </list>
     </option>
   </component>
@@ -823,12 +835,12 @@
       <workItem from="1538672749832" duration="19191000" />
       <workItem from="1538765602340" duration="30783000" />
       <workItem from="1538903725972" duration="33000" />
-      <workItem from="1538904143473" duration="8078000" />
+      <workItem from="1538904143473" duration="9989000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="221329000" />
+    <option name="totallyTimeSpent" value="223240000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -999,14 +1011,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/hotel.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/HotelNew.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -1054,13 +1058,6 @@
         <state relative-caret-position="345">
           <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/secrets.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="16" column="42" lean-forward="false" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -1182,16 +1179,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="104" column="87" lean-forward="false" selection-start-line="104" selection-start-column="87" selection-end-line="104" selection-end-column="87" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -1225,6 +1212,32 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="74" column="47" lean-forward="false" selection-start-line="74" selection-start-column="47" selection-end-line="74" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/secrets.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="10" column="79" lean-forward="false" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/hotel.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="634">
+          <caret line="114" column="24" lean-forward="false" selection-start-line="114" selection-start-column="24" selection-end-line="114" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>

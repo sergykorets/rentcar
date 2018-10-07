@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react';
+import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import Rater from 'react-rating'
 import ImageGallery from 'react-image-gallery';
 
@@ -46,6 +47,14 @@ export default class Hotel extends React.Component {
   }
 
   render() {
+    const MyMapComponent = withGoogleMap((props) =>
+      <GoogleMap
+        defaultZoom={8}
+        defaultCenter={{ lat: -34.397, lng: 150.644 }}
+      >
+        {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
+      </GoogleMap>
+    )
     console.log(this.state)
     const images = this.state.hotel.photos.map((photo) => {
       return (
@@ -87,6 +96,7 @@ export default class Hotel extends React.Component {
             </div>
           </div>
         </div>
+        <MyMapComponent isMarkerShown={true} />
         <div className='reviews-wrap'>
           <div className='review-form'>
             <textarea type='text' rows='3' onChange={(e) => this.handleInputChange('review', e.target.value)} value={this.state.review} className='form-control'/>
