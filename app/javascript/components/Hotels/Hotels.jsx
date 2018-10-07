@@ -21,13 +21,18 @@ export default class Hotels extends React.Component {
     console.log(this.state)
     return (
       <div className="container">
+        <div className='introduction'>
+          <p>Основою цього сайту є <strong><b>Google API</b></strong>. Готелі, кафе та відгуки до них автоматично оновлюються разом з тим, що є на Google картах. Місцезнаходження закладів
+            можна подивитися на <strong><b>3D</b></strong> карті. Якщо Ваш заклад відсутній на сайті, то Ви можете його створити в меню "Додати заклад", або зв'язатися зі мною
+            (email для зв'язку знаходиться знизу). Також вітаються ідеї щодо покращення сайту.</p>
+        </div>
         <hr/>
         <div className='form-group'>
           <div className='row'>
             <div className='col-lg-4'>
               <input type='text' placeholder='Пошук по назві закладу' className='form-control' onChange={(e) => this.handleSearch('nameSearch', e.target.value)} value={this.state.nameSearch} />
             </div>
-            <div className='col-lg-4'>
+            <div className='col-lg-4 filters'>
               <select className='form-control' onChange={(e) => this.handleSearch('ratingSearch', e.target.value)} value={this.state.ratingSearch} >
                 <option value={0}>Пошук по рейтингу</option>
                 <option value={1}>Рейтинг вище 1</option>
