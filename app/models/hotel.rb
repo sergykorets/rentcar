@@ -68,7 +68,7 @@ class Hotel < ApplicationRecord
     puts hotels.flatten.count
     hotels.flatten.each do |hotel|
       puts hotel['name']
-      next if hotel['place_id'] == 'ChIJq-JzLwwQN0cRAhDnwCSXor8'
+      next if hotel['place_id'] == 'ChIJq-JzLwwQN0cRAhDnwCSXor8' || 'ChIJx3rHjRAQN0cRdWy5ldbbpGo' || 'ChIJGd65gRoQN0cRZHpkO6eTDP0'
       Hotel.create(name: hotel['name'], google_id: hotel['place_id'], google_rating: hotel['rating'])
     end
   end
