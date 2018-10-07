@@ -18,7 +18,6 @@ export default class Hotels extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="container">
         <div className='introduction'>

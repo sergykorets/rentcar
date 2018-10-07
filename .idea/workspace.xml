@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9642618a-8b0f-4545-8f31-fe9bb2b917a3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/hotels.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/hotels.scss" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/reviews_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/reviews_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx" afterPath="$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx" />
       <change beforePath="$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx" afterPath="$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/Hotels/common/Form.jsx" afterPath="$PROJECT_DIR$/app/javascript/components/Hotels/common/Form.jsx" />
       <change beforePath="$PROJECT_DIR$/app/models/hotel.rb" afterPath="$PROJECT_DIR$/app/models/hotel.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
@@ -26,8 +25,8 @@
       <file leaf-file-name="Hotel.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1863">
-              <caret line="81" column="33" lean-forward="false" selection-start-line="81" selection-start-column="33" selection-end-line="81" selection-end-column="33" />
+            <state relative-caret-position="209">
+              <caret line="47" column="12" lean-forward="false" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -50,38 +49,38 @@
       <file leaf-file-name="Form.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/common/Form.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1014">
-              <caret line="206" column="36" lean-forward="false" selection-start-line="206" selection-start-column="36" selection-end-line="206" selection-end-column="36" />
+            <state relative-caret-position="324">
+              <caret line="176" column="12" lean-forward="false" selection-start-line="176" selection-start-column="12" selection-end-line="176" selection-end-column="12" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
-                <marker date="1538904225532" expanded="true" signature="4167:11582" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="4204:4889" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="4277:4874" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="4323:4562" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="4608:4857" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="4926:5168" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="5205:5548" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="5254:5352" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="5585:6137" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="5779:6105" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="6174:6282" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="6319:6583" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="6620:6864" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="6936:11427" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="6991:7184" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="7583:8448" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="7775:8392" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="7826:8359" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="7883:8006" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="8064:8324" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="8130:8169" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="10200:11409" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="10371:11365" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="10416:11338" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="10467:10576" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="10628:11309" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="10688:11169" ph="..." />
-                <marker date="1538904225532" expanded="true" signature="11465:11569" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="4133:11548" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="4170:4855" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="4243:4840" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="4289:4528" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="4574:4823" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="4892:5134" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="5171:5514" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="5220:5318" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="5551:6103" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="5745:6071" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="6140:6248" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="6285:6549" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="6586:6830" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="6902:11393" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="6957:7150" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="7549:8414" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="7741:8358" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="7792:8325" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="7849:7972" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="8030:8290" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="8096:8135" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="10166:11375" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="10337:11331" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="10382:11304" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="10433:10542" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="10594:11275" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="10654:11135" ph="..." />
+                <marker date="1538932295370" expanded="true" signature="11431:11535" ph="..." />
               </folding>
             </state>
           </provider>
@@ -90,7 +89,7 @@
       <file leaf-file-name="HotelNew.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/HotelNew.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
+            <state relative-caret-position="345">
               <caret line="15" column="3" lean-forward="false" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -99,11 +98,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="FileDrop.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/common/FileDrop.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="552">
+              <caret line="28" column="33" lean-forward="false" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Hotels.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="61" column="107" lean-forward="false" selection-start-line="61" selection-start-column="107" selection-end-line="61" selection-end-column="107" />
+            <state relative-caret-position="387">
+              <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -115,7 +124,7 @@
         <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="621">
-              <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+              <caret line="27" column="36" lean-forward="false" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -131,11 +140,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hotel.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="hotel.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/hotel.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+            <state relative-caret-position="388">
+              <caret line="67" column="34" lean-forward="true" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="secrets.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/secrets.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="10" column="79" lean-forward="false" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -151,11 +170,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hotels.scss" pinned="false" current-in-tab="true">
+      <file leaf-file-name="hotels.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/hotels.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="580">
-              <caret line="462" column="18" lean-forward="true" selection-start-line="462" selection-start-column="18" selection-end-line="462" selection-end-column="18" />
+              <caret line="462" column="18" lean-forward="false" selection-start-line="462" selection-start-column="18" selection-end-line="462" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -262,16 +281,16 @@
         <option value="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/app/controllers/hotels_controller.rb" />
-        <option value="$PROJECT_DIR$/app/javascript/components/Hotels/common/Form.jsx" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/style.scss" />
         <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx" />
-        <option value="$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx" />
-        <option value="$PROJECT_DIR$/app/models/hotel.rb" />
         <option value="$PROJECT_DIR$/app/controllers/reviews_controller.rb" />
         <option value="$PROJECT_DIR$/app/helpers/application_helper.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/hotels.scss" />
+        <option value="$PROJECT_DIR$/app/javascript/components/Hotels/common/Form.jsx" />
+        <option value="$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx" />
+        <option value="$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx" />
+        <option value="$PROJECT_DIR$/app/models/hotel.rb" />
       </list>
     </option>
   </component>
@@ -346,38 +365,12 @@
               <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
               <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="javascripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
               <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="helpers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="javascript" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -386,23 +379,6 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="javascript" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Hotels" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Hotels" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
@@ -413,61 +389,7 @@
             <path>
               <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
               <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="devise" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="devise" type="462c0819:PsiDirectoryNode" />
-              <item name="registrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="hotels" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="layouts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="restaurants" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-              <item name="environments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-              <item name="initializers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -649,12 +571,12 @@
       <workItem from="1538672749832" duration="19191000" />
       <workItem from="1538765602340" duration="30783000" />
       <workItem from="1538903725972" duration="33000" />
-      <workItem from="1538904143473" duration="15101000" />
+      <workItem from="1538904143473" duration="16956000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="228352000" />
+    <option name="totallyTimeSpent" value="230207000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -789,31 +711,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/common/FileDrop.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="28" column="33" lean-forward="false" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/photo.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/HotelNew.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="15" column="3" lean-forward="false" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -903,54 +805,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/common/Form.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1014">
-          <caret line="206" column="36" lean-forward="false" selection-start-line="206" selection-start-column="36" selection-end-line="206" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-            <marker date="1538904225532" expanded="true" signature="4167:11582" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="4204:4889" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="4277:4874" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="4323:4562" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="4608:4857" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="4926:5168" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="5205:5548" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="5254:5352" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="5585:6137" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="5779:6105" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="6174:6282" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="6319:6583" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="6620:6864" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="6936:11427" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="6991:7184" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="7583:8448" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="7775:8392" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="7826:8359" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="7883:8006" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="8064:8324" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="8130:8169" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="10200:11409" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="10371:11365" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="10416:11338" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="10467:10576" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="10628:11309" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="10688:11169" ph="..." />
-            <marker date="1538904225532" expanded="true" signature="11465:11569" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/HotelEdit.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="554">
@@ -967,14 +821,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/secrets.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="10" column="79" lean-forward="false" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -983,32 +829,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1863">
-          <caret line="81" column="33" lean-forward="false" selection-start-line="81" selection-start-column="33" selection-end-line="81" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="61" column="107" lean-forward="false" selection-start-line="61" selection-start-column="107" selection-end-line="61" selection-end-column="107" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/style.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="538">
           <caret line="288" column="21" lean-forward="false" selection-start-line="288" selection-start-column="21" selection-end-line="288" selection-end-column="21" />
           <folding>
-            <element signature="e#4936#5168#2" expanded="true" />
+            <element signature="e#4936#5168#2" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1025,14 +851,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="12" column="32" lean-forward="false" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/hotel.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1056,7 +874,7 @@
     <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
-          <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+          <caret line="27" column="36" lean-forward="false" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -1064,7 +882,109 @@
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/hotels.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="580">
-          <caret line="462" column="18" lean-forward="true" selection-start-line="462" selection-start-column="18" selection-end-line="462" selection-end-column="18" />
+          <caret line="462" column="18" lean-forward="false" selection-start-line="462" selection-start-column="18" selection-end-line="462" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/common/FileDrop.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="28" column="33" lean-forward="false" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/common/Form.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="176" column="12" lean-forward="false" selection-start-line="176" selection-start-column="12" selection-end-line="176" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+            <marker date="1538932295370" expanded="true" signature="4133:11548" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="4170:4855" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="4243:4840" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="4289:4528" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="4574:4823" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="4892:5134" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="5171:5514" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="5220:5318" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="5551:6103" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="5745:6071" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="6140:6248" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="6285:6549" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="6586:6830" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="6902:11393" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="6957:7150" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="7549:8414" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="7741:8358" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="7792:8325" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="7849:7972" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="8030:8290" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="8096:8135" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="10166:11375" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="10337:11331" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="10382:11304" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="10433:10542" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="10594:11275" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="10654:11135" ph="..." />
+            <marker date="1538932295370" expanded="true" signature="11431:11535" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="47" column="12" lean-forward="false" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/HotelEdit.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/HotelNew.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="3" lean-forward="false" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/secrets.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="10" column="79" lean-forward="false" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/hotel.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="67" column="34" lean-forward="true" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="34" />
           <folding />
         </state>
       </provider>

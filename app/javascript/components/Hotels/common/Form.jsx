@@ -175,7 +175,6 @@ export default class Form extends React.Component {
   }
 
   render() {
-    console.log(this.state.hotel)
     return (
       <div className='hotel-form'>
         <div className='form-group'>

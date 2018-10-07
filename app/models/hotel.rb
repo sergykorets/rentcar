@@ -1,5 +1,5 @@
 class Hotel < ApplicationRecord
-  GOOGLE_KEY = Rails.application.secrets.google_key || ENV['google_key']
+  GOOGLE_KEY = 'AIzaSyDM5fHYOgKovob7679oLfv1LGTxRX9xllA'
   enum hotel_type: [:lodging, :restaurant]
 
   has_many :reviews, dependent: :destroy
@@ -55,18 +55,19 @@ class Hotel < ApplicationRecord
   def self.get_hotels
     hotels = []
     area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=uk&type=lodging&key=#{GOOGLE_KEY}&radius=1000&location=48.248731, 24.244108"
-    #area = HTTParty.get "https://maps.googleapis.com/maps/api/place/textsearch/json?language=uk&query=hotel&key=AIzaSyAx23zzF0E_aK4U-JC8TjbMllrG_ZfdXfc&radius=1000&location=48.248731,%2024.244108"
     hotels << area.parsed_response['results']
     new_area = area
     loop do
       sleep 1
       new_area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=#{GOOGLE_KEY}&pagetoken=#{new_area.parsed_response['next_page_token']}"
       hotels << new_area.parsed_response['results']
+      binding.pry
       break unless new_area.parsed_response['next_page_token']
     end
     puts hotels.flatten.count
     hotels.flatten.each do |hotel|
       puts hotel['name']
+      next if hotel['place_id'] == 'ChIJq-JzLwwQN0cRAhDnwCSXor8'
       Hotel.create(name: hotel['name'], google_id: hotel['place_id'], google_rating: hotel['rating'])
     end
   end
