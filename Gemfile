@@ -50,11 +50,10 @@ gem 'httparty'
 gem 'google_places'
 gem 'whenever', require: false
 gem 'aws-sdk', '~> 2.3'
-gem 'pry-rails'
-gem 'pry'
 
 group :development, :test do
-
+  gem 'pry-rails'
+  gem 'pry'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
