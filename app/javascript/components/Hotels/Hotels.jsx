@@ -59,7 +59,7 @@ export default class Hotels extends React.Component {
         </div>
         <hr/>
         <div id='hotels_ul'>
-          { this.state.hotels.filter(h => h.name.toLowerCase().includes(this.state.nameSearch))
+          { this.state.hotels.filter(h => h.name.toLowerCase().includes(this.state.nameSearch.toLowerCase()))
               .filter(h => parseFloat(h.googleRating) >= parseFloat(this.state.ratingSearch ? this.state.ratingSearch : 0))
                 .filter(h => parseFloat(h.price ? h.price : 0) <= parseFloat(this.state.maxPrice ? this.state.maxPrice : 999999)).map((hotel, index) => {
             return (

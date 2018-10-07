@@ -418,8 +418,10 @@ h1, h2, h3, h4, h5, h6 {
       padding: 20px 30px 10px;
     }
     .hotel-description {
+      overflow: hidden;
       padding: 30px;
       border-radius: 10px;
+      //max-width: 860px;
       box-shadow: 0px 1px 64px 5px rgba(197, 197, 197, 0.66);
     }
   }
@@ -435,9 +437,9 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0px 1px 64px 5px rgba(197, 197, 197, 0.66);
   padding: 30px;
   border-radius: 10px;
-  max-width: 860px;
+  //max-width: 860px;
 }
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .info-block {
     display: block;
     .actions-block {
@@ -455,5 +457,16 @@ h1, h2, h3, h4, h5, h6 {
   }
   .review .review-content {
     padding: 0;
+  }
+}
+@media (min-width: 1201px) {
+  .actions-block {
+    max-width: 250px;
+  }
+  .reviews-wrap {
+    width: 840px;
+  }
+  .hotel-description {
+    width: 840px;
   }
 }

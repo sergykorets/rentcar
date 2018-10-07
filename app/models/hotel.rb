@@ -1,10 +1,7 @@
 class Hotel < ApplicationRecord
   GOOGLE_KEY = Rails.application.secrets.google_key || ENV['google_key']
   enum hotel_type: [:lodging, :restaurant]
-  after_update :update_rating, unless: :period_calculated
 
-  attr_accessor :period_calculated
-  
   has_many :reviews, dependent: :destroy
   has_many :photos, dependent: :destroy
   has_many :phones, dependent: :destroy
@@ -91,28 +88,6 @@ class Hotel < ApplicationRecord
         puts hotel['name']
         Hotel.create(name: hotel['name'], hotel_type: :restaurant, google_id: hotel['place_id'], google_rating: hotel['rating'])
       end
-    end
-  end
-
-  def self.search(search)
-    if search
-      where('name ILIKE ?', "%#{search}%")
-    else
-      all
-    end
-  end
-
-  private
-
-  def update_rating
-    self.period_calculated = true
-    if self.google_rating.empty? && self.site_rating.empty?
-    elsif self.site_rating.empty? && !self.google_rating.empty?
-      self.update_attributes(average_rating: self.google_rating)
-    elsif !self.site_rating.empty? && self.google_rating.empty?
-      self.update_attributes(average_rating: self.site_rating)
-    else
-      self.update_attributes(average_rating: (self.google_rating.to_d + self.site_rating.to_d)/2)
     end
   end
 end

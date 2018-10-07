@@ -21,12 +21,15 @@ module ApplicationHelper
 
   def update_hotel_rating(hotel)
     average = hotel.reviews.average(:rating)
-    hotel.update_attributes(site_rating: average)
-    if hotel.google_rating.nil?
-      hotel.update_attributes(average_rating: hotel.site_rating)
-    elsif hotel.site_rating.nil?
-    else
-      hotel.update_attributes(average_rating: (hotel.google_rating.to_d + hotel.site_rating.to_d)/2)
+    hotel.update_column(:site_rating, average)
+    site_rating = hotel.site_rating.try(:to_d)
+    google_rating = hotel.google_rating.try(:to_d)
+    if google_rating && site_rating
+      hotel.update_column(:average_rating, (google_rating + site_rating)/2)
+    elsif site_rating && !google_rating
+      hotel.update_column(:average_rating, site_rating)
+    elsif !site_rating && google_rating
+      hotel.update_column(:average_rating, google_rating)
     end
   end
 end
