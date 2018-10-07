@@ -91,6 +91,7 @@ export default class Hotel extends React.Component {
             </div>
           </div>
         </div>
+        <hr/>
         <div className='row'>
           <div className='col-lg-9'>
             <div className='reviews-wrap'>

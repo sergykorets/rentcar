@@ -199,7 +199,7 @@ export default class Form extends React.Component {
           <label>Опис</label>
           <Editor
             apiKey="yfe3680kik77oexnpok1ucmxm93eni5nxnalbvn6qz1kf9la"
-            init={{ plugins: 'link' }}
+            init={{ plugins: "textcolor colorpicker", toolbar: "forecolor backcolor" }}
             initialValue={this.state.hotel.description}
             onEditorChange={this.handleEditorChange}
           />
