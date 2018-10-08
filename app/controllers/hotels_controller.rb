@@ -1,5 +1,6 @@
 class HotelsController < ApplicationController
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
+  before_action :check_session, only: :index
 
   def index
     @hotels = Hotel.lodging.order(created_at: :desc).map do |hotel|
@@ -28,6 +29,7 @@ class HotelsController < ApplicationController
       googleRating: @hotel.average_rating,
       location: @hotel.location,
       photos: get_hotel_photos,
+      sessionComment: params[:comment],
       phones: @hotel.phones.map {|phone| phone.phone},
       googleReviews: combine_reviews}
   end
@@ -132,5 +134,12 @@ class HotelsController < ApplicationController
       google_photos = @hotel.google_photos.map {|photo| photo.photo_url}
       photos = @hotel.photos.map {|photo| photo.picture}
       google_photos + photos
+    end
+
+    def check_session
+      if session[:review_url]
+        redirect_to session[:review_url]
+        session[:review_url] = ''
+      end
     end
 end

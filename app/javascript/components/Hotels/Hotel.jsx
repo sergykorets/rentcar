@@ -8,7 +8,7 @@ export default class Hotel extends React.Component {
 
     this.state = {
       hotel: this.props.hotel,
-      review: '',
+      review: this.props.hotel.sessionComment,
       reviewRating: 0
     };
   }
@@ -28,7 +28,11 @@ export default class Hotel extends React.Component {
         }
       },
       success: (resp) => {
-        window.location.reload()
+        if (resp.success) {
+          window.location.href = this.state.hotel.id
+        } else {
+          window.location.href = '/users/sign_in'
+        }
       }
     });
   }

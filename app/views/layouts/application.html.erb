@@ -3,7 +3,7 @@
   <head>
     <title>Драгобрат | Готелі</title>
     <%= csrf_meta_tags %>
-    <% unless current_user && current_user.admin %>
+    <% unless Rails.env.development? && current_user && current_user.admin %>
       <script>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?

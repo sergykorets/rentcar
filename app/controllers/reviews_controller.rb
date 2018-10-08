@@ -1,17 +1,20 @@
 class ReviewsController < ApplicationController
   include ApplicationHelper
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: :destroy
   before_action :define_hotel
   before_action :set_review, only: :destroy
 
   def create
     @review = Review.new(review_params)
-    @review.user_id = current_user.id
+    @review.user_id = current_user.try(:id)
     @review.hotel_id = @hotel.id
     if @review.save
       update_hotel_rating(@hotel)
       render json: {success: true}
     else
+      session[:review_url] = Rails.env.development? ?
+                               hotel_path(@hotel, comment: review_params[:comment]) :
+                               "https://dragobrat.herokuapp.com/hotels/#{@hotel.id}?comment=#{review_params[:comment]}"
       render json: {success: false}
     end
   end
