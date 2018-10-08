@@ -137,7 +137,7 @@ class HotelsController < ApplicationController
     end
 
     def check_session
-      if session[:review_url]
+      if !session[:review_url].blank?
         redirect_to session[:review_url]
         session[:review_url] = ''
       end
