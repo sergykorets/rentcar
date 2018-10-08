@@ -2,11 +2,6 @@ class HotelsController < ApplicationController
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
 
   def index
-    unless current_user && current_user.admin
-      tracker do |t|
-        t.facebook :track, { type: 'PageView' }
-      end
-    end
     @hotels = Hotel.lodging.order(created_at: :desc).map do |hotel|
       { id: hotel.id,
         name: hotel.name,
