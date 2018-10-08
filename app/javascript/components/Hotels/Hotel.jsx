@@ -31,7 +31,7 @@ export default class Hotel extends React.Component {
         if (resp.success) {
           window.location.href = this.state.hotel.id
         } else {
-          window.location.href = '/users/sign_in'
+          window.location.href = resp.signInPath
         }
       }
     });
