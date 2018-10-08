@@ -13,13 +13,10 @@ class ReviewsController < ApplicationController
       render json: {success: true}
     else
       if Rails.env.development?
-        review_path = hotel_path(@hotel, comment: review_params[:comment])
-        sign_in_path = user_session_path
+        sign_in_path = user_session_path(comment: review_params[:comment], hotel: @hotel.id)
       else
-        review_path = "https://dragobrat.herokuapp.com/hotels/#{@hotel.id}?comment=#{review_params[:comment]}"
-        sign_in_path = 'https://dragobrat.herokuapp.com/users/sign_in'
+        sign_in_path = "https://dragobrat.herokuapp.com/users/sign_in?comment=#{review_params[:comment]}&hotel=#{@hotel.id}"
       end
-      session[:review_url] = review_path
       render json: {success: false, signInPath: sign_in_path}
     end
   end

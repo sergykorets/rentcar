@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, :controllers => { registrations: 'registrations',
+                                       sessions: 'sessions',
                                        omniauth_callbacks: 'omniauth_callbacks' }
   resources :hotels do
     resources :reviews
