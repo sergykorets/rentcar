@@ -21,6 +21,7 @@ class HotelsController < ApplicationController
       id: @hotel.id,
       editable: (current_user && current_user.admin) || (current_user && current_user.id == @hotel.user_id),
       name: @hotel.name,
+      bookingLink: @hotel.booking_link,
       description: @hotel.description,
       created: @hotel.created_at,
       price: @hotel.price,

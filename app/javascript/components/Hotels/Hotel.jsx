@@ -70,24 +70,33 @@ export default class Hotel extends React.Component {
               <span dangerouslySetInnerHTML={{__html: this.state.hotel.description}}></span>
             </div>
           </div>
-          <div className='actions-block'>
-            <Rater initialRating={parseFloat(this.state.hotel.googleRating)} emptySymbol="fa fa-star-o fa-2x"
-                   fullSymbol="fa fa-star fa-2x" readonly className='hotel-stars'/>
-            <div className='phones'>
-              { this.state.hotel.phones.map((phone, i) => {
-                return (
-                  <a href={`tel:${phone}`} className='phone' key={i}>
-                    {phone}
-                  </a>
-                )})}
+          <div className='right'>
+            <div className='actions-block'>
+              <Rater initialRating={parseFloat(this.state.hotel.googleRating)} emptySymbol="fa fa-star-o fa-2x"
+                     fullSymbol="fa fa-star fa-2x" readonly className='hotel-stars'/>
+              <div className='phones'>
+                { this.state.hotel.phones.map((phone, i) => {
+                  return (
+                    <a href={`tel:${phone}`} className='phone' key={i}>
+                      {phone}
+                    </a>
+                  )})}
+              </div>
+              <div className='hotel-buttons text-center'>
+                { this.state.hotel.site &&
+                  <a className='btn btn-default' href={this.state.hotel.site} target="_blank">Офіційний сайт</a>}
+                <a className='btn btn-dark' href={this.state.hotel.location} target="_blank">3D карта</a>
+                { this.state.hotel.editable &&
+                  <a className='btn btn-info' href={`${this.state.hotel.id}/edit`}>Редагувати</a>}
+              </div>
             </div>
-            <div className='hotel-buttons text-center'>
-              { this.state.hotel.site &&
-                <a className='btn btn-default' href={this.state.hotel.site} target="_blank">Офіційний сайт</a>}
-              <a className='btn btn-dark' href={this.state.hotel.location} target="_blank">3D карта</a>
-              { this.state.hotel.editable &&
-                <a className='btn btn-info' href={`${this.state.hotel.id}/edit`}>Редагувати</a>}
-            </div>
+            { this.state.hotel.bookingLink &&
+              <div className='actions-block booking'>
+                <p>Забронювати на</p>
+                <a target="_blank" href={this.state.hotel.bookingLink}>
+                  <img src="/images/booking.jpg" />
+                </a>
+              </div>}
           </div>
         </div>
         <div className='reviews-wrap'>

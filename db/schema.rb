@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181006194741) do
+ActiveRecord::Schema.define(version: 20181009181142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20181006194741) do
     t.integer "main_photo_id"
     t.integer "hotel_type", default: 0
     t.string "main_photo_type"
+    t.string "booking_link"
     t.index ["user_id"], name: "index_hotels_on_user_id"
   end
 

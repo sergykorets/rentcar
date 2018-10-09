@@ -461,7 +461,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (min-width: 1201px) {
   .actions-block {
-    min-width: 250px;
+    width: 250px;
   }
   .reviews-wrap {
     width: 840px;
@@ -469,4 +469,7 @@ h1, h2, h3, h4, h5, h6 {
   .hotel-description {
     width: 840px;
   }
+}
+.booking {
+  margin-top: 20px;
 }
