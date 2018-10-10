@@ -25,8 +25,8 @@ export default class Hotels extends React.Component {
             можна подивитися на <strong><b>3D</b></strong> карті. Готелі, які присутні на <strong><b>Booking.com</b></strong> також показуються на цьому сайті. Якщо Ваш заклад відсутній на сайті,
             то Ви можете його створити в меню "Додати заклад" (потрібна реєстрація на сайті, яка займає 1 хвилину), або зв'язатися зі мною
             (email для зв'язку знаходиться знизу). Також вітаються ідеї щодо покращення сайту.</p>
+          <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.dragobrat.net&width=51&layout=box_count&action=like&size=small&show_faces=true&share=true&height=65&appId=783416265322787" width="51" height="65" style={{border:'none',overflow:'hidden'}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
-        <hr/>
         <div className='form-group'>
           <div className='row'>
             <div className='col-lg-4'>
