@@ -55,12 +55,12 @@ class Hotel < ApplicationRecord
 
   def self.get_hotels
     hotels = []
-    area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=uk&type=lodging&key=AIzaSyDM5fHYOgKovob7679oLfv1LGTxRX9xllA&radius=1000&location=48.248731, 24.244108"
+    area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=uk&type=lodging&key=#{GOOGLE_KEY}&radius=1000&location=48.248731, 24.244108"
     sleep 1
     hotels << area.parsed_response['results']
     new_area = area
     loop do
-      new_area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyDM5fHYOgKovob7679oLfv1LGTxRX9xllA&pagetoken=#{new_area.parsed_response['next_page_token']}"
+      new_area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=#{GOOGLE_KEY}&pagetoken=#{new_area.parsed_response['next_page_token']}"
       sleep 1
       hotels << new_area.parsed_response['results']
       break unless new_area.parsed_response['next_page_token']
@@ -90,7 +90,9 @@ class Hotel < ApplicationRecord
       puts hotels.flatten.count
       hotels.flatten.each do |hotel|
         puts hotel['name']
+        next if hotel['place_id'] == 'ChIJGd65gRoQN0cRZHpkO6eTDP0'
         Hotel.create(name: hotel['name'], hotel_type: :restaurant, google_id: hotel['place_id'], google_rating: hotel['rating'])
+        Hotel.update_coordinates(hotel['place_id'])
       end
     end
   end
