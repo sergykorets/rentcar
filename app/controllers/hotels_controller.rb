@@ -1,15 +1,12 @@
 class HotelsController < ApplicationController
-  before_action :set_hotel, only: [:show, :edit, :update, :destroy]
+  before_action :set_hotel, only: [:show, :edit, :update, :nearby, :destroy]
   before_action :check_session, only: :index
 
   def index
     @hotels = Hotel.lodging.order(created_at: :desc).map do |hotel|
       { id: hotel.id,
         name: hotel.name,
-        description: hotel.description,
-        created: hotel.created_at,
         price: hotel.price,
-        site: hotel.site,
         googleRating: hotel.average_rating,
         location: hotel.location,
         avatar: get_hotel_avatar(hotel)}
@@ -17,7 +14,19 @@ class HotelsController < ApplicationController
   end
 
   def show
-    @hotel = {
+    @nearby_hotels = []
+    @hotel.nearby_hotels.each do |nearby|
+      nearby_hotel = Hotel.find_by_id(nearby.nearby_hotel_id)
+      @nearby_hotels << {
+        id: nearby_hotel.id,
+        name: nearby_hotel.name,
+        price: nearby_hotel.price,
+        googleRating: nearby_hotel.average_rating,
+        location: nearby_hotel.location,
+        type: nearby_hotel.hotel_type,
+        avatar: get_hotel_avatar(nearby_hotel)}
+    end
+    @h = {
       id: @hotel.id,
       editable: (current_user && current_user.admin) || (current_user && current_user.id == @hotel.user_id),
       name: @hotel.name,
