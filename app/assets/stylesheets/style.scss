@@ -260,8 +260,8 @@ h1 span {
 
 .navbar {
   background: #e7e7e7e7;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
+  font-size: 18px;
+  border: 1px solid transparent;
 }
 
 .navbar-default .navbar-nav>.active a{
@@ -289,6 +289,7 @@ h1 span {
     .round-image-30 {
       display: none;
     }
+    & > li > a{ padding: 20px 15px }
   }
   .nav-item {
     border-bottom: solid 1px #81889233;
@@ -297,9 +298,11 @@ h1 span {
     margin-bottom: 20px;
     margin-top: 20px;
   }
+  .navbar > .container > a{ padding: 20px 15px }
 }
 .introduction {
   display: flex;
+  margin-top: 100px;
   iframe {
     margin-left: 10px;
   }

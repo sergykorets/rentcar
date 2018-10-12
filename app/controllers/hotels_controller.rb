@@ -67,7 +67,7 @@ class HotelsController < ApplicationController
   end
 
   def create
-    @hotel = Hotel.new(hotel_params)
+    @hotel = current_user.hotels.new(hotel_params)
     if @hotel.save
       render json: { success: true, hotel: @hotel }
     else
