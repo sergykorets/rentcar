@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9642618a-8b0f-4545-8f31-fe9bb2b917a3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/style.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/style.scss" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/hotels_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/hotels_controller.rb" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/Hotels/common/Form.jsx" afterPath="$PROJECT_DIR$/app/javascript/components/Hotels/common/Form.jsx" />
       <change beforePath="$PROJECT_DIR$/app/models/hotel.rb" afterPath="$PROJECT_DIR$/app/models/hotel.rb" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change beforePath="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/_nav.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/_nav.html.erb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -27,7 +24,7 @@
       <file leaf-file-name="Hotel.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
+            <state relative-caret-position="1196">
               <caret line="52" column="12" lean-forward="false" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
@@ -48,41 +45,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Form.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Form.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/common/Form.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4048">
-              <caret line="176" column="12" lean-forward="false" selection-start-line="176" selection-start-column="12" selection-end-line="176" selection-end-column="12" />
+            <state relative-caret-position="364">
+              <caret line="210" column="15" lean-forward="false" selection-start-line="210" selection-start-column="15" selection-end-line="210" selection-end-column="15" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
-                <marker date="1538932295370" expanded="true" signature="4133:11548" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="4170:4855" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="4243:4840" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="4289:4528" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="4574:4823" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="4892:5134" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="5171:5514" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="5220:5318" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="5551:6103" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="5745:6071" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="6140:6248" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="6285:6549" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="6586:6830" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="6902:11393" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="6957:7150" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="7549:8414" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="7741:8358" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="7792:8325" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="7849:7972" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="8030:8290" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="8096:8135" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="10166:11375" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="10337:11331" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="10382:11304" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="10433:10542" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="10594:11275" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="10654:11135" ph="..." />
-                <marker date="1538932295370" expanded="true" signature="11431:11535" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="4200:11639" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="4237:4922" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="4310:4907" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="4356:4595" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="4641:4890" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="4959:5201" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="5238:5581" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="5287:5385" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="5618:6194" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="5827:6159" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="6231:6339" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="6376:6640" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="6677:6921" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="6993:11484" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="7048:7241" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="7640:8505" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="7832:8449" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="7883:8416" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="7940:8063" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="8121:8381" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="8187:8226" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="10257:11466" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="10428:11422" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="10473:11395" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="10524:10633" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="10685:11366" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="10745:11226" ph="..." />
+                <marker date="1539330416971" expanded="true" signature="11522:11626" ph="..." />
               </folding>
             </state>
           </provider>
@@ -235,8 +232,8 @@
       <file leaf-file-name="hotel.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/hotel.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-190">
-              <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+            <state relative-caret-position="474">
+              <caret line="112" column="120" lean-forward="false" selection-start-line="112" selection-start-column="120" selection-end-line="112" selection-end-column="120" />
               <folding />
             </state>
           </provider>
@@ -296,7 +293,7 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/hotels_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1541">
-              <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+              <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -306,7 +303,7 @@
         <entry file="file://$PROJECT_DIR$/app/models/user.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="283">
-              <caret line="13" column="67" lean-forward="true" selection-start-line="13" selection-start-column="67" selection-end-line="13" selection-end-column="67" />
+              <caret line="13" column="67" lean-forward="false" selection-start-line="13" selection-start-column="67" selection-end-line="13" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -332,11 +329,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.scss" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/style.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="631">
-              <caret line="308" column="1" lean-forward="false" selection-start-line="308" selection-start-column="1" selection-end-line="308" selection-end-column="1" />
+            <state relative-caret-position="138">
+              <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -366,8 +363,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>map</find>
-      <find>round-image-30</find>
       <find>caves</find>
       <find>hotels</find>
       <find>className='restaurant</find>
@@ -396,6 +391,8 @@
       <find>container</find>
       <find>navbar</find>
       <find>shad</find>
+      <find>handlePhoneChange</find>
+      <find>deleteItem</find>
     </findStrings>
     <replaceStrings>
       <replace>{{left: 438+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}</replace>
@@ -452,7 +449,6 @@
         <option value="$PROJECT_DIR$/app/assets/stylesheets/main.css" />
         <option value="$PROJECT_DIR$/app/controllers/registrations_controller.rb" />
         <option value="$PROJECT_DIR$/app/helpers/application_helper.rb" />
-        <option value="$PROJECT_DIR$/app/javascript/components/Hotels/common/Form.jsx" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/config/application.rb" />
         <option value="$PROJECT_DIR$/config/initializers/devise.rb" />
@@ -467,12 +463,13 @@
         <option value="$PROJECT_DIR$/app/views/hotels/show.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/hotels.scss" />
         <option value="$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx" />
-        <option value="$PROJECT_DIR$/app/models/hotel.rb" />
         <option value="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/hotels_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/_nav.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/style.scss" />
+        <option value="$PROJECT_DIR$/app/models/hotel.rb" />
+        <option value="$PROJECT_DIR$/app/javascript/components/Hotels/common/Form.jsx" />
       </list>
     </option>
   </component>
@@ -589,6 +586,15 @@
               <item name="javascript" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="Hotels" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dragobrat" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="javascript" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Hotels" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dragobrat" type="b2602c69:ProjectViewProjectNode" />
@@ -815,12 +821,12 @@
       <workItem from="1538999065018" duration="35000" />
       <workItem from="1539019042536" duration="8751000" />
       <workItem from="1539104658593" duration="3722000" />
-      <workItem from="1539190074473" duration="18480000" />
+      <workItem from="1539190074473" duration="20828000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="264926000" />
+    <option name="totallyTimeSpent" value="267274000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
@@ -965,54 +971,6 @@
         <state relative-caret-position="552">
           <caret line="28" column="33" lean-forward="false" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="33" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/common/Form.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4048">
-          <caret line="176" column="12" lean-forward="false" selection-start-line="176" selection-start-column="12" selection-end-line="176" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-            <marker date="1538932295370" expanded="true" signature="4133:11548" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="4170:4855" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="4243:4840" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="4289:4528" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="4574:4823" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="4892:5134" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="5171:5514" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="5220:5318" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="5551:6103" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="5745:6071" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="6140:6248" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="6285:6549" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="6586:6830" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="6902:11393" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="6957:7150" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="7549:8414" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="7741:8358" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="7792:8325" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="7849:7972" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="8030:8290" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="8096:8135" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="10166:11375" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="10337:11331" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="10382:11304" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="10433:10542" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="10594:11275" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="10654:11135" ph="..." />
-            <marker date="1538932295370" expanded="true" signature="11431:11535" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/HotelEdit.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1200,24 +1158,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="52" column="12" lean-forward="false" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/hotel.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-190">
-          <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -1229,7 +1169,7 @@
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="283">
-          <caret line="13" column="67" lean-forward="true" selection-start-line="13" selection-start-column="67" selection-end-line="13" selection-end-column="67" />
+          <caret line="13" column="67" lean-forward="false" selection-start-line="13" selection-start-column="67" selection-end-line="13" selection-end-column="67" />
           <folding />
         </state>
       </provider>
@@ -1237,7 +1177,7 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/hotels_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1541">
-          <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1260,9 +1200,75 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/style.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="308" column="1" lean-forward="false" selection-start-line="308" selection-start-column="1" selection-end-line="308" selection-end-column="1" />
+        <state relative-caret-position="138">
+          <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/hotel.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="112" column="120" lean-forward="false" selection-start-line="112" selection-start-column="120" selection-end-line="112" selection-end-column="120" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/HotelEdit.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotel.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1196">
+          <caret line="52" column="12" lean-forward="false" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/common/Form.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="210" column="15" lean-forward="false" selection-start-line="210" selection-start-column="15" selection-end-line="210" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+            <marker date="1539330416971" expanded="true" signature="4200:11639" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="4237:4922" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="4310:4907" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="4356:4595" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="4641:4890" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="4959:5201" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="5238:5581" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="5287:5385" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="5618:6194" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="5827:6159" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="6231:6339" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="6376:6640" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="6677:6921" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="6993:11484" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="7048:7241" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="7640:8505" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="7832:8449" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="7883:8416" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="7940:8063" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="8121:8381" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="8187:8226" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="10257:11466" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="10428:11422" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="10473:11395" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="10524:10633" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="10685:11366" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="10745:11226" ph="..." />
+            <marker date="1539330416971" expanded="true" signature="11522:11626" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -102,7 +102,7 @@ class Hotel < ApplicationRecord
   end
 
   def self.update_coordinates(place_id)
-    place = HTTParty.get "https://maps.googleapis.com/maps/api/geocode/json?place_id=#{place_id}&key=AIzaSyDM5fHYOgKovob7679oLfv1LGTxRX9xllA"
+    place = HTTParty.get "https://maps.googleapis.com/maps/api/geocode/json?place_id=#{place_id}&key=#{GOOGLE_KEY}"
     sleep 1
     Hotel.find_by_google_id(place_id).update_attributes(longitude: place['results'][0]['geometry']['location']['lng'], latitude: place['results'][0]['geometry']['location']['lat'])
   end
@@ -110,7 +110,7 @@ class Hotel < ApplicationRecord
   def self.generate_nearbys
     Hotel.all.each do |hotel|
       puts hotel.name
-      nearbys = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=uk&key=AIzaSyDM5fHYOgKovob7679oLfv1LGTxRX9xllA&radius=100&location=#{hotel.latitude},#{hotel.longitude}"
+      nearbys = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=uk&key=#{GOOGLE_KEY}&radius=100&location=#{hotel.latitude},#{hotel.longitude}"
       sleep 1
       nearbys['results'].each do |result|
         nearby_hotel = Hotel.find_by_google_id(result['place_id'])

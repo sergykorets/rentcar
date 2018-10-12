@@ -4,7 +4,7 @@ body {
     font-size: 15px;
     color: #363636;
     width: 100%;
-    padding: 0;
+    padding: 50px 0 0;
     margin-left: 0;
     margin-right: 0;
     font-family: 'roboto', sans-serif;
@@ -302,7 +302,6 @@ h1 span {
 }
 .introduction {
   display: flex;
-  margin-top: 100px;
   iframe {
     margin-left: 10px;
   }

@@ -70,6 +70,7 @@ export default class Form extends React.Component {
   }
 
   deleteItem = (item, i) => {
+    //debugger
     if (this.state.hotel[item][i].id) {
       const items = this.state.hotel[item];
       items[i] = {id: items[i].id, _destroy: '1'};
@@ -81,7 +82,7 @@ export default class Form extends React.Component {
       })
     } else {
       var array = [...this.state.hotel[item]]
-      var index = array.indexOf(i)
+      var index = array.indexOf(this.state.hotel[item][i])
       array.splice(index, 1)
       this.setState({
         hotel: {
@@ -175,6 +176,7 @@ export default class Form extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className='hotel-form'>
         <div className='form-group'>
@@ -205,13 +207,14 @@ export default class Form extends React.Component {
         </div>
         <div className='form-group'>
           <label>Номери телефонів</label>
-          { this.state.hotel.phones.filter(p => !p._destroy).map((phone, i) => {
-            return(
-              <div className='phone-form' key={i}>
-                <input type='text' placeholder='380 XX XXX XX XX' className='form-control' onChange={(e) =>this.handlePhoneChange(i, e.target.value)} value={this.state.hotel.phones[i].phone} />
-                <i className='fa fa-trash-o fa-2x float-right' onClick={() => this.deleteItem('phones', i)} />
-              </div>
-            )})}
+          { this.state.hotel.phones.map((phone, i) => {
+            if (!phone._destroy) {
+              return (
+                <div className='phone-form' key={i}>
+                  <input type='text' placeholder='380 XX XXX XX XX' className='form-control' onChange={(e) =>this.handlePhoneChange(i, e.target.value)} value={this.state.hotel.phones[i].phone} />
+                  <i className='fa fa-trash-o fa-2x float-right' onClick={() => this.deleteItem('phones', i)} />
+                </div>
+              )}})}
         </div>
         <div className='form-group'>
           <i className='fa fa-plus btn btn-info' onClick={this.addPhone}> Додати телефон</i>
