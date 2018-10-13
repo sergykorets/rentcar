@@ -95,7 +95,7 @@ export default class Form extends React.Component {
 
   handleSubmit = () => {
     const type = this.state.hotel.id ? 'PATCH' : 'POST'
-    const url = this.state.hotel.id ? `/hotels/${this.state.hotel.id}.json` : '/hotels.json'
+    const url = this.state.hotel.id ? `/hotels/${this.state.hotel.slug}.json` : '/hotels.json'
     $.ajax({
       url: url,
       type: type,
@@ -115,8 +115,9 @@ export default class Form extends React.Component {
         }
       },
       success: (resp) => {
+        //debugger
         if (resp.success) {
-          window.location.href = `/hotels/${resp.hotel.id}`
+          window.location.href = `/hotels/${resp.slug}`
         } else {
           window.location.reload()
         }
@@ -151,7 +152,7 @@ export default class Form extends React.Component {
       files.map((file) => {
         formData.append('hotel[photos_attributes][photo][picture]', file, file.name);
         $.ajax({
-          url: `/hotels/${this.state.hotel.id}.json`,
+          url: `/hotels/${this.state.hotel.slug}.json`,
           type: 'PATCH',
           data: formData,
           dataType: 'json',

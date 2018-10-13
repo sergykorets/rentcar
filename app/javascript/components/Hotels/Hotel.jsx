@@ -1,6 +1,8 @@
 import React, {Fragment} from 'react';
 import Rater from 'react-rating'
 import ImageGallery from 'react-image-gallery';
+import ReactGA from 'react-ga';
+import ReactPixel from 'react-facebook-pixel';
 
 export default class Hotel extends React.Component {
   constructor(props) {
@@ -10,8 +12,20 @@ export default class Hotel extends React.Component {
       hotel: this.props.hotel,
       review: this.props.hotel.sessionComment,
       reviewRating: 0,
-      nearbyHotels: this.props.nearbyHotels
+      nearbyHotels: this.props.nearbyHotels,
+      logged: this.props.logged,
+      admin: this.props.admin
     };
+  }
+
+  componentDidMount() {
+    if (!this.state.admin) {
+      ReactGA.initialize('UA-116820611-2');
+      ReactGA.pageview(window.location.pathname + window.location.search);
+      ReactGA.ga('send', 'pageview', `/hotels/${this.state.hotel.slug}`);
+      ga('send', {'name': 'viewContent', 'productId': this.state.hotel.id, 'productName': this.state.hotel.name});
+      ReactPixel.track( 'ViewContent', { content_ids: [this.state.hotel.id], content_name: this.state.hotel.name, content_type: 'Hotel' } )
+    }
   }
 
   handleInputChange = (field, value) => {
@@ -20,7 +34,7 @@ export default class Hotel extends React.Component {
 
   submitReview = () => {
     $.ajax({
-      url: `/hotels/${this.state.hotel.id}/reviews.json`,
+      url: `/hotels/${this.state.hotel.slug}/reviews.json`,
       type: 'POST',
       data: {
         review: {
@@ -30,7 +44,7 @@ export default class Hotel extends React.Component {
       },
       success: (resp) => {
         if (resp.success) {
-          window.location.href = this.state.hotel.id
+          window.location.href = this.state.hotel.slug
         } else {
           window.location.href = resp.signInPath
         }
@@ -41,7 +55,7 @@ export default class Hotel extends React.Component {
   deleteReview = (id) => {
     if(confirm('Видалити відгук?')) {
       $.ajax({
-        url: `/hotels/${this.state.hotel.id}/reviews/${id}.json`,
+        url: `/hotels/${this.state.hotel.slug}/reviews/${id}.json`,
         type: 'DELETE',
         success: (resp) => {
           window.location.reload()
@@ -88,7 +102,7 @@ export default class Hotel extends React.Component {
                   <a className='btn btn-default' href={this.state.hotel.site} target="_blank">Офіційний сайт</a>}
                 <a className='btn btn-dark' href={this.state.hotel.location} target="_blank">3D карта</a>
                 { this.state.hotel.editable &&
-                  <a className='btn btn-info' href={`${this.state.hotel.id}/edit`}>Редагувати</a>}
+                  <a className='btn btn-info' href={`${this.state.hotel.slug}/edit`}>Редагувати</a>}
               </div>
             </div>
             { this.state.hotel.bookingLink &&
@@ -110,12 +124,12 @@ export default class Hotel extends React.Component {
                   <div className="card">
                     <div className="card-img">
                       { hotel.avatar &&
-                      <a href={`/hotels/${hotel.id}`} className="image-popup fh5co-board-img"
+                      <a href={`/hotels/${hotel.slug}`} className="image-popup fh5co-board-img"
                          title={hotel.name}><img src={hotel.avatar} alt={hotel.name}/></a>}
                     </div>
                     <div className="card-body">
                       <div className='body-top'>
-                        <a href={`/hotels/${hotel.id}`}><span>{hotel.name}</span></a>
+                        <a href={`/hotels/${hotel.slug}`}><span>{hotel.name}</span></a>
                         <span>{hotel.price} {hotel.price && 'UAH'}</span>
                       </div>
                       <div className='body-top'>
@@ -130,7 +144,8 @@ export default class Hotel extends React.Component {
         </div>
         <div className='reviews-wrap'>
           <div className='review-form'>
-            <textarea type='text' rows='3' onChange={(e) => this.handleInputChange('review', e.target.value)} value={this.state.review} className='form-control'/>
+            <textarea type='text' rows='3' placeholder={this.state.logged ? 'Напишіть відгук про готель тут' : 'Щоб залишити відгук, потрібно зайти на сайт під своїм логіном або зареєструватися'}
+                      onChange={(e) => this.handleInputChange('review', e.target.value)} value={this.state.review} className='form-control'/>
             <div className='review-actions'>
               <button className='btn btn-dark' onClick={this.submitReview} disabled={this.state.reviewRating == 0}>Залишити відгук</button>
               <Rater start={0} stop={5} step={1} onClick={(rate) => this.handleInputChange('reviewRating', rate)} emptySymbol="fa fa-star-o fa-2x"

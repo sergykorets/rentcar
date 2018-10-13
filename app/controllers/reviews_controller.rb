@@ -13,9 +13,9 @@ class ReviewsController < ApplicationController
       render json: {success: true}
     else
       if Rails.env.development?
-        sign_in_path = user_session_path(comment: review_params[:comment], hotel: @hotel.id)
+        sign_in_path = user_session_path(comment: review_params[:comment], hotel: @hotel.slug)
       else
-        sign_in_path = "https://dragobrat.herokuapp.com/users/sign_in?comment=#{review_params[:comment]}&hotel=#{@hotel.id}"
+        sign_in_path = "https://dragobrat.herokuapp.com/users/sign_in?comment=#{review_params[:comment]}&hotel=#{@hotel.slug}"
       end
       render json: {success: false, signInPath: sign_in_path}
     end
@@ -38,7 +38,7 @@ class ReviewsController < ApplicationController
     end
 
     def define_hotel
-      @hotel = Hotel.find(params[:hotel_id])
+      @hotel = Hotel.friendly.find(params[:hotel_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

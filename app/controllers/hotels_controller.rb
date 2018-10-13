@@ -3,10 +3,12 @@ class HotelsController < ApplicationController
   before_action :check_session, only: :index
 
   def index
+    @admin = Rails.env.development? || (current_user && current_user.admin)
     @hotels = Hotel.lodging.order(created_at: :desc).map do |hotel|
       { id: hotel.id,
         name: hotel.name,
         price: hotel.price,
+        slug: hotel.slug,
         googleRating: hotel.average_rating,
         location: hotel.location,
         avatar: get_hotel_avatar(hotel)}
@@ -14,6 +16,7 @@ class HotelsController < ApplicationController
   end
 
   def show
+    @admin = Rails.env.development? || (current_user && current_user.admin)
     @nearby_hotels = []
     @hotel.nearby_hotels.each do |nearby|
       nearby_hotel = Hotel.find_by_id(nearby.nearby_hotel_id)
@@ -21,6 +24,7 @@ class HotelsController < ApplicationController
         id: nearby_hotel.id,
         name: nearby_hotel.name,
         price: nearby_hotel.price,
+        slug: nearby_hotel.slug,
         googleRating: nearby_hotel.average_rating,
         location: nearby_hotel.location,
         type: nearby_hotel.hotel_type,
@@ -35,6 +39,7 @@ class HotelsController < ApplicationController
       created: @hotel.created_at,
       price: @hotel.price,
       site: @hotel.site,
+      slug: @hotel.slug,
       hotelType: @hotel.hotel_type,
       googleRating: @hotel.average_rating,
       location: @hotel.location,
@@ -42,6 +47,7 @@ class HotelsController < ApplicationController
       sessionComment: params[:comment],
       phones: @hotel.phones.map {|phone| phone.phone},
       googleReviews: combine_reviews}
+    @logged = !current_user.nil?
   end
 
   def new; end
@@ -55,6 +61,7 @@ class HotelsController < ApplicationController
         hotelType: @hotel.hotel_type,
         price: @hotel.price || '',
         site: @hotel.site || '',
+        slug: @hotel.slug,
         mainPhotoId: @hotel.main_photo_id,
         mainPhotoType: @hotel.main_photo_type,
         photosForUpload: [],
@@ -69,7 +76,7 @@ class HotelsController < ApplicationController
   def create
     @hotel = current_user.hotels.new(hotel_params)
     if @hotel.save
-      render json: { success: true, hotel: @hotel }
+      render json: { success: true, slug: @hotel.slug }
     else
       render json: { success: false, errors: @hotel.errors.full_messages }
     end
@@ -77,7 +84,7 @@ class HotelsController < ApplicationController
 
   def update
     if @hotel.update(hotel_params)
-      render json: { success: true, hotel: @hotel }
+      render json: { success: true, slug: @hotel.slug }
     else
       render json: { success: false, errors: @hotel.errors.full_messages }
     end
@@ -96,7 +103,7 @@ class HotelsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_hotel
-      @hotel = Hotel.find(params[:id])
+      @hotel = Hotel.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

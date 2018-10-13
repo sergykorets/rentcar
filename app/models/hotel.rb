@@ -1,4 +1,6 @@
 class Hotel < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   GOOGLE_KEY = Rails.application.secrets.google_key || ENV['google_key']
   enum hotel_type: [:lodging, :restaurant]
 
@@ -10,7 +12,7 @@ class Hotel < ApplicationRecord
   has_many :nearby_hotels
 
   validates_presence_of :name
-  validates_uniqueness_of :google_id
+  validates_uniqueness_of :google_id, allow_blank: true, allow_nil: true
 
   accepts_nested_attributes_for :phones, allow_destroy: true
   accepts_nested_attributes_for :photos, allow_destroy: true

@@ -1,5 +1,7 @@
 import React from 'react';
 import Rater from 'react-rating'
+import ReactGA from 'react-ga';
+import ReactPixel from 'react-facebook-pixel';
 
 export default class Hotels extends React.Component {
   constructor(props) {
@@ -9,8 +11,19 @@ export default class Hotels extends React.Component {
       hotels: this.props.hotels,
       nameSearch: '',
       ratingSearch: '',
-      maxPrice: ''
+      maxPrice: '',
+      admin: this.props.admin
     };
+  }
+
+  componentDidMount() {
+    if (!this.state.admin) {
+      ReactPixel.init('668734460178473');
+      ReactGA.initialize('UA-116820611-2');
+      ReactGA.pageview(window.location.pathname + window.location.search);
+      ReactGA.ga('send', 'pageview', `/hotels`);
+      ReactPixel.pageView();
+    }
   }
 
   handleSearch = (field, value) => {
@@ -21,8 +34,8 @@ export default class Hotels extends React.Component {
     return (
       <div className="container">
         <div className='introduction'>
-          <p>Основою цього сайту є <strong><b>Google API</b></strong>. Готелі, кафе та відгуки до них автоматично оновлюються разом з тим, що є на Google картах. Місцезнаходження закладів
-            можна подивитися на <strong><b>3D</b></strong> карті. Готелі, які присутні на <strong><b>Booking.com</b></strong> також показуються на цьому сайті. Якщо Ваш заклад відсутній на сайті,
+          <p>Основою цього сайту є <strong><b>Google Maps API</b></strong>. Готелі, кафе, фото та відгуки до них автоматично оновлюються разом з тим, що є на Google картах. Місцезнаходження закладів
+            можна подивитися на <strong><b>3D карті</b></strong>. Готелі, які присутні на <strong><b>Booking.com</b></strong> також показуються на цьому сайті. Якщо Ваш заклад відсутній на сайті,
             то Ви можете його створити в меню "Додати заклад" (потрібна реєстрація на сайті, яка займає 1 хвилину), або зв'язатися зі мною
             (email для зв'язку знаходиться знизу). Також вітаються ідеї щодо покращення сайту.</p>
           <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.dragobrat.net&width=51&layout=box_count&action=like&size=small&show_faces=true&share=true&height=65&appId=783416265322787" width="51" height="65" style={{border:'none',overflow:'hidden'}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
@@ -67,12 +80,12 @@ export default class Hotels extends React.Component {
                 <div className="card">
                   <div className="card-img">
                     { hotel.avatar &&
-                      <a href={`/hotels/${hotel.id}`} className="image-popup fh5co-board-img"
+                      <a href={`/hotels/${hotel.slug}`} className="image-popup fh5co-board-img"
                          title={hotel.name}><img src={hotel.avatar} alt={hotel.name}/></a>}
                   </div>
                   <div className="card-body">
                     <div className='body-top'>
-                      <a href={`/hotels/${hotel.id}`}><span>{hotel.name}</span></a>
+                      <a href={`/hotels/${hotel.slug}`}><span>{hotel.name}</span></a>
                       <span>{hotel.price} {hotel.price && 'UAH'}</span>
                     </div>
                     <div className='body-top'>

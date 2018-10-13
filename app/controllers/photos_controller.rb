@@ -69,7 +69,7 @@ class PhotosController < ApplicationController
     end
 
     def define_hotel
-      @hotel = Hotel.find(params[:hotel_id])
+      @hotel = Hotel.friendly.find(params[:hotel_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
