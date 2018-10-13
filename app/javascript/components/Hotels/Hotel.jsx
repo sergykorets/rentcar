@@ -78,7 +78,7 @@ export default class Hotel extends React.Component {
         <div className='info-block'>
           <div className='hotel-info'>
             <div className='hotel-header'>
-              <h2>{this.state.hotel.name}</h2>
+              <h1 className='hotel-name'>{this.state.hotel.name}</h1>
               <span>{this.state.hotel.price} {this.state.hotel.price && 'UAH'}</span>
             </div>
             <div className='hotel-description'>
