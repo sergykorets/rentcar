@@ -2,95 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9642618a-8b0f-4545-8f31-fe9bb2b917a3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/003/large/2018-09-25_21.40.58.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/003/medium/2018-09-25_21.40.58.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/003/original/2018-09-25_21.40.58.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/003/square/2018-09-25_21.40.58.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/003/thumb/2018-09-25_21.40.58.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/004/large/NWG_2018_-Buhta-Vikingiv-0051.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/004/medium/NWG_2018_-Buhta-Vikingiv-0051.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/004/original/NWG_2018_-Buhta-Vikingiv-0051.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/004/square/NWG_2018_-Buhta-Vikingiv-0051.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/004/thumb/NWG_2018_-Buhta-Vikingiv-0051.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/005/large/NWG_2018_-Buhta-Vikingiv-0081.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/005/medium/NWG_2018_-Buhta-Vikingiv-0081.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/005/original/NWG_2018_-Buhta-Vikingiv-0081.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/005/square/NWG_2018_-Buhta-Vikingiv-0081.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/005/thumb/NWG_2018_-Buhta-Vikingiv-0081.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/006/large/NWG_2018_-Buhta-Vikingiv-0033.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/006/medium/NWG_2018_-Buhta-Vikingiv-0033.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/006/original/NWG_2018_-Buhta-Vikingiv-0033.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/006/square/NWG_2018_-Buhta-Vikingiv-0033.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/006/thumb/NWG_2018_-Buhta-Vikingiv-0033.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/007/large/22853113_367986120303019_8357080663215630_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/007/medium/22853113_367986120303019_8357080663215630_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/007/original/22853113_367986120303019_8357080663215630_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/007/square/22853113_367986120303019_8357080663215630_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/007/thumb/22853113_367986120303019_8357080663215630_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/008/large/12552981_927774783959446_8226873663936347331_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/008/medium/12552981_927774783959446_8226873663936347331_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/008/original/12552981_927774783959446_8226873663936347331_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/008/square/12552981_927774783959446_8226873663936347331_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/008/thumb/12552981_927774783959446_8226873663936347331_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/009/large/34033492_583792385335232_1097200681967681536_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/009/medium/34033492_583792385335232_1097200681967681536_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/009/original/34033492_583792385335232_1097200681967681536_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/009/square/34033492_583792385335232_1097200681967681536_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/009/thumb/34033492_583792385335232_1097200681967681536_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/010/large/22853113_367986120303019_8357080663215630_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/010/medium/22853113_367986120303019_8357080663215630_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/010/original/22853113_367986120303019_8357080663215630_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/010/square/22853113_367986120303019_8357080663215630_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/010/thumb/22853113_367986120303019_8357080663215630_n.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/011/large/w_13cc3eeb.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/011/medium/w_13cc3eeb.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/011/original/w_13cc3eeb.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/011/square/w_13cc3eeb.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/011/thumb/w_13cc3eeb.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/013/large/Iv2cIk7i3oo.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/013/medium/Iv2cIk7i3oo.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/013/original/Iv2cIk7i3oo.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/013/square/Iv2cIk7i3oo.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/013/thumb/Iv2cIk7i3oo.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/014/large/jJmtyxTJnKs.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/014/medium/jJmtyxTJnKs.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/014/original/jJmtyxTJnKs.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/014/square/jJmtyxTJnKs.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/014/thumb/jJmtyxTJnKs.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/015/large/Cgac_4xiZQc.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/015/medium/Cgac_4xiZQc.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/015/original/Cgac_4xiZQc.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/015/square/Cgac_4xiZQc.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/015/thumb/Cgac_4xiZQc.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/016/large/duPnm7AB5j0.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/016/medium/duPnm7AB5j0.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/016/original/duPnm7AB5j0.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/016/square/duPnm7AB5j0.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/016/thumb/duPnm7AB5j0.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/017/large/UrevrE-ly-I.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/017/medium/UrevrE-ly-I.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/017/original/UrevrE-ly-I.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/017/square/UrevrE-ly-I.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/017/thumb/UrevrE-ly-I.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/018/large/u4JImsmoUKY.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/018/medium/u4JImsmoUKY.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/018/original/u4JImsmoUKY.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/018/square/u4JImsmoUKY.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/018/thumb/u4JImsmoUKY.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/019/large/jJmtyxTJnKs.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/019/medium/jJmtyxTJnKs.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/019/original/jJmtyxTJnKs.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/019/square/jJmtyxTJnKs.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/019/thumb/jJmtyxTJnKs.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/020/large/Iv2cIk7i3oo.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/020/medium/Iv2cIk7i3oo.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/020/original/Iv2cIk7i3oo.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/020/square/Iv2cIk7i3oo.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/photos/pictures/000/000/020/thumb/Iv2cIk7i3oo.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/003/medium/w_13cc3eeb.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/003/original/w_13cc3eeb.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/003/thumb/w_13cc3eeb.jpg" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -198,16 +111,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="115">
               <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/application.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -363,7 +266,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="253">
@@ -371,6 +274,16 @@
               <folding>
                 <element signature="e#731#737#0#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="598">
+              <caret line="26" column="16" lean-forward="true" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -476,9 +389,9 @@
       <find>deleteItem</find>
       <find>shad</find>
       <find>Hotel.fin</find>
-      <find>data</find>
       <find>id</find>
       <find>conso</find>
+      <find>data</find>
     </findStrings>
     <replaceStrings>
       <replace>{{left: 438+'px', top: 95+'px', width: 32+'px', height: 25+'px', lineHeight: 25+'px'}}</replace>
@@ -526,7 +439,6 @@
         <option value="$PROJECT_DIR$/app/javascript/components/Hotels/HotelNew.jsx" />
         <option value="$PROJECT_DIR$/app/javascript/components/Hotels/HotelEdit.jsx" />
         <option value="$PROJECT_DIR$/config/environments/development.rb" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/config/secrets.yml" />
         <option value="$PROJECT_DIR$/app/controllers/restaurants_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/restaurants/index.html.erb" />
@@ -556,6 +468,7 @@
         <option value="$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx" />
         <option value="$PROJECT_DIR$/app/views/layouts/_nav.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -915,12 +828,12 @@
       <workItem from="1538999065018" duration="35000" />
       <workItem from="1539019042536" duration="8751000" />
       <workItem from="1539104658593" duration="3722000" />
-      <workItem from="1539190074473" duration="34325000" />
+      <workItem from="1539190074473" duration="34410000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="280771000" />
+    <option name="totallyTimeSpent" value="280856000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
@@ -1019,13 +932,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1909">
           <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="88" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -1381,6 +1287,14 @@
           <folding>
             <element signature="e#731#737#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="26" column="16" lean-forward="true" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
