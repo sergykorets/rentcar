@@ -8,6 +8,7 @@ class RestaurantsController < ApplicationController
         description: hotel.description,
         created: hotel.created_at,
         price: hotel.price,
+        slug: hotel.slug,
         site: hotel.site,
         googleRating: hotel.average_rating,
         location: hotel.location,
