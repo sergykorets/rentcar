@@ -4995,6 +4995,10 @@ react-loading@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/react-loading/-/react-loading-2.0.3.tgz#e8138fb0c3e4674e481b320802ac7048ae14ffb9"
 
+react-mason@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-mason/-/react-mason-1.1.2.tgz#e771ff1e946a2c4a53c60654cdd3ceeb3683f827"
+
 react-on-rails@11.1.0-beta.1:
   version "11.1.0-beta.1"
   resolved "https://registry.yarnpkg.com/react-on-rails/-/react-on-rails-11.1.0-beta.1.tgz#f801cd7ff7ed1e7ee510ea125f27c5751692ae62"
