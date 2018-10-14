@@ -2,6 +2,7 @@ import React from 'react';
 import Rater from 'react-rating'
 import ReactGA from 'react-ga';
 import ReactPixel from 'react-facebook-pixel';
+import Masonry from 'react-mason';
 
 export default class Hotels extends React.Component {
   constructor(props) {
@@ -11,7 +12,10 @@ export default class Hotels extends React.Component {
       hotels: this.props.hotels,
       nameSearch: '',
       ratingSearch: '',
-      maxPrice: '',
+      priceFrom: '',
+      priceTo: '',
+      sortType: '',
+      sortOrder: '',
       admin: this.props.admin
     };
   }
@@ -30,6 +34,7 @@ export default class Hotels extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="container">
         <div className='introduction'>
@@ -43,10 +48,10 @@ export default class Hotels extends React.Component {
         </div>
         <div className='form-group'>
           <div className='row'>
-            <div className='col-lg-4'>
+            <div className='col-lg-3 filters'>
               <input type='text' placeholder='Пошук по назві закладу' className='form-control' onChange={(e) => this.handleSearch('nameSearch', e.target.value)} value={this.state.nameSearch} />
             </div>
-            <div className='col-lg-4 filters'>
+            <div className='col-lg-3 filters'>
               <select className='form-control' onChange={(e) => this.handleSearch('ratingSearch', e.target.value)} value={this.state.ratingSearch} >
                 <option value={0}>Пошук по рейтингу</option>
                 <option value={1}>Рейтинг вище 1</option>
@@ -58,46 +63,70 @@ export default class Hotels extends React.Component {
               </select>
             </div>
             { !this.props.cafe &&
-              <div className='col-lg-4'>
-                <select className='form-control' onChange={(e) => this.handleSearch('maxPrice', e.target.value)} value={this.state.maxPrice}>
-                  <option value={999999}>Пошук по ціні за 1 ніч з людини</option>
-                  <option value={100}>Менше 100 грн</option>
-                  <option value={200}>Менше 200 грн</option>
-                  <option value={300}>Менше 300 грн</option>
-                  <option value={400}>Менше 400 грн</option>
-                  <option value={500}>Менше 500 грн</option>
-                  <option value={600}>Менше 600 грн</option>
-                </select>
+              <div className='col-lg-3'>
+                <div className='row'>
+                  <div className='col-lg-6 filters'>
+                    <input type='number' placeholder='Ціна від' className='form-control' onChange={(e) => this.handleSearch('priceFrom', e.target.value)} value={this.state.priceFrom} />
+                  </div>
+                  <div className='col-lg-6 filters'>
+                    <input type='number' placeholder='Ціна до' className='form-control' onChange={(e) => this.handleSearch('priceTo', e.target.value)} value={this.state.priceTo} />
+                  </div>
+                </div>
               </div>}
+            <div className='col-lg-3'>
+              <div className='row'>
+                <div className='col-lg-6 filters'>
+                  <select className='form-control' onChange={(e) => this.handleSearch('sortType', e.target.value)} value={this.state.sortType} >
+                    <option value=''>Сортування</option>
+                    { !this.props.cafe && <option value='price'>За ціною</option>}
+                    <option value='googleRating'>За рейтингом</option>
+                  </select>
+                </div>
+                <div className='col-lg-6 filters'>
+                  <select className='form-control' onChange={(e) => this.handleSearch('sortOrder', e.target.value)} value={this.state.sortOrder} >
+                    <option value=''>Порядок</option>
+                    <option value='increasing'>Зростаючий</option>
+                    <option value='decreasing'>Спадаючий</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <hr/>
-        <div id='hotels_ul'>
-          { this.state.hotels.filter(h => h.name.toLowerCase().includes(this.state.nameSearch.toLowerCase()))
-              .filter(h => parseFloat(h.googleRating) >= parseFloat(this.state.ratingSearch ? this.state.ratingSearch : 0))
-                .filter(h => parseFloat(h.price ? h.price : 0) <= parseFloat(this.state.maxPrice ? this.state.maxPrice : 999999)).map((hotel, index) => {
-            return (
-              <div className='hotel' key={index}>
-                <div className="card">
-                  <div className="card-img">
-                    { hotel.avatar &&
+        <Masonry>
+          {this.state.hotels.filter(h => h.name.toLowerCase().includes(this.state.nameSearch.toLowerCase()))
+            .filter(h => parseFloat(h.googleRating) >= parseFloat(this.state.ratingSearch ? this.state.ratingSearch : 0))
+            .filter(h => parseFloat(h.price ? h.price : 999999) >= parseFloat(this.state.priceFrom ? this.state.priceFrom : 0))
+            .filter(h => parseFloat(h.price ? h.price : 0) <= parseFloat(this.state.priceTo ? this.state.priceTo : 999999))
+            .sort((a, b) => (this.state.sortType && this.state.sortType === 'googleRating' && ((this.state.sortType === 'googleRating' && this.state.sortOrder === 'increasing') ?
+              parseFloat(a.googleRating) - parseFloat(b.googleRating) : (parseFloat(b.googleRating) - parseFloat(a.googleRating)))))
+            .sort((a, b) => (this.state.sortType && this.state.sortType === 'price' && ((this.state.sortType === 'price' && this.state.sortOrder === 'increasing') ?
+              (parseFloat(a.price) - parseFloat(b.price)) : (parseFloat(b.price) - parseFloat(a.price))))).map((hotel, index) => {
+              return (
+                <div key={index} className="hotel">
+                  <div className="card">
+                    <div className="card-img">
+                      { hotel.avatar &&
                       <a href={`/hotels/${hotel.slug}`} className="image-popup fh5co-board-img"
-                         title={hotel.name}><img src={hotel.avatar} alt={hotel.name}/></a>}
-                  </div>
-                  <div className="card-body">
-                    <div className='body-top'>
-                      <a href={`/hotels/${hotel.slug}`}><span>{hotel.name}</span></a>
-                      <span>{hotel.price} {hotel.price && 'UAH'}</span>
+                         title={hotel.name}><img src={hotel.avatar || '/images/missing.jpg'} alt={hotel.name}/></a>}
                     </div>
-                    <div className='body-top'>
-                      <Rater initialRating={parseFloat(hotel.googleRating)} emptySymbol="fa fa-star-o"
-                           fullSymbol="fa fa-star" readonly className='hotel-stars'/>
-                      <a className='3d-link' href={hotel.location} target="_blank">Показати на 3D карті</a>
+                    <div className="card-body">
+                      <div className='body-top'>
+                        <a href={`/hotels/${hotel.slug}`}><span>{hotel.name}</span></a>
+                        <span>{hotel.price} {hotel.price && 'UAH'}</span>
+                      </div>
+                      <div className='body-top'>
+                        <Rater initialRating={parseFloat(hotel.googleRating)} emptySymbol="fa fa-star-o"
+                               fullSymbol="fa fa-star" readonly className='hotel-stars'/>
+                        <a className='3d-link' href={hotel.location} target="_blank">Показати на 3D карті</a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>)})}
-        </div>
+              )
+            })}
+        </Masonry>
       </div>
     );
   }

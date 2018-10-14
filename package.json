@@ -19,6 +19,7 @@
     "react-grid-gallery": "^0.5.1",
     "react-image-gallery": "^0.8.11",
     "react-loading": "^2.0.3",
+    "react-mason": "^1.1.2",
     "react-on-rails": "11.1.0-beta.1",
     "react-rating": "^1.4.0",
     "reactstrap": "^6.3.1",

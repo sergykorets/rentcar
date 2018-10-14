@@ -208,7 +208,7 @@ h1, h2, h3, h4, h5, h6 {
 // Input Text
 .form-control {
   box-shadow: none!important;
-  border: 2px solid $brand-darker;
+  border: 1px solid #c7c7c7;
   background: transparent;
   font-family: $font-monsterrat;
   &:hover,
@@ -216,7 +216,6 @@ h1, h2, h3, h4, h5, h6 {
   &:active {
     outline: none;
     box-shadow: none!important;
-    border: 2px solid $brand-primary;
   }
 }
 
@@ -229,6 +228,12 @@ h1, h2, h3, h4, h5, h6 {
     break-inside: avoid;
     margin: 0 0 20px 0;
     padding: 0;
+  }
+}
+  .hotel {
+    width: 100%;
+    margin: 0 0 10px 0;
+    padding: 0 5px;
     .body-top {
       display: flex;
       align-items: center;
@@ -242,7 +247,7 @@ h1, h2, h3, h4, h5, h6 {
       }
     }
   }
-}
+//}
 .custom-gallery {
   .image-gallery-image {
     text-align: center;
@@ -448,6 +453,19 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px;
   //max-width: 860px;
 }
+@media (max-width: 575px) {
+  .review-avatar-div {
+    display: none;
+  }
+  .review .review-content {
+    padding: 0;
+  }
+}
+@media (max-width: 650px) {
+  .container .masonry-grid .grid-item {
+    width: 100%;
+  }
+}
 @media (max-width: 1200px) {
   .info-block {
     display: block;
@@ -458,14 +476,8 @@ h1, h2, h3, h4, h5, h6 {
   .info-block .hotel-info .hotel-description {
     margin-bottom: 20px;
   }
-}
-
-@media (max-width: 575px) {
-  .review-avatar-div {
-    display: none;
-  }
-  .review .review-content {
-    padding: 0;
+  .masonry-grid .grid-item {
+    width: 49.9%;
   }
 }
 @media (min-width: 1201px) {
@@ -478,4 +490,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 .booking {
   margin-top: 20px;
+}
+.masonry-grid {
+  position: relative;
+}
+
+.grid-item {
+  position: absolute;
+  transition: top 400ms cubic-bezier(0.455, 0.03, 0.515, 0.955), left 400ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  width: 369px;
 }
