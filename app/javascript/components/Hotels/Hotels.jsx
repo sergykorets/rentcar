@@ -16,6 +16,7 @@ export default class Hotels extends React.Component {
       priceTo: '',
       sortType: '',
       sortOrder: '',
+      moved: false,
       admin: this.props.admin
     };
   }
@@ -29,14 +30,17 @@ export default class Hotels extends React.Component {
     }
   }
 
+  _onMouseMove = () => {
+    this.setState({moved: true})
+  }
+
   handleSearch = (field, value) => {
     this.setState({[field]: value})
   }
 
   render() {
-    console.log(this.state)
     return (
-      <div className="container">
+      <div className="container" onMouseMove={this._onMouseMove}>
         <div className='introduction'>
           <p>Основою цього сайту є <strong><b>Google Maps API</b></strong>. Готелі, кафе, фото та відгуки до них автоматично оновлюються разом з тим, що є на Google картах. Місцезнаходження закладів
             можна подивитися на <strong><b>3D карті</b></strong>. Готелі, які присутні на <strong><b>Booking.com</b></strong> також показуються на цьому сайті. Якщо Ваш заклад відсутній на сайті,

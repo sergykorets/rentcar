@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9642618a-8b0f-4545-8f31-fe9bb2b917a3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/hotels.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/hotels.scss" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/style.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/style.scss" />
       <change beforePath="$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx" afterPath="$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/_nav.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/_nav.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" afterPath="$PROJECT_DIR$/yarn.lock" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -93,8 +86,8 @@
       <file leaf-file-name="Hotels.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="111" column="54" lean-forward="false" selection-start-line="111" selection-start-column="54" selection-end-line="111" selection-end-column="54" />
+            <state relative-caret-position="596">
+              <caret line="40" column="12" lean-forward="false" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -846,12 +839,12 @@
       <workItem from="1539019042536" duration="8751000" />
       <workItem from="1539104658593" duration="3722000" />
       <workItem from="1539190074473" duration="44197000" />
-      <workItem from="1539523249059" duration="13040000" />
+      <workItem from="1539523249059" duration="13526000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="303683000" />
+    <option name="totallyTimeSpent" value="304169000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1306,8 +1299,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/components/Hotels/Hotels.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="111" column="54" lean-forward="false" selection-start-line="111" selection-start-column="54" selection-end-line="111" selection-end-column="54" />
+        <state relative-caret-position="596">
+          <caret line="40" column="12" lean-forward="false" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
