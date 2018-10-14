@@ -20,7 +20,6 @@ export default class Hotels extends React.Component {
     if (!this.state.admin) {
       ReactPixel.init('668734460178473');
       ReactGA.initialize('UA-116820611-2');
-      ReactGA.pageview(window.location.pathname + window.location.search);
       ReactGA.ga('send', 'pageview', `/hotels`);
       ReactPixel.pageView();
     }
