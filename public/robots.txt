@@ -4,3 +4,4 @@ User-agent: *
 Disallow: /admin
 Disallow: /users/sign_up
 Disallow: /users/sign_in
+SITEMAP: https://eu-central-1.amazonaws.com/dragobrat/sitemaps/sitemap.xml.gz
