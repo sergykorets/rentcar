@@ -51,6 +51,8 @@ gem 'google_places'
 gem 'whenever', require: false
 gem 'aws-sdk', '~> 2.3'
 gem 'friendly_id', '~> 5.2.0'
+gem 'sitemap_generator'
+gem 'fog-aws'
 
 group :development, :test do
   gem 'pry-rails'
