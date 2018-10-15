@@ -39,6 +39,7 @@ export default class Hotels extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="container" onMouseMove={this._onMouseMove}>
         <div className='introduction'>
@@ -103,10 +104,10 @@ export default class Hotels extends React.Component {
             .filter(h => parseFloat(h.googleRating) >= parseFloat(this.state.ratingSearch ? this.state.ratingSearch : 0))
             .filter(h => parseFloat(h.price ? h.price : 999999) >= parseFloat(this.state.priceFrom ? this.state.priceFrom : 0))
             .filter(h => parseFloat(h.price ? h.price : 0) <= parseFloat(this.state.priceTo ? this.state.priceTo : 999999))
-            .sort((a, b) => (this.state.sortType && this.state.sortType === 'googleRating' && ((this.state.sortType === 'googleRating' && this.state.sortOrder === 'increasing') ?
-              parseFloat(a.googleRating) - parseFloat(b.googleRating) : (parseFloat(b.googleRating) - parseFloat(a.googleRating)))))
-            .sort((a, b) => (this.state.sortType && this.state.sortType === 'price' && ((this.state.sortType === 'price' && this.state.sortOrder === 'increasing') ?
-              (parseFloat(a.price) - parseFloat(b.price)) : (parseFloat(b.price) - parseFloat(a.price))))).map((hotel, index) => {
+            .sort((a, b) => (this.state.sortType && this.state.sortType === 'googleRating' ? (((this.state.sortType === 'googleRating' && this.state.sortOrder === 'increasing') ?
+              parseFloat(a.googleRating) - parseFloat(b.googleRating) : (parseFloat(b.googleRating) - parseFloat(a.googleRating)))) : parseFloat(a.position) - parseFloat(b.position)))
+            .sort((a, b) => (this.state.sortType && this.state.sortType === 'price' ? (((this.state.sortType === 'price' && this.state.sortOrder === 'increasing') ?
+              (parseFloat(a.price) - parseFloat(b.price)) : (parseFloat(b.price) - parseFloat(a.price)))) : parseFloat(a.position) - parseFloat(b.position))).map((hotel, index) => {
               return (
                 <div key={index} className="hotel">
                   <div className="card">

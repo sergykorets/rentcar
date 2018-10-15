@@ -4,11 +4,12 @@ class HotelsController < ApplicationController
 
   def index
     @admin = Rails.env.development? || (current_user && current_user.admin)
-    @hotels = Hotel.lodging.order(created_at: :desc).map do |hotel|
+    @hotels = Hotel.lodging.order(position: :asc).map do |hotel|
       { id: hotel.id,
         name: hotel.name,
         price: hotel.price,
         slug: hotel.slug,
+        position: hotel.position,
         googleRating: hotel.average_rating,
         location: hotel.location,
         avatar: get_hotel_avatar(hotel)}

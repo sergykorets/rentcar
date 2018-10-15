@@ -112,6 +112,7 @@ export default class Hotel extends React.Component {
                   <img src="/images/booking.jpg" />
                 </a>
               </div>}
+            <div class="fb-page" data-href="https://www.facebook.com/DragobratUA/" data-width="250" data-height="70" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/DragobratUA/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/DragobratUA/">Драгобрат</a></blockquote></div>
           </div>
         </div>
         <div className='nearbys'>
