@@ -44,7 +44,7 @@ export default class Hotels extends React.Component {
       <div className="container" onMouseMove={this._onMouseMove}>
         <div className='introduction'>
           <p>Основою цього сайту є <strong><b>Google Maps API</b></strong>. Готелі, кафе, фото та відгуки до них автоматично оновлюються разом з тим, що є на Google картах. Місцезнаходження закладів
-            можна подивитися на <strong><b>3D карті</b></strong>. Готелі, які присутні на <strong><b>Booking.com</b></strong> також показуються на цьому сайті. Якщо Ваш заклад відсутній на сайті,
+            можна подивитися на <strong><b>3D карті</b></strong>. До кожного готелю можна подивитися заклади, які знаходяться поблизу. Готелі, які присутні на <strong><b>Booking.com</b></strong> також показуються на цьому сайті. Якщо Ваш заклад відсутній на сайті,
             то Ви можете його створити в меню "Додати заклад" (потрібна реєстрація на сайті, яка займає 1 хвилину), або зв'язатися зі мною: sergykoretsfsp@gmail.com</p>
           <div className='facebook'>
             <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.dragobrat.net&width=51&layout=box_count&action=like&size=small&show_faces=true&share=true&height=65&appId=783416265322787" width="51" height="65" style={{border:'none',overflow:'hidden'}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
@@ -123,7 +123,7 @@ export default class Hotels extends React.Component {
                       <div className='body-top'>
                         <Rater initialRating={parseFloat(hotel.googleRating)} emptySymbol="fa fa-star-o"
                                fullSymbol="fa fa-star" readonly className='hotel-stars'/>
-                        <a className='3d-link' href={hotel.location} target="_blank">Показати на 3D карті</a>
+                        <a className='3d-link' href={hotel.location} target="_blank">3D карта</a>
                       </div>
                     </div>
                   </div>
