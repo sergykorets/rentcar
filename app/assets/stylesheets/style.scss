@@ -283,6 +283,19 @@ h1 span {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#007bff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 @media (max-width: 991px) {
+  body > .container {
+    margin-top: 20px;
+  }
+  body > div > .container {
+    margin-top: 20px;
+  }
+  .navbar {
+    a {
+      padding: 30px 10px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
   .introduction {
     p {
       font-size: 30px;
@@ -305,7 +318,6 @@ h1 span {
     .round-image-30 {
       display: none;
     }
-    & > li > a{ padding: 20px 15px }
   }
   .nav-item {
     border-bottom: solid 1px #81889233;

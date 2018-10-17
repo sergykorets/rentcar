@@ -39,7 +39,6 @@ export default class Hotels extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="container" onMouseMove={this._onMouseMove}>
         <div className='introduction'>
@@ -117,10 +116,10 @@ export default class Hotels extends React.Component {
                     </div>
                     <div className="card-body">
                       <div className='body-top'>
-                        <a href={`/hotels/${hotel.slug}`}><span>{hotel.name}</span></a>
+                        <a href={`/hotels/${hotel.slug}`}><h1>{hotel.name}</h1></a>
                         <span>{hotel.price} {hotel.price && 'UAH'}</span>
                       </div>
-                      <div className='body-top'>
+                      <div className='body-bottom'>
                         <Rater initialRating={parseFloat(hotel.googleRating)} emptySymbol="fa fa-star-o"
                                fullSymbol="fa fa-star" readonly className='hotel-stars'/>
                         <a className='3d-link' href={hotel.location} target="_blank">3D карта</a>

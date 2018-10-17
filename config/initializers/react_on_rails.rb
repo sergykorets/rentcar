@@ -7,6 +7,7 @@ ReactOnRails.configure do |config|
   # This configures the script to run to build the production assets by webpack. Set this to nil
   # if you don't want react_on_rails building this file for you.
   config.build_production_command = "RAILS_ENV=production NODE_ENV=production bin/webpack"
+  config.trace = Rails.env.development?
 
   ################################################################################
   ################################################################################
@@ -34,9 +35,14 @@ ReactOnRails.configure do |config|
   # of the JS sent to the client. For the server rendering, React on Rails creates a pool of
   # JavaScript execution instances which should handle any component requested.
   #
+  config.development_mode = Rails.env.development?
+  config.replay_console = true
+  config.logging_on_server = true
+  config.raise_on_prerender_error = false
+  config.prerender = true
   # While you may configure this to be the same as your client bundle file, this file is typically
   # different. You should have ONE server bundle which can create all of your server rendered
   # React components.
   #
-  config.server_bundle_js_file = "hello-world-bundle.js"
+  config.server_bundle_js_file = "application.js"
 end
