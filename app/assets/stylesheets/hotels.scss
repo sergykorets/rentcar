@@ -238,6 +238,16 @@ h1, h2, h3, h4, h5, h6 {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      h1 {
+        font-size: 17px;
+        color: #007bff;
+        line-height: 1;
+      }
+    }
+    .body-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     .card {
       border-radius: 10px;
@@ -416,7 +426,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 20px;
   padding: 20px;
   & > span {
+    display: inline-block;
     font-size: 25px;
+    margin-bottom: 20px;
   }
 }
 .info-block {
@@ -467,9 +479,37 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 @media (max-width: 991px) {
-  .card-body {
-    font-size: 22px;
-    font-weight: bold;
+  .hotel {
+    .card-body {
+      font-size: 22px;
+      font-weight: bold;
+      .body-top {
+        h1 {
+          font-size: 22px;
+          font-weight: bold;
+        }
+        a {
+          margin-top: 10px;
+        }
+      }
+      .body-bottom {
+        margin-top: 20px;
+      }
+    }
+  }
+  .hotel-description {
+    span {
+      p {
+        font-size: 30px !important;
+        line-height: 1.2 !important;
+      }
+    }
+  }
+  .phones {
+    .phone {
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
   }
 }
 @media (max-width: 1200px) {

@@ -118,8 +118,7 @@ export default class Hotel extends React.Component {
           </div>
         </div>
         <div className='nearbys'>
-          <span><strong><b>Заклади поблизу</b></strong></span>
-          <p><small>paдiyc 100 м</small></p>
+          <span><strong><b>Заклади в радіусі 100 метрів</b></strong></span>
           <div id='hotels_ul'>
             { this.state.nearbyHotels.map((hotel, index) => {
               return (
@@ -132,10 +131,10 @@ export default class Hotel extends React.Component {
                     </div>
                     <div className="card-body">
                       <div className='body-top'>
-                        <a href={`/hotels/${hotel.slug}`}><span>{hotel.name}</span></a>
+                        <a href={`/hotels/${hotel.slug}`}><h1>{hotel.name}</h1></a>
                         <span>{hotel.price} {hotel.price && 'UAH'}</span>
                       </div>
-                      <div className='body-top'>
+                      <div className='body-bottom'>
                         <Rater initialRating={parseFloat(hotel.googleRating)} emptySymbol="fa fa-star-o"
                                fullSymbol="fa fa-star" readonly className='hotel-stars'/>
                         <a className='3d-link' href={hotel.location} target="_blank">Показати на 3D карті</a>

@@ -3,6 +3,7 @@ class HotelsController < ApplicationController
   before_action :check_session, only: :index
 
   def index
+    set_meta_tags title: "Драгобрат, готелі на карті 3D, ціни, відгуки, схема підйомників, веб камери"
     @admin = Rails.env.development? || (current_user && current_user.admin)
     @hotels = Hotel.lodging.order(position: :asc).map do |hotel|
       { id: hotel.id,
@@ -14,9 +15,15 @@ class HotelsController < ApplicationController
         location: hotel.location,
         avatar: get_hotel_avatar(hotel)}
     end
+    respond_to do |format|
+      format.html { render :index }
+    end
   end
 
   def show
+    set_meta_tags title: "#{@hotel.name} | Драгобрат",
+                  description: "#{@hotel.name} драгобрат",
+                  keywords: "#{@hotel.name} драгобрат"
     @admin = Rails.env.development? || (current_user && current_user.admin)
     @nearby_hotels = []
     @hotel.nearby_hotels.each do |nearby|
@@ -49,6 +56,9 @@ class HotelsController < ApplicationController
       phones: @hotel.phones.map {|phone| phone.phone},
       googleReviews: combine_reviews}
     @logged = !current_user.nil?
+    respond_to do |format|
+      format.html { render :show }
+    end
   end
 
   def new; end
