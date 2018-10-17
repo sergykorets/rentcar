@@ -1,6 +1,7 @@
 class HotelsController < ApplicationController
-  before_action :set_hotel, only: [:show, :edit, :update, :nearby, :destroy]
+  before_action :set_hotel, only: [:show, :edit, :update, :nearby]
   before_action :check_session, only: :index
+  before_action :authenticate_user!, only: [:create, :edit, :update]
 
   def index
     set_meta_tags title: "Драгобрат, готелі на карті 3D, ціни, відгуки, схема підйомників, веб камери"
@@ -94,7 +95,12 @@ class HotelsController < ApplicationController
   end
 
   def update
-    if @hotel.update(hotel_params)
+    if current_user.admin
+      @h = @hotel
+    else
+      @h = current_user.hotels.find_by_id(params[:hotel][:id])
+    end
+    if @h && @h.update(hotel_params)
       render json: { success: true, slug: @hotel.slug }
     else
       render json: { success: false, errors: @hotel.errors.full_messages }
@@ -103,13 +109,13 @@ class HotelsController < ApplicationController
 
   # DELETE /hotels/1
   # DELETE /hotels/1.json
-  def destroy
-    @hotel.destroy
-    respond_to do |format|
-      format.html { redirect_to hotels_url, notice: 'Hotel was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @hotel.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to hotels_url, notice: 'Hotel was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

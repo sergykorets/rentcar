@@ -16,7 +16,7 @@ class Hotel < ApplicationRecord
 
   accepts_nested_attributes_for :phones, allow_destroy: true
   accepts_nested_attributes_for :photos, allow_destroy: true
-  accepts_nested_attributes_for :google_photos, allow_destroy: true
+  accepts_nested_attributes_for :google_photos, allow_destroy: false
 
   def self.update_hotels
   	google_hotels = []
