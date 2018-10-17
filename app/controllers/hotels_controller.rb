@@ -76,7 +76,7 @@ class HotelsController < ApplicationController
         mainPhotoId: @hotel.main_photo_id,
         mainPhotoType: @hotel.main_photo_type,
         photosForUpload: [],
-        googlePhotos: @hotel.google_photos.any? ? @hotel.google_photos.map {|photo| {id: photo.id, photo: photo.photo_url}} : [],
+        googlePhotos: @hotel.google_photos.not_deleted.any? ? @hotel.google_photos.not_deleted.map {|photo| {id: photo.id, photo: photo.photo_url}} : [],
         photos: @hotel.photos.any? ? @hotel.photos.map {|photo| {id: photo.id, photo: photo.picture(:large)}} : [],
         phones: @hotel.phones.any? ? @hotel.phones.map {|phone| {id: phone.id, phone: phone.phone}} : [{phone: ''}]}
     else
@@ -120,7 +120,7 @@ class HotelsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def hotel_params
       params.require(:hotel).permit(:name, :description, :hotel_type, :site, :main_photo_id, :main_photo_type, :price, phones_attributes: [:id, :phone, :_destroy],
-                                    google_photos_attributes: [:id, :_destroy], photos_attributes: [:id, :_destroy, photo: [:picture]])
+                                    google_photos_attributes: [:id, :deleted], photos_attributes: [:id, :_destroy, photo: [:picture]])
     end
 
     def combine_reviews
@@ -159,7 +159,7 @@ class HotelsController < ApplicationController
     end
 
     def get_hotel_photos
-      google_photos = @hotel.google_photos.map {|photo| photo.photo_url}
+      google_photos = @hotel.google_photos.not_deleted.map {|photo| photo.photo_url}
       photos = @hotel.photos.map {|photo| photo.picture}
       google_photos + photos
     end

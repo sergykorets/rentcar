@@ -69,6 +69,17 @@ export default class Form extends React.Component {
     })
   }
 
+  deleteGooglePhoto = (item, i) => {
+    const items = this.state.hotel[item];
+    items[i] = {id: items[i].id, deleted: true};
+    this.setState({
+      hotel: {
+        ...this.state.hotel,
+        [item]: items
+      }
+    })
+  }
+
   deleteItem = (item, i) => {
     //debugger
     if (this.state.hotel[item][i].id) {
@@ -298,7 +309,7 @@ export default class Form extends React.Component {
               </Fragment>}
             { this.state.hotel.googlePhotos.length > 0 &&
               <div id='hotels_ul'>
-                { this.state.hotel.googlePhotos.filter(p => !p._destroy).map((item, i) => {
+                { this.state.hotel.googlePhotos.filter(p => !p.deleted).map((item, i) => {
                   return (
                     <div className='hotel' key={i}>
                       <div className="card">
@@ -314,7 +325,7 @@ export default class Form extends React.Component {
                               checked={this.state.hotel.mainPhotoType === 'GooglePhotos' && this.state.hotel.mainPhotoId === item.id} />
                             <label htmlFor="mainGooglePhotoId">Головне фото</label>
                           </div>
-                          <i className='fa fa-trash-o' onClick={() => this.deleteItem('googlePhotos', i)} />
+                          <i className='fa fa-trash-o' onClick={() => this.deleteGooglePhoto('googlePhotos', i)} />
                         </div>
                       </div>
                     </div>

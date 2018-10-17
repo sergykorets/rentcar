@@ -29,7 +29,7 @@ class Hotel < ApplicationRecord
       end
       if !google_hotels[i]['result']['reviews'].nil?
         google_hotels[i]['result']['reviews'].each do |review|
-          if !GoogleReview.exists?(hotel_id: hotel.id, author_name: review['author_name'])
+          if !GoogleReview.exists?(hotel_id: hotel.id, time: review['time'])
             GoogleReview.create(hotel_id: hotel.id,
                                 author_name: review['author_name'], 
                                 profile_photo_url: review['profile_photo_url'],
