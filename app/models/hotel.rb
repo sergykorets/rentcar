@@ -38,6 +38,9 @@ class Hotel < ApplicationRecord
                                   relative_time_description: review['relative_time_description'],
                                   text: review['text'],
                                   time:review['time'])
+            else
+              GoogleReview.where(hotel_id: hotel.id, time: review['time']).first.update_column(
+                                  :profile_photo_url, review['profile_photo_url'])
             end
           end
         end
@@ -59,24 +62,26 @@ class Hotel < ApplicationRecord
 
   def self.get_hotels
     hotels = []
-    area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=uk&type=lodging&key=#{GOOGLE_KEY}&radius=1000&location=48.248731, 24.244108"
-    sleep 2
-    hotels << area.parsed_response['results']
-    new_area = area
-    loop do
-      new_area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=#{GOOGLE_KEY}&pagetoken=#{new_area.parsed_response['next_page_token']}"
+    ['48.245195, 24.238127', '48.249729, 24.246392'].each do |item|
+      area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=uk&type=lodging&key=#{GOOGLE_KEY}&radius=500&location=#{item}"
       sleep 2
-      hotels << new_area.parsed_response['results']
-      break unless new_area.parsed_response['next_page_token']
-    end
-    puts hotels.flatten.count
-    hotels.flatten.each do |hotel|
-      puts hotel['name']
-      next if hotel['place_id'] == 'ChIJq-JzLwwQN0cRAhDnwCSXor8' || hotel['place_id'] == 'ChIJx3rHjRAQN0cRdWy5ldbbpGo' || hotel['place_id'] == 'ChIJGd65gRoQN0cRZHpkO6eTDP0'
-      Hotel.create(name: hotel['name'], google_id: hotel['place_id'], google_rating: hotel['rating'])
-      h = Hotel.find_by_google_id(hotel['place_id'])
-      h.update_column(:google_rating, hotel['rating']) if h
-      #Hotel.update_coordinates(hotel['place_id'])
+      hotels << area.parsed_response['results']
+      new_area = area
+      loop do
+        new_area = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=#{GOOGLE_KEY}&pagetoken=#{new_area.parsed_response['next_page_token']}"
+        sleep 2
+        hotels << new_area.parsed_response['results']
+        break unless new_area.parsed_response['next_page_token']
+      end
+      puts "********************** #{hotels.flatten.count} *****************************"
+      hotels.flatten.each do |hotel|
+        puts hotel['name']
+        next if hotel['place_id'] == 'ChIJq-JzLwwQN0cRAhDnwCSXor8' || hotel['place_id'] == 'ChIJx3rHjRAQN0cRdWy5ldbbpGo' || hotel['place_id'] == 'ChIJGd65gRoQN0cRZHpkO6eTDP0'
+        Hotel.create(name: hotel['name'], google_id: hotel['place_id'], google_rating: hotel['rating'])
+        h = Hotel.find_by_google_id(hotel['place_id'])
+        h.update_column(:google_rating, hotel['rating']) if h
+        #Hotel.update_coordinates(hotel['place_id'])
+      end
     end
   end
 
