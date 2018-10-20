@@ -23,7 +23,7 @@ class Hotel < ApplicationRecord
     client = GooglePlaces::Client.new(GOOGLE_KEY)
   	self.all.each_with_index do |hotel, i|
       puts "#{hotel.name}"
-      if hotel.google_id
+      if hotel.google_id.present?
         google_hotels[i] = HTTParty.get "https://maps.googleapis.com/maps/api/place/details/json?placeid=#{hotel.google_id}&key=#{GOOGLE_KEY}"
         if hotel.google_rating != google_hotels[i]['result']['rating']
           hotel.update_attributes(google_rating: google_hotels[i]['result']['rating'])
