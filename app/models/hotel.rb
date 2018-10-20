@@ -112,11 +112,13 @@ class Hotel < ApplicationRecord
   def self.generate_nearbys
     Hotel.all.each do |hotel|
       puts hotel.name
-      nearbys = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=uk&key=#{GOOGLE_KEY}&radius=100&location=#{hotel.latitude},#{hotel.longitude}"
-      sleep 1
-      nearbys['results'].each do |result|
-        nearby_hotel = Hotel.find_by_google_id(result['place_id'])
-        hotel.nearby_hotels.create(nearby_hotel_id: nearby_hotel.id) if nearby_hotel && hotel.id != nearby_hotel.id
+      if hotel.latitude
+        nearbys = HTTParty.get "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=uk&key=#{GOOGLE_KEY}&radius=100&location=#{hotel.latitude},#{hotel.longitude}"
+        sleep 1
+        nearbys['results'].each do |result|
+          nearby_hotel = Hotel.find_by_google_id(result['place_id'])
+          hotel.nearby_hotels.create(nearby_hotel_id: nearby_hotel.id) if nearby_hotel && hotel.id != nearby_hotel.id
+        end
       end
     end
   end

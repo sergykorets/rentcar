@@ -100,7 +100,8 @@ export default class Hotel extends React.Component {
               <div className='hotel-buttons text-center'>
                 { this.state.hotel.site &&
                   <a className='btn btn-default' href={this.state.hotel.site} target="_blank">Офіційний сайт</a>}
-                <a className='btn btn-dark' href={this.state.hotel.location} target="_blank">3D карта</a>
+                { this.state.hotel.location &&
+                  <a className='btn btn-dark' href={this.state.hotel.location} target="_blank">3D карта</a>}
                 { this.state.hotel.editable &&
                   <a className='btn btn-info' href={`${this.state.hotel.slug}/edit`}>Редагувати</a>}
               </div>
@@ -137,7 +138,7 @@ export default class Hotel extends React.Component {
                       <div className='body-bottom'>
                         <Rater initialRating={parseFloat(hotel.googleRating)} emptySymbol="fa fa-star-o"
                                fullSymbol="fa fa-star" readonly className='hotel-stars'/>
-                        <a className='3d-link' href={hotel.location} target="_blank">Показати на 3D карті</a>
+                        {hotel.location && <a className='3d-link' href={hotel.location} target="_blank">Показати на 3D карті</a>}
                       </div>
                     </div>
                   </div>

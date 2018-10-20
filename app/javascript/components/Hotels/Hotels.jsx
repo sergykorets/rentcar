@@ -122,7 +122,7 @@ export default class Hotels extends React.Component {
                       <div className='body-bottom'>
                         <Rater initialRating={parseFloat(hotel.googleRating)} emptySymbol="fa fa-star-o"
                                fullSymbol="fa fa-star" readonly className='hotel-stars'/>
-                        <a className='3d-link' href={hotel.location} target="_blank">3D карта</a>
+                        {hotel.location && <a className='3d-link' href={hotel.location} target="_blank">3D карта</a>}
                       </div>
                     </div>
                   </div>
