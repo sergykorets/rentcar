@@ -23,31 +23,33 @@ class Hotel < ApplicationRecord
     client = GooglePlaces::Client.new(GOOGLE_KEY)
   	self.all.each_with_index do |hotel, i|
       puts "#{hotel.name}"
-  		google_hotels[i] = HTTParty.get "https://maps.googleapis.com/maps/api/place/details/json?placeid=#{hotel.google_id}&key=#{GOOGLE_KEY}"
-      if hotel.google_rating != google_hotels[i]['result']['rating']
-        hotel.update_attributes(google_rating: google_hotels[i]['result']['rating'])
-      end
-      if !google_hotels[i]['result']['reviews'].nil?
-        google_hotels[i]['result']['reviews'].each do |review|
-          if !GoogleReview.exists?(hotel_id: hotel.id, time: review['time'])
-            GoogleReview.create(hotel_id: hotel.id,
-                                author_name: review['author_name'], 
-                                profile_photo_url: review['profile_photo_url'],
-                                rating: review['rating'],
-                                relative_time_description: review['relative_time_description'],
-                                text: review['text'],
-                                time:review['time'])
+      if hotel.google_id
+        google_hotels[i] = HTTParty.get "https://maps.googleapis.com/maps/api/place/details/json?placeid=#{hotel.google_id}&key=#{GOOGLE_KEY}"
+        if hotel.google_rating != google_hotels[i]['result']['rating']
+          hotel.update_attributes(google_rating: google_hotels[i]['result']['rating'])
+        end
+        if !google_hotels[i]['result']['reviews'].nil?
+          google_hotels[i]['result']['reviews'].each do |review|
+            if !GoogleReview.exists?(hotel_id: hotel.id, time: review['time'])
+              GoogleReview.create(hotel_id: hotel.id,
+                                  author_name: review['author_name'],
+                                  profile_photo_url: review['profile_photo_url'],
+                                  rating: review['rating'],
+                                  relative_time_description: review['relative_time_description'],
+                                  text: review['text'],
+                                  time:review['time'])
+            end
           end
         end
-      end
-      puts "reviews completed"
-      if !google_hotels[i]['result']['photos'].nil?
-        google_hotels[i]['result']['photos'].each_with_index do |photo,j|
-          spot = client.spot(google_hotels[i]['result']['place_id'])
-          puts spot.inspect
-          url = spot.photos[j].fetch_url(800)
-          if !GooglePhoto.exists?(hotel_id: hotel.id, photo_url: url)
-            GooglePhoto.create(hotel_id: hotel.id, photo_url: url)
+        puts "reviews completed"
+        if !google_hotels[i]['result']['photos'].nil?
+          google_hotels[i]['result']['photos'].each_with_index do |photo,j|
+            spot = client.spot(google_hotels[i]['result']['place_id'])
+            puts spot.inspect
+            url = spot.photos[j].fetch_url(800)
+            if !GooglePhoto.exists?(hotel_id: hotel.id, photo_url: url)
+              GooglePhoto.create(hotel_id: hotel.id, photo_url: url)
+            end
           end
         end
       end
