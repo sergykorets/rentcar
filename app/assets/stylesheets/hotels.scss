@@ -534,7 +534,11 @@ h1, h2, h3, h4, h5, h6 {
     width: 840px;
   }
   .partners {
+    display: block !important;
     margin: 20px 0 0 20px;
+    img {
+      height: 140px !important;
+    }
   }
 }
 .booking {
@@ -550,8 +554,15 @@ h1, h2, h3, h4, h5, h6 {
   width: 369px;
 }
 .partners {
+  display: flex;
   margin-top: 20px;
-  height: 130px
+  height: 130px;
+  .partner {
+    margin-right: 20px;
+    img {
+      height: 130px;
+    }
+  }
 }
 .facebook {
   width: 100px;

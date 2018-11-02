@@ -42,7 +42,7 @@ export default class Hotels extends React.Component {
     return (
       <div className="container" onMouseMove={this._onMouseMove}>
         <div className="top-banners">
-          <a id='left-ads' href="http://goldenride.com.ua" target="_blank"><img src="/images/freeride.jpg" /></a>
+          <a id='left-ads' href="http://ratrak.org.ua/" target="_blank"><img src="/images/freeride.jpg" /></a>
           <a href="/skipass"><img src="/images/november_square.jpg" /></a>
         </div>
         {/*<div className='introduction'>*/}
