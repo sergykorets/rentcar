@@ -1,5 +1,5 @@
 {
-  "name": "smart_oselia",
+  "name": "dragobrat",
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.5",
@@ -14,17 +14,23 @@
     "prop-types": "^15.6.2",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
+    "bootstrap-daterangepicker": "^3.0.3",
+    "react-big-calendar": "^0.20.1",
+    "react-bootstrap-daterangepicker": "^4.1.0",
     "react-dropzone": "^6.0.2",
     "react-facebook-pixel": "^0.1.1",
     "react-ga": "^2.5.3",
     "react-grid-gallery": "^0.5.1",
     "react-image-gallery": "^0.8.11",
     "react-leaflet": "^2.1.1",
+    "react-js-pagination": "^3.0.2",
     "react-loading": "^2.0.3",
     "react-mason": "^1.1.2",
+    "react-notifications": "^1.4.3",
     "react-on-rails": "11.1.0-beta.1",
     "react-rating": "^1.4.0",
-    "reactstrap": "^6.3.1",
+    "react-tackle-box": "^2.1.0",
+    "reactstrap": "^6.5.0",
     "superagent": "^4.0.0-beta.5"
   },
   "devDependencies": {

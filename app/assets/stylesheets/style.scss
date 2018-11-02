@@ -10,10 +10,6 @@ body {
     font-family: 'roboto', sans-serif;
     font-weight: 300;
 }
-/*==========================================
-PRE LOADER
-==========================================*/
-
 img {
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -344,4 +340,14 @@ h1 span {
 }
 .modal-content {
   padding: 20px;
+}
+i {
+  cursor: pointer;
+}
+.cancelBtn {
+  margin-bottom: 0 !important;
+}
+.applyBtn {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
 }
