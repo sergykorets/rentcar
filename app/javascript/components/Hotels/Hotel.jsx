@@ -64,6 +64,10 @@ export default class Hotel extends React.Component {
     }
   }
 
+  replayGif = () => {
+    document.getElementById('adrenalin').src='/images/Adrenalin_UA.gif'
+  }
+
   render() {
     const images = this.state.hotel.photos.map((photo) => {
       return (
@@ -115,6 +119,9 @@ export default class Hotel extends React.Component {
               </div>}
             <div className='partners'>
               <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FDragobratUA%2F&tabs&width=250&height=70&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=783416265322787" width="250" height="140" style={{border:'none',overflow:'hidden'}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+              <a href="https://www.adrenalin-ua.com/snig" onMouseOver={this.replayGif} onMouseOut={this.replayGif} target="_blank">
+                <img id='adrenalin' src="/images/Adrenalin_UA.gif" />
+              </a>
             </div>
           </div>
         </div>

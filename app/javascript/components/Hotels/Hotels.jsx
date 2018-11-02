@@ -41,62 +41,66 @@ export default class Hotels extends React.Component {
   render() {
     return (
       <div className="container" onMouseMove={this._onMouseMove}>
-        <div class="skipass">
-          <a href="/skipass"><img src="/images/october.jpg" /></a>
+        <div className="top-banners">
+          <a id='left-ads' href="http://goldenride.com.ua" target="_blank"><img src="/images/freeride.jpg" /></a>
+          <a href="/skipass"><img src="/images/november_square.jpg" /></a>
         </div>
-        <div className='introduction'>
-          <p>Основою цього сайту є <strong><b>Google Maps API</b></strong>. Готелі, кафе, фото та відгуки до них автоматично оновлюються разом з тим, що є на Google картах. Місцезнаходження закладів
-            можна подивитися на <strong><b>3D карті</b></strong>. До кожного готелю можна подивитися заклади, які знаходяться поблизу. Готелі, які присутні на <strong><b>Booking.com</b></strong> також показуються на цьому сайті. Якщо Ваш заклад відсутній на сайті,
-            то Ви можете його створити в меню "Додати заклад" (потрібна реєстрація на сайті, яка займає 1 хвилину), або зв'язатися зі мною: sergykoretsfsp@gmail.com</p>
-          <div className='facebook'>
-            <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.dragobrat.net&width=51&layout=box_count&action=like&size=small&show_faces=true&share=true&height=65&appId=783416265322787" width="100" height="65" style={{border:'none',overflow:'hidden'}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-          </div>
-        </div>
-        <div className='form-group'>
-          <div className='row'>
-            <div className='col-lg-3 filters'>
-              <input type='text' placeholder='Пошук по назві закладу' className='form-control' onChange={(e) => this.handleSearch('nameSearch', e.target.value)} value={this.state.nameSearch} />
-            </div>
-            <div className='col-lg-3 filters'>
-              <select className='form-control' onChange={(e) => this.handleSearch('ratingSearch', e.target.value)} value={this.state.ratingSearch} >
-                <option value={0}>Пошук по рейтингу</option>
-                <option value={1}>Рейтинг вище 1</option>
-                <option value={2}>Рейтинг вище 2</option>
-                <option value={3}>Рейтинг вище 3</option>
-                <option value={3.5}>Рейтинг вище 3.5</option>
-                <option value={4}>Рейтинг вище 4</option>
-                <option value={4.5}>Рейтинг вище 4.5</option>
-              </select>
-            </div>
-            { !this.props.cafe &&
+        {/*<div className='introduction'>*/}
+          {/*/!*<p>Основою цього сайту є <strong><b>Google Maps API</b></strong>. Готелі, кафе, фото та відгуки до них автоматично оновлюються разом з тим, що є на Google картах. Місцезнаходження закладів*!/*/}
+            {/*/!*можна подивитися на <strong><b>3D карті</b></strong>. До кожного готелю можна подивитися заклади, які знаходяться поблизу. Готелі, які присутні на <strong><b>Booking.com</b></strong> також показуються на цьому сайті. Якщо Ваш заклад відсутній на сайті,*!/*/}
+            {/*/!*то Ви можете його створити в меню "Додати заклад" (потрібна реєстрація на сайті, яка займає 1 хвилину), або зв'язатися зі мною: sergykoretsfsp@gmail.com</p>*!/*/}
+        {/*</div>*/}
+        <hr/>
+        <div className='form-group filters-wrap'>
+          <div className='filters-row'>
+            <div className='row'>
+              <div className='col-lg-3 filters'>
+                <input type='text' placeholder='Пошук по назві закладу' className='form-control' onChange={(e) => this.handleSearch('nameSearch', e.target.value)} value={this.state.nameSearch} />
+              </div>
+              <div className='col-lg-3 filters'>
+                <select className='form-control' onChange={(e) => this.handleSearch('ratingSearch', e.target.value)} value={this.state.ratingSearch} >
+                  <option value={0}>Пошук по рейтингу</option>
+                  <option value={1}>Рейтинг вище 1</option>
+                  <option value={2}>Рейтинг вище 2</option>
+                  <option value={3}>Рейтинг вище 3</option>
+                  <option value={3.5}>Рейтинг вище 3.5</option>
+                  <option value={4}>Рейтинг вище 4</option>
+                  <option value={4.5}>Рейтинг вище 4.5</option>
+                </select>
+              </div>
+              { !this.props.cafe &&
+                <div className='col-lg-3'>
+                  <div className='row'>
+                    <div className='col-lg-6 filters'>
+                      <input type='number' placeholder='Ціна від' className='form-control' onChange={(e) => this.handleSearch('priceFrom', e.target.value)} value={this.state.priceFrom} />
+                    </div>
+                    <div className='col-lg-6 filters'>
+                      <input type='number' placeholder='Ціна до' className='form-control' onChange={(e) => this.handleSearch('priceTo', e.target.value)} value={this.state.priceTo} />
+                    </div>
+                  </div>
+                </div>}
               <div className='col-lg-3'>
                 <div className='row'>
                   <div className='col-lg-6 filters'>
-                    <input type='number' placeholder='Ціна від' className='form-control' onChange={(e) => this.handleSearch('priceFrom', e.target.value)} value={this.state.priceFrom} />
+                    <select className='form-control' onChange={(e) => this.handleSearch('sortType', e.target.value)} value={this.state.sortType} >
+                      <option value=''>Сортування</option>
+                      { !this.props.cafe && <option value='price'>За ціною</option>}
+                      <option value='googleRating'>За рейтингом</option>
+                    </select>
                   </div>
                   <div className='col-lg-6 filters'>
-                    <input type='number' placeholder='Ціна до' className='form-control' onChange={(e) => this.handleSearch('priceTo', e.target.value)} value={this.state.priceTo} />
+                    <select className='form-control' onChange={(e) => this.handleSearch('sortOrder', e.target.value)} value={this.state.sortOrder} >
+                      <option value=''>Порядок</option>
+                      <option value='increasing'>Зростаючий</option>
+                      <option value='decreasing'>Спадаючий</option>
+                    </select>
                   </div>
-                </div>
-              </div>}
-            <div className='col-lg-3'>
-              <div className='row'>
-                <div className='col-lg-6 filters'>
-                  <select className='form-control' onChange={(e) => this.handleSearch('sortType', e.target.value)} value={this.state.sortType} >
-                    <option value=''>Сортування</option>
-                    { !this.props.cafe && <option value='price'>За ціною</option>}
-                    <option value='googleRating'>За рейтингом</option>
-                  </select>
-                </div>
-                <div className='col-lg-6 filters'>
-                  <select className='form-control' onChange={(e) => this.handleSearch('sortOrder', e.target.value)} value={this.state.sortOrder} >
-                    <option value=''>Порядок</option>
-                    <option value='increasing'>Зростаючий</option>
-                    <option value='decreasing'>Спадаючий</option>
-                  </select>
                 </div>
               </div>
             </div>
+          </div>
+          <div className='facebook'>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.dragobrat.net&width=51&layout=box_count&action=like&size=small&show_faces=true&share=true&height=65&appId=783416265322787" width="100" height="65" style={{border:'none',overflow:'hidden'}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
         </div>
         <hr/>
