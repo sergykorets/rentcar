@@ -586,3 +586,10 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: space-between;
 }
+@media (max-width: 992px) {
+  .modal-lg {
+    max-width: none;
+    width: auto;
+    margin: 20px;
+  }
+}

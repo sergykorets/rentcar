@@ -127,7 +127,7 @@ export default class Hotels extends React.Component {
           <div className='facebook'>
             <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.dragobrat.net&width=51&layout=box_count&action=like&size=small&show_faces=true&share=true&height=65&appId=783416265322787" width="100" height="65" style={{border:'none',overflow:'hidden'}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
-          <button onClick={this.handleModal} className='btn-lg btn-info'>Відкрити карту ({hotels.length} {window.location.href.includes('restaurants') ? 'кафе' : 'готелів'})</button>
+          <button onClick={this.handleModal} className='btn-lg btn-info'>Відкрити карту ({hotels.length} шт)</button>
           <div className='facebook'>
             <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.dragobrat.net&width=51&layout=box_count&action=like&size=small&show_faces=true&share=true&height=65&appId=783416265322787" width="100" height="65" style={{border:'none',overflow:'hidden'}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
@@ -149,13 +149,16 @@ export default class Hotels extends React.Component {
                     <div className="card-body">
                       <div className='body-top'>
                         <a href={`/hotels/${hotel.slug}`}><h1>{hotel.name}</h1></a>
-                        <span>
-                          <span>{hotel.price} {hotel.price && 'UAH'}</span>
-                          <i className="fa fa-info-circle" id={`TooltipExample${index}`}></i>
-                        </span>
-                        <Tooltip placement="bottom" isOpen={this.state.tooltips[index]} target={`TooltipExample${index}`} toggle={() => this.toggle(index)}>
-                           Мінімальна ціна з людини за 1 ніч
-                        </Tooltip>
+                        { hotel.price &&
+                          <Fragment>
+                            <span>
+                              <span>{hotel.price} UAH</span>
+                              <i className="fa fa-info-circle" id={`TooltipExample${index}`}></i>
+                            </span>
+                            <Tooltip placement="bottom" isOpen={this.state.tooltips[index]} target={`TooltipExample${index}`} toggle={() => this.toggle(index)}>
+                               Мінімальна ціна з людини за 1 ніч
+                            </Tooltip>
+                          </Fragment>}
                       </div>
                       <div className='body-bottom'>
                         <Rater initialRating={parseFloat(hotel.googleRating)} emptySymbol="fa fa-star-o"
