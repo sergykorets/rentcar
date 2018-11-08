@@ -3,6 +3,8 @@ import Rater from 'react-rating'
 import ImageGallery from 'react-image-gallery';
 import ReactGA from 'react-ga';
 import ReactPixel from 'react-facebook-pixel';
+import Leaflet from 'leaflet';
+import { Map, Marker, Popup, TileLayer, GeoJSON } from 'react-leaflet';
 
 export default class Hotel extends React.Component {
   constructor(props) {
@@ -77,7 +79,7 @@ export default class Hotel extends React.Component {
       <div className="container">
         { images.length > 0 &&
           <Fragment>
-            <ImageGallery items={images} additionalClass='custom-gallery' />
+            <ImageGallery items={images} additionalClass='custom-gallery' autoPlay />
           </Fragment>}
         <div className='info-block'>
           <div className='hotel-info'>
@@ -129,6 +131,17 @@ export default class Hotel extends React.Component {
             </div>
           </div>
         </div>
+        { this.state.hotel.lat &&
+          <div className="map">
+            <Map id='mapid' center={[this.state.hotel.lat, this.state.hotel.lng]} zoom={17}>
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+              />
+              <Marker position={[this.state.hotel.lat, this.state.hotel.lng]}>
+              </Marker>
+            </Map>
+          </div>}
         <div className='nearbys'>
           <span><strong><b>Заклади в радіусі 100 метрів</b></strong></span>
           <div id='hotels_ul'>
@@ -149,7 +162,7 @@ export default class Hotel extends React.Component {
                       <div className='body-bottom'>
                         <Rater initialRating={parseFloat(hotel.googleRating)} emptySymbol="fa fa-star-o"
                                fullSymbol="fa fa-star" readonly className='hotel-stars'/>
-                        {hotel.location && <a className='3d-link' href={hotel.location} target="_blank">Показати на 3D карті</a>}
+                        {hotel.location && <a className='3d-link' href={hotel.location} target="_blank">3D карта</a>}
                       </div>
                     </div>
                   </div>

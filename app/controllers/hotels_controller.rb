@@ -12,6 +12,8 @@ class HotelsController < ApplicationController
         price: hotel.price,
         slug: hotel.slug,
         position: hotel.position,
+        lat: hotel.latitude,
+        lng: hotel.longitude,
         googleRating: hotel.average_rating,
         location: hotel.location,
         avatar: get_hotel_avatar(hotel)}
@@ -49,6 +51,8 @@ class HotelsController < ApplicationController
       price: @hotel.price,
       site: @hotel.site,
       slug: @hotel.slug,
+      lng: @hotel.longitude,
+      lat: @hotel.latitude,
       hotelType: @hotel.hotel_type,
       googleRating: @hotel.average_rating,
       location: @hotel.location,

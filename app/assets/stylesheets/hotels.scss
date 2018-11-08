@@ -243,6 +243,9 @@ h1, h2, h3, h4, h5, h6 {
         color: #007bff;
         line-height: 1;
       }
+      .fa-info-circle {
+        margin-left: 5px;
+      }
     }
     .body-bottom {
       display: flex;
@@ -566,4 +569,20 @@ h1, h2, h3, h4, h5, h6 {
 .facebook {
   width: 100px;
   text-align: right;
+}
+.map {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  #mapid {
+    height: 200px;
+    border-radius: 10px;
+  }
+}
+#full-map {
+  height: 700px;
+}
+.map-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
