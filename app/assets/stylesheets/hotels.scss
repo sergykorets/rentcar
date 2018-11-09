@@ -74,9 +74,6 @@ body {
 }
 a {
   @include transition(.5s);
-  &:hover, &:active, &:focus {
-    outline: none;
-  }
 }
 p {
   margin-bottom: 1.5em;
@@ -151,7 +148,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Buttons */
 .btn {
-  border-bottom: none!important;
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: 20px;
@@ -214,7 +210,6 @@ h1, h2, h3, h4, h5, h6 {
   &:hover,
   &:focus,
   &:active {
-    outline: none;
     box-shadow: none!important;
   }
 }
@@ -592,4 +587,8 @@ h1, h2, h3, h4, h5, h6 {
     width: auto;
     margin: 20px;
   }
+}
+.suggest {
+  width: 100%;
+  white-space: normal;
 }

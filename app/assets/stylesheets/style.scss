@@ -27,7 +27,6 @@ a:hover,
 a:active,
 a:focus {
     text-decoration: none;
-    outline: none;
 }
 a,
 button,
@@ -64,24 +63,6 @@ ul {
 }
 img {
     max-width: 100%;
-}
-textarea,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-.uneditable-input {
-    outline: none;
 }
 .form-control {
     font-size: 16px;
@@ -360,4 +341,7 @@ h1 span {
   .filters-row {
     margin-right: 20px;
   }
+}
+.modal-content {
+  padding: 20px;
 }

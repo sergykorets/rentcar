@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :photos
   end
   resources :restaurants, only: :index
+  resources :suggests, only: :create
   get 'reactivate/edit', 'reactivate#edit'
   put 'reactivate/update', 'reactivate#update'
   get '/sitemap.xml.gz', to: redirect("https://#{ENV['S3_BUCKET_NAME']}.s3.amazonaws.com/sitemaps/sitemap.xml.gz", status: 301)

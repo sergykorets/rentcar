@@ -4,6 +4,7 @@ import ImageGallery from 'react-image-gallery';
 import ReactGA from 'react-ga';
 import ReactPixel from 'react-facebook-pixel';
 import Leaflet from 'leaflet';
+import { Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
 import { Map, Marker, Popup, TileLayer, GeoJSON } from 'react-leaflet';
 
 export default class Hotel extends React.Component {
@@ -16,7 +17,10 @@ export default class Hotel extends React.Component {
       reviewRating: 0,
       nearbyHotels: this.props.nearbyHotels,
       logged: this.props.logged,
-      admin: this.props.admin
+      admin: this.props.admin,
+      suggestEmail: '',
+      suggestBody: '',
+      showSuggestForm: false
     };
   }
 
@@ -70,6 +74,29 @@ export default class Hotel extends React.Component {
     document.getElementById('adrenalin').src='/images/Adrenalin_UA.gif'
   }
 
+  submitSuggest = () => {
+    $.ajax({
+      url: `/suggests.json`,
+      type: 'POST',
+      data: {
+        hotel_id: this.state.hotel.id,
+        suggest: {
+          email: this.state.suggestEmail,
+          body: this.state.suggestBody
+        }
+      },
+      success: (resp) => {
+        window.location.reload()
+      }
+    });
+  }
+
+  handleModal = () => {
+    this.setState({
+      showSuggestForm: !this.state.showSuggestForm
+    });
+  }
+
   render() {
     const images = this.state.hotel.photos.map((photo) => {
       return (
@@ -110,6 +137,7 @@ export default class Hotel extends React.Component {
                   <a className='btn btn-dark' href={this.state.hotel.location} target="_blank">3D карта</a>}
                 { this.state.hotel.editable &&
                   <a className='btn btn-info' href={`${this.state.hotel.slug}/edit`}>Редагувати</a>}
+                <button className='btn btn-outline-warning suggest' onClick={this.handleModal}>Запропонувати зміни</button>
               </div>
             </div>
             { this.state.hotel.bookingLink &&
@@ -207,6 +235,21 @@ export default class Hotel extends React.Component {
               )})}
           </div>
         </div>
+        { this.state.showSuggestForm &&
+          <Modal isOpen={this.state.showSuggestForm} toggle={this.handleModal} size="lg">
+            <h4 className='text-center'>Запропонуйте щось від себе</h4>
+            <div className='form-group'>
+              <label>Ваш Email (необов'язкове поле)</label>
+              <input type="email" className='form-control' value={this.state.suggestEmail} onChange={(e) => this.handleInputChange('suggestEmail', e.target.value)}/>
+            </div>
+            <div className='form-group'>
+              <label>Опис проблеми</label>
+              <textarea className='form-control' value={this.state.suggestBody} placeholder="Опишіть тут проблему з якою Ви зіткнулися або запропонуйте свої зміни" onChange={(e) => this.handleInputChange('suggestBody', e.target.value)}/>
+            </div>
+            <div className='form-group'>
+              <button disabled={this.state.suggestBody.length < 1} className='btn btn-block btn-danger' onClick={this.submitSuggest}>Надіслати</button>
+            </div>
+          </Modal>}
       </div>
     );
   }
