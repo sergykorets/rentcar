@@ -1,5 +1,7 @@
 class RoomsController < ApplicationController
+  layout 'hotel_admin'
   before_action :define_hotel
+  before_action :check_rooms, only: [:calendar, :reservation_list]
 
   def index
     @hotel_id = @hotel.id
@@ -39,6 +41,29 @@ class RoomsController < ApplicationController
     end
   end
 
+  def reservation_list
+    @hotel_id = @hotel.id
+    @reservations = @hotel.reservations.for_dates(@hotel, params[:start_date].try(:to_date) || Date.today, params[:end_date].try(:to_date) || Date.tomorrow)
+    @rooms = @hotel.rooms.each_with_object({}) {|room, hash| hash[room.id] = {
+      number: room.number,
+      places: room.places
+    }}
+    @reservations_paginated = @reservations.page(params[:page] || 1).per(10).each_with_object({}) {|reservation, hash| hash[reservation.id] = {
+      id: reservation.id,
+      room: Room.find_by_id(reservation.room_id).number,
+      roomId: reservation.room_id,
+      name: reservation.name,
+      phone: reservation.phone,
+      places: reservation.places,
+      startDate: reservation.start_date.strftime('%d.%m.%Y'),
+      endDate: reservation.end_date.strftime('%d.%m.%Y')}
+    }
+    respond_to do |format|
+      format.html { render :reservation_list }
+      format.json {{reservations: @reservations_paginated, totalReservationsCount: @reservations }}
+    end
+  end
+
   def update
     if @hotel.rooms.find_by_id(params[:id]).update(room_params)
       render json: {
@@ -66,13 +91,35 @@ class RoomsController < ApplicationController
     end
   end
 
+  def destroy
+    room = @hotel.rooms.find_by_id(params[:id])
+    if room.destroy
+      render json: { success: true, rooms: @hotel.rooms.each_with_object({}) {|g, hash| hash[g.id] = {
+        id: g.id,
+        number: g.number,
+        floor: g.floor,
+        places: g.places}
+      }}
+    else
+      render json: {success: false, errors: @hotel.errors.full_messages}
+    end
+  end
+
   private
+
+  def check_rooms
+    redirect_to hotel_rooms_path(reason: 'Спершу потрібно створити номери в готелі') if @hotel.rooms.empty?
+  end
 
   def room_params
     params.require(:room).permit(reservations_attributes: [:id, :name, :phone, :places])
   end
 
   def define_hotel
-    @hotel = Hotel.friendly.find(params[:hotel_id])
+    @hotel = if current_user.admin
+      Hotel.friendly.find(params[:hotel_id])
+    else
+      current_user.hotels.friendly.find(params[:hotel_id])
+    end
   end
 end

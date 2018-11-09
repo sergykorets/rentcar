@@ -148,9 +148,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Buttons */
 .btn {
-  text-transform: uppercase;
   letter-spacing: 2px;
-  margin-bottom: 20px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -158,7 +156,6 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 5px;
   padding-left: 20px;
   padding-right: 20px;
-  margin-right: 10px;
   &:hover, &:focus, &:active {
     box-shadow: none;
     outline: none!important;
@@ -455,6 +452,9 @@ h1, h2, h3, h4, h5, h6 {
     padding: 30px;
     text-align: center;
     margin-left: 20px;
+    .btn {
+      margin-bottom: 20px;
+    }
   }
 }
 .reviews-wrap {
@@ -589,6 +589,5 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 .suggest {
-  width: 100%;
   white-space: normal;
 }

@@ -218,13 +218,15 @@ export default class Room extends React.Component {
     return (
       <div className="container">
         <NotificationContainer/>
+        <h3 className='text-center'>Завантаженість номерів</h3>
+         <hr/>
         <div className='calendar-top'>
           <select className='form-control' value={this.state.room.id} onChange={(e) => this.handleRoomChange(e.target.value)}>
             { Object.keys(this.state.rooms).map((id, i) =>
               <option key={i} value={id}>Номер {this.state.rooms[id].number} - Кількість місць: {this.state.rooms[id].places}</option>
             )}
           </select>
-          <button className='btn-dark' onClick={() => this.handleModal('createModal')}>Створити нове бронювання</button>
+          <button className='btn btn-dark' onClick={() => this.handleModal('createModal')}>Створити нове бронювання</button>
         </div>
         <hr/>
         <div className='room-calendar'>
@@ -241,6 +243,7 @@ export default class Room extends React.Component {
             endAccessor="end"
           />
         </div>
+        <hr/>
         { this.state.createModal &&
           <Modal isOpen={this.state.createModal} toggle={() => this.handleModal('createModal')}>
             <div className='reservation-form'>

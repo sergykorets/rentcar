@@ -1,5 +1,7 @@
 class ReservationsController < ApplicationController
+  layout 'hotel_admin'
   before_action :define_hotel
+  before_action :check_rooms, only: [:index]
 
   def index
     @floors = @hotel.rooms.map {|room| room.floor}.max
@@ -207,11 +209,19 @@ class ReservationsController < ApplicationController
 
   private
 
+    def check_rooms
+      redirect_to hotel_rooms_path(reason: 'Спершу потрібно створити номери в готелі') if @hotel.rooms.empty?
+    end
+
     def reservation_params
       params.require(:reservation).permit(:name, :phone, :places, :start_date, :end_date, :hotel_id, :room_id)
     end
 
     def define_hotel
-      @hotel = Hotel.friendly.find(params[:hotel_id])
+      @hotel = if current_user.admin
+        Hotel.friendly.find(params[:hotel_id])
+      else
+        current_user.hotels.friendly.find(params[:hotel_id])
+      end
     end
 end

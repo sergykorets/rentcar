@@ -111,29 +111,6 @@ class HotelsController < ApplicationController
     end
   end
 
-  def reservation_list
-    @hotel_id = @hotel.id
-    @reservations = @hotel.reservations.for_dates(@hotel, params[:start_date].try(:to_date) || Date.today, params[:end_date].try(:to_date) || Date.tomorrow)
-    @rooms = @hotel.rooms.each_with_object({}) {|room, hash| hash[room.id] = {
-      number: room.number,
-      places: room.places
-    }}
-    @reservations_paginated = @reservations.page(params[:page] || 1).per(10).each_with_object({}) {|reservation, hash| hash[reservation.id] = {
-      id: reservation.id,
-      room: Room.find_by_id(reservation.room_id).number,
-      roomId: reservation.room_id,
-      name: reservation.name,
-      phone: reservation.phone,
-      places: reservation.places,
-      startDate: reservation.start_date.strftime('%d.%m.%Y'),
-      endDate: reservation.end_date.strftime('%d.%m.%Y')}
-    }
-    respond_to do |format|
-      format.html { render :reservation_list }
-      format.json {{reservations: @reservations_paginated, totalReservationsCount: @reservations }}
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_hotel

@@ -28,6 +28,15 @@ ul, li {
 
 
 /*---------------------------------------------*/
+input {
+	outline: none;
+	border: none;
+}
+
+textarea {
+  outline: none;
+  border: none;
+}
 
 input:focus::-webkit-input-placeholder { color:transparent; }
 input:focus:-moz-placeholder { color:transparent; }
@@ -456,4 +465,7 @@ iframe {
   overflow: hidden;
   text-align: center;
   img { width: 100% }
+}
+select.form-control:not([size]):not([multiple]) {
+  height: 45px;
 }

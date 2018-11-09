@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :hotels do
     resources :rooms do
       get :calendar, on: :collection
+      get :reservation_list, on: :collection
     end
     resources :reservations do
       get :dates, on: :collection

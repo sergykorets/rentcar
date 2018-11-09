@@ -169,6 +169,7 @@ export default class Reservations extends React.Component {
     return (
       <div className="container reservations">
         <NotificationContainer/>
+        <h3 className='text-center'>Наявність вільних номерів на обрані дати</h3>
         <div className='row'>
           <div className='col-lg-4'>
             <DateRangePicker onApply={this.handleDateChange} startDate={this.state.startDate} endDate={this.state.endDate}>
@@ -194,30 +195,27 @@ export default class Reservations extends React.Component {
           </div>
         </div>
         <hr/>
-        { Object.keys(this.state.rooms).length > 0 ?
-          <div className='row'>
-            { Object.keys(this.state.rooms).map((id) => {
-              return (
-                <div key={id} className='col-lg-12 room'>
-                  <h4 className={'float-right ' + this.roomColor(id)}>
-                    <strong>
-                      { this.roomColor(id) === 'red' && 'Заброньований'}
-                      { this.roomColor(id) === 'yellow' && 'Частково заброньований'}
-                      { this.roomColor(id) === 'green' && 'Вільний'}
-                    </strong>
-                  </h4>
-                  <h3><b>Номер {this.state.rooms[id].number}</b></h3>
-                  <p>Кількість місць: {this.state.rooms[id].places}</p>
-                  { this.roomColor(id) === 'yellow' && <p>Кількість заброньованих місць: {this.state.rooms[id].booked}</p>}
-                  { this.roomColor(id) != 'red' &&
-                    <button className='btn-dark' onClick={() => this.handleModal('createModal', id)}>Створити резервування</button>}
-                  { this.roomColor(id) != 'green' &&
-                    <button className='btn-info' onClick={() => this.handleModal('editModal', id)}>Редагувати бронь</button>}
-                </div>
-              )})}
-          </div>
-          :
-          <Rooms rooms={this.state.rooms}/>}
+        <div className='row'>
+          { Object.keys(this.state.rooms).map((id) => {
+            return (
+              <div key={id} className='col-lg-12 room'>
+                <h4 className={'float-right ' + this.roomColor(id)}>
+                  <strong>
+                    { this.roomColor(id) === 'red' && 'Заброньований'}
+                    { this.roomColor(id) === 'yellow' && 'Частково заброньований'}
+                    { this.roomColor(id) === 'green' && 'Вільний'}
+                  </strong>
+                </h4>
+                <h3><b>Номер {this.state.rooms[id].number}</b></h3>
+                <p>Кількість місць: {this.state.rooms[id].places}</p>
+                { this.roomColor(id) === 'yellow' && <p>Кількість заброньованих місць: {this.state.rooms[id].booked}</p>}
+                { this.roomColor(id) != 'red' &&
+                  <button className='btn btn-dark' onClick={() => this.handleModal('createModal', id)}>Створити резервування</button>}
+                { this.roomColor(id) != 'green' &&
+                  <button className='btn btn-info' onClick={() => this.handleModal('editModal', id)}>Редагувати бронь</button>}
+              </div>
+            )})}
+        </div>
         { this.state.createModal &&
           <Modal isOpen={this.state.createModal} toggle={() => this.handleModal('createModal', '')}>
             <div className='reservation-form'>

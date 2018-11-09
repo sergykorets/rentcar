@@ -37,7 +37,7 @@ export default class ReservationList extends React.Component {
 
   handleDateChange = (event, picker) => {
     $.ajax({
-      url: `/hotels/${this.props.hotelId}/reservation_list.json`,
+      url: `/hotels/${this.props.hotelId}/rooms/reservation_list.json`,
       type: 'GET',
       data: {
         start_date: picker.startDate.format('DD.MM.YYYY'),
@@ -146,7 +146,7 @@ export default class ReservationList extends React.Component {
 
   handlePageChange = (page) => {
     $.ajax({
-      url: `/hotels/${this.props.hotelId}/reservation_list.json`,
+      url: `/hotels/${this.props.hotelId}/rooms/reservation_list.json`,
       type: 'GET',
       data: {
         page: page,
@@ -203,6 +203,7 @@ export default class ReservationList extends React.Component {
     return (
       <div className="container reservation-list">
         <NotificationContainer/>
+        <h3 className='text-center'>Список бронювань на вибрані дати</h3>
         <div className='top-actions'>
           <DateRangePicker onApply={this.handleDateChange} startDate={this.state.startDate} endDate={this.state.endDate}>
             <div className='row'>
@@ -216,7 +217,7 @@ export default class ReservationList extends React.Component {
               </div>
             </div>
           </DateRangePicker>
-          <button className='btn-dark' onClick={() => this.handleModal('createModal', '')}>Створити нове бронювання</button>
+          <button className='btn btn-dark' onClick={() => this.handleModal('createModal', '')}>Створити нове бронювання</button>
         </div>
         <hr/>
         { this.state.totalReservationsCount > 10 &&
@@ -233,7 +234,7 @@ export default class ReservationList extends React.Component {
         <table className='table reservation'>
           <thead>
           <tr>
-            { ['Номер', 'Гість', 'Телефон', 'К-ть місць', 'Початок', 'Кінець', 'Дії'].map((field, index) => {
+            { ['Номер', 'Гість', 'Телефон', 'К-ть місць', 'Заїзд', 'Виїзд', 'Дії'].map((field, index) => {
               return (
                 <th key={index}>
                   {field}
@@ -252,7 +253,7 @@ export default class ReservationList extends React.Component {
                   <td>{reservation.places}</td>
                   <td>{reservation.startDate}</td>
                   <td>{reservation.endDate}</td>
-                  <td><button className='btn-dark' onClick={() => this.handleModal('editModal', r)}>Редагувати</button></td>
+                  <td><button className='btn btn-dark' onClick={() => this.handleModal('editModal', r)}>Редагувати</button></td>
                 </tr>
             )})}
           </tbody>

@@ -6,6 +6,7 @@ import ReactPixel from 'react-facebook-pixel';
 import Leaflet from 'leaflet';
 import { Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
 import { Map, Marker, Popup, TileLayer, GeoJSON } from 'react-leaflet';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 export default class Hotel extends React.Component {
   constructor(props) {
@@ -84,9 +85,12 @@ export default class Hotel extends React.Component {
           email: this.state.suggestEmail,
           body: this.state.suggestBody
         }
-      },
-      success: (resp) => {
-        window.location.reload()
+      }
+    }).then((resp) => {
+      if (resp.success) {
+        NotificationManager.success('Дякуємо за допомогу ;)')
+      } else {
+        NotificationManager.error(resp.error, 'Неможливо надіслати')
       }
     });
   }
@@ -104,6 +108,7 @@ export default class Hotel extends React.Component {
           thumbnail: photo})})
     return (
       <div className="container">
+        <NotificationContainer/>
         { images.length > 0 &&
           <Fragment>
             <ImageGallery items={images} additionalClass='custom-gallery' autoPlay />
@@ -137,6 +142,8 @@ export default class Hotel extends React.Component {
                   <a className='btn btn-dark' href={this.state.hotel.location} target="_blank">3D карта</a>}
                 { this.state.hotel.editable &&
                   <a className='btn btn-info' href={`${this.state.hotel.slug}/edit`}>Редагувати</a>}
+                { this.state.hotel.editable &&
+                  <a className='btn btn-danger' href={`${this.state.hotel.slug}/rooms`}>Адміністрування</a>}
                 <button className='btn btn-outline-warning suggest' onClick={this.handleModal}>Запропонувати зміни</button>
               </div>
             </div>
