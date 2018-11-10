@@ -1,12 +1,21 @@
 .reservations {
   .green {
-    color: green;
+    background: #4fc74f42;
+    h4 {
+      color: green;
+    }
   }
   .red {
-    color: red;
+    background: #8b00001f;
+    h4 {
+      color: red;
+    }
   }
   .yellow {
-    color: #c1911c;
+    background: #e4c27c5c;
+    h4 {
+      color: #c1911c;
+    }
   }
 }
 .reservation-form {

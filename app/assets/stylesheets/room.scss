@@ -1,9 +1,27 @@
+.rooms {
+  //display: flex;
+  //width: 500px;
+}
 .room {
+  //width: 33%;
   background: white;
   border-radius: 10px;
   padding: 20px;
-  margin: 10px;
+  height: 100%;
+  //margin: 10px;
+  box-shadow: 3px 4px 10px darkgrey;
+  .btn-outline-info {
+    margin-top: 20px;
+  }
 }
+//@media (max-width: 991px) {
+//  .rooms {
+//    display: block;
+//    .room {
+//      width: 100%;
+//    }
+//  }
+//}
 .room-calendar {
   height: 800px;
 }
