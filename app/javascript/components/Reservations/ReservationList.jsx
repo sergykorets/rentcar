@@ -199,7 +199,6 @@ export default class ReservationList extends React.Component {
   }
 
   render() {
-    console.log('ReservationList', this.state)
     return (
       <div className="container reservation-list">
         <NotificationContainer/>

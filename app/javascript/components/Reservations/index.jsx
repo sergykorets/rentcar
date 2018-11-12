@@ -165,11 +165,10 @@ export default class Reservations extends React.Component {
   }
 
   render() {
-    console.log('Reservations', this.state)
     return (
       <div className="container reservations">
         <NotificationContainer/>
-        <h3 className='text-center'>Наявність вільних номерів на обрані дати</h3>
+        <h3 className='text-center'>Наявність вільних номерів</h3>
         <div className='row'>
           <div className='col-lg-4'>
             <DateRangePicker onApply={this.handleDateChange} startDate={this.state.startDate} endDate={this.state.endDate}>
@@ -202,8 +201,8 @@ export default class Reservations extends React.Component {
                 <div className={'room ' + this.roomColor(id)}>
                   <h4 className='float-right'>
                     <strong>
-                      { this.roomColor(id) === 'red' && 'Занятий'}
-                      { this.roomColor(id) === 'yellow' && 'Частково занятий'}
+                      { this.roomColor(id) === 'red' && 'Зайнятий'}
+                      { this.roomColor(id) === 'yellow' && 'Частково зайнятий'}
                       { this.roomColor(id) === 'green' && 'Вільний'}
                     </strong>
                   </h4>

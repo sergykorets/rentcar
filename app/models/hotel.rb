@@ -28,6 +28,7 @@ class Hotel < ApplicationRecord
       puts "#{hotel.name}"
       if hotel.google_id.present?
         google_hotels[i] = HTTParty.get "https://maps.googleapis.com/maps/api/place/details/json?placeid=#{hotel.google_id}&key=#{GOOGLE_KEY}"
+        sleep 1
         if hotel.google_rating != google_hotels[i]['result']['rating']
           hotel.update_attributes(google_rating: google_hotels[i]['result']['rating'])
         end

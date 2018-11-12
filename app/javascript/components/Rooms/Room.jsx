@@ -213,12 +213,11 @@ export default class Room extends React.Component {
   }
 
   render() {
-    console.log('Room', this.state)
     const localizer = BigCalendar.momentLocalizer(moment)
     return (
       <div className="container">
         <NotificationContainer/>
-        <h3 className='text-center'>Завантаженість номерів</h3>
+        <h3 className='text-center'>Розклад поселення (Номер {this.state.room.number})</h3>
          <hr/>
         <div className='calendar-top'>
           <select className='form-control' value={this.state.room.id} onChange={(e) => this.handleRoomChange(e.target.value)}>

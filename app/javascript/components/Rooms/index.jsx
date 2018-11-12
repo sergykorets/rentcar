@@ -81,7 +81,6 @@ export default class Rooms extends React.Component {
   }
 
   render() {
-    console.log('Rooms', this.state)
     return (
       <div className="container">
         <NotificationContainer/>

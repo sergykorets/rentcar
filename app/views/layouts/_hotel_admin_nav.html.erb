@@ -9,7 +9,7 @@
         <li class='nav-item'><%= link_to 'Створення номерів', hotel_rooms_path(params[:hotel_id]), class: 'nav-link' %></li>
         <li class='nav-item'><%= link_to 'Календар', calendar_hotel_rooms_path(params[:hotel_id]), class: 'nav-link' %></li>
         <li class='nav-item'><%= link_to 'Номери', hotel_reservations_path(params[:hotel_id]), class: 'nav-link' %></li>
-        <li class='nav-item'><%= link_to 'Бронювання', reservation_list_hotel_rooms_path(params[:hotel_id]), class: 'nav-link' %></li>
+        <li class='nav-item'><%= link_to 'Список бронювань', reservation_list_hotel_rooms_path(params[:hotel_id]), class: 'nav-link' %></li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
