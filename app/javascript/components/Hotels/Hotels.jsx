@@ -185,7 +185,8 @@ export default class Hotels extends React.Component {
                       <Popup>
                         <a href={`/hotels/${hotel.slug}`}>{hotel.name}</a><br/>
                         {hotel.price && <Fragment><span>Ціна: {hotel.price} UAH</span><br/></Fragment>}
-                        <span>Рейтинг: {hotel.googleRating}/5</span>
+                        <span>Рейтинг: {hotel.googleRating}/5</span><br/>
+                        <a href={hotel.location} target="_blank">3D карта</a>
                       </Popup>
                     </Marker>
                   )}})}
