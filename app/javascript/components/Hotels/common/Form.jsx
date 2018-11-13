@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import ReactLoading from 'react-loading';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 import FileDrop from './FileDrop';
 
@@ -12,11 +13,9 @@ export default class Form extends React.Component {
       hotel: this.props.hotel || {
         name: '',
         description: '',
-        phones: [
-          {phone: ''}
-        ],
-        googlePhotos: [],
-        photos: [],
+        phones: {},
+        googlePhotos: {},
+        photos: {},
         photosForUpload: [],
         price: '',
         site: '',
@@ -64,7 +63,10 @@ export default class Form extends React.Component {
     this.setState({
       hotel: {
         ...this.state.hotel,
-        phones: [...this.state.hotel.phones, {phone: ''}]
+        phones: {
+          ...this.state.hotel.phones,
+          [(+ new Date())]: {phone: ''}
+        }
       }
     })
   }
@@ -81,7 +83,6 @@ export default class Form extends React.Component {
   }
 
   deleteItem = (item, i) => {
-    //debugger
     if (this.state.hotel[item][i].id) {
       const items = this.state.hotel[item];
       items[i] = {id: items[i].id, _destroy: '1'};
@@ -92,13 +93,13 @@ export default class Form extends React.Component {
         }
       })
     } else {
-      var array = [...this.state.hotel[item]]
-      var index = array.indexOf(this.state.hotel[item][i])
-      array.splice(index, 1)
+      let items = this.state.hotel[item]
+      delete items[i]
       this.setState({
+        ...this.state,
         hotel: {
           ...this.state.hotel,
-          [item]: array
+          [item]: items
         }
       });
     }
@@ -124,14 +125,13 @@ export default class Form extends React.Component {
           google_photos_attributes: this.state.hotel.googlePhotos,
           photos_attributes: this.state.hotel.photos
         }
-      },
-      success: (resp) => {
-        //debugger
-        if (resp.success) {
-          window.location.href = `/hotels/${resp.slug}`
-        } else {
-          window.location.reload()
-        }
+      }
+    }).then((resp) => {
+      if (resp.success) {
+        NotificationManager.success('Дані оновлено');
+        window.location.href = `/hotels/${resp.slug}`
+      } else {
+        resp.errors.map((error, index) => NotificationManager.error(error, 'Неможливо редагувати'))
       }
     });
   }
@@ -171,6 +171,7 @@ export default class Form extends React.Component {
           processData: false,
           contentType: false,
           success: (resp) => {
+            NotificationManager.success('Фото збережені');
             window.location.reload()
           }})
       });
@@ -188,8 +189,10 @@ export default class Form extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className='hotel-form'>
+        <NotificationContainer/>
         <div className='form-group'>
           <label>Тип</label>
           <div className='custom-checkbox'>
@@ -210,6 +213,7 @@ export default class Form extends React.Component {
         <div className='form-group'>
           <label>Опис</label>
           <Editor
+            height={780}
             apiKey="yfe3680kik77oexnpok1ucmxm93eni5nxnalbvn6qz1kf9la"
             init={{ plugins: "textcolor colorpicker", toolbar: "forecolor backcolor" }}
             initialValue={this.state.hotel.description}
@@ -218,12 +222,13 @@ export default class Form extends React.Component {
         </div>
         <div className='form-group'>
           <label>Номери телефонів</label>
-          { this.state.hotel.phones.map((phone, i) => {
+          { Object.keys(this.state.hotel.phones).map((phoneId, i) => {
+            const phone = this.state.hotel.phones[phoneId]
             if (!phone._destroy) {
               return (
                 <div className='phone-form' key={i}>
-                  <input type='text' placeholder='380 XX XXX XX XX' className='form-control' onChange={(e) =>this.handlePhoneChange(i, e.target.value)} value={this.state.hotel.phones[i].phone} />
-                  <i className='fa fa-trash-o fa-2x float-right' onClick={() => this.deleteItem('phones', i)} />
+                  <input type='text' placeholder='380 XX XXX XX XX' className='form-control' onChange={(e) =>this.handlePhoneChange(phoneId, e.target.value)} value={phone.phone} />
+                  <i className='fa fa-trash-o fa-2x float-right' onClick={() => this.deleteItem('phones', phoneId)} />
                 </div>
               )}})}
         </div>
@@ -280,10 +285,11 @@ export default class Form extends React.Component {
                   </Fragment>}
                 <hr/>
               </Fragment>}
-            { this.state.hotel.photos.length > 0 &&
+            { Object.keys(this.state.hotel.photos).length > 0 &&
               <Fragment>
                 <div id='hotels_ul'>
-                  { this.state.hotel.photos.filter(p => !p._destroy).map((item, i) => {
+                  { Object.keys(this.state.hotel.photos).filter(p => !this.state.hotel.photos[p]._destroy).map((itemId, i) => {
+                    const item = this.state.hotel.photos[itemId]
                     return (
                       <div className='hotel' key={i}>
                         <div className="card">
@@ -299,7 +305,7 @@ export default class Form extends React.Component {
                                 checked={this.state.hotel.mainPhotoType === 'Photos' && this.state.hotel.mainPhotoId === item.id} />
                               <label htmlFor="mainPhotoId">Головне фото</label>
                             </div>
-                            <i className='fa fa-trash-o' onClick={() => this.deleteItem('photos', i)} />
+                            <i className='fa fa-trash-o' onClick={() => this.deleteItem('photos', itemId)} />
                           </div>
                         </div>
                       </div>
@@ -307,9 +313,10 @@ export default class Form extends React.Component {
                 </div>
                 <hr/>
               </Fragment>}
-            { this.state.hotel.googlePhotos.length > 0 &&
+            { Object.keys(this.state.hotel.googlePhotos).length > 0 &&
               <div id='hotels_ul'>
-                { this.state.hotel.googlePhotos.filter(p => !p.deleted).map((item, i) => {
+                { Object.keys(this.state.hotel.googlePhotos).filter(p => !this.state.hotel.googlePhotos[p].deleted).map((itemId, i) => {
+                  const item = this.state.hotel.googlePhotos[itemId]
                   return (
                     <div className='hotel' key={i}>
                       <div className="card">
@@ -325,15 +332,16 @@ export default class Form extends React.Component {
                               checked={this.state.hotel.mainPhotoType === 'GooglePhotos' && this.state.hotel.mainPhotoId === item.id} />
                             <label htmlFor="mainGooglePhotoId">Головне фото</label>
                           </div>
-                          <i className='fa fa-trash-o' onClick={() => this.deleteGooglePhoto('googlePhotos', i)} />
+                          <i className='fa fa-trash-o' onClick={() => this.deleteGooglePhoto('googlePhotos', itemId)} />
                         </div>
                       </div>
                     </div>
                   )})}
               </div>}
           </div>}
+        <hr/>
         <div className='form-group'>
-          <button className='btn btn-dark' onClick={this.handleSubmit}>Зберегти</button>
+          <button className='btn btn-dark btn-block' onClick={this.handleSubmit}>Зберегти</button>
         </div>
       </div>
     );

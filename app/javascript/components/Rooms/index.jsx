@@ -40,25 +40,25 @@ export default class Rooms extends React.Component {
   }
 
   deleteRoom = (i) => {
-    if (confirm('Видалити даний номер?')) {
       if (this.state.rooms[i].id) {
-        $.ajax({
-          url: `/hotels/${this.state.hotelId}/rooms/${i}.json`,
-          type: 'DELETE'
-        }).then((resp) => {
-          if (resp.success) {
-            this.setState({rooms: resp.rooms});
-            NotificationManager.success('Номер видалено')
-          } else {
-            resp.errors.map((error, index) => NotificationManager.error(error, 'Неможливо видалити'))
-          }
-        });
+        if (confirm('Видалити даний номер?')) {
+          $.ajax({
+            url: `/hotels/${this.state.hotelId}/rooms/${i}.json`,
+            type: 'DELETE'
+          }).then((resp) => {
+            if (resp.success) {
+              this.setState({rooms: resp.rooms});
+              NotificationManager.success('Номер видалено')
+            } else {
+              resp.errors.map((error, index) => NotificationManager.error(error, 'Неможливо видалити'))
+            }
+          });
+        }
       } else {
         let items = this.state.rooms
         delete items[i]
         this.setState({rooms: items});
       }
-    }
   }
 
   handleSubmit = () => {

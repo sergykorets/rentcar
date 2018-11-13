@@ -81,9 +81,13 @@ class HotelsController < ApplicationController
         mainPhotoId: @hotel.main_photo_id,
         mainPhotoType: @hotel.main_photo_type,
         photosForUpload: [],
-        googlePhotos: @hotel.google_photos.not_deleted.any? ? @hotel.google_photos.not_deleted.map {|photo| {id: photo.id, photo: photo.photo_url}} : [],
-        photos: @hotel.photos.any? ? @hotel.photos.map {|photo| {id: photo.id, photo: photo.picture(:large)}} : [],
-        phones: @hotel.phones.any? ? @hotel.phones.map {|phone| {id: phone.id, phone: phone.phone}} : [{phone: ''}]}
+        googlePhotos: @hotel.google_photos.not_deleted.any? ? @hotel.google_photos.not_deleted.each_with_object({}) {|photo, hash| hash[photo.id] = {
+          id: photo.id, photo: photo.photo_url}} : {},
+        photos: @hotel.photos.any? ? @hotel.photos.each_with_object({}) {|photo, hash| hash[photo.id] = {
+          id: photo.id, photo: photo.picture(:large)}} : {},
+        phones: @hotel.phones.any? ? @hotel.phones.each_with_object({}) {|phone, hash| hash[phone.id] = {
+          id: phone.id, phone: phone.phone}} : {}
+      }
     else
       redirect_to hotel_path(@hotel)
     end
