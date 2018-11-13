@@ -225,7 +225,7 @@ export default class Room extends React.Component {
               <option key={i} value={id}>Номер {this.state.rooms[id].number} - Кількість місць: {this.state.rooms[id].places}</option>
             )}
           </select>
-          <button className='btn btn-dark' onClick={() => this.handleModal('createModal')}>Створити нове бронювання</button>
+          <button className='btn btn-info' onClick={() => this.handleModal('createModal')}><i className='fa fa-plus' /> Створити нове бронювання</button>
         </div>
         <hr/>
         <div className='room-calendar'>
@@ -256,19 +256,12 @@ export default class Room extends React.Component {
                   <option key={i} value={i+1}>{i+1}</option>
                 )}
               </select>
-              <label>Дати</label>
               <DateRangePicker
                 onApply={this.handleNewReservationDateChange}
                 startDate={this.state.newReservation.startDate}
                 endDate={this.state.newReservation.endDate}>
-                <div className='row'>
-                  <div className='col-lg-6'>
-                    <input type="text" className='form-control' value={this.state.newReservation.startDate}/>
-                  </div>
-                  <div className='col-lg-6'>
-                    <input type="text" className='form-control' value={this.state.newReservation.endDate}/>
-                  </div>
-                </div>
+                <label>Дати</label>
+                <input type="text" className='form-control' value={`${this.state.newReservation.startDate} - ${this.state.newReservation.endDate}`}/>
               </DateRangePicker>
               <hr/>
               <button className='btn btn-block reservation-btn' onClick={this.handleSubmitReservation}>Створити</button>
@@ -288,16 +281,9 @@ export default class Room extends React.Component {
                   <option key={i} value={i+1}>{i+1}</option>
                 )}
               </select>
-              <label>Дати</label>
               <DateRangePicker onApply={this.handleDateChange} startDate={moment(this.state.selectedReservation.start).format('DD.MM.YYYY')} endDate={moment(this.state.selectedReservation.end).format('DD.MM.YYYY')}>
-                <div className='row'>
-                  <div className='col-lg-6'>
-                    <input type="text" className='form-control' value={moment(this.state.selectedReservation.start).format('DD.MM.YYYY')}/>
-                  </div>
-                  <div className='col-lg-6'>
-                    <input type="text" className='form-control' value={moment(this.state.selectedReservation.end).format('DD.MM.YYYY')}/>
-                  </div>
-                </div>
+                <label>Дати</label>
+                <input type="text" className='form-control' value={`${moment(this.state.selectedReservation.start).format('DD.MM.YYYY')} - ${moment(this.state.selectedReservation.end).format('DD.MM.YYYY')}`}/>
               </DateRangePicker>
             </div>
             <div>

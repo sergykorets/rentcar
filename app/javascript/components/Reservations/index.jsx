@@ -18,7 +18,7 @@ export default class Reservations extends React.Component {
       rooms: this.props.rooms,
       startDate: moment(new Date).format('DD.MM.YYYY'),
       endDate: moment(new Date).add(1, 'days').format('DD.MM.YYYY'),
-      floor: 1,
+      floor: 'all',
       name: '',
       phone: '',
       places: 1,
@@ -172,22 +172,15 @@ export default class Reservations extends React.Component {
         <div className='row'>
           <div className='col-lg-4'>
             <DateRangePicker onApply={this.handleDateChange} startDate={this.state.startDate} endDate={this.state.endDate}>
-              <div className='row'>
-                <div className='col-lg-6'>
-                  <label>Початок заїзду</label>
-                  <input type="text" className='form-control' value={this.state.startDate}/>
-                </div>
-                <div className='col-lg-6'>
-                  <label>Кінець заїзду</label>
-                  <input type="text" className='form-control' value={this.state.endDate}/>
-                </div>
-              </div>
+              <label>Дати перебування</label>
+              <input type="text" className='form-control' value={`${this.state.startDate} - ${this.state.endDate}`}/>
             </DateRangePicker>
           </div>
           <div className='col-lg-2'>
             <label>Поверх</label>
             <select className='form-control' value={this.state.floor} onChange={(e) => this.handleFloorChange(e.target.value)}>
-              { [...Array(parseInt(this.state.floors, 10))].map((e,i) =>
+              <option value='all'>Всі поверхи</option>
+              {[...Array(parseInt(this.state.floors, 10))].map((e,i) =>
                 <option key={i} value={i+1}>Поверх {i+1}</option>
               )}
             </select>
@@ -197,7 +190,7 @@ export default class Reservations extends React.Component {
         <div className='row'>
           { Object.keys(this.state.rooms).map((id) => {
             return (
-              <div key={id} className='col-lg-4 mb-4'>
+              <div key={id} className='col-lg-6 mb-4'>
                 <div className={'room ' + this.roomColor(id)}>
                   <h4 className='float-right'>
                     <strong>

@@ -203,20 +203,16 @@ export default class ReservationList extends React.Component {
       <div className="container reservation-list">
         <NotificationContainer/>
         <h3 className='text-center'>Список бронювань на вибрані дати</h3>
-        <div className='top-actions'>
-          <DateRangePicker onApply={this.handleDateChange} startDate={this.state.startDate} endDate={this.state.endDate}>
-            <div className='row'>
-              <div className='col-lg-6'>
-                <label>Дата від:</label>
-                <input type="text" className='form-control' value={this.state.startDate}/>
-              </div>
-              <div className='col-lg-6'>
-                <label>Дата до:</label>
-                <input type="text" className='form-control' value={this.state.endDate}/>
-              </div>
-            </div>
-          </DateRangePicker>
-          <button className='btn btn-dark' onClick={() => this.handleModal('createModal', '')}>Створити нове бронювання</button>
+        <div className='row'>
+          <div className='col-lg-6'>
+            <DateRangePicker onApply={this.handleDateChange} startDate={this.state.startDate} endDate={this.state.endDate}>
+              <label>Діапазон дат</label>
+              <input type="text" className='form-control' value={`${this.state.startDate} - ${this.state.endDate}`}/>
+            </DateRangePicker>
+          </div>
+          <div className='col-lg-6'>
+            <button className='btn btn-info float-right add-reservation' onClick={() => this.handleModal('createModal', '')}><i className='fa fa-plus' /> Створити нове бронювання</button>
+          </div>
         </div>
         <hr/>
         { this.state.totalReservationsCount > 10 &&
@@ -287,19 +283,12 @@ export default class ReservationList extends React.Component {
                   <option key={i} value={i+1}>{i+1}</option>
                 )}
               </select>
-              <label>Дати</label>
               <DateRangePicker
                 onApply={this.handleNewReservationDateChange}
                 startDate={this.state.newReservation.startDate}
                 endDate={this.state.newReservation.endDate}>
-                <div className='row'>
-                  <div className='col-lg-6'>
-                    <input type="text" className='form-control' value={this.state.newReservation.startDate}/>
-                  </div>
-                  <div className='col-lg-6'>
-                    <input type="text" className='form-control' value={this.state.newReservation.endDate}/>
-                  </div>
-                </div>
+                <label>Дати</label>
+                <input type="text" className='form-control' value={`${this.state.newReservation.startDate} - ${this.state.newReservation.endDate}`}/>
               </DateRangePicker>
               <hr/>
               <button className='btn btn-block reservation-btn' onClick={this.handleSubmitReservation}>Створити</button>
@@ -325,16 +314,9 @@ export default class ReservationList extends React.Component {
                   <option key={i} value={i+1}>{i+1}</option>
                 )}
               </select>
-              <label>Дати</label>
               <DateRangePicker onApply={this.handleReservationDateChange} startDate={this.state.selectedReservation.startDate} endDate={this.state.selectedReservation.endDate}>
-                <div className='row'>
-                  <div className='col-lg-6'>
-                    <input type="text" className='form-control' value={this.state.selectedReservation.startDate}/>
-                  </div>
-                  <div className='col-lg-6'>
-                    <input type="text" className='form-control' value={this.state.selectedReservation.endDate}/>
-                  </div>
-                </div>
+                <label>Дати</label>
+                <input type="text" className='form-control' value={`${this.state.selectedReservation.startDate} - ${this.state.selectedReservation.endDate}`}/>
               </DateRangePicker>
             </div>
             <div>

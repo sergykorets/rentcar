@@ -6,7 +6,7 @@ class ReservationsController < ApplicationController
   def index
     @floors = @hotel.rooms.map {|room| room.floor}.max
     @hotel_id = @hotel.id
-    @rooms = @hotel.rooms.in_floor(params[:floor] || 1).each_with_object({}) {|room, hash|
+    @rooms = @hotel.rooms.each_with_object({}) {|room, hash|
       reservations = room.reservations.for_dates(room, Date.today.to_date, Date.tomorrow.to_date)
       hash[room.id] = {
         id: room.id,
@@ -185,9 +185,10 @@ class ReservationsController < ApplicationController
   end
 
   def dates
+    rooms = params[:floor] != 'all' ? @hotel.rooms.in_floor(params[:floor]) : @hotel.rooms
     render json: {
       success: true,
-      rooms: @hotel.rooms.in_floor(params[:floor]).each_with_object({}) {|room, hash|
+      rooms: rooms.each_with_object({}) {|room, hash|
         reservations = room.reservations.for_dates(room, params[:start_date].to_date, params[:end_date].to_date)
         hash[room.id] = {
           id: room.id,
