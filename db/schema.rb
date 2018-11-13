@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181108163600) do
+ActiveRecord::Schema.define(version: 20181113173143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,9 @@ ActiveRecord::Schema.define(version: 20181108163600) do
     t.decimal "longitude"
     t.string "slug"
     t.integer "position", default: 200
+    t.boolean "sauna", default: false
+    t.boolean "chan", default: false
+    t.boolean "disco", default: false
     t.index ["user_id"], name: "index_hotels_on_user_id"
   end
 

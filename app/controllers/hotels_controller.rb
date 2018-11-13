@@ -78,6 +78,9 @@ class HotelsController < ApplicationController
         price: @hotel.price || '',
         site: @hotel.site || '',
         slug: @hotel.slug,
+        sauna: @hotel.sauna,
+        chan: @hotel.chan,
+        disco: @hotel.disco,
         mainPhotoId: @hotel.main_photo_id,
         mainPhotoType: @hotel.main_photo_type,
         photosForUpload: [],
@@ -123,7 +126,7 @@ class HotelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hotel_params
-      params.require(:hotel).permit(:name, :description, :hotel_type, :site, :main_photo_id, :main_photo_type, :price,
+      params.require(:hotel).permit(:name, :description, :hotel_type, :site, :main_photo_id, :main_photo_type, :price, :sauna, :chan, :disco,
                                     rooms_attributes: [:id, :number, :floor, :places, :_destroy], phones_attributes: [:id, :phone, :_destroy],
                                     google_photos_attributes: [:id, :deleted], photos_attributes: [:id, :_destroy, photo: [:picture]])
     end

@@ -119,6 +119,9 @@ export default class Form extends React.Component {
           site: this.state.hotel.site,
           hotel_type: this.state.hotel.hotelType,
           price: this.state.hotel.price,
+          sauna: this.state.hotel.sauna,
+          chan: this.state.hotel.chan,
+          disco: this.state.hotel.disco,
           main_photo_id: this.state.hotel.mainPhotoId,
           main_photo_type: this.state.hotel.mainPhotoType,
           phones_attributes: this.state.hotel.phones,
@@ -238,6 +241,23 @@ export default class Form extends React.Component {
         <div className='form-group'>
           <label>Мінімальна ціна за одну ніч з однієї людини (ГРН)</label>
           <input type='number' placeholder='200' className='form-control' onChange={(e) => this.handleInputChange('price', e.target.value)} value={this.state.hotel.price} />
+        </div>
+        <div className='form-group'>
+          <label>Розваги</label>
+          <div className='custom-checkbox'>
+            <div className='custom-checkbox'>
+              <input type='checkbox' id="sauna" onChange={(e) => this.handleInputChange('sauna', !this.state.hotel.sauna)} checked={this.state.hotel.sauna} />
+              <label htmlFor="sauna">Баня</label>
+            </div>
+            <div className='custom-checkbox'>
+              <input type='checkbox' id="chan" onChange={(e) => this.handleInputChange('chan', !this.state.hotel.chan)} checked={this.state.hotel.chan} />
+              <label htmlFor="chan">Чан</label>
+            </div>
+            <div className='custom-checkbox'>
+              <input type='checkbox' id="disco" onChange={(e) => this.handleInputChange('disco', !this.state.hotel.disco)} checked={this.state.hotel.disco} />
+              <label htmlFor="disco">Диско</label>
+            </div>
+          </div>
         </div>
         <div className='form-group'>
           <label>Офіційний веб-сайт</label>
