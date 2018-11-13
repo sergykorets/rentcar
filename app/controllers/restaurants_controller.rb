@@ -10,6 +10,8 @@ class RestaurantsController < ApplicationController
         price: hotel.price,
         slug: hotel.slug,
         site: hotel.site,
+        lat: hotel.latitude,
+        lng: hotel.longitude,
         googleRating: hotel.average_rating,
         location: hotel.location,
         avatar: get_hotel_avatar(hotel)}
