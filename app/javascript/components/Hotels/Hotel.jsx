@@ -4,7 +4,7 @@ import ImageGallery from 'react-image-gallery';
 import ReactGA from 'react-ga';
 import ReactPixel from 'react-facebook-pixel';
 import Leaflet from 'leaflet';
-import { Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
+import { Modal, ModalHeader, ModalFooter, ModalBody, Tooltip } from 'reactstrap';
 import { Map, Marker, Popup, TileLayer, GeoJSON } from 'react-leaflet';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 
@@ -21,7 +21,8 @@ export default class Hotel extends React.Component {
       admin: this.props.admin,
       suggestEmail: '',
       suggestBody: '',
-      showSuggestForm: false
+      showSuggestForm: false,
+      tooltips: {}
     };
   }
 
@@ -101,6 +102,29 @@ export default class Hotel extends React.Component {
     });
   }
 
+  toggle = (index, field) => {
+    this.setState({
+      ...this.state,
+      tooltips: {
+        ...this.state.tooltips,
+        [index]: {
+          ...this.state.tooltips[index],
+          [field]: this.state.tooltips[index] && !this.state.tooltips[index][field]
+        }
+      }
+    });
+  }
+
+  toggleTooltip = (field) => {
+    this.setState({
+      ...this.state,
+      tooltips: {
+        ...this.state.tooltips,
+        [field]: !this.state.tooltips[field]
+      }
+    });
+  }
+
   render() {
     const images = this.state.hotel.photos.map((photo) => {
       return (
@@ -121,18 +145,30 @@ export default class Hotel extends React.Component {
             </div>
             <div className='hotel-header activities'>
               <div className='hotel-icons'>
-                <div className={`icon ${this.state.hotel.sauna && 'present'}`}>
+                <div id='sauna' className={`icon ${this.state.hotel.sauna && 'present'}`}>
                   <img src="/images/sauna.svg"/>
                   <p>Баня</p>
                 </div>
-                <div className={`icon ${this.state.hotel.chan && 'present'}`}>
+                { !this.state.hotel.sauna &&
+                  <Tooltip placement="bottom" isOpen={this.state.tooltips.sauna} target='sauna' toggle={() => this.toggleTooltip('sauna')}>
+                    Немає
+                  </Tooltip>}
+                <div id='chan' className={`icon ${this.state.hotel.chan && 'present'}`}>
                   <img src="/images/chan.png"/>
                   <p>Чан</p>
                 </div>
-                <div className={`icon ${this.state.hotel.disco && 'present'}`}>
+                { !this.state.hotel.chan &&
+                  <Tooltip placement="bottom" isOpen={this.state.tooltips.chan} target='chan' toggle={() => this.toggleTooltip('chan')}>
+                    Немає
+                  </Tooltip>}
+                <div id='disco' className={`icon ${this.state.hotel.disco && 'present'}`}>
                   <img src="/images/disco.svg"/>
                   <p>Диско</p>
                 </div>
+                { !this.state.hotel.disco &&
+                  <Tooltip placement="bottom" isOpen={this.state.tooltips.disco} target='disco' toggle={() => this.toggleTooltip('disco')}>
+                    Немає
+                  </Tooltip>}
               </div>
               <Rater initialRating={parseFloat(this.state.hotel.googleRating)} emptySymbol="fa fa-star-o fa-2x"
                      fullSymbol="fa fa-star fa-2x" readonly className='hotel-stars'/>
@@ -214,6 +250,31 @@ export default class Hotel extends React.Component {
                         <Rater initialRating={parseFloat(hotel.googleRating)} emptySymbol="fa fa-star-o"
                                fullSymbol="fa fa-star" readonly className='hotel-stars'/>
                         {hotel.location && <a className='3d-link' href={hotel.location} target="_blank">3D карта</a>}
+                      </div>
+                      <div className='body-bottom'>
+                        <div className='icons'>
+                          { hotel.sauna &&
+                          <Fragment>
+                            <img id={`Sauna-${index}`} src="/images/sauna.svg"/>
+                            <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].sauna} target={`Sauna-${index}`} toggle={() => this.toggle(index, 'sauna')}>
+                              Баня
+                            </Tooltip>
+                          </Fragment>}
+                          { hotel.chan &&
+                          <Fragment>
+                            <img id={`Chan-${index}`} src="/images/chan.png"/>
+                            <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].chan} target={`Chan-${index}`} toggle={() => this.toggle(index, 'chan')}>
+                              Чан
+                            </Tooltip>
+                          </Fragment>}
+                          { hotel.disco &&
+                          <Fragment>
+                            <img id={`Disco-${index}`} src="/images/disco.svg"/>
+                            <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].disco} target={`Disco-${index}`} toggle={() => this.toggle(index, 'disco')}>
+                              Дискотека
+                            </Tooltip>
+                          </Fragment>}
+                        </div>
                       </div>
                     </div>
                   </div>

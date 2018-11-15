@@ -42,12 +42,15 @@ export default class Hotels extends React.Component {
     this.setState({[field]: value})
   }
 
-  toggle = (index) => {
+  toggle = (index, field) => {
     this.setState({
       ...this.state,
       tooltips: {
         ...this.state.tooltips,
-        [index]: !this.state.tooltips[index]
+        [index]: {
+          ...this.state.tooltips[index],
+          [field]: this.state.tooltips[index] && !this.state.tooltips[index][field]
+        }
       }
     });
   }
@@ -59,6 +62,7 @@ export default class Hotels extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     const hotels = this.state.hotels.filter(h => h.name.toLowerCase().includes(this.state.nameSearch.toLowerCase()))
       .filter(h => parseFloat(h.googleRating) >= parseFloat(this.state.ratingSearch ? this.state.ratingSearch : 0))
       .filter(h => parseFloat(h.price ? h.price : 999999) >= parseFloat(this.state.priceFrom ? this.state.priceFrom : 0))
@@ -155,7 +159,7 @@ export default class Hotels extends React.Component {
                               <span>{hotel.price} UAH</span>
                               <i className="fa fa-info-circle" id={`TooltipExample${index}`}></i>
                             </span>
-                            <Tooltip placement="bottom" isOpen={this.state.tooltips[index]} target={`TooltipExample${index}`} toggle={() => this.toggle(index)}>
+                            <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].price} target={`TooltipExample${index}`} toggle={() => this.toggle(index, 'price')}>
                                Мінімальна ціна з людини за 1 ніч
                             </Tooltip>
                           </Fragment>}
@@ -167,9 +171,27 @@ export default class Hotels extends React.Component {
                       </div>
                       <div className='body-bottom'>
                         <div className='icons'>
-                          {hotel.sauna && <img src="/images/sauna.svg"/>}
-                          {hotel.chan && <img src="/images/chan.png"/>}
-                          {hotel.disco && <img src="/images/disco.svg"/>}
+                          { hotel.sauna &&
+                            <Fragment>
+                              <img id={`Sauna-${index}`} src="/images/sauna.svg"/>
+                              <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].sauna} target={`Sauna-${index}`} toggle={() => this.toggle(index, 'sauna')}>
+                                Баня
+                              </Tooltip>
+                            </Fragment>}
+                          { hotel.chan &&
+                            <Fragment>
+                              <img id={`Chan-${index}`} src="/images/chan.png"/>
+                              <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].chan} target={`Chan-${index}`} toggle={() => this.toggle(index, 'chan')}>
+                                Чан
+                              </Tooltip>
+                            </Fragment>}
+                          { hotel.disco &&
+                            <Fragment>
+                              <img id={`Disco-${index}`} src="/images/disco.svg"/>
+                              <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].disco} target={`Disco-${index}`} toggle={() => this.toggle(index, 'disco')}>
+                                Дискотека
+                              </Tooltip>
+                            </Fragment>}
                         </div>
                       </div>
                     </div>
