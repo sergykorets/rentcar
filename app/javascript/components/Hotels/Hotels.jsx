@@ -165,6 +165,13 @@ export default class Hotels extends React.Component {
                                fullSymbol="fa fa-star" readonly className='hotel-stars'/>
                         {hotel.location && <a className='3d-link' href={hotel.location} target="_blank">3D карта</a>}
                       </div>
+                      <div className='body-bottom'>
+                        <div className='icons'>
+                          {hotel.sauna && <img src="/images/sauna.svg"/>}
+                          {hotel.chan && <img src="/images/chan.png"/>}
+                          {hotel.disco && <img src="/images/disco.svg"/>}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

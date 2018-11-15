@@ -119,14 +119,30 @@ export default class Hotel extends React.Component {
               <h1 className='hotel-name'>{this.state.hotel.name}</h1>
               <span>{this.state.hotel.price} {this.state.hotel.price && 'UAH'}</span>
             </div>
+            <div className='hotel-header activities'>
+              <div className='hotel-icons'>
+                <div className={`icon ${this.state.hotel.sauna && 'present'}`}>
+                  <img src="/images/sauna.svg"/>
+                  <p>Баня</p>
+                </div>
+                <div className={`icon ${this.state.hotel.chan && 'present'}`}>
+                  <img src="/images/chan.png"/>
+                  <p>Чан</p>
+                </div>
+                <div className={`icon ${this.state.hotel.disco && 'present'}`}>
+                  <img src="/images/disco.svg"/>
+                  <p>Диско</p>
+                </div>
+              </div>
+              <Rater initialRating={parseFloat(this.state.hotel.googleRating)} emptySymbol="fa fa-star-o fa-2x"
+                     fullSymbol="fa fa-star fa-2x" readonly className='hotel-stars'/>
+            </div>
             <div className='hotel-description'>
               <span dangerouslySetInnerHTML={{__html: this.state.hotel.description}}></span>
             </div>
           </div>
           <div className='right'>
             <div className='actions-block'>
-              <Rater initialRating={parseFloat(this.state.hotel.googleRating)} emptySymbol="fa fa-star-o fa-2x"
-                     fullSymbol="fa fa-star fa-2x" readonly className='hotel-stars'/>
               <div className='phones'>
                 { this.state.hotel.phones.map((phone, i) => {
                   return (
