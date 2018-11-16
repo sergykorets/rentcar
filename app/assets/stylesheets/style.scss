@@ -316,14 +316,30 @@ h1 span {
   }
   .page-wraper {
     font-size: 22px;
+    font-weight: bold;
+    button, a, input, select {
+      font-size: 22px;
+    }
+    .room-calendar {
+      .rbc-calendar {
+        .rbc-toolbar {
+          font-size: 22px;
+          font-weight: bold;
+        }
+      }
+    }
     .room {
       p {
+        font-size: 22px;
+        font-weight: bold;
+      }
+      button {
         font-size: 22px;
       }
     }
   }
   .daterangepicker {
-    width: 75% !important;
+    width: 90% !important;
     .drp-calendar {
       max-width: none !important;
       .calendar-table {
@@ -334,6 +350,18 @@ h1 span {
           }
         }
       }
+    }
+    .drp-buttons {
+      button {
+        font-size: 22px !important;
+      }
+    }
+  }
+  .modal-dialog {
+    font-size: 22px;
+    font-weight: bold;
+    button, input, a, select {
+      font-size: 22px;
     }
   }
 }

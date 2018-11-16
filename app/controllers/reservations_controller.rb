@@ -166,9 +166,14 @@ class ReservationsController < ApplicationController
         end
       }
     else
+      rooms = if params[:floor] == 'all'
+        @hotel.rooms
+      else
+        @hotel.rooms.in_floor(params[:floor])
+      end
       render json: {
         success: true,
-        rooms: @hotel.rooms.in_floor(params[:floor]).each_with_object({}) {|room, hash|
+        rooms: rooms.each_with_object({}) {|room, hash|
           reservations = room.reservations.for_dates(room, params[:start_date].to_date, params[:end_date].to_date)
           hash[room.id] = {
             id: room.id,

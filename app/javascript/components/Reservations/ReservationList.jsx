@@ -248,7 +248,7 @@ export default class ReservationList extends React.Component {
                   <td>{reservation.places}</td>
                   <td>{reservation.startDate}</td>
                   <td>{reservation.endDate}</td>
-                  <td><button className='btn btn-dark' onClick={() => this.handleModal('editModal', r)}>Редагувати</button></td>
+                  <td><i className='fa fa-pencil' onClick={() => this.handleModal('editModal', r)}/></td>
                 </tr>
             )})}
           </tbody>
@@ -267,60 +267,78 @@ export default class ReservationList extends React.Component {
         { this.state.createModal &&
           <Modal isOpen={this.state.createModal} toggle={() => this.handleModal('createModal', '')}>
             <div className='reservation-form'>
-              <label>Номер</label>
-              <select className='form-control' value={this.state.newReservation.roomId} onChange={(e) => this.handleNewReservationChange('roomId', e.target.value)}>
-                { Object.keys(this.state.rooms).map((id, i) =>
-                  <option key={i} value={id}>Номер {this.state.rooms[id].number} - Кількість місць: {this.state.rooms[id].places}</option>
-                )}
-              </select>
-              <label>Ім'я</label>
-              <input type='text' className='form-control' value={this.state.newReservation.name} onChange={(e) => this.handleNewReservationChange('name', e.target.value)} />
-              <label>Телефон</label>
-              <input type='text' className='form-control' value={this.state.newReservation.phone} onChange={(e) => this.handleNewReservationChange('phone', e.target.value)} />
-              <label>Кількість місць</label>
-              <select className='form-control' value={this.state.newReservation.places} onChange={(e) => this.handleNewReservationChange('places', e.target.value)}>
-                { [...Array(parseInt(this.state.rooms[this.state.newReservation.roomId].places, 10))].map((e,i) =>
-                  <option key={i} value={i+1}>{i+1}</option>
-                )}
-              </select>
-              <DateRangePicker
-                onApply={this.handleNewReservationDateChange}
-                startDate={this.state.newReservation.startDate}
-                endDate={this.state.newReservation.endDate}>
-                <label>Дати</label>
-                <input type="text" className='form-control' value={`${this.state.newReservation.startDate} - ${this.state.newReservation.endDate}`}/>
-              </DateRangePicker>
-              <hr/>
+              <div className='form-group'>
+                <label>Номер</label>
+                <select className='form-control' value={this.state.newReservation.roomId} onChange={(e) => this.handleNewReservationChange('roomId', e.target.value)}>
+                  { Object.keys(this.state.rooms).map((id, i) =>
+                    <option key={i} value={id}>Номер {this.state.rooms[id].number} - Кількість місць: {this.state.rooms[id].places}</option>
+                  )}
+                </select>
+              </div>
+              <div className='form-group'>
+                <label>Ім'я</label>
+                <input type='text' className='form-control' value={this.state.newReservation.name} onChange={(e) => this.handleNewReservationChange('name', e.target.value)} />
+              </div>
+              <div className='form-group'>
+                <label>Телефон</label>
+                <input type='text' className='form-control' value={this.state.newReservation.phone} onChange={(e) => this.handleNewReservationChange('phone', e.target.value)} />
+              </div>
+              <div className='form-group'>
+                <label>Кількість місць</label>
+                <select className='form-control' value={this.state.newReservation.places} onChange={(e) => this.handleNewReservationChange('places', e.target.value)}>
+                  { [...Array(parseInt(this.state.rooms[this.state.newReservation.roomId].places, 10))].map((e,i) =>
+                    <option key={i} value={i+1}>{i+1}</option>
+                  )}
+                </select>
+              </div>
+              <div className='form-group'>
+                <DateRangePicker
+                  onApply={this.handleNewReservationDateChange}
+                  startDate={this.state.newReservation.startDate}
+                  endDate={this.state.newReservation.endDate}>
+                  <label>Дати</label>
+                  <input type="text" className='form-control' value={`${this.state.newReservation.startDate} - ${this.state.newReservation.endDate}`}/>
+                </DateRangePicker>
+              </div>
               <button className='btn btn-block reservation-btn' onClick={this.handleSubmitReservation}>Створити</button>
             </div>
           </Modal>}
         { this.state.editModal &&
           <Modal isOpen={this.state.editModal} toggle={() => this.handleModal('editModal', '')}>
             <div className='reservation-form'>
-              <i className='fa fa-trash-o float-right' onClick={() => this.deleteReservation(this.state.selectedReservation.id)} />
-              <label>Номер</label>
-              <select className='form-control' value={this.state.selectedReservation.roomId} onChange={(e) => this.handleReservationChange('roomId', e.target.value)}>
-                { Object.keys(this.state.rooms).map((id, i) =>
-                  <option key={i} value={id}>Номер {this.state.rooms[id].number} - Кількість місць: {this.state.rooms[id].places}</option>
-                )}
-              </select>
-              <label>Ім'я</label>
-              <input type='text' className='form-control' value={this.state.selectedReservation.name} onChange={(e) => this.handleReservationChange('name', e.target.value)} />
-              <label>Телефон</label>
-              <input type='text' className='form-control' value={this.state.selectedReservation.phone} onChange={(e) => this.handleReservationChange('phone', e.target.value)} />
-              <label>Кількість місць</label>
-              <select className='form-control' value={this.state.selectedReservation.places} onChange={(e) => this.handleReservationChange('places', e.target.value)}>
-                { [...Array(parseInt(this.state.rooms[this.state.selectedReservation.roomId].places, 10))].map((e,i) =>
-                  <option key={i} value={i+1}>{i+1}</option>
-                )}
-              </select>
-              <DateRangePicker onApply={this.handleReservationDateChange} startDate={this.state.selectedReservation.startDate} endDate={this.state.selectedReservation.endDate}>
-                <label>Дати</label>
-                <input type="text" className='form-control' value={`${this.state.selectedReservation.startDate} - ${this.state.selectedReservation.endDate}`}/>
-              </DateRangePicker>
+              <div className='form-group'>
+                <i className='fa fa-trash-o float-right' onClick={() => this.deleteReservation(this.state.selectedReservation.id)} />
+                <label>Номер</label>
+                <select className='form-control' value={this.state.selectedReservation.roomId} onChange={(e) => this.handleReservationChange('roomId', e.target.value)}>
+                  { Object.keys(this.state.rooms).map((id, i) =>
+                    <option key={i} value={id}>Номер {this.state.rooms[id].number} - Кількість місць: {this.state.rooms[id].places}</option>
+                  )}
+                </select>
+              </div>
+              <div className='form-group'>
+                <label>Ім'я</label>
+                <input type='text' className='form-control' value={this.state.selectedReservation.name} onChange={(e) => this.handleReservationChange('name', e.target.value)} />
+              </div>
+              <div className='form-group'>
+                <label>Телефон</label>
+                <input type='text' className='form-control' value={this.state.selectedReservation.phone} onChange={(e) => this.handleReservationChange('phone', e.target.value)} />
+              </div>
+              <div className='form-group'>
+                <label>Кількість місць</label>
+                <select className='form-control' value={this.state.selectedReservation.places} onChange={(e) => this.handleReservationChange('places', e.target.value)}>
+                  { [...Array(parseInt(this.state.rooms[this.state.selectedReservation.roomId].places, 10))].map((e,i) =>
+                    <option key={i} value={i+1}>{i+1}</option>
+                  )}
+                </select>
+              </div>
+              <div className='form-group'>
+                <DateRangePicker onApply={this.handleReservationDateChange} startDate={this.state.selectedReservation.startDate} endDate={this.state.selectedReservation.endDate}>
+                  <label>Дати</label>
+                  <input type="text" className='form-control' value={`${this.state.selectedReservation.startDate} - ${this.state.selectedReservation.endDate}`}/>
+                </DateRangePicker>
+              </div>
             </div>
-            <div>
-              <hr/>
+            <div className='form-group'>
               <button className='btn btn-block reservation-btn' onClick={this.handleSubmitEditReservation}>Редагувати</button>
             </div>
           </Modal>}

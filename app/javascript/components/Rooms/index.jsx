@@ -97,12 +97,18 @@ export default class Rooms extends React.Component {
                 <div key={i} className="col-lg-2 mb-4">
                   <div className='room'>
                     <i className='fa fa-trash-o float-right' onClick={() => this.deleteRoom(i)} />
-                    <label>Номер</label>
-                    <input type="number" min={1} className='form-control' value={room.number} onChange={(e) => this.handleRoomChange('number', i, e.target.value)} />
-                    <label>Поверх</label>
-                    <input type="number" min={1} className='form-control' value={room.floor} onChange={(e) => this.handleRoomChange('floor', i, e.target.value)} />
-                    <label>Кількість місць</label>
-                    <input type="number" min={1} className='form-control' value={room.places} onChange={(e) => this.handleRoomChange('places', i, e.target.value)} />
+                    <div className='form-group'>
+                      <label>Номер</label>
+                      <input type="number" min={1} className='form-control' value={room.number} onChange={(e) => this.handleRoomChange('number', i, e.target.value)} />
+                    </div>
+                    <div className='form-group'>
+                      <label>Поверх</label>
+                      <input type="number" min={1} className='form-control' value={room.floor} onChange={(e) => this.handleRoomChange('floor', i, e.target.value)} />
+                    </div>
+                    <div className='form-group'>
+                      <label>Кількість місць</label>
+                      <input type="number" min={1} className='form-control' value={room.places} onChange={(e) => this.handleRoomChange('places', i, e.target.value)} />
+                    </div>
                   </div>
                 </div>
               )}})}
