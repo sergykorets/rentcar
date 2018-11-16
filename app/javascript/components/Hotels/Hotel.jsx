@@ -128,7 +128,6 @@ export default class Hotel extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     const images = this.state.hotel.photos.map((photo) => {
       return (
         { original: photo,

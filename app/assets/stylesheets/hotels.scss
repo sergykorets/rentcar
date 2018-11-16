@@ -547,7 +547,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 30px;
   }
   .top-page .btn-group .input-range__slider {
-    //display: none;
     margin-top: -2.45rem;
     border-radius: 50%;
     height: 3rem;
@@ -560,6 +559,19 @@ h1, h2, h3, h4, h5, h6 {
     height: 2rem;
   }
   .hotel .body-top .hotel-price {
+    font-size: 22px;
+  }
+  .top-page .container label {
+    font-size: 22px;
+  }
+  .top-page .container .labels button {
+    font-size: 22px;
+  }
+  .top-page .container .dropdown-toggle {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .top-page .container .map-btn {
     font-size: 22px;
   }
 }

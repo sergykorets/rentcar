@@ -74,7 +74,6 @@ export default class Hotels extends React.Component {
   }
 
   render() {
-    console.log('state', this.state)
     let hotels = this.state.hotels.filter(h => h.name.toLowerCase().includes(this.state.nameSearch.toLowerCase()))
       .filter(h => parseFloat(h.googleRating) >= parseFloat(this.state.ratingSearch ? this.state.ratingSearch : 0))
     if (!this.props.cafe) {
@@ -124,7 +123,7 @@ export default class Hotels extends React.Component {
                         {this.state.sortOrder === '' && 'Порядок'}
                       </DropdownToggle>
                       <DropdownMenu>
-                        <DropdownItem onClick={() => this.handleSearch('sortOrder', '')}>Не впорядковувати</DropdownItem>
+                        <DropdownItem onClick={() => this.handleSearch('sortOrder', '')}>Стандартний</DropdownItem>
                         <DropdownItem onClick={() => this.handleSearch('sortOrder', 'increasing')}>За зростанням</DropdownItem>
                         <DropdownItem onClick={() => this.handleSearch('sortOrder', 'decreasing')}>За спаданням</DropdownItem>
                       </DropdownMenu>
@@ -137,7 +136,7 @@ export default class Hotels extends React.Component {
                     <label>Ціна</label>
                     <ButtonDropdown className='form-control' isOpen={this.state.dropdownOpen} toggle={() => this.toggleDropdown('dropdownOpen')}>
                       <DropdownToggle color='white' caret>
-                        {`${this.state.price.min} UAH - ${this.state.price.max} UAH`}
+                        {`${this.state.price.min} - ${this.state.price.max} UAH`}
                       </DropdownToggle>
                       <DropdownMenu className='price-dropdown'>
                         <InputRange
