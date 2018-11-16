@@ -215,7 +215,7 @@ export default class Room extends React.Component {
   render() {
     const localizer = BigCalendar.momentLocalizer(moment)
     return (
-      <div className="container">
+      <div className="container page-wraper">
         <NotificationContainer/>
         <h3 className='text-center'>Розклад поселення (Номер {this.state.room.number})</h3>
          <hr/>

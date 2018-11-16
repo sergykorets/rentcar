@@ -229,7 +229,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 5px;
     .body-top {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
       h1 {
         font-size: 17px;
@@ -541,9 +541,26 @@ h1, h2, h3, h4, h5, h6 {
   }
   .top-page .form-group .price-dropdown {
     width: 100%;
+    padding-bottom: 45px;
   }
   .whole-page {
     margin-top: 30px;
+  }
+  .top-page .btn-group .input-range__slider {
+    //display: none;
+    margin-top: -2.45rem;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+  }
+  .top-page .btn-group .input-range__track {
+    height: 100%;
+  }
+  .top-page .btn-group .input-range {
+    height: 2rem;
+  }
+  .hotel .body-top .hotel-price {
+    font-size: 22px;
   }
 }
 @media (max-width: 1200px) {
@@ -628,4 +645,12 @@ h1, h2, h3, h4, h5, h6 {
 //}
 .dropzone {
   cursor: pointer;
+}
+.hotel-price {
+  font-size: 16px;
+  font-weight: 500;
+  color: #4a4a4a;
+}
+.top-page .btn-group .input-range__label--value {
+  display: none;
 }

@@ -131,7 +131,7 @@ export default class Hotel extends React.Component {
         { original: photo,
           thumbnail: photo})})
     return (
-      <div className="container">
+      <div className="container page-wraper">
         <NotificationContainer/>
         { images.length > 0 &&
           <Fragment>

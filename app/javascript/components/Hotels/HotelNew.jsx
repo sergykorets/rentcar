@@ -8,7 +8,7 @@ export default class HotelNew extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container page-wraper">
         <h2>Додати заклад</h2>
         <Form />
       </div>

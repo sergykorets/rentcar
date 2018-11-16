@@ -166,7 +166,7 @@ export default class Reservations extends React.Component {
 
   render() {
     return (
-      <div className="container reservations">
+      <div className="container reservations page-wraper">
         <NotificationContainer/>
         <h3 className='text-center'>Наявність вільних номерів</h3>
         <div className='row'>

@@ -12,7 +12,7 @@ export default class HotelEdit extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container page-wraper">
         <h2>Редагувати заклад</h2>
         <Form hotel={this.state.hotel} />
       </div>

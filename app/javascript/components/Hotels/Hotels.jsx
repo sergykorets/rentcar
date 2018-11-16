@@ -74,11 +74,19 @@ export default class Hotels extends React.Component {
   }
 
   render() {
-    console.log(this.state)
-    const hotels = this.state.hotels.filter(h => h.name.toLowerCase().includes(this.state.nameSearch.toLowerCase()))
+    console.log('state', this.state)
+    let hotels = this.state.hotels.filter(h => h.name.toLowerCase().includes(this.state.nameSearch.toLowerCase()))
       .filter(h => parseFloat(h.googleRating) >= parseFloat(this.state.ratingSearch ? this.state.ratingSearch : 0))
-      .filter(h => parseFloat(h.price ? h.price : 999999) >= parseFloat(this.state.price.min))
-      .filter(h => parseFloat(h.price ? h.price : 0) <= parseFloat(this.state.price.max))
+    if (!this.props.cafe) {
+      hotels = hotels.filter(h => parseFloat(h.price ? h.price : 999999) >= parseFloat(this.state.price.min))
+        .filter(h => parseFloat(h.price ? h.price : 0) <= parseFloat(this.state.price.max))
+    }
+    hotels = hotels.sort((a, b) => (this.state.sortType && this.state.sortType === 'googleRating' ? (((this.state.sortType === 'googleRating' && this.state.sortOrder === 'increasing') ?
+      parseFloat(a.googleRating) - parseFloat(b.googleRating) : (parseFloat(b.googleRating) - parseFloat(a.googleRating)))) : parseFloat(a.position) - parseFloat(b.position)))
+    if (this.state.sortType === 'price') {
+      hotels = hotels.sort((a, b) => (this.state.sortType && this.state.sortType === 'price' ? (((this.state.sortType === 'price' && this.state.sortOrder === 'increasing') ?
+        (parseFloat(a.price) - parseFloat(b.price)) : (parseFloat(b.price) - parseFloat(a.price)))) : parseFloat(a.position) - parseFloat(b.position)))
+    }
     return (
       <div className="whole-page" onMouseMove={this._onMouseMove}>
         <div className='top-page'>
@@ -106,7 +114,7 @@ export default class Hotels extends React.Component {
                       <DropdownMenu>
                         <DropdownItem onClick={() => this.handleSearch('sortType', '')}>Не сортувати</DropdownItem>
                         <DropdownItem onClick={() => this.handleSearch('sortType', 'googleRating')}>За рейтингом</DropdownItem>
-                        <DropdownItem onClick={() => this.handleSearch('sortType', 'price')}>За ціною</DropdownItem>
+                        { !this.props.cafe && <DropdownItem onClick={() => this.handleSearch('sortType', 'price')}>За ціною</DropdownItem>}
                       </DropdownMenu>
                     </ButtonDropdown>
                     <ButtonDropdown isOpen={this.state.sortOrderOpen} toggle={() => this.toggleDropdown('sortOrderOpen')}>
@@ -125,21 +133,22 @@ export default class Hotels extends React.Component {
                   <input type='text' placeholder='Пошук по назві закладу' className='form-control' onChange={(e) => this.handleSearch('nameSearch', e.target.value)} value={this.state.nameSearch} />
                 </div>
                 { !this.props.cafe &&
-                <div className='col-lg-3'>
-                  <label>Ціна</label>
-                  <ButtonDropdown className='form-control' isOpen={this.state.dropdownOpen} toggle={() => this.toggleDropdown('dropdownOpen')}>
-                    <DropdownToggle color='white' caret>
-                      {`${this.state.price.min} UAH - ${this.state.price.max} UAH`}
-                    </DropdownToggle>
-                    <DropdownMenu className='price-dropdown'>
-                      <InputRange
-                        maxValue={1005}
-                        minValue={0}
-                        value={this.state.price}
-                        onChange={value => this.setState({ price: value })} />
-                    </DropdownMenu>
-                  </ButtonDropdown>
-                </div>}
+                  <div className='col-lg-3'>
+                    <label>Ціна</label>
+                    <ButtonDropdown className='form-control' isOpen={this.state.dropdownOpen} toggle={() => this.toggleDropdown('dropdownOpen')}>
+                      <DropdownToggle color='white' caret>
+                        {`${this.state.price.min} UAH - ${this.state.price.max} UAH`}
+                      </DropdownToggle>
+                      <DropdownMenu className='price-dropdown'>
+                        <InputRange
+                          maxValue={this.props.maxPrice + 50}
+                          minValue={0}
+                          step={10}
+                          value={this.state.price}
+                          onChange={value => this.setState({ price: value })} />
+                      </DropdownMenu>
+                    </ButtonDropdown>
+                  </div>}
                 <div className='col-lg-3 filters'>
                   <label>Рейтинг</label>
                   <select className='form-control' onChange={(e) => this.handleSearch('ratingSearch', e.target.value)} value={this.state.ratingSearch} >
@@ -156,34 +165,13 @@ export default class Hotels extends React.Component {
                   <label>Карта</label>
                   <button onClick={this.handleModal} className='btn map-btn'>{hotels.length} шт</button>
                 </div>
-                {/*<div className='col-lg-3'>*/}
-                  {/*<div className='row'>*/}
-                    {/*<div className='col-lg-6 filters'>*/}
-                      {/*<select className='form-control' onChange={(e) => this.handleSearch('sortType', e.target.value)} value={this.state.sortType} >*/}
-                        {/*<option value=''>Сортування</option>*/}
-                        {/*{ !this.props.cafe && <option value='price'>За ціною</option>}*/}
-                        {/*<option value='googleRating'>За рейтингом</option>*/}
-                      {/*</select>*/}
-                    {/*</div>*/}
-                    {/*<div className='col-lg-6 filters'>*/}
-                      {/*<select className='form-control' onChange={(e) => this.handleSearch('sortOrder', e.target.value)} value={this.state.sortOrder} >*/}
-                        {/*<option value=''>Порядок</option>*/}
-                        {/*<option value='increasing'>Зростаючий</option>*/}
-                        {/*<option value='decreasing'>Спадаючий</option>*/}
-                      {/*</select>*/}
-                    {/*</div>*/}
-                  {/*</div>*/}
-                {/*</div>*/}
               </div>
             </div>
           </div>
         </div>
         <div className='container'>
           <Masonry>
-            { hotels.sort((a, b) => (this.state.sortType && this.state.sortType === 'googleRating' ? (((this.state.sortType === 'googleRating' && this.state.sortOrder === 'increasing') ?
-                parseFloat(a.googleRating) - parseFloat(b.googleRating) : (parseFloat(b.googleRating) - parseFloat(a.googleRating)))) : parseFloat(a.position) - parseFloat(b.position)))
-              .sort((a, b) => (this.state.sortType && this.state.sortType === 'price' ? (((this.state.sortType === 'price' && this.state.sortOrder === 'increasing') ?
-                (parseFloat(a.price) - parseFloat(b.price)) : (parseFloat(b.price) - parseFloat(a.price)))) : parseFloat(a.position) - parseFloat(b.position))).map((hotel, index) => {
+            { hotels.map((hotel, index) => {
                 return (
                   <div key={index} className="hotel">
                     <div className="card">
@@ -198,7 +186,7 @@ export default class Hotels extends React.Component {
                           { hotel.price &&
                             <Fragment>
                               <span>
-                                <span>{hotel.price} UAH</span>
+                                <span className='hotel-price'>{hotel.price} UAH</span>
                                 <i className="fa fa-info-circle" id={`TooltipExample${index}`}></i>
                               </span>
                               <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].price} target={`TooltipExample${index}`} toggle={() => this.toggle(index, 'price')}>

@@ -22,7 +22,7 @@ export default class Hotel extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container page-wraper">
         <div className='nearbys'>
           <img src="/images/schema.jpg" />
         </div>

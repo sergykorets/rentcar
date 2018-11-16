@@ -200,7 +200,7 @@ export default class ReservationList extends React.Component {
 
   render() {
     return (
-      <div className="container reservation-list">
+      <div className="container reservation-list page-wraper">
         <NotificationContainer/>
         <h3 className='text-center'>Список бронювань на вибрані дати</h3>
         <div className='row'>

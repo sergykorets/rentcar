@@ -82,7 +82,7 @@ export default class Rooms extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container page-wraper">
         <NotificationContainer/>
         <h3 className='text-center'>Створення номерів в готелі</h3>
         <div className='form-group'>
