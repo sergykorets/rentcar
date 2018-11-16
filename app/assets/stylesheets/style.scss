@@ -314,6 +314,28 @@ h1 span {
   .container .filters-wrap {
     align-items: normal;
   }
+  .page-wraper {
+    font-size: 22px;
+    .room {
+      p {
+        font-size: 22px;
+      }
+    }
+  }
+  .daterangepicker {
+    width: 75% !important;
+    .drp-calendar {
+      max-width: none !important;
+      .calendar-table {
+        .table-condensed {
+          td, th {
+            font-size: 22px;
+            padding: 10px;
+          }
+        }
+      }
+    }
+  }
 }
 .introduction {
   display: flex;
