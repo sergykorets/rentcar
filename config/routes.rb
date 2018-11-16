@@ -7,6 +7,7 @@ Rails.application.routes.draw do
                                        sessions: 'sessions',
                                        omniauth_callbacks: 'omniauth_callbacks' }
   resources :hotels do
+    resources :reviews, only: [:create, :destroy]
     resources :rooms do
       get :calendar, on: :collection
       get :reservation_list, on: :collection

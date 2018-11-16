@@ -52,6 +52,7 @@ export default class Hotel extends React.Component {
       },
       success: (resp) => {
         if (resp.success) {
+          NotificationManager.success('Відгук залишено')
           window.location.href = this.state.hotel.slug
         } else {
           window.location.href = resp.signInPath
@@ -66,6 +67,7 @@ export default class Hotel extends React.Component {
         url: `/hotels/${this.state.hotel.slug}/reviews/${id}.json`,
         type: 'DELETE',
         success: (resp) => {
+          NotificationManager.success('Відгук видалено')
           window.location.reload()
         }
       });
@@ -126,6 +128,7 @@ export default class Hotel extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     const images = this.state.hotel.photos.map((photo) => {
       return (
         { original: photo,

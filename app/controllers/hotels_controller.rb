@@ -154,7 +154,7 @@ class HotelsController < ApplicationController
       b = @hotel.reviews.order(created_at: :desc).map do |review|
         { id: review.id,
           author: review.user.name || review.user.email,
-          avatar: review.user.remote_avatar_url || review.user.avatar,
+          avatar: review.user.remote_avatar_url.present? ? review.user.remote_avatar_url : review.user.avatar,
           rating: review.rating,
           text: review.comment,
           destroyable: current_user == review.user,
