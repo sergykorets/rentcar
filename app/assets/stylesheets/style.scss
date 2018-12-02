@@ -372,8 +372,9 @@ h1 span {
   display: flex;
   margin-bottom: 20px;
   #left-ads {
-    width: 67.67%;
-    margin-right: 20px;
+    width: 100%;
+    //width: 67.67%;
+    //margin-right: 20px;
   }
   & > a {
     width: 32.33%;

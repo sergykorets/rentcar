@@ -92,7 +92,7 @@ export default class Hotels extends React.Component {
           <div className='container'>
             <div className="top-banners">
               <a id='left-ads' href="http://ratrak.org.ua/" target="_blank"><img src="/images/freeride.jpg" /></a>
-              <a href="/skipass"><img src="/images/november_square.jpg" /></a>
+              {/*<a href="/skipass"><img src="/images/november_square.jpg" /></a>*/}
             </div>
             {/*<div className='introduction'>*/}
               {/*/!*<p>Основою цього сайту є <strong><b>Google Maps API</b></strong>. Готелі, кафе, фото та відгуки до них автоматично оновлюються разом з тим, що є на Google картах. Місцезнаходження закладів*!/*/}
