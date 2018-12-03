@@ -244,7 +244,7 @@ export default class PendingReservations extends React.Component {
               </div>
             </div>
             <ModalFooter>
-              <button className='btn btn-block reservation-btn' onClick={this.handleSubmitEditReservation}>Редагувати</button>
+              <button className='btn btn-block btn-outline-info reservation-btn' onClick={this.handleSubmitEditReservation}>Редагувати</button>
             </ModalFooter>
           </Modal>}
       </div>

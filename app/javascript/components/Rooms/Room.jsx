@@ -289,7 +289,7 @@ export default class Room extends React.Component {
               </div>
             </div>
             <ModalFooter>
-              <button className='btn btn-block reservation-btn' onClick={this.handleSubmitReservation}>Створити</button>
+              <button className='btn btn-block btn-outline-info reservation-btn' onClick={this.handleSubmitReservation}>Створити</button>
             </ModalFooter>
           </Modal>}
         { this.state.editModal &&
@@ -327,7 +327,7 @@ export default class Room extends React.Component {
               </div>
             </div>
             <ModalFooter>
-              <button className='btn btn-block reservation-btn' onClick={this.handleSubmitEditReservation}>Редагувати</button>
+              <button className='btn btn-block btn-outline-info reservation-btn' onClick={this.handleSubmitEditReservation}>Редагувати</button>
             </ModalFooter>
           </Modal>}
       </div>
