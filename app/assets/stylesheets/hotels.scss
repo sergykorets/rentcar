@@ -575,13 +575,14 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 22px;
   }
   .DateRangePicker_picker, .DayPicker_transitionContainer, .DayPicker, .DayPicker_focusRegion {
-    width: 510px !important;
-    height: 525px !important;
+    width: 445px !important;
+    height: 535px !important;
   }
   .DayPicker_weekHeader {
-    width: 510px !important;
+    width: 445px !important;
     li {
-      width: 66px !important;
+      width: 57px !important;
+      font-size: 22px;
     }
   }
   .CalendarMonth_caption {

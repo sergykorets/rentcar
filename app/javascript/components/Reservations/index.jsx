@@ -163,8 +163,8 @@ export default class Reservations extends React.Component {
         type: 'DELETE',
         data: {
           floor: this.state.floor,
-          start_date: this.state.startDate,
-          end_date: this.state.endDate
+          start_date: this.state.startDate.format('DD.MM.YYYY'),
+          end_date: this.state.endDate.format('DD.MM.YYYY')
         }
       }).then((resp) => {
         NotificationManager.success('Бронювання видалено');
