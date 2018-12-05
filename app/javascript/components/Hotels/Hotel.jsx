@@ -8,8 +8,7 @@ import moment from 'moment'
 import { Modal, ModalHeader, ModalFooter, ModalBody, Tooltip } from 'reactstrap';
 import { Map, Marker, Popup, TileLayer, GeoJSON } from 'react-leaflet';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
-import 'react-dates/initialize';
-import { DateRangePicker } from 'react-dates';
+import AirBnbPicker from "../common/AirBnbPicker";
 
 export default class Hotel extends React.Component {
   constructor(props) {
@@ -31,7 +30,7 @@ export default class Hotel extends React.Component {
       tooltips: {},
       reservation: {
         roomId: '',
-        name: '',
+        name: this.props.userName,
         phone: '',
         places: '',
         startDate: null,
@@ -168,10 +167,10 @@ export default class Hotel extends React.Component {
   handleNewReservationDateChange = ({startDate, endDate}) => {
     this.setState({
       ...this.state,
-      focusedInput: this.state.focusedInput === 'startDate' ? 'endDate' : this.state.reservation.startDate ? null : 'startDate',
       reservation: {
         ...this.state.reservation,
-        [this.state.focusedInput]: this.state.focusedInput === 'startDate' ? (moment(startDate).isValid() ? moment(startDate) : null) : (moment(endDate).isValid() ? moment(endDate) : null)
+        startDate: startDate ? startDate.format('DD.MM.YYYY') : null,
+        endDate: endDate ? endDate.format('DD.MM.YYYY') : null
       }
     })
     if (startDate && endDate) {
@@ -222,8 +221,8 @@ export default class Hotel extends React.Component {
           phone: this.state.reservation.phone,
           description: this.state.reservation.description,
           places: 'all',
-          start_date: this.state.reservation.startDate.format('YYYY-MM-DD'),
-          end_date: this.state.reservation.endDate.format('YYYY-MM-DD'),
+          start_date: this.state.reservation.startDate,
+          end_date: this.state.reservation.endDate,
         }
       }
     }).then((resp) => {
@@ -254,10 +253,9 @@ export default class Hotel extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     const images = this.state.hotel.photos.map((photo) => {return ({ original: photo, thumbnail: photo})})
     const BAD_DATES = this.convertedDates()
-    const isDayBlocked = this.state.focusedInput && this.state.focusedInput === 'endDate' ? day => false : day => BAD_DATES.filter(d => d.isSame(day, 'day')).length > 0;
+    const isDayBlocked = day => BAD_DATES.filter(d => d.isSame(day, 'day')).length > 0;
     return (
       <div className="container page-wraper">
         <NotificationContainer/>
@@ -319,7 +317,7 @@ export default class Hotel extends React.Component {
                 { this.state.hotel.allowBooking &&
                   <button className='btn btn-warning' onClick={() => this.handleModal('bookingModal')}>Бронювати</button>}
                 { this.state.hotel.site &&
-                  <a className='btn btn-default' href={this.state.hotel.site} target="_blank">Офіційний сайт</a>}
+                  <a className='btn btn-outline-danger' href={this.state.hotel.site} target="_blank">Офіційний сайт</a>}
                 { this.state.hotel.location &&
                   <a className='btn btn-dark' href={this.state.hotel.location} target="_blank">3D карта</a>}
                 { this.state.hotel.editable &&
@@ -521,21 +519,13 @@ export default class Hotel extends React.Component {
             <div className='reservation-form'>
               <div className='form-group'>
                 <label>Дати</label>
-                <DateRangePicker
-                  onPrevMonthClick={this.getBlockedDates}
-                  onNextMonthClick={this.getBlockedDates}
-                  startDatePlaceholderText='Заїзд'
-                  endDatePlaceholderText='Виїзд'
-                  numberOfMonths={1}
+                <AirBnbPicker
+                  getBlockedDates={this.getBlockedDates}
+                  hotelId={this.state.hotelId}
+                  onPickerApply={this.handleNewReservationDateChange}
                   startDate={this.state.reservation.startDate}
-                  startDateId="your_unique_start_date_id"
                   endDate={this.state.reservation.endDate}
-                  endDateId="your_unique_end_date_id"
-                  onDatesChange={this.handleNewReservationDateChange}
-                  focusedInput={this.state.focusedInput}
-                  onFocusChange={focusedInput => this.setState({ focusedInput })}
-                  isDayBlocked={isDayBlocked}
-                />
+                  isDayBlocked={isDayBlocked}/>
               </div>
               { this.state.reservation.startDate && this.state.reservation.endDate && this.state.availableRooms.length < 1 &&
                 <div className='no-rooms'>

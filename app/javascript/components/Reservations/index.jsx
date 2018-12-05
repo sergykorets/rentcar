@@ -1,10 +1,8 @@
 import React, {Fragment} from 'react';
 import moment from 'moment'
-import RangePicker from 'bootstrap-daterangepicker';
-import DateRangePicker from 'react-bootstrap-daterangepicker';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
-import Rooms from "../Rooms";
+import AirBnbPicker from "../common/AirBnbPicker";
 
 export default class Reservations extends React.Component {
   constructor(props) {
@@ -16,8 +14,8 @@ export default class Reservations extends React.Component {
       hotelId: this.props.hotelId,
       floors: this.props.floors,
       rooms: this.props.rooms,
-      startDate: moment(new Date).format('DD.MM.YYYY'),
-      endDate: moment(new Date).add(1, 'days').format('DD.MM.YYYY'),
+      startDate: moment(new Date),
+      endDate: moment(new Date).add(1, 'days'),
       floor: 'all',
       name: '',
       phone: '',
@@ -29,17 +27,17 @@ export default class Reservations extends React.Component {
     }
   }
 
-  handleDateChange = (event, picker) => {
+  handleDateChange = ({startDate, endDate}) => {
     $.ajax({
       url: `/hotels/${this.props.hotelId}/reservations/dates.json`,
       type: 'GET',
       data: {
         floor: this.state.floor,
-        start_date: picker.startDate.format('DD.MM.YYYY'),
-        end_date: picker.endDate.format('DD.MM.YYYY')
+        start_date: startDate ? startDate.format('DD.MM.YYYY') : null,
+        end_date: endDate ? endDate.format('DD.MM.YYYY') : null
       },
       success: (resp) => {
-        this.setState({startDate: picker.startDate.format('DD.MM.YYYY'), endDate: picker.endDate.format('DD.MM.YYYY'), rooms: resp.rooms})
+        this.setState({startDate: startDate, endDate: endDate, rooms: resp.rooms})
       }
     });
   }
@@ -49,11 +47,15 @@ export default class Reservations extends React.Component {
   }
 
   handleModal = (modal, id) => {
-    this.setState({
-      [modal]: !this.state[modal],
-      selectedRoomId: id,
-      places: id ? this.state.rooms[id].places : 1
-    });
+    if (this.state.startDate && this.state.endDate) {
+      this.setState({
+        [modal]: !this.state[modal],
+        selectedRoomId: id,
+        places: id ? this.state.rooms[id].places : 1
+      })
+    } else {
+      NotificationManager.error('Задайте дати заїзду і виїзду', 'Неможливо перейти до бронювань');
+    }
   }
 
   handleFloorChange = (floor) => {
@@ -62,8 +64,8 @@ export default class Reservations extends React.Component {
       type: 'GET',
       data: {
         floor: floor,
-        start_date: this.state.startDate,
-        end_date: this.state.endDate
+        start_date: this.state.startDate.format('DD.MM.YYYY'),
+        end_date: this.state.endDate.format('DD.MM.YYYY')
       },
       success: (resp) => {
         this.setState({floor: floor, rooms: resp.rooms})
@@ -85,8 +87,8 @@ export default class Reservations extends React.Component {
           status: 'approved',
           description: this.state.description,
           places: this.state.places,
-          start_date: this.state.startDate,
-          end_date: this.state.endDate
+          start_date: this.state.startDate.format('DD.MM.YYYY'),
+          end_date: this.state.endDate.format('DD.MM.YYYY')
         }
       }
     }).then((resp) => {
@@ -141,8 +143,8 @@ export default class Reservations extends React.Component {
         room: {
           reservations_attributes: this.state.rooms[this.state.selectedRoomId].reservations
         },
-        start_date: this.state.startDate,
-        end_date: this.state.endDate
+        start_date: this.state.startDate.format('DD.MM.YYYY'),
+        end_date: this.state.endDate.format('DD.MM.YYYY')
       }
     }).then((resp) => {
       if (resp.success) {
@@ -177,12 +179,13 @@ export default class Reservations extends React.Component {
         <NotificationContainer/>
         <h3 className='text-center'>Наявність вільних номерів</h3>
         <div className='row'>
-          <div className='col-lg-4'>
+          <div className='col-lg-6'>
             <div className='form-group'>
-              <DateRangePicker autoApply onApply={this.handleDateChange} startDate={this.state.startDate} endDate={this.state.endDate}>
-                <label>Дати перебування</label>
-                <input readOnly type="text" className='form-control' value={`${this.state.startDate} - ${this.state.endDate}`}/>
-              </DateRangePicker>
+              <label>Дати перебування</label>
+              <AirBnbPicker
+                onPickerApply={this.handleDateChange}
+                startDate={this.state.startDate}
+                endDate={this.state.endDate} />
             </div>
           </div>
           <div className='col-lg-2'>
@@ -225,7 +228,7 @@ export default class Reservations extends React.Component {
           <Modal isOpen={this.state.createModal} toggle={() => this.handleModal('createModal', '')}>
             <ModalHeader className='text-center' toggle={() => this.handleModal('createModal', '')}>
               <Fragment>Створення бронювання (Номер {this.state.rooms[this.state.selectedRoomId].number})</Fragment><br/>
-              <Fragment>{`від ${this.state.startDate} до ${this.state.endDate}`}</Fragment>
+              <Fragment>{`від ${this.state.startDate.format('DD.MM.YYYY')} до ${this.state.endDate.format('DD.MM.YYYY')}`}</Fragment>
             </ModalHeader>
             <div className='reservation-form'>
               <div className='form-group'>
@@ -257,7 +260,7 @@ export default class Reservations extends React.Component {
           <Modal isOpen={this.state.editModal} toggle={() => this.handleModal('editModal', '')}>
             <ModalHeader className='text-center' toggle={() => this.handleModal('editModal', '')}>
               <Fragment>Номер {this.state.rooms[this.state.selectedRoomId].number}</Fragment><br/>
-              <Fragment>Поточні бронювання {`від ${this.state.startDate} до ${this.state.endDate}`}</Fragment>
+              <Fragment>Поточні бронювання {`від ${this.state.startDate.format('DD.MM.YYYY')} до ${this.state.endDate.format('DD.MM.YYYY')}`}</Fragment>
             </ModalHeader>
             { Object.keys(this.state.rooms[this.state.selectedRoomId].reservations).map((r, i) => {
               const reservation = this.state.rooms[this.state.selectedRoomId].reservations[r]
@@ -286,7 +289,10 @@ export default class Reservations extends React.Component {
                   </div>
                   <div className='form-group'>
                     <label>Дати</label>
-                    <input readOnly type="text" className='form-control' value={`${reservation.startDate} - ${reservation.endDate}`}/>
+                    <AirBnbPicker
+                      disabled={true}
+                      startDate={reservation.startDate}
+                      endDate={reservation.endDate} />
                   </div>
                 </div>
               )})}

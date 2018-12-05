@@ -3,8 +3,8 @@ import BigCalendar from 'react-big-calendar'
 import createSlot from 'react-tackle-box/Slot'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
-import DateRangePicker from 'react-bootstrap-daterangepicker';
 import moment from 'moment'
+import AirBnbPicker from "../common/AirBnbPicker";
 
 export default class Room extends React.Component {
   constructor(props) {
@@ -22,24 +22,44 @@ export default class Room extends React.Component {
         name: '',
         phone: '',
         places: this.props.room.places,
-        startDate: moment(new Date).format('DD.MM.YYYY'),
-        endDate: moment(new Date).add(1, 'days').format('DD.MM.YYYY'),
+        startDate: null,
+        endDate: null,
         roomId: Object.keys(this.props.rooms)[0]
       },
       editModal: false,
-      createModal: false
+      createModal: false,
+      blockedDates: []
     };
   }
 
   handleSelectReservation = (event, e) => {
-    this.setState({selectedReservation: event, editModal: true})
+    $.ajax({
+      url: `/hotels/${this.state.hotelId}/booked_dates.json?date=${this.state.selectedMonth}&room_id=${this.state.room.id}&reservation_id=${event.id}`,
+      type: 'GET'
+    }).then((resp) =>
+      this.setState({
+        blockedDates: resp.blockedDates,
+        selectedReservation: event,
+        editModal: true
+      })
+    )
   }
 
   handleModal = (modal) => {
-    this.setState({
-      ...this.state,
-      [modal]: !this.state[modal],
-    });
+    if (modal === 'createModal') {
+      $.ajax({
+        url: `/hotels/${this.state.hotelId}/booked_dates.json?date=${this.state.selectedMonth}&room_id=${this.state.room.id}`,
+        type: 'GET'
+      }).then((resp) =>
+        this.setState({
+          ...this.state,
+          blockedDates: resp.blockedDates,
+          [modal]: !this.state[modal],
+        })
+      )
+    } else {
+      this.setState({[modal]: !this.state[modal]})
+    }
   }
 
   handleReservationChange = (field, value) => {
@@ -96,8 +116,8 @@ export default class Room extends React.Component {
           phone: this.state.selectedReservation.phone,
           places: this.state.selectedReservation.places,
           description: this.state.selectedReservation.description,
-          start_date: this.state.selectedReservation.start instanceof moment ? this.state.selectedReservation.start.format('DD.MM.YYYY') : this.state.selectedReservation.start,
-          end_date: this.state.selectedReservation.end instanceof moment ? this.state.selectedReservation.end.format('DD.MM.YYYY') : this.state.selectedReservation.end
+          start_date: this.state.selectedReservation.startDate,
+          end_date: this.state.selectedReservation.endDate
         }
       }
     }).then((resp) => {
@@ -117,24 +137,24 @@ export default class Room extends React.Component {
     });
   }
 
-  handleDateChange = (event, picker) => {
+  handleDateChange = ({startDate, endDate}) => {
     this.setState({
       ...this.state,
       selectedReservation: {
         ...this.state.selectedReservation,
-        start: picker.startDate,
-        end: picker.endDate
+        startDate: startDate ? startDate.format('DD.MM.YYYY') : null,
+        endDate: endDate ? endDate.format('DD.MM.YYYY') : null
       }
     })
   }
 
-  handleNewReservationDateChange = (event, picker) => {
+  handleNewReservationDateChange = ({startDate, endDate}) => {
     this.setState({
       ...this.state,
       newReservation: {
         ...this.state.newReservation,
-        startDate: picker.startDate.format('DD.MM.YYYY'),
-        endDate: picker.endDate.format('DD.MM.YYYY')
+        startDate: startDate ? startDate.format('DD.MM.YYYY') : null,
+        endDate: endDate ? endDate.format('DD.MM.YYYY') : null
       }
     })
   }
@@ -208,8 +228,8 @@ export default class Room extends React.Component {
             name: '',
             phone: '',
             places: this.props.room.places,
-            startDate: moment(new Date).format('DD.MM.YYYY'),
-            endDate: moment(new Date).add(1, 'days').format('DD.MM.YYYY'),
+            startDate: null,
+            endDate: null,
             roomId: Object.keys(this.state.rooms)[0]
           },
           createModal: false
@@ -220,8 +240,24 @@ export default class Room extends React.Component {
     });
   }
 
+  convertedDates = () => {
+    const dates = this.state.blockedDates.map((date) => {
+      return moment(date)
+    })
+    return dates
+  }
+
+  getBlockedDates = (date) => {
+    $.ajax({
+      url: `/hotels/${this.state.hotelId}/booked_dates.json?date=${date.format('YYYY-MM-DD')}&room_id=${this.state.room.id}&reservation_id=${this.state.editModal ? this.state.selectedReservation.id : ''}`,
+      type: 'GET'
+    }).then((resp) => this.setState({ blockedDates: resp.blockedDates }))
+  }
+
   render() {
     const localizer = BigCalendar.momentLocalizer(moment)
+    const BAD_DATES = this.convertedDates()
+    const isDayBlocked = day => BAD_DATES.filter(d => d.isSame(day, 'day')).length > 0;
     return (
       <div className="container page-wraper">
         <NotificationContainer/>
@@ -258,6 +294,16 @@ export default class Room extends React.Component {
             </ModalHeader>
             <div className='reservation-form'>
               <div className='form-group'>
+                <label>Дати</label>
+                <AirBnbPicker
+                  initialVisibleMonth={() => moment(this.state.selectedMonth)}
+                  onPickerApply={this.handleNewReservationDateChange}
+                  startDate={this.state.newReservation.startDate}
+                  endDate={this.state.newReservation.endDate}
+                  getBlockedDates={this.getBlockedDates}
+                  isDayBlocked={isDayBlocked}/>
+              </div>
+              <div className='form-group'>
                 <label>Ім'я</label>
                 <input type='text' className='form-control' value={this.state.newReservation.name} onChange={(e) => this.handleNewReservationChange('name', e.target.value)} />
               </div>
@@ -277,16 +323,6 @@ export default class Room extends React.Component {
                 <label>Додаткова інформація</label>
                 <textarea type='text' className='form-control' value={this.state.newReservation.description} onChange={(e) => this.handleNewReservationChange('description', e.target.value)} />
               </div>
-              <div className='form-group'>
-                <DateRangePicker
-                  autoApply
-                  onApply={this.handleNewReservationDateChange}
-                  startDate={this.state.newReservation.startDate}
-                  endDate={this.state.newReservation.endDate}>
-                  <label>Дати</label>
-                  <input readOnly type="text" className='form-control' value={`${this.state.newReservation.startDate} - ${this.state.newReservation.endDate}`}/>
-                </DateRangePicker>
-              </div>
             </div>
             <ModalFooter>
               <button className='btn btn-block btn-outline-info reservation-btn' onClick={this.handleSubmitReservation}>Створити</button>
@@ -300,6 +336,15 @@ export default class Room extends React.Component {
             <div className='reservation-form'>
               <div className='form-group'>
                 <i className='fa fa-trash-o float-right' onClick={this.deleteReservation} />
+                <label>Дати</label>
+                <AirBnbPicker
+                  onPickerApply={this.handleDateChange}
+                  startDate={moment(this.state.selectedReservation.start).format('DD.MM.YYYY')}
+                  endDate={moment(this.state.selectedReservation.end).format('DD.MM.YYYY')}
+                  getBlockedDates={this.getBlockedDates}
+                  isDayBlocked={isDayBlocked}/>
+              </div>
+              <div className='form-group'>
                 <label>Ім'я</label>
                 <input type='text' className='form-control' value={this.state.selectedReservation.title} onChange={(e) => this.handleReservationChange('title', e.target.value)} />
               </div>
@@ -318,12 +363,6 @@ export default class Room extends React.Component {
               <div className='form-group'>
                 <label>Додаткова інформація</label>
                 <textarea type='text' className='form-control' value={this.state.selectedReservation.description} onChange={(e) => this.handleReservationChange('description', e.target.value)} />
-              </div>
-              <div className='form-group'>
-                <DateRangePicker autoApply onApply={this.handleDateChange} startDate={moment(this.state.selectedReservation.start).format('DD.MM.YYYY')} endDate={moment(this.state.selectedReservation.end).format('DD.MM.YYYY')}>
-                  <label>Дати</label>
-                  <input readOnly type="text" className='form-control' value={`${moment(this.state.selectedReservation.start).format('DD.MM.YYYY')} - ${moment(this.state.selectedReservation.end).format('DD.MM.YYYY')}`}/>
-                </DateRangePicker>
               </div>
             </div>
             <ModalFooter>

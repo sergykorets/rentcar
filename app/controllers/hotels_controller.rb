@@ -35,6 +35,8 @@ class HotelsController < ApplicationController
                   description: "#{@hotel.name} драгобрат",
                   keywords: "#{@hotel.name} драгобрат"
     @admin = Rails.env.development? || (current_user && current_user.admin)
+    @logged = !current_user.nil?
+    @user_name = current_user.try(:name)
     @nearby_hotels = []
     @hotel.nearby_hotels.each do |nearby|
       nearby_hotel = Hotel.find_by_id(nearby.nearby_hotel_id)
@@ -76,7 +78,6 @@ class HotelsController < ApplicationController
       sessionComment: params[:comment],
       phones: @hotel.phones.map {|phone| phone.phone},
       googleReviews: combine_reviews}
-    @logged = !current_user.nil?
     respond_to do |format|
       format.html { render :show }
     end
@@ -138,9 +139,21 @@ class HotelsController < ApplicationController
     blocked_dates = []
     hotel_places = @hotel.rooms.count
     date = params[:date] ? params[:date].to_date : Date.today
-    (date.beginning_of_month..date.end_of_month).each do |day|
-      reserved = @hotel.reservations.approved.where('start_date < ? AND end_date > ?', day.tomorrow, day).map {|r| r.room_id}.uniq.count
-      blocked_dates << day if reserved >= hotel_places
+    if params[:room_id]
+      room = Room.find_by_id(params[:room_id])
+      (date.beginning_of_month..date.end_of_month).each do |day|
+        reserved = if params[:reservation_id].present?
+          room.reservations.approved.where('start_date < ? AND end_date > ? AND id NOT IN (?)', day.tomorrow, day, [params[:reservation_id]]).map {|r| r.places}.sum
+        else
+          room.reservations.approved.where('start_date < ? AND end_date > ?', day.tomorrow, day).map {|r| r.places}.sum
+        end
+        blocked_dates << day if reserved >= room.places
+      end
+    else
+      (date.beginning_of_month..date.end_of_month).each do |day|
+        reserved = @hotel.reservations.approved.where('start_date < ? AND end_date > ?', day.tomorrow, day).map {|r| r.room_id}.uniq.count
+        blocked_dates << day if reserved >= hotel_places
+      end
     end
     render json: {success: true, blockedDates: blocked_dates }
   end

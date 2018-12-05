@@ -112,9 +112,11 @@ class ReservationsController < ApplicationController
     room = reservation.room
     if reservation.update(reservation_params)
       if params[:from_list]
+        reservations = @hotel.reservations.approved
         render json: {
           success: true,
-          reservations: @hotel.reservations.approved.for_dates(@hotel, params[:start_date].try(:to_date), params[:end_date].try(:to_date))
+          totalReservationsCount: reservations.count,
+          reservations: reservations.for_dates(@hotel, params[:start_date].try(:to_date), params[:end_date].try(:to_date))
                           .order(created_at: :desc).page(params[:page] || 1).per(10).each_with_object({}) {|reservation, hash| hash[reservation.id] =
             {id: reservation.id,
              name: reservation.name,
@@ -129,9 +131,11 @@ class ReservationsController < ApplicationController
           }
         }
       elsif params[:from_pending]
+        reservations = @hotel.reservations.pending
         render json: {
           success: true,
-          reservations: @hotel.reservations.pending.order(created_at: :desc).page(params[:page] || 1).per(10).each_with_object({}) {|reservation, hash| hash[reservation.id] =
+          totalReservationsCount: reservations.count,
+          reservations: reservations.order(created_at: :desc).page(params[:page] || 1).per(10).each_with_object({}) {|reservation, hash| hash[reservation.id] =
             {id: reservation.id,
              name: reservation.name,
              room: Room.find_by_id(reservation.room_id).number,
@@ -185,9 +189,12 @@ class ReservationsController < ApplicationController
         end
       }
     elsif params[:from_list]
+      reservations = @hotel.reservations.approved
       render json: {
         success: true,
-        reservations: @hotel.reservations.approved.for_dates(@hotel, params[:start_date].try(:to_date), params[:end_date].try(:to_date)).map do |reservation|
+        totalReservationsCount: reservations.count,
+        reservations: reservations.for_dates(@hotel, params[:start_date].try(:to_date), params[:end_date].try(:to_date))
+                        .order(created_at: :desc).page(params[:page] || 1).per(10).each_with_object({}) {|reservation, hash| hash[reservation.id] =
           {id: reservation.id,
            name: reservation.name,
            room: Room.find_by_id(reservation.room_id).number,
@@ -197,12 +204,14 @@ class ReservationsController < ApplicationController
            description: reservation.description,
            startDate: reservation.start_date.strftime('%d.%m.%Y'),
            endDate: reservation.end_date.strftime('%d.%m.%Y')}
-        end
+        }
       }
     elsif params[:from_pending]
+      reservations = @hotel.reservations.pending
       render json: {
         success: true,
-        reservations: @hotel.reservations.pending.order(:created_at).each_with_object({}) {|reservation, hash| hash[reservation.id] = {
+        totalReservationsCount: reservations.count,
+        reservations: reservations.order(created_at: :desc).page(params[:page] || 1).per(10).each_with_object({}) {|reservation, hash| hash[reservation.id] = {
            id: reservation.id,
            name: reservation.name,
            room: Room.find_by_id(reservation.room_id).number,

@@ -1,11 +1,10 @@
 import React, {Fragment} from 'react';
 import moment from 'moment'
-import RangePicker from 'bootstrap-daterangepicker';
-import DateRangePicker from 'react-bootstrap-daterangepicker';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Pagination from "react-js-pagination";
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import Rooms from "../Rooms";
+import AirBnbPicker from "../common/AirBnbPicker";
 
 export default class ReservationList extends React.Component {
   constructor(props) {
@@ -16,35 +15,28 @@ export default class ReservationList extends React.Component {
     this.state = {
       hotelId: this.props.hotelId,
       reservations: this.props.reservations,
-      startDate: moment(new Date).format('DD.MM.YYYY'),
-      endDate: moment(new Date).add(1, 'days').format('DD.MM.YYYY'),
+      startDate: moment(new Date),
+      endDate: moment(new Date).add(1, 'days'),
       activePage: 1,
       totalReservationsCount: this.props.totalReservationsCount,
       editModal: false,
       createModal: false,
       selectedReservation: {},
-      newReservation: {
-        name: '',
-        phone: '',
-        places: 1,
-        startDate: moment(new Date).format('DD.MM.YYYY'),
-        endDate: moment(new Date).add(1, 'days').format('DD.MM.YYYY'),
-        roomId: Object.keys(this.props.rooms)[0]
-      },
-      rooms: this.props.rooms
+      rooms: this.props.rooms,
+      blockedDates: []
     }
   }
 
-  handleDateChange = (event, picker) => {
+  handleDateChange = ({startDate, endDate}) => {
     $.ajax({
       url: `/hotels/${this.props.hotelId}/rooms/reservation_list.json`,
       type: 'GET',
       data: {
-        start_date: picker.startDate.format('DD.MM.YYYY'),
-        end_date: picker.endDate.format('DD.MM.YYYY')
+        start_date: startDate ? startDate.format('DD.MM.YYYY') : null,
+        end_date: endDate ? endDate.format('DD.MM.YYYY') : null
       },
       success: (resp) => {
-        this.setState({startDate: picker.startDate.format('DD.MM.YYYY'), endDate: picker.endDate.format('DD.MM.YYYY'), reservations: resp.reservations, totalReservationsCount: resp.totalReservationsCount})
+        this.setState({startDate: startDate, endDate: endDate, reservations: resp.reservations, totalReservationsCount: resp.totalReservationsCount})
       }
     });
   }
@@ -54,56 +46,54 @@ export default class ReservationList extends React.Component {
   }
 
   handleModal = (modal, id) => {
-    this.setState({
-      ...this.state,
-      [modal]: !this.state[modal],
-      selectedReservation: this.state.reservations[id],
-      newReservation: {
-        ...this.state.newReservation,
-        places: modal === 'createModal' ? this.state.rooms[this.state.newReservation.roomId].places : this.state.newReservation.places
-      }
-    });
+    if (id) {
+      $.ajax({
+        url: `/hotels/${this.state.hotelId}/booked_dates.json?room_id=${this.state.reservations[id].roomId}&reservation_id=${id}`,
+        type: 'GET'
+      }).then((resp) =>
+        this.setState({
+          ...this.state,
+          blockedDates: resp.blockedDates,
+          [modal]: !this.state[modal],
+          selectedReservation: this.state.reservations[id]
+        })
+      )
+    } else {
+      this.setState({[modal]: !this.state[modal]})
+    }
   }
 
   handleReservationChange = (field, value) => {
+    if (field === 'roomId') {
+      $.ajax({
+        url: `/hotels/${this.state.hotelId}/booked_dates.json?date=${this.state.selectedReservation.startDate}&room_id=${value}&reservation_id=${this.state.selectedReservation.id}`,
+        type: 'GET'
+      }).then((resp) => this.setState({
+        ...this.state,
+        blockedDates: resp.blockedDates,
+        selectedReservation: {
+          ...this.state.selectedReservation,
+          [field]: value
+        }
+      }))
+    } else {
+      this.setState({
+        ...this.state,
+        selectedReservation: {
+          ...this.state.selectedReservation,
+          [field]: value
+        }
+      })
+    }
+  }
+
+  handleReservationDateChange = ({startDate, endDate}) => {
     this.setState({
       ...this.state,
       selectedReservation: {
         ...this.state.selectedReservation,
-        [field]: value
-      }
-    })
-  }
-
-  handleReservationDateChange = (event, picker) => {
-    this.setState({
-      ...this.state,
-      selectedReservation: {
-        ...this.state.selectedReservation,
-        startDate: picker.startDate.format('DD.MM.YYYY'),
-        endDate: picker.endDate.format('DD.MM.YYYY')
-      }
-    })
-  }
-
-  handleNewReservationChange = (field, value) => {
-    this.setState({
-      ...this.state,
-      newReservation: {
-        ...this.state.newReservation,
-        [field]: value,
-        places: field === 'roomId' ? this.state.rooms[value].places : this.state.newReservation.places
-      }
-    })
-  }
-
-  handleNewReservationDateChange = (event, picker) => {
-    this.setState({
-      ...this.state,
-      newReservation: {
-        ...this.state.newReservation,
-        startDate: picker.startDate.format('DD.MM.YYYY'),
-        endDate: picker.endDate.format('DD.MM.YYYY')
+        startDate: startDate ? startDate.format('DD.MM.YYYY') : null,
+        endDate: endDate ? endDate.format('DD.MM.YYYY') : null
       }
     })
   }
@@ -114,8 +104,8 @@ export default class ReservationList extends React.Component {
       type: 'PATCH',
       data: {
         from_list: true,
-        start_date: this.state.startDate,
-        end_date: this.state.endDate,
+        start_date: this.state.startDate.format('DD.MM.YYYY'),
+        end_date: this.state.endDate.format('DD.MM.YYYY'),
         page: this.state.activePage,
         reservation: {
           room_id: this.state.selectedReservation.roomId,
@@ -144,12 +134,13 @@ export default class ReservationList extends React.Component {
         type: 'DELETE',
         data: {
           from_list: true,
-          start_date: this.state.startDate,
-          end_date: this.state.endDate
+          page: this.state.activePage,
+          start_date: this.state.startDate.format('DD.MM.YYYY'),
+          end_date: this.state.endDate.format('DD.MM.YYYY')
         }
       }).then((resp) => {
         NotificationManager.success('Бронювання видалено');
-        this.setState({reservations: resp.reservations, editModal: false})
+        this.setState({reservations: resp.reservations, editModal: false, totalReservationsCount: resp.totalReservationsCount})
       });
     }
   }
@@ -160,8 +151,8 @@ export default class ReservationList extends React.Component {
       type: 'GET',
       data: {
         page: page,
-        start_date: this.state.startDate,
-        end_date: this.state.endDate
+        start_date: this.state.startDate.format('DD.MM.YYYY'),
+        end_date: this.state.endDate.format('DD.MM.YYYY')
       },
       success: (resp) => {
         this.setState({reservations: resp.reservations, activePage: page})
@@ -169,63 +160,37 @@ export default class ReservationList extends React.Component {
     });
   }
 
-  handleSubmitReservation = () => {
+  convertedDates = () => {
+    const dates = this.state.blockedDates.map((date) => {
+      return moment(date)
+    })
+    return dates
+  }
+
+  getBlockedDates = (date) => {
     $.ajax({
-      url: `/hotels/${this.state.hotelId}/reservations.json`,
-      type: 'POST',
-      data: {
-        from_list: true,
-        start_date: this.state.startDate,
-        end_date: this.state.endDate,
-        reservation: {
-          hotel_id: this.state.hotelId,
-          room_id: this.state.newReservation.roomId,
-          name: this.state.newReservation.name,
-          phone: this.state.newReservation.phone,
-          description: this.state.newReservation.description,
-          status: 'approved',
-          places: this.state.newReservation.places,
-          start_date: this.state.newReservation.startDate,
-          end_date: this.state.newReservation.endDate
-        }
-      }
-    }).then((resp) => {
-      if (resp.success) {
-        NotificationManager.success('Бронювання створено');
-        this.setState({
-          ...this.state,
-          reservations: resp.reservations,
-          newReservation: {
-            name: '',
-            phone: '',
-            places: 1,
-            startDate: moment(new Date).format('DD.MM.YYYY'),
-            endDate: moment(new Date).add(1, 'days').format('DD.MM.YYYY'),
-            roomId: Object.keys(this.state.rooms)[0]
-          },
-          createModal: false
-        })
-      } else {
-        NotificationManager.error(resp.error, 'Неможливо створити');
-      }
-    });
+      url: `/hotels/${this.state.hotelId}/booked_dates.json?date=${date.format('YYYY-MM-DD')}&room_id=${this.state.selectedReservation.roomId}&reservation_id=${this.state.editModal ? this.state.selectedReservation.id : ''}`,
+      type: 'GET'
+    }).then((resp) => this.setState({ blockedDates: resp.blockedDates }))
   }
 
   render() {
+    const BAD_DATES = this.convertedDates()
+    const isDayBlocked = day => BAD_DATES.filter(d => d.isSame(day, 'day')).length > 0;
     return (
       <div className="container reservation-list page-wraper">
         <NotificationContainer/>
         <h3 className='text-center'>Список бронювань на вибрані дати</h3>
         <div className='row'>
           <div className='col-lg-6'>
-            <DateRangePicker autoApply onApply={this.handleDateChange} startDate={this.state.startDate} endDate={this.state.endDate}>
-              <label>Діапазон дат</label>
-              <input readOnly type="text" className='form-control' value={`${this.state.startDate} - ${this.state.endDate}`}/>
-            </DateRangePicker>
+            <label>Діапазон дат</label>
+            <AirBnbPicker
+              startPlaceholder={'Від'}
+              endPlaceholder={'До'}
+              onPickerApply={this.handleDateChange}
+              startDate={this.state.startDate}
+              endDate={this.state.endDate} />
           </div>
-          {/*<div className='col-lg-6'>*/}
-            {/*<button className='btn btn-info float-right add-reservation' onClick={() => this.handleModal('createModal', '')}><i className='fa fa-plus' /> Створити нове бронювання</button>*/}
-          {/*</div>*/}
         </div>
         <hr/>
         { this.state.totalReservationsCount > 10 &&
@@ -279,55 +244,6 @@ export default class ReservationList extends React.Component {
               onChange={this.handlePageChange}
             />
           </Fragment>}
-        { this.state.createModal &&
-          <Modal isOpen={this.state.createModal} toggle={() => this.handleModal('createModal', '')}>
-            <ModalHeader className='text-center' toggle={() => this.handleModal('createModal', '')}>
-              <h5>Створення нового бронювання</h5>
-            </ModalHeader>
-            <div className='reservation-form'>
-              <div className='form-group'>
-                <label>Номер</label>
-                <select className='form-control' value={this.state.newReservation.roomId} onChange={(e) => this.handleNewReservationChange('roomId', e.target.value)}>
-                  { Object.keys(this.state.rooms).map((id, i) =>
-                    <option key={i} value={id}>Поверх {this.state.rooms[id].floor} | Номер {this.state.rooms[id].number} | Місць: {this.state.rooms[id].places} { this.state.rooms[id].bigBed && '| Двоспальне ліжко'}</option>
-                  )}
-                </select>
-              </div>
-              <div className='form-group'>
-                <label>Ім'я</label>
-                <input type='text' className='form-control' value={this.state.newReservation.name} onChange={(e) => this.handleNewReservationChange('name', e.target.value)} />
-              </div>
-              <div className='form-group'>
-                <label>Телефон</label>
-                <input type='text' className='form-control' value={this.state.newReservation.phone} onChange={(e) => this.handleNewReservationChange('phone', e.target.value)} />
-              </div>
-              <div className='form-group'>
-                <label>Кількість місць</label>
-                <select className='form-control' value={this.state.newReservation.places} onChange={(e) => this.handleNewReservationChange('places', e.target.value)}>
-                  { [...Array(parseInt(this.state.rooms[this.state.newReservation.roomId].places, 10))].map((e,i) =>
-                    <option key={i} value={i+1}>{i+1}</option>
-                  )}
-                </select>
-              </div>
-              <div className='form-group'>
-                <label>Додаткова інформація</label>
-                <textarea type='text' className='form-control' value={this.state.newReservation.description} onChange={(e) => this.handleNewReservationChange('description', e.target.value)} />
-              </div>
-              <div className='form-group'>
-                <DateRangePicker
-                  autoApply
-                  onApply={this.handleNewReservationDateChange}
-                  startDate={this.state.newReservation.startDate}
-                  endDate={this.state.newReservation.endDate}>
-                  <label>Дати</label>
-                  <input readOnly type="text" className='form-control' value={`${this.state.newReservation.startDate} - ${this.state.newReservation.endDate}`}/>
-                </DateRangePicker>
-              </div>
-            </div>
-            <ModalFooter>
-              <button className='btn btn-block btn-outline-info reservation-btn' onClick={this.handleSubmitReservation}>Створити</button>
-            </ModalFooter>
-          </Modal>}
         { this.state.editModal &&
           <Modal isOpen={this.state.editModal} toggle={() => this.handleModal('editModal', '')}>
             <ModalHeader className='text-center' toggle={() => this.handleModal('editModal', '')}>
@@ -342,6 +258,16 @@ export default class ReservationList extends React.Component {
                     <option key={i} value={id}>Поверх {this.state.rooms[id].floor} | Номер {this.state.rooms[id].number} | Місць: {this.state.rooms[id].places} { this.state.rooms[id].bigBed && '| Двоспальне ліжко'}</option>
                   )}
                 </select>
+              </div>
+              <div className='form-group'>
+                <label>Дати</label>
+                <AirBnbPicker
+                  getBlockedDates={this.getBlockedDates}
+                  hotelId={this.state.hotelId}
+                  onPickerApply={this.handleReservationDateChange}
+                  startDate={this.state.selectedReservation.startDate}
+                  endDate={this.state.selectedReservation.endDate}
+                  isDayBlocked={isDayBlocked}/>
               </div>
               <div className='form-group'>
                 <label>Ім'я</label>
@@ -366,12 +292,6 @@ export default class ReservationList extends React.Component {
               <div className='form-group'>
                 <label>Завдаток</label>
                 <input type='number' className='form-control' value={this.state.selectedReservation.deposit} onChange={(e) => this.handleReservationChange('deposit', e.target.value)} />
-              </div>
-              <div className='form-group'>
-                <DateRangePicker autoApply onApply={this.handleReservationDateChange} startDate={this.state.selectedReservation.startDate} endDate={this.state.selectedReservation.endDate}>
-                  <label>Дати</label>
-                  <input readOnly type="text" className='form-control' value={`${this.state.selectedReservation.startDate} - ${this.state.selectedReservation.endDate}`}/>
-                </DateRangePicker>
               </div>
             </div>
             <ModalFooter>

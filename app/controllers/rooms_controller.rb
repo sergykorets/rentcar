@@ -72,7 +72,7 @@ class RoomsController < ApplicationController
     }
     respond_to do |format|
       format.html { render :reservation_list }
-      format.json {{reservations: @reservations_paginated, totalReservationsCount: @reservations }}
+      format.json {{reservations: @reservations_paginated, totalReservationsCount: @reservations.count }}
     end
   end
 
@@ -99,7 +99,7 @@ class RoomsController < ApplicationController
     }
     respond_to do |format|
       format.html { render :pending_reservations }
-      format.json {{reservations: @reservations_paginated, totalReservationsCount: @reservations }}
+      format.json {{reservations: @reservations_paginated, totalReservationsCount: @reservations.count }}
     end
   end
 

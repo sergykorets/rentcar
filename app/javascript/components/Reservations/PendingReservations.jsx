@@ -1,11 +1,10 @@
 import React, {Fragment} from 'react';
 import moment from 'moment'
-import RangePicker from 'bootstrap-daterangepicker';
-import DateRangePicker from 'react-bootstrap-daterangepicker';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Pagination from "react-js-pagination";
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import Rooms from "../Rooms";
+import AirBnbPicker from "../common/AirBnbPicker";
 
 export default class PendingReservations extends React.Component {
   constructor(props) {
@@ -20,7 +19,8 @@ export default class PendingReservations extends React.Component {
       totalReservationsCount: this.props.totalReservationsCount,
       editModal: false,
       selectedReservation: {},
-      rooms: this.props.rooms
+      rooms: this.props.rooms,
+      blockedDates: []
     }
   }
 
@@ -29,29 +29,54 @@ export default class PendingReservations extends React.Component {
   }
 
   handleModal = (modal, id) => {
-    this.setState({
-      [modal]: !this.state[modal],
-      selectedReservation: this.state.reservations[id]
-    });
+    if (id) {
+      $.ajax({
+        url: `/hotels/${this.state.hotelId}/booked_dates.json?date=${this.state.reservations[id].startDate}&room_id=${this.state.reservations[id].roomId}`,
+        type: 'GET'
+      }).then((resp) =>
+        this.setState({
+          blockedDates: resp.blockedDates,
+          [modal]: !this.state[modal],
+          selectedReservation: this.state.reservations[id]
+        })
+      )
+    } else {
+      this.setState({[modal]: !this.state[modal]})
+    }
   }
 
   handleReservationChange = (field, value) => {
-    this.setState({
-      ...this.state,
-      selectedReservation: {
-        ...this.state.selectedReservation,
-        [field]: value
-      }
-    })
+    if (field === 'roomId') {
+      $.ajax({
+        url: `/hotels/${this.state.hotelId}/booked_dates.json?date=${this.state.selectedReservation.startDate}&room_id=${value}`,
+        type: 'GET'
+      }).then((resp) => this.setState({
+          ...this.state,
+          blockedDates: resp.blockedDates,
+          selectedReservation: {
+            ...this.state.selectedReservation,
+            [field]: value
+          }
+        })
+      )
+    } else {
+      this.setState({
+        ...this.state,
+        selectedReservation: {
+          ...this.state.selectedReservation,
+          [field]: value
+        }
+      })
+    }
   }
 
-  handleReservationDateChange = (event, picker) => {
+  handleReservationDateChange = ({startDate, endDate}) => {
     this.setState({
       ...this.state,
       selectedReservation: {
         ...this.state.selectedReservation,
-        startDate: picker.startDate.format('DD.MM.YYYY'),
-        endDate: picker.endDate.format('DD.MM.YYYY')
+        startDate: startDate ? startDate.format('DD.MM.YYYY') : null,
+        endDate: endDate ? endDate.format('DD.MM.YYYY') : null
       }
     })
   }
@@ -102,7 +127,7 @@ export default class PendingReservations extends React.Component {
           } else {
             NotificationManager.success('Бронювання відхилено');
           }
-          this.setState({reservations: resp.reservations})
+          this.setState({reservations: resp.reservations, totalReservationsCount: resp.totalReservationsCount})
         } else {
           NotificationManager.error(resp.error, 'Неможливо виконати цю цію');
         }
@@ -121,7 +146,7 @@ export default class PendingReservations extends React.Component {
         }
       }).then((resp) => {
         NotificationManager.success('Бронювання видалено');
-        this.setState({reservations: resp.reservations, editModal: false})
+        this.setState({reservations: resp.reservations, editModal: false, totalReservationsCount: resp.totalReservationsCount})
       });
     }
   }
@@ -139,8 +164,23 @@ export default class PendingReservations extends React.Component {
     });
   }
 
+  convertedDates = () => {
+    const dates = this.state.blockedDates.map((date) => {
+      return moment(date)
+    })
+    return dates
+  }
+
+  getBlockedDates = (date) => {
+    $.ajax({
+      url: `/hotels/${this.state.hotelId}/booked_dates.json?date=${date.format('YYYY-MM-DD')}&room_id=${this.state.selectedReservation.roomId}`,
+      type: 'GET'
+    }).then((resp) => this.setState({ blockedDates: resp.blockedDates }))
+  }
+
   render() {
-    console.log(this.state)
+    const BAD_DATES = this.convertedDates()
+    const isDayBlocked = day => BAD_DATES.filter(d => d.isSame(day, 'day')).length > 0;
     return (
       <div className="container reservation-list page-wraper">
         <NotificationContainer/>
@@ -217,6 +257,16 @@ export default class PendingReservations extends React.Component {
                 </select>
               </div>
               <div className='form-group'>
+                <label>Дати</label>
+                <AirBnbPicker
+                  getBlockedDates={this.getBlockedDates}
+                  hotelId={this.state.hotelId}
+                  onPickerApply={this.handleReservationDateChange}
+                  startDate={this.state.selectedReservation.startDate}
+                  endDate={this.state.selectedReservation.endDate}
+                  isDayBlocked={isDayBlocked}/>
+              </div>
+              <div className='form-group'>
                 <label>Ім'я</label>
                 <input type='text' className='form-control' value={this.state.selectedReservation.name} onChange={(e) => this.handleReservationChange('name', e.target.value)} />
               </div>
@@ -231,12 +281,6 @@ export default class PendingReservations extends React.Component {
                     <option key={i} value={i+1}>{i+1}</option>
                   )}
                 </select>
-              </div>
-              <div className='form-group'>
-                <DateRangePicker autoApply onApply={this.handleReservationDateChange} startDate={this.state.selectedReservation.startDate} endDate={this.state.selectedReservation.endDate}>
-                  <label>Дати</label>
-                  <input readOnly type="text" className='form-control' value={`${this.state.selectedReservation.startDate} - ${this.state.selectedReservation.endDate}`}/>
-                </DateRangePicker>
               </div>
               <div className='form-group'>
                 <label>Додаткова інформація</label>
