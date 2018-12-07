@@ -89,7 +89,7 @@ export default class Hotels extends React.Component {
     }
     return (
       <div className="whole-page" onMouseMove={this._onMouseMove}>
-        <div className='top-page'>
+        <div className={this.props.cafe ? 'top-page restaurants' : 'top-page'}>
           <div className='container'>
             <div className="top-banners">
               <a id='left-ads' href="http://ratrak.org.ua/" target="_blank"><img src="/images/freeride.jpg" /></a>
@@ -131,20 +131,23 @@ export default class Hotels extends React.Component {
                     </ButtonDropdown>
                   </div>
                   <input type='text' placeholder='Пошук по назві закладу' className='form-control' onChange={(e) => this.handleSearch('nameSearch', e.target.value)} value={this.state.nameSearch} />
-                  <div className='labels'>
-                    <div className='custom-checkbox'>
-                      <input type='checkbox' id="sauna" onChange={(e) => this.handleSearch('sauna', !this.state.sauna)} checked={this.state.sauna} />
-                      <label className='activities' htmlFor="sauna">Баня</label>
-                    </div>
-                    <div className='custom-checkbox'>
-                      <input type='checkbox' id="chan" onChange={(e) => this.handleSearch('chan', !this.state.chan)} checked={this.state.chan} />
-                      <label className='activities' htmlFor="chan">Чан</label>
-                    </div>
-                    <div className='custom-checkbox'>
-                      <input type='checkbox' id="disco" onChange={(e) => this.handleSearch('disco', !this.state.disco)} checked={this.state.disco} />
-                      <label className='activities' htmlFor="disco">Диско</label>
-                    </div>
-                  </div>
+                  { !this.props.cafe &&
+                    <Fragment>
+                      <div className='labels'>
+                        <div className='custom-checkbox'>
+                          <input type='checkbox' id="sauna" onChange={(e) => this.handleSearch('sauna', !this.state.sauna)} checked={this.state.sauna} />
+                          <label className='activities' htmlFor="sauna">Баня</label>
+                        </div>
+                        <div className='custom-checkbox'>
+                          <input type='checkbox' id="chan" onChange={(e) => this.handleSearch('chan', !this.state.chan)} checked={this.state.chan} />
+                          <label className='activities' htmlFor="chan">Чан</label>
+                        </div>
+                        <div className='custom-checkbox'>
+                          <input type='checkbox' id="disco" onChange={(e) => this.handleSearch('disco', !this.state.disco)} checked={this.state.disco} />
+                          <label className='activities' htmlFor="disco">Диско</label>
+                        </div>
+                      </div>
+                    </Fragment>}
                 </div>
                 { !this.props.cafe &&
                   <div className='col-lg-3'>
