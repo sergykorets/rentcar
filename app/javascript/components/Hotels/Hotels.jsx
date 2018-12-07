@@ -134,15 +134,15 @@ export default class Hotels extends React.Component {
                   <div className='labels'>
                     <div className='custom-checkbox'>
                       <input type='checkbox' id="sauna" onChange={(e) => this.handleSearch('sauna', !this.state.sauna)} checked={this.state.sauna} />
-                      <label htmlFor="sauna">Баня</label>
+                      <label className='activities' htmlFor="sauna">Баня</label>
                     </div>
                     <div className='custom-checkbox'>
                       <input type='checkbox' id="chan" onChange={(e) => this.handleSearch('chan', !this.state.chan)} checked={this.state.chan} />
-                      <label htmlFor="chan">Чан</label>
+                      <label className='activities' htmlFor="chan">Чан</label>
                     </div>
                     <div className='custom-checkbox'>
                       <input type='checkbox' id="disco" onChange={(e) => this.handleSearch('disco', !this.state.disco)} checked={this.state.disco} />
-                      <label htmlFor="disco">Диско</label>
+                      <label className='activities' htmlFor="disco">Диско</label>
                     </div>
                   </div>
                 </div>
