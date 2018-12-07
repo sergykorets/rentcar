@@ -3,7 +3,7 @@ import Rater from 'react-rating'
 import ReactGA from 'react-ga';
 import ReactPixel from 'react-facebook-pixel';
 import Masonry from 'react-mason';
-import { Tooltip, Modal, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Tooltip, Modal, ModalHeader, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Leaflet from 'leaflet';
 import { Map, Marker, Popup, TileLayer, GeoJSON } from 'react-leaflet';
 import InputRange from 'react-input-range';
@@ -79,6 +79,7 @@ export default class Hotels extends React.Component {
     if (!this.props.cafe) {
       hotels = hotels.filter(h => parseFloat(h.price ? h.price : 999999) >= parseFloat(this.state.price.min))
         .filter(h => parseFloat(h.price ? h.price : 0) <= parseFloat(this.state.price.max))
+        .filter(h => this.state.sauna ? h.sauna : h).filter(h => this.state.chan ? h.chan : h).filter(h => this.state.disco ? h.disco : h)
     }
     hotels = hotels.sort((a, b) => (this.state.sortType && this.state.sortType === 'googleRating' ? (((this.state.sortType === 'googleRating' && this.state.sortOrder === 'increasing') ?
       parseFloat(a.googleRating) - parseFloat(b.googleRating) : (parseFloat(b.googleRating) - parseFloat(a.googleRating)))) : parseFloat(a.position) - parseFloat(b.position)))
@@ -130,6 +131,20 @@ export default class Hotels extends React.Component {
                     </ButtonDropdown>
                   </div>
                   <input type='text' placeholder='Пошук по назві закладу' className='form-control' onChange={(e) => this.handleSearch('nameSearch', e.target.value)} value={this.state.nameSearch} />
+                  <div className='labels'>
+                    <div className='custom-checkbox'>
+                      <input type='checkbox' id="sauna" onChange={(e) => this.handleSearch('sauna', !this.state.sauna)} checked={this.state.sauna} />
+                      <label htmlFor="sauna">Баня</label>
+                    </div>
+                    <div className='custom-checkbox'>
+                      <input type='checkbox' id="chan" onChange={(e) => this.handleSearch('chan', !this.state.chan)} checked={this.state.chan} />
+                      <label htmlFor="chan">Чан</label>
+                    </div>
+                    <div className='custom-checkbox'>
+                      <input type='checkbox' id="disco" onChange={(e) => this.handleSearch('disco', !this.state.disco)} checked={this.state.disco} />
+                      <label htmlFor="disco">Диско</label>
+                    </div>
+                  </div>
                 </div>
                 { !this.props.cafe &&
                   <div className='col-lg-3'>
@@ -171,67 +186,68 @@ export default class Hotels extends React.Component {
         <div className='container'>
           <Masonry>
             { hotels.map((hotel, index) => {
-                return (
-                  <div key={index} className="hotel">
-                    <div className="card">
-                      <div className="card-img">
-                        { hotel.avatar &&
-                        <a href={`/hotels/${hotel.slug}`} className="image-popup fh5co-board-img"
-                           title={hotel.name}><img src={hotel.avatar || '/images/missing.jpg'} alt={hotel.name}/></a>}
+              return (
+                <div key={index} className="hotel">
+                  <div className="card">
+                    <div className="card-img">
+                      { hotel.avatar &&
+                      <a href={`/hotels/${hotel.slug}`} className="image-popup fh5co-board-img"
+                         title={hotel.name}><img src={hotel.avatar || '/images/missing.jpg'} alt={hotel.name}/></a>}
+                    </div>
+                    <div className="card-body">
+                      <div className='body-top'>
+                        <a href={`/hotels/${hotel.slug}`}><h1>{hotel.name}</h1></a>
+                        { hotel.price &&
+                          <Fragment>
+                            <span>
+                              <span className='hotel-price'>{hotel.price} UAH</span>
+                              <i className="fa fa-info-circle" id={`TooltipExample${index}`}></i>
+                            </span>
+                            <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].price} target={`TooltipExample${index}`} toggle={() => this.toggle(index, 'price')}>
+                               Мінімальна ціна з людини за 1 ніч
+                            </Tooltip>
+                          </Fragment>}
                       </div>
-                      <div className="card-body">
-                        <div className='body-top'>
-                          <a href={`/hotels/${hotel.slug}`}><h1>{hotel.name}</h1></a>
-                          { hotel.price &&
+                      <div className='body-bottom'>
+                        <Rater initialRating={parseFloat(hotel.googleRating)} emptySymbol="fa fa-star-o"
+                               fullSymbol="fa fa-star" readonly className='hotel-stars'/>
+                        {hotel.location && <a className='3d-link' href={hotel.location} target="_blank">3D карта</a>}
+                      </div>
+                      <div className='body-bottom'>
+                        <div className='icons'>
+                          { hotel.sauna &&
                             <Fragment>
-                              <span>
-                                <span className='hotel-price'>{hotel.price} UAH</span>
-                                <i className="fa fa-info-circle" id={`TooltipExample${index}`}></i>
-                              </span>
-                              <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].price} target={`TooltipExample${index}`} toggle={() => this.toggle(index, 'price')}>
-                                 Мінімальна ціна з людини за 1 ніч
+                              <img id={`Sauna-${index}`} src="/images/sauna.svg"/>
+                              <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].sauna} target={`Sauna-${index}`} toggle={() => this.toggle(index, 'sauna')}>
+                                Баня
                               </Tooltip>
                             </Fragment>}
-                        </div>
-                        <div className='body-bottom'>
-                          <Rater initialRating={parseFloat(hotel.googleRating)} emptySymbol="fa fa-star-o"
-                                 fullSymbol="fa fa-star" readonly className='hotel-stars'/>
-                          {hotel.location && <a className='3d-link' href={hotel.location} target="_blank">3D карта</a>}
-                        </div>
-                        <div className='body-bottom'>
-                          <div className='icons'>
-                            { hotel.sauna &&
-                              <Fragment>
-                                <img id={`Sauna-${index}`} src="/images/sauna.svg"/>
-                                <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].sauna} target={`Sauna-${index}`} toggle={() => this.toggle(index, 'sauna')}>
-                                  Баня
-                                </Tooltip>
-                              </Fragment>}
-                            { hotel.chan &&
-                              <Fragment>
-                                <img id={`Chan-${index}`} src="/images/chan.png"/>
-                                <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].chan} target={`Chan-${index}`} toggle={() => this.toggle(index, 'chan')}>
-                                  Чан
-                                </Tooltip>
-                              </Fragment>}
-                            { hotel.disco &&
-                              <Fragment>
-                                <img id={`Disco-${index}`} src="/images/disco.svg"/>
-                                <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].disco} target={`Disco-${index}`} toggle={() => this.toggle(index, 'disco')}>
-                                  Дискотека
-                                </Tooltip>
-                              </Fragment>}
-                          </div>
+                          { hotel.chan &&
+                            <Fragment>
+                              <img id={`Chan-${index}`} src="/images/chan.png"/>
+                              <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].chan} target={`Chan-${index}`} toggle={() => this.toggle(index, 'chan')}>
+                                Чан
+                              </Tooltip>
+                            </Fragment>}
+                          { hotel.disco &&
+                            <Fragment>
+                              <img id={`Disco-${index}`} src="/images/disco.svg"/>
+                              <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].disco} target={`Disco-${index}`} toggle={() => this.toggle(index, 'disco')}>
+                                Дискотека
+                              </Tooltip>
+                            </Fragment>}
                         </div>
                       </div>
                     </div>
                   </div>
-                )
+                </div>
+              )
               })}
           </Masonry>
         </div>
         { this.state.showMap &&
           <Modal isOpen={this.state.showMap} toggle={this.handleModal} size="lg">
+            <ModalHeader className='text-center'  toggle={this.handleModal}>Карта</ModalHeader>
             <Map id='full-map' center={[48.247, 24.242]} zoom={16}>
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
