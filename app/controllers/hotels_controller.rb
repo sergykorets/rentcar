@@ -126,7 +126,7 @@ class HotelsController < ApplicationController
     if current_user.admin
       @h = @hotel
     else
-      @h = current_user.hotels.find_by_id(params[:hotel][:id])
+      @h = current_user.hotels.friendly.find(params[:id])
     end
     if @h && @h.update(hotel_params)
       render json: { success: true, slug: @hotel.slug }
