@@ -119,8 +119,8 @@ export default class Rooms extends React.Component {
                     </div>
                     <div className='form-group'>
                       <div className='custom-checkbox'>
-                        <input type='checkbox' id="big_bed" onChange={(e) => this.handleRoomChange('big_bed', i, !this.state.rooms[i].big_bed)} checked={this.state.rooms[i].big_bed} />
-                        <label htmlFor="big_bed">Двоспальне ліжко</label>
+                        <input type='checkbox' id={`big_bed${i}`} onChange={(e) => this.handleRoomChange('big_bed', i, !this.state.rooms[i].big_bed)} checked={this.state.rooms[i].big_bed} />
+                        <label htmlFor={`big_bed${i}`}>Двоспальне ліжко</label>
                       </div>
                     </div>
                   </div>
