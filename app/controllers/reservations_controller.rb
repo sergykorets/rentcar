@@ -2,8 +2,10 @@ class ReservationsController < ApplicationController
   layout 'hotel_admin', except: :user_reservations
   before_action :define_hotel, except: :user_reservations
   before_action :check_rooms, only: [:index]
+  before_action :authenticate_user!, only: [:index]
 
   def index
+    @hotel = current_user.hotels.friendly.find(params[:hotel_id]) if !current_user.admin
     @floors = @hotel.rooms.map {|room| room.floor}.max
     @hotel_id = @hotel.id
     @rooms = @hotel.rooms.each_with_object({}) {|room, hash|

@@ -269,7 +269,6 @@ export default class Form extends React.Component {
             <FileDrop
               onDrop={this.onDrop}
               acceptedFiles='image/*'
-              maxSize={4000000}
               file={this.state.hotel.photos[0]}
               name='file'
             />
