@@ -102,9 +102,9 @@ class HotelsController < ApplicationController
         mainPhotoType: @hotel.main_photo_type,
         photosForUpload: [],
         googlePhotos: @hotel.google_photos.not_deleted.any? ? @hotel.google_photos.not_deleted.each_with_object({}) {|photo, hash| hash[photo.id] = {
-          id: photo.id, photo: photo.photo_url}} : {},
+          id: photo.id, photo: photo.photo_url, name: photo.name}} : {},
         photos: @hotel.photos.any? ? @hotel.photos.each_with_object({}) {|photo, hash| hash[photo.id] = {
-          id: photo.id, photo: photo.picture(:large)}} : {},
+          id: photo.id, name: photo.name, photo: photo.picture(:large)}} : {},
         phones: @hotel.phones.any? ? @hotel.phones.each_with_object({}) {|phone, hash| hash[phone.id] = {
           id: phone.id, phone: phone.phone}} : {}
       }
@@ -183,7 +183,7 @@ class HotelsController < ApplicationController
       params.require(:hotel).permit(:name, :description, :hotel_type, :site, :main_photo_id, :main_photo_type, :price, :sauna, :chan, :disco,
                                     :allow_booking, :auto_booking,
                                     rooms_attributes: [:id, :number, :floor, :big_bed, :places, :_destroy], phones_attributes: [:id, :phone, :_destroy],
-                                    google_photos_attributes: [:id, :deleted], photos_attributes: [:id, :_destroy, photo: [:picture]])
+                                    google_photos_attributes: [:id, :name, :deleted], photos_attributes: [:id, :name, :_destroy, photo: [:picture]])
     end
 
     def combine_reviews
@@ -222,8 +222,8 @@ class HotelsController < ApplicationController
     end
 
     def get_hotel_photos
-      google_photos = @hotel.google_photos.not_deleted.map {|photo| photo.photo_url}
-      photos = @hotel.photos.map {|photo| photo.picture}
+      google_photos = @hotel.google_photos.not_deleted.map {|photo| {photo: photo.photo_url, name: photo.name}}
+      photos = @hotel.photos.map {|photo| {photo: photo.picture, name: photo.name}}
       google_photos + photos
     end
 

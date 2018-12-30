@@ -191,6 +191,21 @@ export default class Form extends React.Component {
     })
   }
 
+  handlePhotoNameChange = (type, itemId, value) => {
+    this.setState({
+      hotel: {
+        ...this.state.hotel,
+        [type]: {
+          ...this.state.hotel[type],
+          [itemId]: {
+            ...this.state.hotel[type][itemId],
+            name: value
+          }
+        }
+      }
+    })
+  }
+
   render() {
     console.log(this.state)
     return (
@@ -238,27 +253,30 @@ export default class Form extends React.Component {
         <div className='form-group'>
           <i className='fa fa-plus btn btn-info' onClick={this.addPhone}> Додати телефон</i>
         </div>
-        <div className='form-group'>
-          <label>Мінімальна ціна за одну ніч з однієї людини (ГРН)</label>
-          <input type='number' placeholder='200' className='form-control' onChange={(e) => this.handleInputChange('price', e.target.value)} value={this.state.hotel.price} />
-        </div>
-        <div className='form-group'>
-          <label>Розваги</label>
-          <div className='custom-checkbox'>
-            <div className='custom-checkbox'>
-              <input type='checkbox' id="sauna" onChange={(e) => this.handleInputChange('sauna', !this.state.hotel.sauna)} checked={this.state.hotel.sauna} />
-              <label htmlFor="sauna">Баня</label>
+        { this.state.hotel.hotelType != 'restaurant' &&
+          <Fragment>
+            <div className='form-group'>
+              <label>Мінімальна ціна за одну ніч з однієї людини (ГРН)</label>
+              <input type='number' placeholder='200' className='form-control' onChange={(e) => this.handleInputChange('price', e.target.value)} value={this.state.hotel.price} />
             </div>
-            <div className='custom-checkbox'>
-              <input type='checkbox' id="chan" onChange={(e) => this.handleInputChange('chan', !this.state.hotel.chan)} checked={this.state.hotel.chan} />
-              <label htmlFor="chan">Чан</label>
+            <div className='form-group'>
+              <label>Розваги</label>
+              <div className='custom-checkbox'>
+                <div className='custom-checkbox'>
+                  <input type='checkbox' id="sauna" onChange={(e) => this.handleInputChange('sauna', !this.state.hotel.sauna)} checked={this.state.hotel.sauna} />
+                  <label htmlFor="sauna">Баня</label>
+                </div>
+                <div className='custom-checkbox'>
+                  <input type='checkbox' id="chan" onChange={(e) => this.handleInputChange('chan', !this.state.hotel.chan)} checked={this.state.hotel.chan} />
+                  <label htmlFor="chan">Чан</label>
+                </div>
+                <div className='custom-checkbox'>
+                  <input type='checkbox' id="disco" onChange={(e) => this.handleInputChange('disco', !this.state.hotel.disco)} checked={this.state.hotel.disco} />
+                  <label htmlFor="disco">Диско</label>
+                </div>
+              </div>
             </div>
-            <div className='custom-checkbox'>
-              <input type='checkbox' id="disco" onChange={(e) => this.handleInputChange('disco', !this.state.hotel.disco)} checked={this.state.hotel.disco} />
-              <label htmlFor="disco">Диско</label>
-            </div>
-          </div>
-        </div>
+          </Fragment>}
         <div className='form-group'>
           <label>Офіційний веб-сайт</label>
           <input type='text' placeholder='http://myhotel.com' className='form-control' onChange={(e) => this.handleInputChange('site', e.target.value)} value={this.state.hotel.site} />
@@ -316,15 +334,21 @@ export default class Form extends React.Component {
                             <img src={item.photo} alt={this.state.hotel.name}/>
                           </div>
                           <div className="card-body">
-                            <div className='custom-checkbox'>
-                              <input
-                                type='checkbox'
-                                id="mainPhotoId"
-                                onChange={() => this.handleMainPhoto('Photos', item.id)}
-                                checked={this.state.hotel.mainPhotoType === 'Photos' && this.state.hotel.mainPhotoId === item.id} />
-                              <label htmlFor="mainPhotoId">Головне фото</label>
+                            <div className='form-group'>
+                              <label>Підпис до фото</label>
+                              <input type="text" className='form-control' value={this.state.hotel.photos[itemId].name} onChange={e => this.handlePhotoNameChange('photos', itemId, e.target.value)} />
                             </div>
-                            <i className='fa fa-trash-o' onClick={() => this.deleteItem('photos', itemId)} />
+                            <div className='photo-set'>
+                              <div className='custom-checkbox'>
+                                <input
+                                  type='checkbox'
+                                  id="mainPhotoId"
+                                  onChange={() => this.handleMainPhoto('Photos', item.id)}
+                                  checked={this.state.hotel.mainPhotoType === 'Photos' && this.state.hotel.mainPhotoId === item.id} />
+                                <label htmlFor="mainPhotoId">Головне фото</label>
+                              </div>
+                              <i className='fa fa-trash-o' onClick={() => this.deleteItem('photos', itemId)} />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -343,15 +367,21 @@ export default class Form extends React.Component {
                           <img src={item.photo} alt={this.state.hotel.name}/>
                         </div>
                         <div className="card-body">
-                          <div className='custom-checkbox'>
-                            <input
-                              type='checkbox'
-                              id="mainGooglePhotoId"
-                              onChange={() => this.handleMainPhoto('GooglePhotos', item.id)}
-                              checked={this.state.hotel.mainPhotoType === 'GooglePhotos' && this.state.hotel.mainPhotoId === item.id} />
-                            <label htmlFor="mainGooglePhotoId">Головне фото</label>
+                          <div className='form-group'>
+                            <label>Підпис до фото</label>
+                            <input type="text" className='form-control' value={this.state.hotel.googlePhotos[itemId].name} onChange={e => this.handlePhotoNameChange('googlePhotos', itemId, e.target.value)} />
                           </div>
-                          <i className='fa fa-trash-o' onClick={() => this.deleteGooglePhoto('googlePhotos', itemId)} />
+                          <div className='photo-set'>
+                            <div className='custom-checkbox'>
+                              <input
+                                type='checkbox'
+                                id="mainGooglePhotoId"
+                                onChange={() => this.handleMainPhoto('GooglePhotos', item.id)}
+                                checked={this.state.hotel.mainPhotoType === 'GooglePhotos' && this.state.hotel.mainPhotoId === item.id} />
+                              <label htmlFor="mainGooglePhotoId">Головне фото</label>
+                            </div>
+                            <i className='fa fa-trash-o' onClick={() => this.deleteGooglePhoto('googlePhotos', itemId)} />
+                          </div>
                         </div>
                       </div>
                     </div>

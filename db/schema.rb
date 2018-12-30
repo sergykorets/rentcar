@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181124140350) do
+ActiveRecord::Schema.define(version: 20181230124117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20181124140350) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "deleted", default: false
+    t.string "name"
     t.index ["hotel_id"], name: "index_google_photos_on_hotel_id"
   end
 
@@ -100,6 +101,7 @@ ActiveRecord::Schema.define(version: 20181124140350) do
     t.integer "picture_file_size"
     t.datetime "picture_updated_at"
     t.string "photo_url"
+    t.string "name"
   end
 
   create_table "places", id: :serial, force: :cascade do |t|
