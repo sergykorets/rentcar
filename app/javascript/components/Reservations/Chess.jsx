@@ -67,7 +67,7 @@ export default class Chess extends React.Component {
       )
     } else {
       $.ajax({
-        url: `/hotels/${this.state.hotelId}/booked_dates.json?date=${new Date()}&room_id=${this.state.newReservation.roomId}`,
+        url: `/hotels/${this.state.hotelId}/booked_dates.json?date=${this.state.newReservation.startDate || new Date()}&room_id=${this.state.newReservation.roomId}`,
         type: 'GET'
       }).then((resp) =>
         this.setState({
@@ -115,10 +115,17 @@ export default class Chess extends React.Component {
   }
 
   getBlockedDates = (date) => {
-    $.ajax({
-      url: `/hotels/${this.state.hotelId}/booked_dates.json?date=${date.format('YYYY-MM-DD')}&room_id=${this.state.selectedReservation.roomId}&reservation_id=${this.state.editModal ? this.state.selectedReservation.id : ''}`,
-      type: 'GET'
-    }).then((resp) => this.setState({ bookedDates: resp.blockedDates }))
+    if (this.state.editModal) {
+      $.ajax({
+        url: `/hotels/${this.state.hotelId}/booked_dates.json?date=${date.format('YYYY-MM-DD')}&room_id=${this.state.selectedReservation.roomId}&reservation_id=${this.state.editModal ? this.state.selectedReservation.id : ''}`,
+        type: 'GET'
+      }).then((resp) => this.setState({bookedDates: resp.blockedDates}))
+    } else {
+      $.ajax({
+        url: `/hotels/${this.state.hotelId}/booked_dates.json?date=${date.format('YYYY-MM-DD')}&room_id=${this.state.newReservation.roomId}`,
+        type: 'GET'
+      }).then((resp) => this.setState({bookedDates: resp.blockedDates}))
+    }
   }
 
   convertedBookedDates = () => {
@@ -234,7 +241,7 @@ export default class Chess extends React.Component {
           newReservation: {
             name: '',
             phone: '',
-            places: '',
+            places: this.state.hotelRooms[Object.keys(this.state.hotelRooms)[0]].places,
             description: '',
             deposit: '',
             startDate: null,
