@@ -21,6 +21,8 @@ export default class Room extends React.Component {
       newReservation: {
         name: '',
         phone: '',
+        deposit: '',
+        description: '',
         places: this.props.room.places,
         startDate: null,
         endDate: null,
@@ -116,6 +118,7 @@ export default class Room extends React.Component {
           phone: this.state.selectedReservation.phone,
           places: this.state.selectedReservation.places,
           description: this.state.selectedReservation.description,
+          deposit: this.state.selectedReservation.deposit,
           start_date: this.state.selectedReservation.startDate,
           end_date: this.state.selectedReservation.endDate
         }
@@ -211,6 +214,7 @@ export default class Room extends React.Component {
           places: this.state.newReservation.places,
           status: 'approved',
           description: this.state.newReservation.description,
+          deposit: this.state.newReservation.deposit,
           start_date: this.state.newReservation.startDate,
           end_date: this.state.newReservation.endDate
         }
@@ -228,6 +232,8 @@ export default class Room extends React.Component {
             name: '',
             phone: '',
             places: this.props.room.places,
+            description: '',
+            deposit: '',
             startDate: null,
             endDate: null,
             roomId: Object.keys(this.state.rooms)[0]
@@ -323,6 +329,10 @@ export default class Room extends React.Component {
                 <label>Додаткова інформація</label>
                 <textarea type='text' className='form-control' value={this.state.newReservation.description} onChange={(e) => this.handleNewReservationChange('description', e.target.value)} />
               </div>
+              <div className='form-group'>
+                <label>Завдаток</label>
+                <input type='number' className='form-control' value={this.state.newReservation.deposit} onChange={(e) => this.handleNewReservationChange('deposit', e.target.value)} />
+              </div>
             </div>
             <ModalFooter>
               <button className='btn btn-block btn-outline-info reservation-btn' onClick={this.handleSubmitReservation}>Створити</button>
@@ -363,6 +373,10 @@ export default class Room extends React.Component {
               <div className='form-group'>
                 <label>Додаткова інформація</label>
                 <textarea type='text' className='form-control' value={this.state.selectedReservation.description} onChange={(e) => this.handleReservationChange('description', e.target.value)} />
+              </div>
+              <div className='form-group'>
+                <label>Завдаток</label>
+                <input type='number' className='form-control' value={this.state.selectedReservation.deposit} onChange={(e) => this.handleReservationChange('deposit', e.target.value)} />
               </div>
             </div>
             <ModalFooter>

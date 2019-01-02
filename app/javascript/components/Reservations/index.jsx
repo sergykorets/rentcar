@@ -21,6 +21,7 @@ export default class Reservations extends React.Component {
       phone: '',
       places: 1,
       description: '',
+      deposit: '',
       createModal: false,
       editModal: false,
       selectedRoomId: ''
@@ -86,6 +87,7 @@ export default class Reservations extends React.Component {
           phone: this.state.phone,
           status: 'approved',
           description: this.state.description,
+          deposit: this.state.deposit,
           places: this.state.places,
           start_date: this.state.startDate.format('DD.MM.YYYY'),
           end_date: this.state.endDate.format('DD.MM.YYYY')
@@ -250,6 +252,10 @@ export default class Reservations extends React.Component {
               <div className='form-group'>
                 <label>Додаткова iнформацiя</label>
                 <textarea type='text' className='form-control' value={this.state.description} onChange={(e) => this.handleInputChange('description', e.target.value)} />
+              </div>
+              <div className='form-group'>
+                <label>Завдаток</label>
+                <input type='number' className='form-control' value={this.state.deposit} onChange={(e) => this.handleInputChange('deposit', e.target.value)} />
               </div>
             </div>
             <ModalFooter>

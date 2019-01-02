@@ -15,6 +15,17 @@ class Reservation < ApplicationRecord
     object.reservations.approved.where('start_date < ? AND end_date > ?', view_end, view_start)
   end
 
+  def booked_dates
+    blocked_dates = []
+    date = self.start_date
+    room = self.room
+    (date.beginning_of_month..date.end_of_month).each do |day|
+      reserved = room.reservations.approved.where('start_date < ? AND end_date > ? AND id NOT IN (?)', day.tomorrow, day, [self.id]).map {|r| r.places}.sum
+      blocked_dates << day if reserved >= room.places
+    end
+    blocked_dates
+  end
+
   private
 
   def check_availability

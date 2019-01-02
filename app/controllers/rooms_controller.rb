@@ -36,6 +36,7 @@ class RoomsController < ApplicationController
           phone: reservation.phone,
           places: reservation.places,
           description: reservation.description,
+          deposit: reservation.deposit,
           start: reservation.start_date,
           end: reservation.end_date,
           allDay: false}
@@ -77,8 +78,15 @@ class RoomsController < ApplicationController
   end
 
   def chess
-    @hotel_id = @hotel.slug
-    @rooms = @hotel.rooms.order(:number).map {|room| {id: room.id, title: "Номер #{room.number}"}}
+    @hotel_id = @hotel.id
+    rooms = @hotel.rooms.order(:number)
+    @rooms = rooms.map {|room| {id: room.id, title: "Номер #{room.number}", places: room.places}}
+    @hotel_rooms = rooms.each_with_object({}) {|room, hash| hash[room.id] = {
+      number: room.number,
+      places: room.places,
+      floor: room.floor,
+      bigBed: room.big_bed
+    }}
     @reservations = @hotel.reservations.approved.map { |reservation|
       { id: reservation.id,
         group: reservation.room_id,

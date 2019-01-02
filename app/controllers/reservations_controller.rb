@@ -32,6 +32,22 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def show
+    @reservation = Reservation.find(params[:id])
+    booked_dates = @reservation.booked_dates
+    reservation = {
+      id: @reservation.id,
+      roomId: @reservation.room_id,
+      name: @reservation.name,
+      phone: @reservation.phone,
+      places: @reservation.places,
+      description: @reservation.description,
+      deposit: @reservation.deposit,
+      startDate: @reservation.start_date.strftime('%d.%m.%Y'),
+      endDate: @reservation.end_date.strftime('%d.%m.%Y')}
+    render json: {reservation: reservation, bookedDates: booked_dates}
+  end
+
   def create
     if room = @hotel.rooms.find_by_id(params[:reservation][:room_id])
       if params[:from_user]
@@ -49,6 +65,7 @@ class ReservationsController < ApplicationController
                phone: reservation.phone,
                places: reservation.places,
                description: reservation.description,
+               deposit: reservation.deposit,
                start: reservation.start_date,
                end: reservation.end_date,
                allDay: false}
@@ -64,11 +81,22 @@ class ReservationsController < ApplicationController
                roomId: reservation.room_id,
                phone: reservation.phone,
                description: reservation.description,
+               deposit: reservation.deposit,
                places: reservation.places,
                startDate: reservation.start_date.strftime('%d.%m.%Y'),
                endDate: reservation.end_date.strftime('%d.%m.%Y')}
             end
           }
+        elsif params[:from_chess]
+          render json: {
+            success: true,
+            reservations: @hotel.reservations.approved.map { |reservation|
+              { id: reservation.id,
+                group: reservation.room_id,
+                title: reservation.name,
+                start_time: (reservation.start_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
+                end_time: (reservation.end_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M')}
+            }}
         elsif params[:from_user]
           UserBookingEmailJob.perform_later(r) if current_user
           BookingEmailForHotelJob.perform_later(r)
@@ -95,6 +123,7 @@ class ReservationsController < ApplicationController
                   phone: reservation.phone,
                   places: reservation.places,
                   description: reservation.description,
+                  deposit: reservation.deposit,
                   startDate: reservation.start_date.strftime('%d.%m.%Y'),
                   endDate: reservation.end_date.strftime('%d.%m.%Y')}
                 }
@@ -150,6 +179,16 @@ class ReservationsController < ApplicationController
              endDate: reservation.end_date.strftime('%d.%m.%Y')}
           }
         }
+      elsif params[:from_chess]
+        render json: {
+          success: true,
+          reservations: @hotel.reservations.approved.map { |reservation|
+            { id: reservation.id,
+              group: reservation.room_id,
+              title: reservation.name,
+              start_time: (reservation.start_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
+              end_time: (reservation.end_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M')}
+          }}
       else
         render json: {
           success: true,
@@ -161,6 +200,7 @@ class ReservationsController < ApplicationController
              phone: reservation.phone,
              places: reservation.places,
              description: reservation.description,
+             deposit: reservation.deposit,
              start: reservation.start_date,
              end: reservation.end_date,
              allDay: false}
@@ -225,6 +265,16 @@ class ReservationsController < ApplicationController
            endDate: reservation.end_date.strftime('%d.%m.%Y')}
         }
       }
+    elsif params[:from_chess]
+      render json: {
+        success: true,
+        reservations: @hotel.reservations.approved.map { |reservation|
+          { id: reservation.id,
+            group: reservation.room_id,
+            title: reservation.name,
+            start_time: (reservation.start_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
+            end_time: (reservation.end_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M')}
+        }}
     else
       rooms = if params[:floor] == 'all'
         @hotel.rooms
@@ -301,7 +351,6 @@ class ReservationsController < ApplicationController
         bigBed: reservation.room.big_bed
       }}
     }
-    puts @reservations
   end
 
   private
