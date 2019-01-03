@@ -302,7 +302,6 @@ export default class Hotel extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     const images = this.state.hotel.photos.map((photo) => {return ({ original: photo.photo, thumbnail: photo.photo, description: photo.name})})
     const BAD_DATES = this.convertedDates()
     const isDayBlocked = day => BAD_DATES.filter(d => d.isSame(day, 'day')).length > 0;
