@@ -240,6 +240,13 @@ export default class Hotels extends React.Component {
                               </Tooltip>
                             </Fragment>}
                         </div>
+                        { hotel.allowBooking &&
+                          <Fragment>
+                            <button id={`Booking-${index}`} className='btn btn-xs btn-warning'>Online</button>
+                            <Tooltip placement="bottom" isOpen={this.state.tooltips[index] && this.state.tooltips[index].booking} target={`Booking-${index}`} toggle={() => this.toggle(index, 'booking')}>
+                              Цей готель можна бронювати Online
+                            </Tooltip>
+                          </Fragment>}
                       </div>
                     </div>
                   </div>
