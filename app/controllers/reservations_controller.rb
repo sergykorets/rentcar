@@ -133,8 +133,29 @@ class ReservationsController < ApplicationController
       else
         render json: {success: false, error: r.errors.full_messages.first}
       end
+    elsif params[:from_ratrak]
+      r = @hotel.reservations.create(reservation_params)
+      if r.persisted?
+        render json: {
+          success: true,
+          reservations: @hotel.ratrak.reservations.approved.where('start_date < ? AND end_date > ?', params[:date].try(:to_date).try(:at_end_of_month) || Date.today.at_end_of_month, params[:date].try(:to_date).try(:at_beginning_of_month) || Date.today.at_beginning_of_month).map do |reservation|
+          {  id: reservation.id,
+             name: reservation.name,
+             title: "#{reservation.name} - #{reservation.places}",
+             phone: reservation.phone,
+             places: reservation.places,
+             description: reservation.description,
+             deposit: reservation.deposit,
+             start: (reservation.start_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
+             end: (reservation.end_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
+             allDay: false}
+          end
+        }
+      else
+        render json: {success: false, error: r.errors.full_messages.first}
+      end
     else
-      render json: {success: false, error: 'Invalid room'}
+      render json: {success: false, error: 'Перезавантажте сторінку'}
     end
   end
 
@@ -189,6 +210,22 @@ class ReservationsController < ApplicationController
               start_time: (reservation.start_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
               end_time: (reservation.end_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M')}
           }}
+      elsif params[:from_ratrak]
+        render json: {
+          success: true,
+          reservations: @hotel.ratrak.reservations.approved.where('start_date < ? AND end_date > ?', params[:date].try(:to_date).try(:at_end_of_month) || Date.today.at_end_of_month, params[:date].try(:to_date).try(:at_beginning_of_month) || Date.today.at_beginning_of_month).map do |reservation|
+            {id: reservation.id,
+             name: reservation.name,
+             title: "#{reservation.name} - #{reservation.places}",
+             phone: reservation.phone,
+             places: reservation.places,
+             description: reservation.description,
+             deposit: reservation.deposit,
+             start: (reservation.start_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
+             end: (reservation.end_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
+             allDay: false}
+          end
+        }
       else
         render json: {
           success: true,
@@ -275,6 +312,22 @@ class ReservationsController < ApplicationController
             start_time: (reservation.start_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
             end_time: (reservation.end_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M')}
         }}
+    elsif params[:from_ratrak]
+      render json: {
+        success: true,
+        reservations: @hotel.ratrak.reservations.approved.where('start_date < ? AND end_date > ?', params[:date].try(:to_date).try(:at_end_of_month) || Date.today.at_end_of_month, params[:date].try(:to_date).try(:at_beginning_of_month) || Date.today.at_beginning_of_month).map do |reservation|
+          {id: reservation.id,
+           name: reservation.name,
+           title: "#{reservation.name} - #{reservation.places}",
+           phone: reservation.phone,
+           places: reservation.places,
+           description: reservation.description,
+           deposit: reservation.deposit,
+           start: (reservation.start_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
+           end: (reservation.end_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
+           allDay: false}
+        end
+      }
     else
       rooms = if params[:floor] == 'all'
         @hotel.rooms
@@ -360,7 +413,7 @@ class ReservationsController < ApplicationController
     end
 
     def reservation_params
-      params.require(:reservation).permit(:name, :phone, :places, :description, :status, :deposit, :start_date, :end_date, :hotel_id, :room_id)
+      params.require(:reservation).permit(:name, :phone, :places, :description, :status, :deposit, :start_date, :end_date, :hotel_id, :room_id, :ratrak_id)
     end
 
     def define_hotel

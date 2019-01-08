@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190103110543) do
+ActiveRecord::Schema.define(version: 20190107125736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,11 @@ ActiveRecord::Schema.define(version: 20190103110543) do
     t.integer "user_id"
   end
 
+  create_table "ratraks", force: :cascade do |t|
+    t.integer "places"
+    t.integer "hotel_id"
+  end
+
   create_table "replies", force: :cascade do |t|
     t.integer "user_id"
     t.text "body"
@@ -132,6 +137,7 @@ ActiveRecord::Schema.define(version: 20190103110543) do
     t.integer "status", default: 0
     t.text "description"
     t.integer "deposit"
+    t.integer "ratrak_id"
     t.index ["hotel_id"], name: "index_reservations_on_hotel_id"
     t.index ["room_id"], name: "index_reservations_on_room_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"

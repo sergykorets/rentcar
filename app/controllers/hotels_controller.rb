@@ -1,5 +1,6 @@
 class HotelsController < ApplicationController
-  before_action :set_hotel, only: [:show, :edit, :update, :nearby, :rooms, :reservation_list, :booked_dates, :get_available_rooms]
+  layout 'hotel_admin', only: :ratrak
+  before_action :set_hotel, only: [:show, :edit, :update, :nearby, :rooms, :reservation_list, :booked_dates, :get_available_rooms, :ratrak]
   before_action :check_session, only: :index
   before_action :authenticate_user!, only: [:create, :edit, :update]
 
@@ -171,6 +172,27 @@ class HotelsController < ApplicationController
         number: room.number}
     end
     render json: {success: true, availableRooms: available_rooms }
+  end
+
+  def ratrak
+    ratrak = @hotel.ratrak
+    @ratrak = ratrak.attributes
+    @reservations = ratrak.reservations.approved.where('start_date < ? AND end_date > ?', params[:date].try(:to_date).try(:at_end_of_month) || Date.today.at_end_of_month, params[:date].try(:to_date).try(:at_beginning_of_month) || Date.today.at_beginning_of_month).map do |reservation|
+      {id: reservation.id,
+       name: reservation.name,
+       title: "#{reservation.name} - #{reservation.places}",
+       phone: reservation.phone,
+       places: reservation.places,
+       description: reservation.description,
+       deposit: reservation.deposit,
+       start: (reservation.start_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
+       end: (reservation.end_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
+       allDay: false}
+    end
+    respond_to do |format|
+      format.html { render :ratrak }
+      format.json {{reservations: @reservations, ratrak: @ratrak }}
+    end
   end
 
   private

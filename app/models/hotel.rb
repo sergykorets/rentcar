@@ -13,6 +13,7 @@ class Hotel < ApplicationRecord
   has_many :rooms
   has_many :reservations
   belongs_to :user, optional: true
+  has_one :ratrak
 
   validates_presence_of :name
   validates_uniqueness_of :google_id, allow_blank: true, allow_nil: true

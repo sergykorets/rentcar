@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     member do
       get :booked_dates
       get :get_available_rooms
+      get :ratrak
     end
   end
   resources :restaurants, only: :index

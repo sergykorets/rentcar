@@ -33,6 +33,7 @@ export default class AirBnbPicker extends React.Component {
         startDatePlaceholderText={this.props.startPlaceholder || 'Заїзд'}
         endDatePlaceholderText={this.props.endPlaceholder || 'Виїзд'}
         numberOfMonths={1}
+        minimumNights={this.props.oneDay ? 0 : 1}
         startDate={this.state.startDate}
         startDateId="your_unique_start_date_id"
         endDate={this.state.endDate}

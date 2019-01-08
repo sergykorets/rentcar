@@ -50,7 +50,7 @@ class RoomsController < ApplicationController
 
   def reservation_list
     @hotel_id = @hotel.id
-    @reservations = @hotel.reservations.approved
+    @reservations = @hotel.reservations.approved.for_rooms
                       .for_dates(@hotel, params[:start_date].try(:to_date) || Date.today, params[:end_date].try(:to_date) || Date.tomorrow)
                       .order(created_at: :desc)
     @rooms = @hotel.rooms.each_with_object({}) {|room, hash| hash[room.id] = {
