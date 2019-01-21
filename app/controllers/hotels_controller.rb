@@ -161,7 +161,7 @@ class HotelsController < ApplicationController
   end
 
   def get_available_rooms
-    hotel_rooms = @hotel.rooms.to_a
+    hotel_rooms = @hotel.rooms.order(:number).to_a
     reservations = @hotel.reservations.approved.where('start_date < ? AND end_date > ?', params[:end_date], params[:start_date])
     reserved_rooms = reservations.map {|r| Room.find_by_id(r.room_id)}.uniq.to_a
     available_rooms = (hotel_rooms - reserved_rooms).map do |room|

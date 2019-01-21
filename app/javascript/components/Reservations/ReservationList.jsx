@@ -254,8 +254,8 @@ export default class ReservationList extends React.Component {
                 <i className='fa fa-trash-o float-right' onClick={() => this.deleteReservation(this.state.selectedReservation.id)} />
                 <label>Номер</label>
                 <select className='form-control' value={this.state.selectedReservation.roomId} onChange={(e) => this.handleReservationChange('roomId', e.target.value)}>
-                  { Object.keys(this.state.rooms).map((id, i) =>
-                    <option key={i} value={id}>Поверх {this.state.rooms[id].floor} | Номер {this.state.rooms[id].number} | Місць: {this.state.rooms[id].places} { this.state.rooms[id].bigBed && '| Двоспальне ліжко'}</option>
+                  { Object.values(this.state.rooms).sort((a,b) => a.number - b.number).map((item, i) =>
+                    <option key={i} value={item.id}>Поверх {this.state.rooms[item.id].floor} | Номер {this.state.rooms[item.id].number} | Місць: {this.state.rooms[item.id].places} { this.state.rooms[item.id].bigBed && '| Двоспальне ліжко'}</option>
                   )}
                 </select>
               </div>

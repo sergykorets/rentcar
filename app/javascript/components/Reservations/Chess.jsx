@@ -291,8 +291,8 @@ export default class Chess extends React.Component {
                 <i className='fa fa-trash-o float-right' onClick={() => this.deleteReservation(this.state.selectedReservation.id)} />
                 <label>Номер</label>
                 <select className='form-control' value={this.state.selectedReservation.roomId} onChange={(e) => this.handleReservationChange('roomId', e.target.value)}>
-                  { Object.keys(this.state.hotelRooms).map((id, i) =>
-                    <option key={i} value={id}>Поверх {this.state.hotelRooms[id].floor} | Номер {this.state.hotelRooms[id].number} | Місць: {this.state.hotelRooms[id].places} { this.state.hotelRooms[id].bigBed && '| Двоспальне ліжко'}</option>
+                  { Object.values(this.state.hotelRooms).sort((a,b) => a.number - b.number).map((item, i) =>
+                    <option key={i} value={item.id}>Поверх {this.state.hotelRooms[item.id].floor} | Номер {this.state.hotelRooms[item.id].number} | Місць: {this.state.hotelRooms[item.id].places} { this.state.hotelRooms[item.id].bigBed && '| Двоспальне ліжко'}</option>
                   )}
                 </select>
               </div>
@@ -345,8 +345,8 @@ export default class Chess extends React.Component {
               <div className='form-group'>
                 <label>Номер</label>
                 <select className='form-control' value={this.state.newReservation.roomId} onChange={(e) => this.handleNewReservationChange('roomId', e.target.value)}>
-                  { Object.keys(this.state.hotelRooms).map((id, i) =>
-                    <option key={i} value={id}>Поверх {this.state.hotelRooms[id].floor} | Номер {this.state.hotelRooms[id].number} | Місць: {this.state.hotelRooms[id].places} { this.state.hotelRooms[id].bigBed && '| Двоспальне ліжко'}</option>
+                  { Object.values(this.state.hotelRooms).sort((a,b) => a.number - b.number).map((item, i) =>
+                    <option key={i} value={item.id}>Поверх {this.state.hotelRooms[item.id].floor} | Номер {this.state.hotelRooms[item.id].number} | Місць: {this.state.hotelRooms[item.id].places} { this.state.hotelRooms[item.id].bigBed && '| Двоспальне ліжко'}</option>
                   )}
                 </select>
               </div>

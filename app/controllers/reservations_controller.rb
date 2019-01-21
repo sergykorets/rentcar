@@ -8,7 +8,7 @@ class ReservationsController < ApplicationController
     @hotel = current_user.hotels.friendly.find(params[:hotel_id]) if !current_user.admin
     @floors = @hotel.rooms.map {|room| room.floor}.max
     @hotel_id = @hotel.id
-    @rooms = @hotel.rooms.each_with_object({}) {|room, hash|
+    @rooms = @hotel.rooms.order(:number).each_with_object({}) {|room, hash|
       reservations = room.reservations.approved.for_dates(room, Date.today.to_date, Date.tomorrow.to_date)
       hash[room.id] = {
         id: room.id,
@@ -103,9 +103,9 @@ class ReservationsController < ApplicationController
           render json: { success: true }
         else
           rooms = if params[:reservation][:floor] == 'all'
-            @hotel.rooms
+            @hotel.rooms.order(:number)
           else
-            @hotel.rooms.in_floor(params[:reservation][:floor])
+            @hotel.rooms.order(:number).in_floor(params[:reservation][:floor])
           end
           render json: {
             success: true,
@@ -330,9 +330,9 @@ class ReservationsController < ApplicationController
       }
     else
       rooms = if params[:floor] == 'all'
-        @hotel.rooms
+        @hotel.rooms.order(:number)
       else
-        @hotel.rooms.in_floor(params[:floor])
+        @hotel.rooms.order(:number).in_floor(params[:floor])
       end
       render json: {
         success: true,
@@ -359,7 +359,7 @@ class ReservationsController < ApplicationController
   end
 
   def dates
-    rooms = params[:floor] != 'all' ? @hotel.rooms.in_floor(params[:floor]) : @hotel.rooms
+    rooms = params[:floor] != 'all' ? @hotel.rooms.order(:number).in_floor(params[:floor]) : @hotel.rooms.order(:number)
     render json: {
       success: true,
       rooms: rooms.each_with_object({}) {|room, hash|

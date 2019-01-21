@@ -6,7 +6,7 @@ class RoomsController < ApplicationController
 
   def index
     @hotel_id = @hotel.id
-    @rooms = @hotel.rooms.each_with_object({}) {|g, hash| hash[g.id] = {
+    @rooms = @hotel.rooms.order(:number).each_with_object({}) {|g, hash| hash[g.id] = {
       id: g.id,
       number: g.number,
       floor: g.floor,
@@ -18,7 +18,8 @@ class RoomsController < ApplicationController
   def calendar
     @hotel_id = @hotel.id
     @room = @hotel.rooms.find_by_id(params[:id]) || @hotel.rooms.first
-    @rooms = @hotel.rooms.each_with_object({}) {|room, hash| hash[room.id] = {
+    @rooms = @hotel.rooms.order(:number).each_with_object({}) {|room, hash| hash[room.id] = {
+      id: room.id,
       number: room.number,
       places: room.places,
       floor: room.floor,
@@ -53,7 +54,8 @@ class RoomsController < ApplicationController
     @reservations = @hotel.reservations.approved.for_rooms
                       .for_dates(@hotel, params[:start_date].try(:to_date) || Date.today, params[:end_date].try(:to_date) || Date.tomorrow)
                       .order(created_at: :desc)
-    @rooms = @hotel.rooms.each_with_object({}) {|room, hash| hash[room.id] = {
+    @rooms = @hotel.rooms.order(:number).each_with_object({}) {|room, hash| hash[room.id] = {
+      id: room.id,
       number: room.number,
       places: room.places,
       floor: room.floor,
@@ -82,6 +84,7 @@ class RoomsController < ApplicationController
     rooms = @hotel.rooms.order(:number)
     @rooms = rooms.map {|room| {id: room.id, title: "Номер #{room.number}", places: room.places}}
     @hotel_rooms = rooms.each_with_object({}) {|room, hash| hash[room.id] = {
+      id: room.id,
       number: room.number,
       places: room.places,
       floor: room.floor,
@@ -103,7 +106,8 @@ class RoomsController < ApplicationController
   def pending_reservations
     @hotel_id = @hotel.id
     @reservations = @hotel.reservations.pending.order(created_at: :desc)
-    @rooms = @hotel.rooms.each_with_object({}) {|room, hash| hash[room.id] = {
+    @rooms = @hotel.rooms.order(:number).each_with_object({}) {|room, hash| hash[room.id] = {
+      id: room.id,
       number: room.number,
       places: room.places,
       floor: room.floor,
@@ -129,7 +133,7 @@ class RoomsController < ApplicationController
 
   def update
     if @hotel.rooms.find_by_id(params[:id]).update(room_params)
-      rooms = params[:floor] != 'all' ? @hotel.rooms.in_floor(params[:floor]) : @hotel.rooms
+      rooms = params[:floor] != 'all' ? @hotel.rooms.order(:number).in_floor(params[:floor]) : @hotel.rooms.order(:number)
       render json: {
         success: true,
         rooms: rooms.each_with_object({}) {|room, hash|
@@ -159,7 +163,7 @@ class RoomsController < ApplicationController
   def destroy
     room = @hotel.rooms.find_by_id(params[:id])
     if room.destroy
-      render json: { success: true, rooms: @hotel.rooms.each_with_object({}) {|g, hash| hash[g.id] = {
+      render json: { success: true, rooms: @hotel.rooms.order(:number).each_with_object({}) {|g, hash| hash[g.id] = {
         id: g.id,
         number: g.number,
         floor: g.floor,
