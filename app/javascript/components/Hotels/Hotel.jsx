@@ -40,7 +40,8 @@ export default class Hotel extends React.Component {
       blockedDates: [],
       availableRooms: [],
       replyForms: {},
-      reply: ''
+      reply: '',
+      showPhone: false
     };
   }
 
@@ -50,12 +51,20 @@ export default class Hotel extends React.Component {
       ReactGA.pageview(window.location.pathname + window.location.search);
       ReactGA.ga('send', 'pageview', `/hotels/${this.state.hotel.slug}`);
       ga('send', {'name': 'viewContent', 'productId': this.state.hotel.id, 'productName': this.state.hotel.name});
-      ReactPixel.track( 'ViewContent', { content_ids: [this.state.hotel.id], content_name: this.state.hotel.name, content_type: 'Hotel' } )
+      ReactPixel.track('ViewContent', { content_ids: [this.state.hotel.id], content_name: this.state.hotel.name, content_type: 'Hotel'})
     }
   }
 
   handleInputChange = (field, value) => {
     this.setState({[field]: value})
+    if (field === 'showPhone' && !this.state.admin) {
+      ga('send', {'name': 'purchase', 'productIds': this.state.hotel.id, 'revenue': this.state.hotel.price})
+      ga('require', 'ecommerce')
+      ga('ecommerce:addTransaction', {'id': new Date().getTime(), 'revenue': this.state.hotel.price, 'currency': 'USD' })
+      ga('ecommerce:addItem', {'id': this.state.hotel.id, 'name': this.state.hotel.name, 'quantity': 1, 'price': this.state.hotel.price})
+      ga('ecommerce:send')
+      ReactPixel.track('Purchase', { content_ids: [this.state.hotel.id], content_name: this.state.hotel.name, content_type: 'Hotel', value: this.state.hotel.price})
+    }
   }
 
   submitReview = () => {
@@ -354,14 +363,17 @@ export default class Hotel extends React.Component {
           </div>
           <div className='right'>
             <div className='actions-block'>
-              <div className='phones'>
-                { this.state.hotel.phones.map((phone, i) => {
-                  return (
-                    <a href={`tel:${phone}`} className='phone' key={i}>
-                      {phone}
-                    </a>
-                  )})}
-              </div>
+              { this.state.showPhone ?
+                <div className='phones'>
+                  { this.state.hotel.phones.map((phone, i) => {
+                    return (
+                      <a href={`tel:${phone}`} className='phone' key={i}>
+                        {phone}
+                      </a>
+                    )})}
+                </div>
+                :
+                <button className='btn btn-success' onClick={() => this.handleInputChange('showPhone', !this.state.showPhone)}><i className="fa fa-phone"></i> Дзвонити</button>}
               <div className='hotel-buttons text-center'>
                 { this.state.hotel.allowBooking &&
                   <button className='btn btn-warning' onClick={() => this.handleModal('bookingModal')}>Бронювати</button>}
@@ -461,7 +473,7 @@ export default class Hotel extends React.Component {
         <div className='reviews-wrap'>
           <div className='review-form'>
             <textarea type='text' rows='3' placeholder={this.state.logged ? 'Напишіть відгук про готель тут' : 'Щоб залишити відгук, потрібно зайти на сайт під своїм логіном або зареєструватися'}
-                      onChange={(e) => this.handleInputChange('review', e.target.value)} value={this.state.review} className='form-control'/>
+                      onChange={(e) => this.handleInputChange('review', e.target.value)} value={this.state.review || ''} className='form-control'/>
             <div className='review-actions'>
               <button className='btn btn-dark' onClick={this.submitReview} disabled={this.state.reviewRating == 0}>Залишити відгук</button>
               <Rater start={0} stop={5} step={1} onClick={(rate) => this.handleInputChange('reviewRating', rate)} emptySymbol="fa fa-star-o fa-2x"
@@ -529,7 +541,7 @@ export default class Hotel extends React.Component {
             </div>
             <div className='form-group'>
               <label>Опис проблеми</label>
-              <textarea className='form-control' value={this.state.suggestBody} placeholder="Опишіть тут проблему з якою Ви зіткнулися або запропонуйте свої зміни" onChange={(e) => this.handleInputChange('suggestBody', e.target.value)}/>
+              <textarea className='form-control' value={this.state.suggestBody || ''} placeholder="Опишіть тут проблему з якою Ви зіткнулися або запропонуйте свої зміни" onChange={(e) => this.handleInputChange('suggestBody', e.target.value)}/>
             </div>
             <div className='form-group'>
               <button disabled={this.state.suggestBody.length < 1} className='btn btn-block btn-danger' onClick={this.submitSuggest}>Надіслати</button>
@@ -624,7 +636,7 @@ export default class Hotel extends React.Component {
                   </div>
                   <div className='form-group'>
                     <label>Додаткова інформація</label>
-                    <textarea type='text' className='form-control' value={this.state.reservation.description} onChange={(e) => this.handleNewReservationChange('description', e.target.value)} />
+                    <textarea type='text' className='form-control' value={this.state.reservation.description || ''} onChange={(e) => this.handleNewReservationChange('description', e.target.value)} />
                   </div>
                 </Fragment>}
             </div>

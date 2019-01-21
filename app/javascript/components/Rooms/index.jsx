@@ -127,6 +127,9 @@ export default class Rooms extends React.Component {
                 </div>
               )}})}
         </div>
+        <div className='form-group'>
+          <i className='fa fa-plus btn btn-info' onClick={this.addRoom}> Додати номер</i>
+        </div>
         <hr/>
         <div className='form-group'>
           <div className='custom-checkbox'>

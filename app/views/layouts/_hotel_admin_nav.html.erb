@@ -10,7 +10,7 @@
         <li class='nav-item'><%= link_to 'Шахматка', chess_hotel_rooms_path(params[:hotel_id] || params[:id]), class: 'nav-link' %></li>
         <li class='nav-item'><%= link_to 'Календар', calendar_hotel_rooms_path(params[:hotel_id] || params[:id]), class: 'nav-link' %></li>
         <li class='nav-item'><%= link_to 'Номери', hotel_reservations_path(params[:hotel_id] || params[:id]), class: 'nav-link' %></li>
-        <li class='nav-item'><%= link_to 'Поточні бронювання', reservation_list_hotel_rooms_path(params[:hotel_id] || params[:id]), class: 'nav-link' %></li>
+        <li class='nav-item'><%= link_to 'Бронювання', reservation_list_hotel_rooms_path(params[:hotel_id] || params[:id]), class: 'nav-link' %></li>
         <% if params[:hotel_id] == 'yuliana' || params[:id] == 'yuliana' %>
           <li class='nav-item'><%= link_to 'Ратрак', ratrak_hotel_path(params[:hotel_id] || params[:id]), class: 'nav-link' %></li>
         <% end %>
