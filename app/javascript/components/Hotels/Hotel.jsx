@@ -46,7 +46,7 @@ export default class Hotel extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.state.admin) {
+    if (!(this.state.admin || this.state.owner)) {
       ReactGA.initialize('UA-116820611-2');
       ReactGA.pageview(window.location.pathname + window.location.search);
       ReactGA.ga('send', 'pageview', `/hotels/${this.state.hotel.slug}`);
@@ -57,13 +57,13 @@ export default class Hotel extends React.Component {
 
   handleInputChange = (field, value) => {
     this.setState({[field]: value})
-    if (field === 'showPhone' && !this.state.admin) {
-      ga('send', {'name': 'purchase', 'productIds': this.state.hotel.id, 'revenue': this.state.hotel.price})
+    if (field === 'showPhone' && !(this.state.admin || this.state.owner)) {
+      ga('send', {'name': 'purchase', 'productIds': this.state.hotel.id, 'revenue': (this.state.hotel.price / 100)})
       ga('require', 'ecommerce')
-      ga('ecommerce:addTransaction', {'id': new Date().getTime(), 'revenue': this.state.hotel.price, 'currency': 'USD' })
-      ga('ecommerce:addItem', {'id': this.state.hotel.id, 'name': this.state.hotel.name, 'quantity': 1, 'price': this.state.hotel.price})
+      ga('ecommerce:addTransaction', {'id': new Date().getTime(), 'revenue': (this.state.hotel.price / 100), 'currency': 'USD' })
+      ga('ecommerce:addItem', {'id': this.state.hotel.id, 'name': this.state.hotel.name, 'quantity': 1, 'price': (this.state.hotel.price / 100)})
       ga('ecommerce:send')
-      ReactPixel.track('Purchase', { content_ids: [this.state.hotel.id], content_name: this.state.hotel.name, content_type: 'Hotel', value: this.state.hotel.price})
+      ReactPixel.track('Purchase', { content_ids: [this.state.hotel.id], content_name: this.state.hotel.name, content_type: 'Hotel', value: (this.state.hotel.price / 100)})
     }
   }
 
@@ -325,38 +325,41 @@ export default class Hotel extends React.Component {
           <div className='hotel-info'>
             <div className='hotel-header'>
               <h1 className='hotel-name'>{this.state.hotel.name}</h1>
-              <span>{this.state.hotel.price} {this.state.hotel.price && 'UAH'}</span>
+              { this.state.hotel.hotelType === 'lodging' ? <span>{this.state.hotel.price} {this.state.hotel.price && 'UAH'}</span>
+                :
+                <Rater initialRating={parseFloat(this.state.hotel.googleRating)} emptySymbol="fa fa-star-o fa-2x" fullSymbol="fa fa-star fa-2x" readonly className='hotel-stars'/>}
             </div>
-            <div className='hotel-header activities'>
-              <div className='hotel-icons'>
-                <div id='sauna' className={`icon ${this.state.hotel.sauna && 'present'}`}>
-                  <img src="/images/sauna.svg"/>
-                  <p>Баня</p>
+            { this.state.hotel.hotelType === 'lodging' &&
+              <div className='hotel-header activities'>
+                <div className='hotel-icons'>
+                  <div id='sauna' className={`icon ${this.state.hotel.sauna && 'present'}`}>
+                    <img src="/images/sauna.svg"/>
+                    <p>Баня</p>
+                  </div>
+                  { !this.state.hotel.sauna &&
+                    <Tooltip placement="bottom" isOpen={this.state.tooltips.sauna} target='sauna' toggle={() => this.toggleTooltip('sauna')}>
+                      Немає
+                    </Tooltip>}
+                  <div id='chan' className={`icon ${this.state.hotel.chan && 'present'}`}>
+                    <img src="/images/chan.png"/>
+                    <p>Чан</p>
+                  </div>
+                  { !this.state.hotel.chan &&
+                    <Tooltip placement="bottom" isOpen={this.state.tooltips.chan} target='chan' toggle={() => this.toggleTooltip('chan')}>
+                      Немає
+                    </Tooltip>}
+                  <div id='disco' className={`icon ${this.state.hotel.disco && 'present'}`}>
+                    <img src="/images/disco.svg"/>
+                    <p>Диско</p>
+                  </div>
+                  { !this.state.hotel.disco &&
+                    <Tooltip placement="bottom" isOpen={this.state.tooltips.disco} target='disco' toggle={() => this.toggleTooltip('disco')}>
+                      Немає
+                    </Tooltip>}
                 </div>
-                { !this.state.hotel.sauna &&
-                  <Tooltip placement="bottom" isOpen={this.state.tooltips.sauna} target='sauna' toggle={() => this.toggleTooltip('sauna')}>
-                    Немає
-                  </Tooltip>}
-                <div id='chan' className={`icon ${this.state.hotel.chan && 'present'}`}>
-                  <img src="/images/chan.png"/>
-                  <p>Чан</p>
-                </div>
-                { !this.state.hotel.chan &&
-                  <Tooltip placement="bottom" isOpen={this.state.tooltips.chan} target='chan' toggle={() => this.toggleTooltip('chan')}>
-                    Немає
-                  </Tooltip>}
-                <div id='disco' className={`icon ${this.state.hotel.disco && 'present'}`}>
-                  <img src="/images/disco.svg"/>
-                  <p>Диско</p>
-                </div>
-                { !this.state.hotel.disco &&
-                  <Tooltip placement="bottom" isOpen={this.state.tooltips.disco} target='disco' toggle={() => this.toggleTooltip('disco')}>
-                    Немає
-                  </Tooltip>}
-              </div>
-              <Rater initialRating={parseFloat(this.state.hotel.googleRating)} emptySymbol="fa fa-star-o fa-2x"
-                     fullSymbol="fa fa-star fa-2x" readonly className='hotel-stars'/>
-            </div>
+                <Rater initialRating={parseFloat(this.state.hotel.googleRating)} emptySymbol="fa fa-star-o fa-2x"
+                       fullSymbol="fa fa-star fa-2x" readonly className='hotel-stars'/>
+              </div>}
             <div className='hotel-description'>
               <span dangerouslySetInnerHTML={{__html: this.state.hotel.description}}></span>
             </div>
@@ -373,7 +376,9 @@ export default class Hotel extends React.Component {
                     )})}
                 </div>
                 :
-                <button className='btn btn-success' onClick={() => this.handleInputChange('showPhone', !this.state.showPhone)}><i className="fa fa-phone"></i> Дзвонити</button>}
+                <Fragment>
+                  { this.state.hotel.phones.length > 0 && <button className='btn btn-success' onClick={() => this.handleInputChange('showPhone', !this.state.showPhone)}><i className="fa fa-phone"></i> Дзвонити</button>}
+                </Fragment>}
               <div className='hotel-buttons text-center'>
                 { this.state.hotel.allowBooking &&
                   <button className='btn btn-warning' onClick={() => this.handleModal('bookingModal')}>Бронювати</button>}

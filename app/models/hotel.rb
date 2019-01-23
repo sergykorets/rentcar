@@ -18,6 +18,8 @@ class Hotel < ApplicationRecord
   validates_presence_of :name
   validates_uniqueness_of :google_id, allow_blank: true, allow_nil: true
 
+  after_update :update_hotel_rating
+
   accepts_nested_attributes_for :phones, allow_destroy: true
   accepts_nested_attributes_for :photos, allow_destroy: true
   accepts_nested_attributes_for :google_photos, allow_destroy: false
@@ -82,7 +84,8 @@ class Hotel < ApplicationRecord
       puts "********************** #{hotels.flatten.count} *****************************"
       hotels.flatten.each do |hotel|
         puts hotel['name']
-        next if hotel['place_id'] == 'ChIJq-JzLwwQN0cRAhDnwCSXor8' || hotel['place_id'] == 'ChIJx3rHjRAQN0cRdWy5ldbbpGo' || hotel['place_id'] == 'ChIJGd65gRoQN0cRZHpkO6eTDP0'
+        next if hotel['place_id'] == 'ChIJq-JzLwwQN0cRAhDnwCSXor8' || hotel['place_id'] == 'ChIJx3rHjRAQN0cRdWy5ldbbpGo' ||
+          hotel['place_id'] == 'ChIJGd65gRoQN0cRZHpkO6eTDP0' || hotel['place_id'] == 'ChIJ05XiUg4QN0cRw0JwMa4Jig0' || hotel['place_id'] == 'ChIJhdeUBBEQN0cR-_57lqTAZvU'
         Hotel.create(name: hotel['name'], google_id: hotel['place_id'], google_rating: hotel['rating'])
         h = Hotel.find_by_google_id(hotel['place_id'])
         h.update_column(:google_rating, hotel['rating']) if h
@@ -107,7 +110,7 @@ class Hotel < ApplicationRecord
       puts hotels.flatten.count
       hotels.flatten.each do |hotel|
         puts hotel['name']
-        next if hotel['place_id'] == 'ChIJGd65gRoQN0cRZHpkO6eTDP0'
+        next if hotel['place_id'] == 'ChIJGd65gRoQN0cRZHpkO6eTDP0' || hotel['place_id'] == 'ChIJVx7i66wRN0cRNGt9GQi8FD8' || hotel['place_id'] == 'ChIJ6aRSNwYRN0cRMvij56gHTSA' || hotel['place_id'] == 'ChIJpWKjGKIRN0cRz1m-xXWBdjQ'
         Hotel.create(name: hotel['name'], hotel_type: :restaurant, google_id: hotel['place_id'], google_rating: hotel['rating'])
         h = Hotel.find_by_google_id(hotel['place_id'])
         h.update_column(:google_rating, hotel['rating']) if h
@@ -130,9 +133,32 @@ class Hotel < ApplicationRecord
         sleep 1
         nearbys['results'].each do |result|
           nearby_hotel = Hotel.find_by_google_id(result['place_id'])
-          hotel.nearby_hotels.create(nearby_hotel_id: nearby_hotel.id) if nearby_hotel && hotel.id != nearby_hotel.id
+          if nearby_hotel && hotel.id != nearby_hotel.id &&
+            nearby_hotel.google != 'ChIJ05XiUg4QN0cRw0JwMa4Jig0' &&
+            nearby_hotel.google != 'ChIJVx7i66wRN0cRNGt9GQi8FD8' &&
+            nearby_hotel.google != 'ChIJ6aRSNwYRN0cRMvij56gHTSA' &&
+            nearby_hotel.google != 'ChIJpWKjGKIRN0cRz1m-xXWBdjQ' &&
+            nearby_hotel.google != 'ChIJhdeUBBEQN0cR-_57lqTAZvU'
+            hotel.nearby_hotels.create(nearby_hotel_id: nearby_hotel.id)
+          end
         end
       end
+    end
+  end
+
+  def update_hotel_rating
+    average = self.reviews.average(:rating)
+    self.update_column(:site_rating, average)
+    site_rating = self.site_rating.try(:to_d)
+    google_rating = self.google_rating.try(:to_d)
+    if google_rating && site_rating
+      self.update_column(:average_rating, (google_rating + site_rating)/2)
+    elsif site_rating && !google_rating
+      self.update_column(:average_rating, site_rating)
+    elsif !site_rating && google_rating
+      self.update_column(:average_rating, google_rating)
+    else
+      self.update_column(:average_rating, 0)
     end
   end
 end

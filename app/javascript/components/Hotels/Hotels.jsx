@@ -104,7 +104,7 @@ export default class Hotels extends React.Component {
               <div className='row'>
                 <div className='col-lg-4 filters'>
                   <div className='labels'>
-                    <label>Готель</label>
+                    { !this.props.cafe ? <label>Готель</label> : <label>Кафе</label>}
                     <ButtonDropdown isOpen={this.state.sortTypeOpen} toggle={() => this.toggleDropdown('sortTypeOpen')}>
                       <DropdownToggle caret>
                         {this.state.sortType === 'googleRating' && 'За рейтингом'}

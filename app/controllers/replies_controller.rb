@@ -9,7 +9,7 @@ class RepliesController < ApplicationController
     @reply.repliable_type = params[:reply][:google] == 'true' ? 'GoogleReview' : 'Review'
     @reply.user_id = current_user.try(:id)
     if (current_user.admin || current_user == @hotel.user) && @reply.save
-      update_hotel_rating(@hotel)
+      @hotel.update_hotel_rating
       render json: {success: true}
     else
       render json: {success: false}
@@ -18,8 +18,8 @@ class RepliesController < ApplicationController
 
   def destroy
     @reply.destroy if current_user.id == @reply.user_id
-    update_hotel_rating(@hotel)
     if @reply.destroyed?
+      @hotel.update_hotel_rating
       render json: {success: true}
     else
       render json: {success: false}

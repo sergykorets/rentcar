@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.try(:id)
     @review.hotel_id = @hotel.id
     if @review.save
-      update_hotel_rating(@hotel)
+      @hotel.update_hotel_rating
       render json: {success: true}
     else
       if Rails.env.development?
@@ -23,8 +23,8 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy if current_user.id == @review.user_id
-    update_hotel_rating(@hotel)
     if @review.destroyed?
+      @hotel.update_hotel_rating
       render json: {success: true}
     else
       render json: {success: false}
