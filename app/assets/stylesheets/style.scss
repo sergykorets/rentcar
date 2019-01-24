@@ -361,6 +361,11 @@ h1 span {
       font-size: 22px;
     }
   }
+  .modal-title {
+    .additional-info {
+      font-size: 22px !important;
+    }
+  }
   .top-page {
     padding: 35px !important;
   }
@@ -398,6 +403,9 @@ h1 span {
 }
 .modal-title {
   width: 100%;
+  .additional-info {
+    font-size: 1rem;
+  }
 }
 i {
   cursor: pointer;
