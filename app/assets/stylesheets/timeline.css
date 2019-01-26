@@ -120,7 +120,7 @@
 .react-calendar-timeline .rct-vertical-lines .rct-vl.rct-vl-first {
   border-left-width: 2px; }
 .react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-6, .react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-0 {
-  background: rgba(250, 246, 225, 0.5); }
+  background: rgba(250, 225, 225, 0.73); }
 
 .react-calendar-timeline .rct-horizontal-lines .rct-hl-even,
 .react-calendar-timeline .rct-horizontal-lines .rct-hl-odd {

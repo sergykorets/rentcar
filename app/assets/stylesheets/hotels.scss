@@ -253,8 +253,9 @@ h1, h2, h3, h4, h5, h6 {
       }
     }
     .card {
+      background: #e2e2e242;
       border-radius: 10px;
-      box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.35);
       img {
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
@@ -674,6 +675,19 @@ h1, h2, h3, h4, h5, h6 {
     max-width: none;
     width: auto;
     margin: 20px;
+  }
+  .container > .react-calendar-timeline > .header-sticky {
+    top: 105px !important;
+  }
+}
+@media (min-width: 992px) {
+  .container > .react-calendar-timeline > .header-sticky {
+    top: 85px !important;
+  }
+}
+@media (min-width: 1200px) {
+  .container > .react-calendar-timeline > .header-sticky {
+    top: 60px !important;
   }
 }
 .suggest {
