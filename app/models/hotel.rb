@@ -134,11 +134,11 @@ class Hotel < ApplicationRecord
         nearbys['results'].each do |result|
           nearby_hotel = Hotel.find_by_google_id(result['place_id'])
           if nearby_hotel && hotel.id != nearby_hotel.id &&
-            nearby_hotel.google != 'ChIJ05XiUg4QN0cRw0JwMa4Jig0' &&
-            nearby_hotel.google != 'ChIJVx7i66wRN0cRNGt9GQi8FD8' &&
-            nearby_hotel.google != 'ChIJ6aRSNwYRN0cRMvij56gHTSA' &&
-            nearby_hotel.google != 'ChIJpWKjGKIRN0cRz1m-xXWBdjQ' &&
-            nearby_hotel.google != 'ChIJhdeUBBEQN0cR-_57lqTAZvU'
+            nearby_hotel.google_id != 'ChIJ05XiUg4QN0cRw0JwMa4Jig0' &&
+            nearby_hotel.google_id != 'ChIJVx7i66wRN0cRNGt9GQi8FD8' &&
+            nearby_hotel.google_id != 'ChIJ6aRSNwYRN0cRMvij56gHTSA' &&
+            nearby_hotel.google_id != 'ChIJpWKjGKIRN0cRz1m-xXWBdjQ' &&
+            nearby_hotel.google_id != 'ChIJhdeUBBEQN0cR-_57lqTAZvU'
             hotel.nearby_hotels.create(nearby_hotel_id: nearby_hotel.id)
           end
         end
