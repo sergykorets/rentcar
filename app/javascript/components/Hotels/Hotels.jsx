@@ -93,7 +93,7 @@ export default class Hotels extends React.Component {
           <div className='container'>
             <div className="top-banners">
               <div className='row justify-content-lg-center'>
-                <div className='col-lg-4'>
+                <div className='col-lg-3'>
                   <a id='left-ads' href="http://ratrak.org.ua/" target="_blank"><img src="/images/freeride.jpg" /></a>
                 </div>
               </div>
