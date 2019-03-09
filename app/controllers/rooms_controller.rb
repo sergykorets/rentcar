@@ -90,7 +90,12 @@ class RoomsController < ApplicationController
       floor: room.floor,
       bigBed: room.big_bed
     }}
-    @reservations = @hotel.reservations.approved.map { |reservation|
+    reservations = if params[:start_date]
+      Reservation.for_dates(@hotel, params[:start_date].to_date - 15.days, params[:end_date].to_date + 15.days)
+    else
+      @hotel.reservations.approved
+    end
+    @reservations = reservations.map { |reservation|
       { id: reservation.id,
         group: reservation.room_id,
         title: reservation.name,

@@ -20,6 +20,8 @@ export default class Chess extends React.Component {
       editModal: false,
       createModal: false,
       selectedReservation: {},
+      visibleTimeStart: moment().add(-1, 'day').valueOf(),
+      visibleTimeEnd: moment().add(30, 'day').valueOf(),
       newReservation: {
         name: '',
         phone: '',
@@ -256,6 +258,25 @@ export default class Chess extends React.Component {
     });
   }
 
+  onTimeChange = (visibleTimeStart, visibleTimeEnd, updateScrollCanvas) => {
+    this.setState({
+      ...this.state,
+      visibleTimeStart: visibleTimeStart,
+      visibleTimeEnd: visibleTimeEnd
+    })
+    if (moment(visibleTimeStart).format('DD-MM-YYYY') != moment(this.state.visibleTimeStart).format('DD-MM-YYYY')) {
+      $.ajax({
+        url: `/hotels/${this.state.hotelId}/rooms/chess.json?start_date=${moment(visibleTimeStart).format('DD-MM-YYYY')}&end_date=${moment(visibleTimeEnd).format('DD-MM-YYYY')}`,
+        type: 'GET'
+      }).then((resp) =>
+        this.setState({
+          ...this.state,
+          reservations: resp.reservations
+        })
+      )
+    }
+  }
+
   render() {
     const items = this.convertedDates(this.state.reservations)
     const BAD_DATES = this.convertedBookedDates()
@@ -268,10 +289,13 @@ export default class Chess extends React.Component {
         <button className='btn btn-info' onClick={() => this.handleModal('createModal')}><i className='fa fa-plus' /> Створити нове бронювання</button>
         <hr/>
         <Timeline
+          onTimeChange={this.onTimeChange}
           groups={this.state.rooms}
           items={items}
           defaultTimeStart={moment().add(-1, 'day')}
           defaultTimeEnd={moment().add(30, 'day')}
+          visibleTimeStart={this.state.visibleTimeStart}
+          visibleTimeEnd={this.state.visibleTimeEnd}
           sidebarContent={'Номери'}
           canMove={false}
           canResize={false}
@@ -279,6 +303,8 @@ export default class Chess extends React.Component {
           itemHeightRatio={0.8}
           dragSnap={12 * 60 * 60 * 1000}
           groupRenderer={this.groupRenderer}
+          minZoom={7 * 24 * 60 * 60 * 1000}
+          maxZoom={30 * 86400 * 1000}
           onItemSelect={(itemId, e, time) => this.handleModal('editModal', itemId)}
         />
         { this.state.editModal &&
