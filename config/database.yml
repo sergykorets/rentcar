@@ -7,5 +7,3 @@ default: &default
 development:
   <<: *default
   database: dragobrat_development
-  username: user
-  password: 3441

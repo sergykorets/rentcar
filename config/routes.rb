@@ -34,4 +34,6 @@ Rails.application.routes.draw do
   get '/schema', to: 'schemas#index'
   get '/skipass', to: 'schemas#skipass'
   get '/reservations', to: 'reservations#user_reservations'
+  get '/.well-known/acme-challenge/hjQmVh2bCmWBTUw7RqoTuNgB77txRL1qdIM5jUqJnRc', to: 'ssl_verify#verify_1'
+  get '/.well-known/acme-challenge/HNn4g3VE6rqYid3Vlh4bcQ8XArEFElKb-gzyNjZIdUg', to: 'ssl_verify#verify_2'
 end
