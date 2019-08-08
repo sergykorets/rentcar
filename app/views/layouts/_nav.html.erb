@@ -4,7 +4,8 @@
       <img src="/images/Dragobrat.svg" />
     <% end %>
     <button class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
-      <span class="navbar-toggler-icon"></span>
+      <i class="navbar-toggler-icon fa fa-bars"></i>
+<!--      <span class="navbar-toggler-icon"></span>-->
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
@@ -27,18 +28,18 @@
           </li>
         <% else %>
           <li class="nav-item">
-            <% if Rails.env.development? %>
+            <%# if Rails.env.development? %>
               <%= link_to 'Зареєструватися', new_user_registration_path, class: 'nav-link' %>
-            <% else %>
-              <a href='https://dragobrat.herokuapp.com/users/sign_up' class="nav-link">Зареєструватися</a>
-            <% end %>
+            <%# else %>
+<!--              <a href='https://dragobrat.herokuapp.com/users/sign_up' class="nav-link">Зареєструватися</a>-->
+            <%# end %>
           </li>
           <li class="nav-item">
-            <% if Rails.env.development? %>
+            <%# if Rails.env.development? %>
               <%= link_to 'Увійти', new_user_session_path, class: 'nav-link' %>
-            <% else %>
-              <a href='https://dragobrat.herokuapp.com/users/sign_in' class="nav-link">Увійти</a>
-            <% end %>
+            <%# else %>
+<!--              <a href='https://dragobrat.herokuapp.com/users/sign_in' class="nav-link">Увійти</a>-->
+            <%# end %>
           </li>
         <% end %>
         <li class="nav-item">
