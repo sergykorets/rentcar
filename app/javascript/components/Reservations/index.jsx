@@ -185,6 +185,7 @@ export default class Reservations extends React.Component {
             <div className='form-group'>
               <label>Дати перебування</label>
               <AirBnbPicker
+                allowPastDates={true}
                 onPickerApply={this.handleDateChange}
                 startDate={this.state.startDate}
                 endDate={this.state.endDate} />

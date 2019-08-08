@@ -185,6 +185,7 @@ export default class ReservationList extends React.Component {
           <div className='col-lg-6'>
             <label>Діапазон дат</label>
             <AirBnbPicker
+              allowPastDates={true}
               startPlaceholder={'Від'}
               endPlaceholder={'До'}
               onPickerApply={this.handleDateChange}
