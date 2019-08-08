@@ -104,11 +104,6 @@ ActiveRecord::Schema.define(version: 20190107125736) do
     t.string "name"
   end
 
-  create_table "places", id: :serial, force: :cascade do |t|
-    t.integer "number"
-    t.integer "user_id"
-  end
-
   create_table "ratraks", force: :cascade do |t|
     t.integer "places"
     t.integer "hotel_id"
