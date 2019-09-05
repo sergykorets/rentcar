@@ -2,7 +2,7 @@ class ApiController < ActionController::Base
 
   def receive
     if params[:email] == 'vasilpipash@gmail.com'
-      hotel = Hotel.where("name ILIKE ?", params[:hotel]).first
+      hotel = Hotel.where("name ILIKE ?", "%#{params[:hotel]}%").first
       reservations = JSON.parse(params[:reservations].to_json)
       reservations.each do |reservation|
         r = reservation.last
@@ -20,7 +20,7 @@ class ApiController < ActionController::Base
 
   def request_reservations
     if params[:email] == 'vasilpipash@gmail.com'
-      hotel = Hotel.where("name ILIKE ?", params[:hotel]).first
+      hotel = Hotel.where("name ILIKE ?", "%#{params[:hotel]}%").first
       reservations = hotel.reservations.map do |r|
         { roomId: r.room.number,
           name: r.name,
