@@ -81,8 +81,8 @@ export default class Hotels extends React.Component {
         .filter(h => parseFloat(h.price ? h.price : 0) <= parseFloat(this.state.price.max))
         .filter(h => this.state.sauna ? h.sauna : h).filter(h => this.state.chan ? h.chan : h).filter(h => this.state.disco ? h.disco : h)
     }
-    hotels = hotels.sort((a, b) => (this.state.sortType && this.state.sortType === 'googleRating' ? (((this.state.sortType === 'googleRating' && this.state.sortOrder === 'increasing') ?
-      parseFloat(a.googleRating) - parseFloat(b.googleRating) : (parseFloat(b.googleRating) - parseFloat(a.googleRating)))) : parseFloat(a.position) - parseFloat(b.position)))
+    hotels = hotels.sort((a, b) => (this.state.sortType ? this.state.sortType === 'googleRating' ? (((this.state.sortType === 'googleRating' && this.state.sortOrder === 'increasing') ?
+      parseFloat(a.googleRating) - parseFloat(b.googleRating) : (parseFloat(b.googleRating) - parseFloat(a.googleRating)))) : parseFloat(a.position) - parseFloat(b.position) : parseFloat(a.position) - parseFloat(b.position)));
     if (this.state.sortType === 'price') {
       hotels = hotels.sort((a, b) => (this.state.sortType && this.state.sortType === 'price' ? (((this.state.sortType === 'price' && this.state.sortOrder === 'increasing') ?
         (parseFloat(a.price) - parseFloat(b.price)) : (parseFloat(b.price) - parseFloat(a.price)))) : parseFloat(a.position) - parseFloat(b.position)))
