@@ -7,10 +7,10 @@ class HotelsController < ApplicationController
   def index
     set_meta_tags title: "Драгобрат, готелі на карті 3D, ціни, відгуки, схема підйомників, веб камери"
     @admin = Rails.env.development? || (current_user && current_user.admin)
-    random_hotels = Hotel.lodging.order("RANDOM()")
+    hotels = Hotel.lodging.order("RANDOM()")
     @max_price = hotels.pluck(:price).compact.max
     @min_price = hotels.pluck(:price).compact.min
-    @hotels = random_hotels.map do |hotel|
+    @hotels = hotels.map do |hotel|
       { id: hotel.id,
         name: hotel.name,
         price: hotel.price,
