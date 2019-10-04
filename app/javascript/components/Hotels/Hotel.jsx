@@ -310,6 +310,12 @@ export default class Hotel extends React.Component {
     });
   }
 
+  trackBooking = () => {
+    if (!(this.state.admin || this.state.owner)) {
+      ga('send', 'event', 'Booking', 'click', this.state.hotel.name);
+    }
+  }
+
   render() {
     const images = this.state.hotel.photos.map((photo) => {return ({ original: photo.photo, thumbnail: photo.photo, description: photo.name})})
     const BAD_DATES = this.convertedDates()
@@ -381,7 +387,12 @@ export default class Hotel extends React.Component {
                 </Fragment>}
               <div className='hotel-buttons text-center'>
                 { this.state.hotel.allowBooking &&
-                  <button className='btn btn-warning' onClick={() => this.handleModal('bookingModal')}>Бронювати</button>}
+                  <Fragment>
+                    { this.state.hotel.id === 54 ?
+                      <a className='btn btn-warning' href='https://drf.com.ua/uk/broniuvannia-nomeru.html' target='_blank' onClick={() => this.trackBooking()}>Бронювати</a> :
+                      <button className='btn btn-warning' onClick={() => this.handleModal('bookingModal')}>Бронювати</button>}
+                  </Fragment>
+                }
                 { this.state.hotel.site &&
                   <a className='btn btn-outline-danger' href={this.state.hotel.site} target="_blank">Офіційний сайт</a>}
                 { this.state.hotel.location &&
