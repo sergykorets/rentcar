@@ -92,12 +92,9 @@ export default class Hotels extends React.Component {
         <div className={this.props.cafe ? 'top-page restaurants' : 'top-page'}>
           <div className='container'>
             <div className="top-banners">
-              <div className='row justify-content-lg-center'>
-                <div className='col-lg-3'>
-                  <a id='left-ads' href="https://drf.com.ua/" target="_blank"><img src="/images/freeride.jpg" /></a>
-                </div>
-              </div>
-              {/*<a href="/skipass"><img src="/images/november_square.jpg" /></a>*/}
+              <a id='left-ads' href="https://www.facebook.com/DragobratFreeride/" target="_blank"><img src="/images/freeride-yarema.jpg" /></a>
+              <a className='mobile' href="/skipass"><img src="/images/november_square.jpg" /></a>
+              <a className='wide' href="/skipass"><img src="/images/november_fb_header.jpg" /></a>
             </div>
             {/*<div className='introduction'>*/}
               {/*/!*<p>Основою цього сайту є <strong><b>Google Maps API</b></strong>. Готелі, кафе, фото та відгуки до них автоматично оновлюються разом з тим, що є на Google картах. Місцезнаходження закладів*!/*/}

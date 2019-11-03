@@ -504,6 +504,18 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 @media (max-width: 991px) {
+
+  .top-banners {
+    a {
+      width: 25%;
+    }
+    .wide {
+      display: none;
+    }
+    .mobile {
+      display: flex;
+    }
+  }
   .hotel {
     .card-body {
       font-size: 22px;
