@@ -44,7 +44,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'rails_admin', '~> 1.3'
 gem "font-awesome-rails"
-gem "paperclip", "~> 5.0.0"
+gem "paperclip", "~> 5.2.0"
 gem 'rails_admin_rollincode', '~> 1.0'
 gem 'httparty'
 gem 'google_places'

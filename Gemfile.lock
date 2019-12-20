@@ -165,15 +165,15 @@ GEM
     meta-tags (2.10.0)
       actionpack (>= 3.2.0, < 5.3)
     method_source (0.9.2)
-    mime-types (3.2.2)
+    mime-types (3.3)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2018.0812)
-    mimemagic (0.3.2)
+    mime-types-data (3.2019.1009)
+    mimemagic (0.3.3)
     mini_mime (1.0.0)
     mini_portile2 (2.4.0)
     mini_racer (0.1.15)
       libv8 (~> 6.3)
-    minitest (5.12.2)
+    minitest (5.13.0)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
@@ -196,7 +196,7 @@ GEM
       oauth2 (~> 1.1)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
-    paperclip (5.0.0)
+    paperclip (5.2.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       cocaine (~> 0.5.5)
@@ -355,7 +355,7 @@ DEPENDENCIES
   mini_racer
   omniauth
   omniauth-facebook
-  paperclip (~> 5.0.0)
+  paperclip (~> 5.2.0)
   pg
   pry
   pry-rails
