@@ -6,4 +6,4 @@ default: &default
 
 development:
   <<: *default
-  database: dragobrat_development
+  database: rentcar_development

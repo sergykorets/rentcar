@@ -1,51 +1,100 @@
-<nav class="navbar fixed-top navbar-expand-lg">
-  <div class="container">
-    <%= link_to root_path, class: 'navbar-brand' do %>
-      <img src="/images/Dragobrat.svg" />
-    <% end %>
-    <button class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
-      <i class="navbar-toggler-icon fa fa-bars"></i>
-<!--      <span class="navbar-toggler-icon"></span>-->
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class='nav-item'><%= link_to 'Готелі', root_path, class: 'nav-link' %></li>
-        <li class='nav-item'><%= link_to 'Кафе', restaurants_path, class: 'nav-link' %></li>
-        <li class='nav-item'><%= link_to 'Схема', schema_path, class: 'nav-link' %></li>
-        <li class='nav-item'><%= link_to 'SkiPass', skipass_path, class: 'nav-link' %></li>
-        <li class='nav-item'><%= link_to 'Камери', 'https://snig.info/uk/Drahobrat/1', target: '_blank', class: 'nav-link' %></li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <% if user_signed_in? %>
-          <% if current_user.reservations.count > 0 %>
-            <li class='nav-item'><%= link_to 'Бронюванння', reservations_path, class: 'nav-link' %></li>
-          <% else %>
-            <li class='nav-item'><%= link_to 'Додати заклад', new_hotel_path, class: 'nav-link' %></li>
-          <% end %>
-          <li class="nav-item"><%= link_to 'Профіль', edit_user_registration_path, class: 'nav-link' %></li>
-          <li class="round-image-30"><%= image_tag(user_avatar(current_user)) %></li>
-          <li class="nav-item"><%= link_to 'Вийти', destroy_user_session_path, data: {:confirm => "Вийти?"}, class: 'nav-link' %></li>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%# if Rails.env.development? %>
-              <%= link_to 'Реєстрація', new_user_registration_path, class: 'nav-link' %>
-            <%# else %>
-<!--              <a href='https://dragobrat.herokuapp.com/users/sign_up' class="nav-link">Зареєструватися</a>-->
-            <%# end %>
-          </li>
-          <li class="nav-item">
-            <%# if Rails.env.development? %>
-              <%= link_to 'Увійти', new_user_session_path, class: 'nav-link' %>
-            <%# else %>
-<!--              <a href='https://dragobrat.herokuapp.com/users/sign_in' class="nav-link">Увійти</a>-->
-            <%# end %>
-          </li>
-        <% end %>
-        <li class="nav-item">
-          <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.dragobrat.net&width=200&layout=button_count&action=like&size=small&show_faces=false&share=true&height=20&appId=783416265322787" width="200" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-        </li>
-      </ul>
+<!--== Header Area Start ==-->
+<header id="header-area" class="fixed-top">
+  <!--== Header Top Start ==-->
+  <div id="header-top" class="d-none d-xl-block">
+    <div class="container">
+      <div class="row">
+        <!--== Single HeaderTop Start ==-->
+        <div class="col-lg-3 text-left">
+          <i class="fa fa-map-marker"></i> 802/2, Mirpur, Dhaka
+        </div>
+        <!--== Single HeaderTop End ==-->
+
+        <!--== Single HeaderTop Start ==-->
+        <div class="col-lg-3 text-center">
+          <i class="fa fa-mobile"></i> +1 800 345 678
+        </div>
+        <!--== Single HeaderTop End ==-->
+
+        <!--== Single HeaderTop Start ==-->
+        <div class="col-lg-3 text-center">
+          <i class="fa fa-clock-o"></i> Mon-Fri 09.00 - 17.00
+        </div>
+        <!--== Single HeaderTop End ==-->
+
+        <!--== Social Icons Start ==-->
+        <div class="col-lg-3 text-right">
+          <div class="header-social-icons">
+            <a href="#"><i class="fa fa-behance"></i></a>
+            <a href="#"><i class="fa fa-pinterest"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+          </div>
+        </div>
+        <!--== Social Icons End ==-->
+      </div>
     </div>
   </div>
-</nav>
+  <!--== Header Top End ==-->
+
+  <!--== Header Bottom Start ==-->
+  <div id="header-bottom">
+    <div class="container">
+      <div class="row">
+        <!--== Logo Start ==-->
+        <div class="col-lg-4">
+          <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="JSOFT">
+          </a>
+        </div>
+        <!--== Logo End ==-->
+
+        <!--== Main Menu Start ==-->
+        <div class="col-lg-8 d-none d-xl-block">
+          <nav class="mainmenu alignright">
+            <ul>
+              <li class="active"><a href="#">Home</a>
+                <ul>
+                  <li><a href="index.html">Home 1</a></li>
+                  <li><a href="index2.html">Home 2</a></li>
+                  <li><a href="index3.html">Home 3</a></li>
+                </ul>
+              </li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="services.html">services</a></li>
+              <li><a href="#">Cars</a>
+                <ul>
+                  <li><a href="car-left-sidebar.html">Car Left Sidebar</a></li>
+                  <li><a href="car-right-sidebar.html">Car Right Sidebar</a></li>
+                  <li><a href="car-without-sidebar.html">Car Without Sidebar</a></li>
+                  <li><a href="car-details.html">Car Details</a></li>
+                </ul>
+              </li>
+              <li><a href="index.html">Pages</a>
+                <ul>
+                  <li><a href="package.html">Pricing</a></li>
+                  <li><a href="driver.html">Driver</a></li>
+                  <li><a href="faq.html">FAQ</a></li>
+                  <li><a href="gallery.html">Gallery</a></li>
+                  <li><a href="help-desk.html">Help Desk</a></li>
+                  <li><a href="login.html">Log In</a></li>
+                  <li><a href="register.html">Register</a></li>
+                  <li><a href="404.html">404</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Blog</a>
+                <ul>
+                  <li><a href="article.html">Blog Page</a></li>
+                  <li><a href="article-details.html">Blog Details</a></li>
+                </ul>
+              </li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+        <!--== Main Menu End ==-->
+      </div>
+    </div>
+  </div>
+  <!--== Header Bottom End ==-->
+</header>
