@@ -30,8 +30,8 @@ export default class AirBnbPicker extends React.Component {
         disabled={this.props.disabled}
         onPrevMonthClick={this.props.getBlockedDates}
         onNextMonthClick={this.props.getBlockedDates}
-        startDatePlaceholderText={this.props.startPlaceholder || 'Заїзд'}
-        endDatePlaceholderText={this.props.endPlaceholder || 'Виїзд'}
+        startDatePlaceholderText={this.props.startPlaceholder || 'Подача'}
+        endDatePlaceholderText={this.props.endPlaceholder || 'Повернення'}
         numberOfMonths={1}
         minimumNights={this.props.oneDay ? 0 : 1}
         startDate={this.state.startDate}

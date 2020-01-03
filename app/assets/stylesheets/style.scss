@@ -807,6 +807,8 @@ a.slicknav_btn {
 	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 	margin-bottom: 30px;
+    background: #0e0e0e;
+    border: 1px solid black;
 }
 
 .p-car-thumbnails a.car-hover {
@@ -868,6 +870,7 @@ a.slicknav_btn {
 
 .p-car-content {
 	padding: 25px 20px;
+    background: #171102;
 }
 
 .single-popular-car h3 {
@@ -877,7 +880,7 @@ a.slicknav_btn {
 }
 
 .single-popular-car h3 a {
-	color: #333;
+	color: #826c00;
 }
 
 .single-popular-car h3 span.price {
@@ -2429,6 +2432,9 @@ body,
 .sidebar-body {
 	line-height: 2;
 	padding: 30px 15px;
+    border: solid 1px #eaeaea;
+    border-radius-bottom: 5px;
+    border-top: none;
 }
 
 .sidebar-body i.fa {
@@ -2533,10 +2539,12 @@ body,
 	color: #666;
 	line-height: 2;
 	padding-top: 30px;
+    border-top: 1px solid #ffd000;
+    margin-top: 25px;
 }
 
 .car-details-info h4 {
-	color: #000;
+	color: #eaeaea;
 	font-size: 20px;
 	margin-bottom: 10px;
 	text-transform: uppercase;
@@ -2608,12 +2616,18 @@ body,
 .review-area input,
 .contact-form textarea,
 .review-area textarea {
-	background-color: #fafafa;
+	background-color: #101010 !important;
 	border: 1px solid #eaeaea;
-	color: #000;
+	color: #fff !important;
 	padding: 8px 15px;
 	resize: none;
 	width: 100%;
+    border-bottom: none;
+    border-radius: 0;
+}
+
+.review-area .description {
+  border-bottom: 1px solid #eaeaea;
 }
 
 .contact-form input:focus,
@@ -2643,6 +2657,7 @@ body,
 	margin-top: 25px;
 	padding: 8px 40px;
 	text-transform: uppercase;
+    width: 100%;
 }
 
 /*==============================
@@ -3239,4 +3254,45 @@ body,
 	bottom: 20px;
 	opacity: 1;
 	visibility: visible;
+}
+.category {
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+.image-gallery-slide-wrapper img {
+  height: 500px;
+}
+.table {
+  color: #eaeaea;
+}
+.car-settings {
+  border-bottom: 1px solid #ffd000;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+.tech-info-list {
+  ul {
+    line-height: 3;
+    padding-left: 10px;
+    li {
+      float: none;
+    }
+  }
+}
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -30px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+  margin-bottom: 30px;
 }

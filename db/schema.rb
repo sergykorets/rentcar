@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191220130925) do
+ActiveRecord::Schema.define(version: 20191226174928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20191220130925) do
   create_table "cars", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "kind"
     t.string "color"
     t.integer "places"
     t.integer "gearbox"
@@ -26,6 +25,26 @@ ActiveRecord::Schema.define(version: 20191220130925) do
     t.integer "year"
     t.integer "fuel"
     t.float "engine"
+    t.string "slug"
+    t.boolean "active", default: false
+    t.integer "category_id"
+    t.boolean "gps", default: false
+    t.boolean "wifi", default: false
+    t.boolean "conditioner", default: false
+    t.boolean "bluetooth", default: false
+    t.boolean "abs", default: false
+    t.boolean "parktronic", default: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "slug"
+    t.boolean "active", default: false
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -43,6 +62,14 @@ ActiveRecord::Schema.define(version: 20191220130925) do
     t.string "phone"
     t.string "email"
     t.text "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.integer "user_id"
+    t.integer "car_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|

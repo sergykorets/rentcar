@@ -8,9 +8,7 @@ class User < ApplicationRecord
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   has_many :reviews, dependent: :destroy
-  has_many :hotels
   has_many :reservations
-  has_many :replies
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
@@ -52,7 +50,4 @@ class User < ApplicationRecord
     update_attribute(:deleted_at, Time.current)
   end
 
-  def active_for_authentication?
-    super && !deleted_at
-  end
 end
