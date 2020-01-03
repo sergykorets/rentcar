@@ -80,8 +80,8 @@ export default class Hotel extends React.Component {
           phone: this.state.reservation.phone,
           email: this.state.reservation.email,
           description: this.state.reservation.description,
-          start_date: this.state.reservation.startDate,
-          end_date: this.state.reservation.endDate,
+          start_date: this.state.reservation.startDate && this.state.reservation.startDate.format('DD.MM.YYYY HH:mm'),
+          end_date: this.state.reservation.endDate && this.state.reservation.endDate.format('DD.MM.YYYY HH:mm'),
         }
       }
     }).then((resp) => {
