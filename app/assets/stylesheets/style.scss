@@ -871,6 +871,11 @@ a.slicknav_btn {
 .p-car-content {
 	padding: 25px 20px;
     background: #171102;
+    h5 {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
 }
 
 .single-popular-car h3 {
