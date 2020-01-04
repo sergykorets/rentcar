@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-
+  before_action :define_car, only: :update
   def index
     @hotel = current_user.hotels.friendly.find(params[:hotel_id]) if !current_user.admin
     @floors = @hotel.rooms.map {|room| room.floor}.max
@@ -30,25 +30,35 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = Reservation.find(params[:id])
-    booked_dates = @reservation.booked_dates
     reservation = {
       id: @reservation.id,
-      roomId: @reservation.room_id,
+      carId: @reservation.car_id,
       name: @reservation.name,
       phone: @reservation.phone,
-      places: @reservation.places,
+      email: @reservation.email,
       description: @reservation.description,
-      deposit: @reservation.deposit,
-      startDate: @reservation.start_date.strftime('%d.%m.%Y'),
-      endDate: @reservation.end_date.strftime('%d.%m.%Y')}
-    render json: {reservation: reservation, bookedDates: booked_dates}
+      startDate: @reservation.start_date.strftime('%d.%m.%Y %H:%M'),
+      endDate: @reservation.end_date.strftime('%d.%m.%Y %H:%M')}
+    render json: {reservation: reservation}
   end
 
   def create
     if car = Car.find_by_id(params[:reservation][:car_id])
       c = car.reservations.create(reservation_params)
       if c.persisted?
-        render json: { success: true }
+        if params[:from_chess]
+          render json: {
+              success: true,
+              reservations: Reservation.all.map { |reservation|
+                { id: reservation.id,
+                  group: reservation.car_id,
+                  title: reservation.name,
+                  start_time: reservation.start_date.to_datetime.strftime('%Y-%m-%d %H:%M'),
+                  end_time: reservation.end_date.to_datetime.strftime('%Y-%m-%d %H:%M')}
+              }}
+        else
+          render json: { success: true }
+        end
       else
         render json: {success: false, error: c.errors.full_messages.first}
       end
@@ -58,202 +68,34 @@ class ReservationsController < ApplicationController
   end
 
   def update
-    reservation = @hotel.reservations.find_by_id(params[:id])
-    room = reservation.room
+    reservation = Reservation.find_by_id(params[:id])
     if reservation.update(reservation_params)
-      if params[:from_list]
-        reservations = @hotel.reservations.approved
-        render json: {
-          success: true,
-          totalReservationsCount: reservations.count,
-          reservations: reservations.for_dates(@hotel, params[:start_date].try(:to_date), params[:end_date].try(:to_date))
-                          .order(created_at: :desc).page(params[:page] || 1).per(10).each_with_object({}) {|reservation, hash| hash[reservation.id] =
-            {id: reservation.id,
-             name: reservation.name,
-             room: Room.find_by_id(reservation.room_id).number,
-             roomId: reservation.room_id,
-             phone: reservation.phone,
-             places: reservation.places,
-             deposit: reservation.deposit,
-             description: reservation.description,
-             startDate: reservation.start_date.strftime('%d.%m.%Y'),
-             endDate: reservation.end_date.strftime('%d.%m.%Y')}
-          }
-        }
-      elsif params[:from_pending]
-        reservations = @hotel.reservations.pending
-        render json: {
-          success: true,
-          totalReservationsCount: reservations.count,
-          reservations: reservations.order(created_at: :desc).page(params[:page] || 1).per(10).each_with_object({}) {|reservation, hash| hash[reservation.id] =
-            {id: reservation.id,
-             name: reservation.name,
-             room: Room.find_by_id(reservation.room_id).number,
-             roomId: reservation.room_id,
-             phone: reservation.phone,
-             places: reservation.places,
-             created: reservation.created_at.in_time_zone('Kyiv').strftime('%d.%m.%Y %H:%M'),
-             description: reservation.description,
-             startDate: reservation.start_date.strftime('%d.%m.%Y'),
-             endDate: reservation.end_date.strftime('%d.%m.%Y')}
-          }
-        }
-      elsif params[:from_chess]
-        render json: {
-          success: true,
-          reservations: @hotel.reservations.approved.map { |reservation|
-            { id: reservation.id,
-              group: reservation.room_id,
-              title: reservation.name,
-              start_time: (reservation.start_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
-              end_time: (reservation.end_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M')}
-          }}
-      elsif params[:from_ratrak]
-        render json: {
-          success: true,
-          reservations: @hotel.ratrak.reservations.approved.where('start_date < ? AND end_date > ?', params[:date].try(:to_date).try(:at_end_of_month) || Date.today.at_end_of_month, params[:date].try(:to_date).try(:at_beginning_of_month) || Date.today.at_beginning_of_month).map do |reservation|
-            {id: reservation.id,
-             name: reservation.name,
-             title: "#{reservation.name} - #{reservation.places}",
-             phone: reservation.phone,
-             places: reservation.places,
-             description: reservation.description,
-             deposit: reservation.deposit,
-             start: (reservation.start_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
-             end: (reservation.end_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
-             allDay: false}
-          end
-        }
-      else
-        render json: {
-          success: true,
-          reservations: room.reservations.approved.for_dates(room, params[:date].try(:to_date).try(:at_beginning_of_month) || Date.today.at_beginning_of_month, params[:date].try(:to_date).try(:at_end_of_month) || Date.today.at_end_of_month).map do |reservation|
-            {id: reservation.id,
-             title: reservation.name,
-             room: Room.find_by_id(reservation.room_id).number,
-             roomId: reservation.room_id,
-             phone: reservation.phone,
-             places: reservation.places,
-             description: reservation.description,
-             deposit: reservation.deposit,
-             start: reservation.start_date,
-             end: reservation.end_date,
-             allDay: false}
-          end
-        }
-      end
+      render json: {
+        success: true,
+        reservations: Reservation.for_dates(Time.now, Time.now + 40.days).map { |reservation|
+          { id: reservation.id,
+            group: reservation.car_id,
+            title: reservation.name,
+            start_time: reservation.start_date.to_datetime.strftime('%Y-%m-%d %H:%M'),
+            end_time: reservation.end_date.to_datetime.strftime('%Y-%m-%d %H:%M')}
+        }}
     else
       render json: {success: false, error: reservation.errors.full_messages.first}
     end
   end
 
   def destroy
-    reservation = @hotel.reservations.find_by_id(params[:id])
-    room = reservation.room
+    reservation = Reservation.find_by_id(params[:id])
     reservation.destroy
-    if params[:from_calendar]
-      render json: {
-        success: true,
-        reservations: room.reservations.approved.for_dates(room, params[:date].try(:to_date).try(:at_beginning_of_month) || Date.today.at_beginning_of_month, params[:date].try(:to_date).try(:at_end_of_month) || Date.today.at_end_of_month).map do |reservation|
-          {id: reservation.id,
-           title: reservation.name,
-           phone: reservation.phone,
-           places: reservation.places,
-           description: reservation.description,
-           start: reservation.start_date,
-           end: reservation.end_date,
-           allDay: false}
-        end
-      }
-    elsif params[:from_list]
-      reservations = @hotel.reservations.approved
-      render json: {
-        success: true,
-        totalReservationsCount: reservations.count,
-        reservations: reservations.for_dates(@hotel, params[:start_date].try(:to_date), params[:end_date].try(:to_date))
-                        .order(created_at: :desc).page(params[:page] || 1).per(10).each_with_object({}) {|reservation, hash| hash[reservation.id] =
-          {id: reservation.id,
-           name: reservation.name,
-           room: Room.find_by_id(reservation.room_id).number,
-           roomId: reservation.room_id,
-           phone: reservation.phone,
-           places: reservation.places,
-           description: reservation.description,
-           startDate: reservation.start_date.strftime('%d.%m.%Y'),
-           endDate: reservation.end_date.strftime('%d.%m.%Y')}
-        }
-      }
-    elsif params[:from_pending]
-      reservations = @hotel.reservations.pending
-      render json: {
-        success: true,
-        totalReservationsCount: reservations.count,
-        reservations: reservations.order(created_at: :desc).page(params[:page] || 1).per(10).each_with_object({}) {|reservation, hash| hash[reservation.id] = {
-           id: reservation.id,
-           name: reservation.name,
-           room: Room.find_by_id(reservation.room_id).number,
-           roomId: reservation.room_id,
-           phone: reservation.phone,
-           places: reservation.places,
-           description: reservation.description,
-           startDate: reservation.start_date.strftime('%d.%m.%Y'),
-           endDate: reservation.end_date.strftime('%d.%m.%Y')}
-        }
-      }
-    elsif params[:from_chess]
-      render json: {
-        success: true,
-        reservations: @hotel.reservations.approved.map { |reservation|
-          { id: reservation.id,
-            group: reservation.room_id,
-            title: reservation.name,
-            start_time: (reservation.start_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
-            end_time: (reservation.end_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M')}
-        }}
-    elsif params[:from_ratrak]
-      render json: {
-        success: true,
-        reservations: @hotel.ratrak.reservations.approved.where('start_date < ? AND end_date > ?', params[:date].try(:to_date).try(:at_end_of_month) || Date.today.at_end_of_month, params[:date].try(:to_date).try(:at_beginning_of_month) || Date.today.at_beginning_of_month).map do |reservation|
-          {id: reservation.id,
-           name: reservation.name,
-           title: "#{reservation.name} - #{reservation.places}",
-           phone: reservation.phone,
-           places: reservation.places,
-           description: reservation.description,
-           deposit: reservation.deposit,
-           start: (reservation.start_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
-           end: (reservation.end_date.to_datetime + Time.parse("12:00").seconds_since_midnight.seconds).strftime('%Y-%m-%d %H:%M'),
-           allDay: false}
-        end
-      }
-    else
-      rooms = if params[:floor] == 'all'
-        @hotel.rooms.order(:number)
-      else
-        @hotel.rooms.order(:number).in_floor(params[:floor])
-      end
-      render json: {
-        success: true,
-        rooms: rooms.each_with_object({}) {|room, hash|
-          reservations = room.reservations.approved.for_dates(room, params[:start_date].to_date, params[:end_date].to_date)
-          hash[room.id] = {
-            id: room.id,
-            number: room.number,
-            floor: room.floor,
-            places: room.places,
-            booked: reservations.pluck(:places).sum,
-            reservations: reservations.each_with_object({}) {|reservation, hash| hash[reservation.id] = {
-              id: reservation.id,
-              name: reservation.name,
-              phone: reservation.phone,
-              places: reservation.places,
-              description: reservation.description,
-              startDate: reservation.start_date.strftime('%d.%m.%Y'),
-              endDate: reservation.end_date.strftime('%d.%m.%Y')}
-            }
-          }
-        }}
-    end
+    render json: {
+      success: true,
+      reservations: Reservation.for_dates(Time.now, Time.now + 40.days).map { |reservation|
+        { id: reservation.id,
+          group: reservation.car_id,
+          title: reservation.name,
+          start_time: reservation.start_date.to_datetime.strftime('%Y-%m-%d %H:%M'),
+          end_time: reservation.end_date.to_datetime.strftime('%Y-%m-%d %H:%M')}
+      }}
   end
 
   def dates
@@ -314,7 +156,7 @@ class ReservationsController < ApplicationController
       params.require(:reservation).permit(:name, :email, :phone, :description, :start_date, :end_date, :car_id)
     end
 
-    def define_hotel
-      @hotel = Hotel.friendly.find(params[:hotel_id])
+    def define_car
+      @car = Car.friendly.find(params[:car_id])
     end
 end

@@ -7,7 +7,6 @@ import ImageGallery from 'react-image-gallery';
 import moment from 'moment'
 import { Modal, ModalHeader, ModalFooter, ModalBody, Tooltip } from 'reactstrap';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
-import AirBnbPicker from "../common/AirBnbPicker";
 import DateTimePicker from 'react-datetime'
 
 export default class Hotel extends React.Component {
@@ -205,14 +204,14 @@ export default class Hotel extends React.Component {
                               timeFormat="HH:mm"
                               value={this.state.reservation.startDate}
                               onChange={this.handleNewReservationStartDateChange}
-                              inputProps={{placeholder: 'Подача'}}/>
+                              inputProps={{placeholder: 'Дата подачі'}}/>
                           <DateTimePicker
                               dateFormat="DD.MM.YYYY"
                               timeFormat="HH:mm"
                               value={this.state.reservation.endDate}
                               onChange={this.handleNewReservationEndDateChange}
                               className='end-date'
-                              inputProps={{placeholder: 'Повернення'}}/>
+                              inputProps={{placeholder: 'Дата повернення'}}/>
                       </div>
                       <div className="message-input">
                             <textarea name="description" className='description' cols="30" rows="5" value={this.state.reservation.description} onChange={(e) => this.handleNewReservationChange('description', e.target.value)}

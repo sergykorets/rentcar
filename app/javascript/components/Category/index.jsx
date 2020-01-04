@@ -39,7 +39,7 @@ export default class Category extends React.Component {
                                 </div>
                             </div>
                         </div>
-                                            <Masonry breakpointCols={{default: 4, 1100: 3, 700: 2, 500: 1}}>
+                                            <Masonry breakpointCols={{default: 4, 1199: 3, 991: 2, 767: 1}}>
                                                 { this.state.cars.map((car, index) => {
                                                     return (
                                                         <div className="category" key={index}>

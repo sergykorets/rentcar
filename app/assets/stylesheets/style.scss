@@ -2422,12 +2422,13 @@ body,
 }
 
 .single-sidebar h3 {
-	background-color: #ffd000;
-	color: #222;
+	background-color: #101010;
+	color: #eaeaea;
 	font-size: 18px;
 	padding: 12px 5px;
 	text-align: center;
 	text-transform: uppercase;
+    border: 1px solid #eaeaea;
 }
 
 .single-sidebar:last-child {

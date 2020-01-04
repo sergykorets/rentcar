@@ -39,7 +39,7 @@ export default class Hotels extends React.Component {
               </div>
             </div>
 
-            <Masonry breakpointCols={{default: 4, 1100: 3, 700: 2, 500: 1}}>
+            <Masonry breakpointCols={{default: 4, 1199: 3, 991: 2, 767: 1}}>
               { this.state.categories.map((category, index) => {
                 return (
                   <div className="category" key={index}>

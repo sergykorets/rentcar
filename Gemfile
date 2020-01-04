@@ -47,7 +47,6 @@ gem "font-awesome-rails"
 gem "paperclip", "~> 5.2.0"
 gem 'rails_admin_rollincode', '~> 1.0'
 gem 'httparty'
-gem 'google_places'
 gem 'whenever', require: false
 gem 'aws-sdk', '~> 2.3'
 gem 'friendly_id', '~> 5.2.0'
