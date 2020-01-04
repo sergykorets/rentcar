@@ -118,8 +118,6 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    google_places (1.2.0)
-      httparty (>= 0.13.1)
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
@@ -353,7 +351,6 @@ DEPENDENCIES
   fog-aws
   font-awesome-rails
   friendly_id (~> 5.2.0)
-  google_places
   httparty
   jbuilder (~> 2.5)
   jquery-rails
@@ -385,4 +382,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.16.1
+   1.17.3
