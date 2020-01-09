@@ -6,7 +6,6 @@ class Car < ApplicationRecord
   enum body_type: [:sedan, :cabrio, :hatchback]
   enum fuel: [:benzin, :gas, :diesel, :electro, :gybrid]
 
-  has_many :reviews, dependent: :destroy
   has_many :photos, dependent: :destroy
   has_many :reservations
   belongs_to :category
