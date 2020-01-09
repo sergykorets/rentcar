@@ -1,34 +1,14 @@
 import ReactOnRails from 'react-on-rails';
 
-import Hotels from '../components/Hotels/Hotels';
-import Hotel from '../components/Hotels/Hotel';
-import HotelNew from '../components/Hotels/HotelNew';
-import HotelEdit from '../components/Hotels/HotelEdit';
-import Schema from '../components/Schema';
-import Reservations from '../components/Reservations';
-import Rooms from '../components/Rooms';
-import Room from '../components/Rooms/Room';
-import ReservationList from '../components/Reservations/ReservationList';
-import PendingReservations from '../components/Reservations/PendingReservations';
-import UserReservations from '../components/Reservations/UserReservations';
+import Cars from '../components/Cars/Cars';
+import Car from '../components/Cars/Car';
 import Chess from '../components/Reservations/Chess';
-import Ratrak from '../components/Ratrak';
 import Category from '../components/Category';
 
 // This is how react_on_rails can see the HelloWorld in the browser.
 ReactOnRails.register({
-  Hotels,
-  HotelNew,
-  HotelEdit,
-  Hotel,
-  Schema,
-  Reservations,
-  Rooms,
-  Room,
-  ReservationList,
-  PendingReservations,
-  UserReservations,
+  Cars,
+  Car,
   Chess,
-  Ratrak,
   Category
 });

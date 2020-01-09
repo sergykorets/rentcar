@@ -25,8 +25,8 @@ class BookingMailer < ApplicationMailer
 
   def booking_email_for_admin(reservation)
     @reservation = reservation
-    @room = reservation.room
-    mail(to: 'dragobrat.net@gmail.com', subject: "Новий запит на бронювання в готель #{@room.hotel.name}")
+    @car = reservation.car
+    mail(to: 'dragobrat.net@gmail.com', subject: "Нове бронювання машини: #{@car.name}")
   end
 
   def booking_response_email(reservation, status)

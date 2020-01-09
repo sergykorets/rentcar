@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
     set_meta_tags title: "#{@topic.name}",
                   description: "#{@topic.name}",
                   keywords: "#{@topic.name}"
+    @admin = Rails.env.development? || current_user&.admin
     @category = {
         name: @topic.name,
         description: @topic.description,
@@ -23,7 +24,7 @@ class CategoriesController < ApplicationController
         fuel: car.fuel,
         engine: car.engine,
         avatar: car.photos.try(:first).try(:picture)}
-end
+    end
     respond_to do |format|
       format.html { render :show }
     end

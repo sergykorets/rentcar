@@ -5505,12 +5505,10 @@ react-facebook-pixel@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/react-facebook-pixel/-/react-facebook-pixel-0.1.1.tgz#9f258a08590ec7c11837cc4bc94e294d11a908bc"
 
-react-ga@^2.5.3:
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.5.3.tgz#0f447c73664c069a5fc341f6f431262e3d4c23c4"
-  optionalDependencies:
-    prop-types "^15.6.0"
-    react "^15.6.2 || ^16.0"
+react-ga@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.7.0.tgz#24328f157f31e8cffbf4de74a3396536679d8d7c"
+  integrity sha512-AjC7UOZMvygrWTc2hKxTDvlMXEtbmA0IgJjmkhgmQQ3RkXrWR11xEagLGFGaNyaPnmg24oaIiaNPnEoftUhfXA==
 
 react-grid-gallery@^0.5.1:
   version "0.5.1"
@@ -5749,7 +5747,7 @@ react-with-styles@^3.2.0:
     prop-types "^15.6.2"
     scheduler "^0.10.0"
 
-"react@^15.6.2 || ^16.0", react@^16.2.0:
+react@^16.2.0:
   version "16.6.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.6.1.tgz#ee2aef4f0a09e494594882029821049772f915fe"
   dependencies:

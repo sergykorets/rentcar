@@ -9,7 +9,7 @@ import { Modal, ModalHeader, ModalFooter, ModalBody, Tooltip } from 'reactstrap'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import DateTimePicker from 'react-datetime'
 
-export default class Hotel extends React.Component {
+export default class Car extends React.Component {
   constructor(props) {
     super(props);
 
@@ -29,13 +29,12 @@ export default class Hotel extends React.Component {
   }
 
   componentDidMount() {
-    // if (!(this.state.admin || this.state.owner)) {
-    //   ReactGA.initialize('UA-116820611-2');
-    //   ReactGA.pageview(window.location.pathname + window.location.search);
-    //   ReactGA.ga('send', 'pageview', `/hotels/${this.state.hotel.slug}`);
-    //   ga('send', {'name': 'viewContent', 'productId': this.state.hotel.id, 'productName': this.state.hotel.name});
-    //   ReactPixel.track('ViewContent', { content_ids: [this.state.hotel.id], content_name: this.state.hotel.name, content_type: 'Hotel'})
-    // }
+    if (!this.props.admin) {
+      ReactGA.initialize('UA-116820611-3');
+      ReactGA.pageview(window.location.pathname + window.location.search);
+      ReactGA.ga('send', 'pageview', `/cars/${this.state.car.slug}`);
+      ga('send', {'name': 'viewContent', 'productId': this.state.car.id, 'productName': this.state.car.name});
+    }
   }
 
   handleNewReservationStartDateChange = (date) => {
@@ -85,6 +84,13 @@ export default class Hotel extends React.Component {
       }
     }).then((resp) => {
       if (resp.success) {
+        if (!this.props.admin) {
+          ga('send', {'name': 'purchase', 'productIds': this.state.car.id, 'revenue': 150})
+          ga('require', 'ecommerce')
+          ga('ecommerce:addTransaction', {'id': new Date().getTime(), 'revenue': 150, 'currency': 'UAH'})
+          ga('ecommerce:addItem', {'id': this.state.car.id, 'name': this.state.car.name, 'quantity': 1, 'price': 150})
+          ga('ecommerce:send')
+        }
         this.setState({
           ...this.state,
           reservation: {
@@ -104,21 +110,17 @@ export default class Hotel extends React.Component {
   }
 
   render() {
-    //debugger
-    console.log(this.state)
     const images = this.state.car.photos.map((photo) => {return ({ original: photo, thumbnail: photo})})
-
     return (
       <Fragment>
         <NotificationContainer/>
-
         <section id="car-list-area" className="section-padding">
           <div className="container">
             <div className="row">
               <div className="col-lg-8">
                 <div className="car-details-content">
                   <h2>{this.state.car.name} <span className="price">Rent: <b>$150</b></span></h2>
-                  <ImageGallery items={images} additionalClass='custom-gallery' autoPlay />
+                  <ImageGallery items={images} additionalClass='custom-gallery' autoPlay={false} />
 
                   <div className="car-details-info">
                     <h4>Інформація про авто</h4>

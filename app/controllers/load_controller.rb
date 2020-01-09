@@ -1,4 +1,4 @@
-class SchemasController < ApplicationController
+class LoadController < ApplicationController
   layout 'hotel_admin'
   before_action :authenticate_user!
   def index

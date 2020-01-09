@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :reservations
   end
   resources :categories, only: :show
-  resources :schemas, only: :index
+  resources :load, only: :index
   get 'reactivate/edit', 'reactivate#edit'
   put 'reactivate/update', 'reactivate#update'
 end

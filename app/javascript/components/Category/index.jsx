@@ -1,8 +1,6 @@
 import React, {Fragment} from 'react';
 import Masonry from 'react-masonry-css';
 import ReactGA from 'react-ga';
-import ReactPixel from 'react-facebook-pixel';
-import { Tooltip, Modal, ModalHeader, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 export default class Category extends React.Component {
     constructor(props) {
@@ -16,18 +14,15 @@ export default class Category extends React.Component {
 
     componentDidMount() {
         this.state.loaded = true;
-        // if (!this.state.admin) {
-        //   ReactPixel.init('668734460178473');
-        //   ReactGA.initialize('UA-116820611-2');
-        //   ReactGA.ga('send', 'pageview', `/hotels`);
-        //   ReactPixel.pageView();
-        // }
+        if (!this.props.admin) {
+          ReactGA.initialize('UA-116820611-3');
+          ReactGA.ga('send', 'pageview', `/categories/${this.state.category.name}`);
+        }
     }
 
     render() {
         return (
             <Fragment>
-
                 <section id="choose-car" className="section-padding">
                     <div className="container">
                         <div className="row">
@@ -39,27 +34,27 @@ export default class Category extends React.Component {
                                 </div>
                             </div>
                         </div>
-                                            <Masonry breakpointCols={{default: 4, 1199: 3, 991: 2, 767: 1}}>
-                                                { this.state.cars.map((car, index) => {
-                                                    return (
-                                                        <div className="category" key={index}>
-                                                            <div className="single-popular-car">
-                                                                <div className="p-car-thumbnails">
-                                                                    <a className="car-hover" href={`/cars/${car.slug}`}>
-                                                                        <img src={car.avatar} alt="JSOFT"/>
-                                                                    </a>
-                                                                </div>
+                        <Masonry breakpointCols={{default: 4, 1199: 3, 991: 2, 767: 1}}>
+                            { this.state.cars.map((car, index) => {
+                                return (
+                                    <div className="category" key={index}>
+                                        <div className="single-popular-car">
+                                            <div className="p-car-thumbnails">
+                                                <a className="car-hover" href={`/cars/${car.slug}`}>
+                                                    <img src={car.avatar} alt="JSOFT"/>
+                                                </a>
+                                            </div>
 
-                                                                <div className="p-car-content">
-                                                                    <h3>
-                                                                        <a href={`/cars/${car.slug}`}>{car.name}</a>
-                                                                    </h3>
+                                            <div className="p-car-content">
+                                                <h3>
+                                                    <a href={`/cars/${car.slug}`}>{car.name}</a>
+                                                </h3>
 
-                                                                    <h5>{car.description}</h5>
-                                                                </div>
-                                                            </div>
-                                                        </div>)})}
-                                            </Masonry>
+                                                <h5>{car.description}</h5>
+                                            </div>
+                                        </div>
+                                    </div>)})}
+                        </Masonry>
                     </div>
                 </section>
             </Fragment>

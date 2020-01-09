@@ -1,10 +1,8 @@
 import React, {Fragment} from 'react';
 import Masonry from 'react-masonry-css';
 import ReactGA from 'react-ga';
-import ReactPixel from 'react-facebook-pixel';
-import { Tooltip, Modal, ModalHeader, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
-export default class Hotels extends React.Component {
+export default class Cars extends React.Component {
   constructor(props) {
     super(props);
 
@@ -16,12 +14,10 @@ export default class Hotels extends React.Component {
 
   componentDidMount() {
     this.state.loaded = true;
-    // if (!this.state.admin) {
-    //   ReactPixel.init('668734460178473');
-    //   ReactGA.initialize('UA-116820611-2');
-    //   ReactGA.ga('send', 'pageview', `/hotels`);
-    //   ReactPixel.pageView();
-    // }
+    if (!this.props.admin) {
+      ReactGA.initialize('UA-116820611-3');
+      ReactGA.ga('send', 'pageview', `/`);
+    }
   }
 
   render() {

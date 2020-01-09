@@ -44,8 +44,8 @@ class ReservationsController < ApplicationController
 
   def create
     if car = Car.find_by_id(params[:reservation][:car_id])
-      c = car.reservations.create(reservation_params)
-      if c.persisted?
+      r = car.reservations.create(reservation_params)
+      if r.persisted?
         if params[:from_chess]
           render json: {
               success: true,
@@ -57,10 +57,11 @@ class ReservationsController < ApplicationController
                   end_time: reservation.end_date.to_datetime.strftime('%Y-%m-%d %H:%M')}
               }}
         else
+          BookingEmailForHotelJob.perform_later(r)
           render json: { success: true }
         end
       else
-        render json: {success: false, error: c.errors.full_messages.first}
+        render json: {success: false, error: r.errors.full_messages.first}
       end
     else
       render json: {success: false, error: 'Перезавантажте сторінку'}
